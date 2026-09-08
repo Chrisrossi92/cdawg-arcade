@@ -1,3 +1,5 @@
+import { CountdownClock, SimulationClock } from './simulationClock';
+import { HeldControls, observeInterruptions } from './interruption';
 import { ConnectionStatus } from '../../app/ConnectionStatus';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { createV1ProductUiPolicy, getProductionIdentityLabel } from '../../app/v1ProductPolicy';
@@ -14,7 +16,6 @@ import {
   getViewportLayoutMode,
   isEditableInputTarget,
   isGameplayInputActive,
-  resolveHeldInput,
   shouldPreventScrollForKey,
 } from './inputManager';
 import { getMilestoneForScore, type BalanceConfig, type BalanceInputDirection, type BalanceState } from './simulation';
@@ -48,7 +49,10 @@ export function BalanceExperience({ hostContext, scoreRepository, onExit, onRetr
   const [milestone, setMilestone] = useState<number | null>(null);
   const inputRef = useRef<BalanceInputDirection>('none');
   const configRef = useRef<BalanceConfig>(tuning);
-  const heldKeysRef = useRef<Set<string>>(new Set());
+  const controls = useRef(new HeldControls());
+  const clockRef = useRef(new SimulationClock(balanceConfig));
+  const pausedRef = useRef(false);
+  const [paused, setPaused] = useState(false);
   const phaseRef = useRef<GamePhase>(getInitialBalancePhase());
   const previousScoreRef = useRef(0);
   const audio = useMemo(() => new WebAudioManager(), []);
@@ -81,89 +85,80 @@ export function BalanceExperience({ hostContext, scoreRepository, onExit, onRetr
   }, [audio, sfxEnabled]);
 
   useEffect(() => {
-    if (phase !== 'countdown') return;
-    setCountdown(3);
-    audio.playCue('countdown');
-    const first = window.setTimeout(() => {
-      setCountdown(2);
-      audio.playCue('countdown');
-    }, 800);
-    const second = window.setTimeout(() => {
-      setCountdown(1);
-      audio.playCue('countdown');
-    }, 1600);
-    const third = window.setTimeout(() => {
-      setScore(0);
-      previousScoreRef.current = 0;
-      setRunResult(null);
-      setPhase('playing');
-    }, 2400);
-    return () => {
-      window.clearTimeout(first);
-      window.clearTimeout(second);
-      window.clearTimeout(third);
-    };
-  }, [audio, phase]);
-
-  useEffect(() => {
-    const clearHeldInput = () => {
-      heldKeysRef.current.clear();
-      setInput('none');
-    };
-
-    const down = (event: KeyboardEvent) => {
-      const activePhase = phaseRef.current;
-      if (shouldPreventScrollForKey(event.key, activePhase, event.target)) {
-        event.preventDefault();
+    if (phase !== 'countdown' || paused) return;
+    const countdownClock = new CountdownClock();
+    let frame = 0;
+    let digit = 3;
+    setCountdown(digit); audio.playCue('countdown');
+    const tick = (now: number) => {
+      if (pausedRef.current) return;
+      const result = countdownClock.frame(now);
+      if (document.hidden || result === 'interrupted') { pauseRun(); return; }
+      if (result === 'ready') {
+        clearInput(); setScore(0); previousScoreRef.current = 0; setRunResult(null); setPhase('playing'); return;
       }
-      if (!isGameplayInputActive(activePhase) || isEditableInputTarget(event.target)) return;
+      if (digit !== countdownClock.digit) { digit = countdownClock.digit; setCountdown(digit); audio.playCue('countdown'); }
+      frame = requestAnimationFrame(tick);
+    };
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [audio, phase, paused]);
 
+  const clearInput = () => {
+    controls.current.clear(); inputRef.current = 'none'; setInput('none'); clockRef.current.clearInput();
+  };
+  const pauseRun = () => {
+    clearInput();
+    if (!isGameplayInputActive(phaseRef.current) || clockRef.current.state.failed) return;
+    pausedRef.current = true; clockRef.current.pause(); setPaused(true);
+  };
+  const publishInput = () => {
+    const direction = controls.current.direction;
+    inputRef.current = direction; setInput(direction);
+    clockRef.current.input(direction, performance.now());
+  };
+  useEffect(() => {
+    const down = (event: KeyboardEvent) => {
+      if (shouldPreventScrollForKey(event.key, phaseRef.current, event.target)) event.preventDefault();
+      if (pausedRef.current || !isGameplayInputActive(phaseRef.current) || isEditableInputTarget(event.target) || event.repeat) return;
       const direction = getDirectionForKey(event.key);
-      if (!direction) return;
-      if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') event.preventDefault();
-      heldKeysRef.current.delete(event.key);
-      heldKeysRef.current.add(event.key);
-      setInput(resolveHeldInput(heldKeysRef.current));
-      if (!event.repeat) audio.playCue('input');
+      if (!direction || direction === 'none') return;
+      controls.current.press(`key:${event.code || event.key.toLowerCase()}`, direction);
+      publishInput(); audio.playCue('input');
     };
-
     const up = (event: KeyboardEvent) => {
-      const activePhase = phaseRef.current;
-      if (shouldPreventScrollForKey(event.key, activePhase, event.target)) event.preventDefault();
       if (!getDirectionForKey(event.key)) return;
-      heldKeysRef.current.delete(event.key);
-      setInput(isGameplayInputActive(activePhase) ? resolveHeldInput(heldKeysRef.current) : 'none');
+      if (shouldPreventScrollForKey(event.key, phaseRef.current, event.target)) event.preventDefault();
+      controls.current.release(`key:${event.code || event.key.toLowerCase()}`); publishInput();
     };
-
-    const visibility = () => {
-      if (document.hidden) clearHeldInput();
-    };
-    window.addEventListener('keydown', down);
-    window.addEventListener('keyup', up);
-    window.addEventListener('blur', clearHeldInput);
-    document.addEventListener('visibilitychange', visibility);
+    window.addEventListener('keydown', down); window.addEventListener('keyup', up);
+    const stop = observeInterruptions(window, document, pauseRun, clearInput);
     return () => {
-      window.removeEventListener('keydown', down);
-      window.removeEventListener('keyup', up);
-      window.removeEventListener('blur', clearHeldInput);
-      document.removeEventListener('visibilitychange', visibility);
-      clearHeldInput();
+      window.removeEventListener('keydown', down); window.removeEventListener('keyup', up); stop(); clockRef.current.pause();
     };
   }, [audio]);
 
   const startRun = () => {
-    heldKeysRef.current.clear();
-    setInput('none');
+    clearInput();
+    clockRef.current = new SimulationClock(configRef.current);
+    pausedRef.current = false; setPaused(false);
     setMilestone(null);
     setScore(0);
     setRunResult(null);
     setPhase('countdown');
   };
 
-  const updateInput = (nextInput: BalanceInputDirection) => {
-    if (!isGameplayInputActive(phase)) return;
-    setInput(nextInput);
-    if (nextInput !== 'none') audio.playCue('input');
+  const pointerDown = (event: React.PointerEvent<HTMLButtonElement>, direction: 'left' | 'right') => {
+    if (pausedRef.current || !isGameplayInputActive(phase)) return;
+    event.currentTarget.setPointerCapture(event.pointerId);
+    controls.current.press(`pointer:${event.pointerId}`, direction); publishInput(); audio.playCue('input');
+  };
+  const pointerUp = (event: React.PointerEvent<HTMLButtonElement>) => {
+    controls.current.release(`pointer:${event.pointerId}`); publishInput();
+  };
+  const resumeRun = () => {
+    if (document.hidden) return;
+    clearInput(); clockRef.current.resume(); pausedRef.current = false; setPaused(false);
   };
 
   const handleTick = useCallback(
@@ -190,8 +185,7 @@ export function BalanceExperience({ hostContext, scoreRepository, onExit, onRetr
       });
       setRunResult(result);
       setPhase(getPhaseAfterRunResult(result));
-      heldKeysRef.current.clear();
-      setInput('none');
+      clearInput();
       audio.playCue(result.isPersonalBest ? 'record' : 'fall');
     },
     [audio, scoreRepository],
@@ -227,7 +221,7 @@ export function BalanceExperience({ hostContext, scoreRepository, onExit, onRetr
       )}
 
       <section className="cabinet balance-stage" data-viewport-mode={getViewportLayoutMode(phase)}>
-        {phase === 'playing' && <BalanceGameCanvas configRef={configRef} inputRef={inputRef} onGameOver={handleGameOver} onTick={handleTick} />}
+        {phase === 'playing' && <BalanceGameCanvas clock={clockRef.current} onPause={pauseRun} configRef={configRef} onGameOver={handleGameOver} onTick={handleTick} />}
 
         {phase === 'home' && (
           <div className="start-panel balance-start-panel">
@@ -236,7 +230,12 @@ export function BalanceExperience({ hostContext, scoreRepository, onExit, onRetr
           </div>
         )}
 
-        {phase === 'countdown' && <div className="countdown">{countdown}</div>}
+        {phase === 'countdown' && !paused && <div className="countdown">{countdown}</div>}
+
+        {paused && <div className="pause-panel" role="dialog" aria-label="Game paused">
+          <strong>Paused</strong><p>Your score is on hold.</p>
+          <button className="primary-button" onClick={resumeRun} type="button">Resume</button>
+        </div>}
 
         {phase === 'results' && runResult && (
           <div className="result-panel">
@@ -258,10 +257,11 @@ export function BalanceExperience({ hostContext, scoreRepository, onExit, onRetr
       <section className="control-deck" aria-label="Game controls">
         <button
           className={`control-button control-left ${input === 'left' ? 'is-pressed' : ''}`}
-          disabled={!isGameplayInputActive(phase)}
-          onPointerDown={() => updateInput('left')}
-          onPointerLeave={() => updateInput('none')}
-          onPointerUp={() => updateInput('none')}
+          disabled={paused || !isGameplayInputActive(phase)}
+          onPointerDown={(event) => pointerDown(event, 'left')}
+          onPointerUp={pointerUp}
+          onPointerCancel={clearInput}
+          onLostPointerCapture={pointerUp}
           type="button"
         >
           Left
@@ -271,10 +271,11 @@ export function BalanceExperience({ hostContext, scoreRepository, onExit, onRetr
         </div>
         <button
           className={`control-button control-right ${input === 'right' ? 'is-pressed' : ''}`}
-          disabled={!isGameplayInputActive(phase)}
-          onPointerDown={() => updateInput('right')}
-          onPointerLeave={() => updateInput('none')}
-          onPointerUp={() => updateInput('none')}
+          disabled={paused || !isGameplayInputActive(phase)}
+          onPointerDown={(event) => pointerDown(event, 'right')}
+          onPointerUp={pointerUp}
+          onPointerCancel={clearInput}
+          onLostPointerCapture={pointerUp}
           type="button"
         >
           Right

@@ -121,8 +121,12 @@ export function stepBalanceSimulation(
     return { state: previous, scoreSeconds: calculateScoreSeconds(previous.survivalMs) };
   }
 
-  const dt = Math.min(deltaMs, 50) / 1000;
-  const survivalMs = previous.survivalMs + deltaMs;
+  // Coefficients are calibrated per 60 Hz tick. This primitive accepts one tick only.
+  if (!Number.isFinite(deltaMs) || Math.abs(deltaMs - 1000 / 60) > 1e-7) {
+    throw new RangeError('Simulation requires a fixed 60 Hz tick');
+  }
+  const dt = deltaMs / 1000;
+  const survivalMs = Math.round(previous.survivalMs / deltaMs + 1) * deltaMs;
   const difficultyMultiplier = calculateDifficulty(survivalMs, config);
   const phaseBand = getPhaseBand(survivalMs, config);
   const tuningPhase = phaseBand.phase;

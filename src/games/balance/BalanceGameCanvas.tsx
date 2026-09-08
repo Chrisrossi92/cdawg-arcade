@@ -1,28 +1,31 @@
 import { useEffect, useRef } from 'react';
 import type { MutableRefObject } from 'react';
 import Phaser from 'phaser';
+import type { SimulationClock } from './simulationClock';
 import { BalanceScene } from './BalanceScene';
-import type { BalanceConfig, BalanceInputDirection, BalanceState } from './simulation';
+import type { BalanceConfig, BalanceState } from './simulation';
 
 interface BalanceGameCanvasProps {
-  inputRef: MutableRefObject<BalanceInputDirection>;
+  clock: SimulationClock;
+  onPause: () => void;
   configRef: MutableRefObject<BalanceConfig>;
   onTick: (state: BalanceState, scoreSeconds: number) => void;
   onGameOver: (scoreSeconds: number, finalState: BalanceState) => void;
 }
 
-export function BalanceGameCanvas({ inputRef, configRef, onTick, onGameOver }: BalanceGameCanvasProps) {
+export function BalanceGameCanvas({ configRef, onTick, onGameOver, clock, onPause }: BalanceGameCanvasProps) {
   const hostRef = useRef<HTMLDivElement | null>(null);
-  const callbacksRef = useRef({ onTick, onGameOver });
+  const callbacksRef = useRef({ onTick, onGameOver, onPause });
 
   useEffect(() => {
-    callbacksRef.current = { onTick, onGameOver };
-  }, [onGameOver, onTick]);
+    callbacksRef.current = { onTick, onGameOver, onPause };
+  }, [onGameOver, onTick, onPause]);
 
   useEffect(() => {
     if (!hostRef.current) return;
     const scene = new BalanceScene({
-      inputRef,
+      clock,
+      onPause: () => callbacksRef.current.onPause(),
       configRef,
       onTick: (state, score) => callbacksRef.current.onTick(state, score),
       onGameOver: (score, state) => callbacksRef.current.onGameOver(score, state),
@@ -43,7 +46,7 @@ export function BalanceGameCanvas({ inputRef, configRef, onTick, onGameOver }: B
     return () => {
       game.destroy(true);
     };
-  }, [configRef, inputRef]);
+  }, [configRef, clock]);
 
   return <div className="game-canvas" ref={hostRef} />;
 }
