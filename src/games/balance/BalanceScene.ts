@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { SimulationClock } from './simulationClock';
 import type { MutableRefObject } from 'react';
 import { balanceConfig } from './config';
 import { CdawgRig, getCdawgPoseForBalance } from './CdawgRig';
@@ -6,14 +7,13 @@ import {
   calculateScoreSeconds,
   createInitialBalanceState,
   getMilestoneForScore,
-  stepBalanceSimulation,
   type BalanceConfig,
-  type BalanceInputDirection,
   type BalanceState,
 } from './simulation';
 
 interface BalanceSceneOptions {
-  inputRef: MutableRefObject<BalanceInputDirection>;
+  clock: SimulationClock;
+  onPause: () => void;
   configRef: MutableRefObject<BalanceConfig>;
   onTick: (state: BalanceState, scoreSeconds: number) => void;
   onGameOver: (scoreSeconds: number, finalState: BalanceState) => void;
@@ -37,7 +37,11 @@ export class BalanceScene extends Phaser.Scene {
   }
 
   create(): void {
-    this.state = createInitialBalanceState(this.options.configRef.current);
+    this.state = this.options.clock.state;
+    this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
+      this.options.clock.clearInput();
+      this.scale.off('resize', this.handleResize, this);
+    });
     const { width, height } = this.scale;
 
     this.background = this.add.rectangle(width / 2, height / 2, width, height, 0x090a12);
@@ -69,22 +73,24 @@ export class BalanceScene extends Phaser.Scene {
     this.scale.on('resize', this.handleResize, this);
   }
 
-  update(_time: number, delta: number): void {
+  update(): void {
     if (this.ended) return;
     const config = this.options.configRef.current;
-    const step = stepBalanceSimulation(this.state, this.options.inputRef.current, delta, config);
-    this.state = step.state;
-    this.renderState(step.scoreSeconds);
-    if (getMilestoneForScore(step.scoreSeconds, this.lastScoreSeconds)) {
+    const frame = this.options.clock.frame(performance.now(), config);
+    if (frame.interrupted) this.options.onPause();
+    this.state = this.options.clock.state;
+    const scoreSeconds = calculateScoreSeconds(this.state.survivalMs);
+    this.renderState(scoreSeconds);
+    if (getMilestoneForScore(scoreSeconds, this.lastScoreSeconds)) {
       this.pulseCdawg();
     }
-    this.lastScoreSeconds = step.scoreSeconds;
-    this.options.onTick(step.state, step.scoreSeconds);
+    this.lastScoreSeconds = scoreSeconds;
+    if (frame.steps) this.options.onTick(this.state, scoreSeconds);
 
-    if (step.state.failed) {
+    if (this.state.failed) {
       this.ended = true;
       this.renderImpact();
-      this.time.delayedCall(380, () => this.options.onGameOver(calculateScoreSeconds(step.state.survivalMs), step.state));
+      this.time.delayedCall(380, () => this.options.onGameOver(calculateScoreSeconds(this.state.survivalMs), this.state));
     }
   }
 

@@ -14,8 +14,8 @@ import {
 describe('balance simulation', () => {
   it('left and right input affect balance in opposite directions', () => {
     const state = createInitialBalanceState(balanceConfig);
-    const left = stepBalanceSimulation(state, 'left', 100, balanceConfig).state;
-    const right = stepBalanceSimulation(state, 'right', 100, balanceConfig).state;
+    const left = stepBalanceSimulation(state, 'left', 1000 / 60, balanceConfig).state;
+    const right = stepBalanceSimulation(state, 'right', 1000 / 60, balanceConfig).state;
 
     expect(left.angularVelocity).toBeLessThan(right.angularVelocity);
     expect(left.tilt).toBeLessThan(right.tilt);
@@ -25,7 +25,7 @@ describe('balance simulation', () => {
     let state = { ...createInitialBalanceState(balanceConfig), tilt: 14, angularVelocity: 0 };
     const initialTilt = Math.abs(state.tilt);
     for (let i = 0; i < 20; i += 1) {
-      state = stepBalanceSimulation(state, 'none', 100, balanceConfig).state;
+      state = stepBalanceSimulation(state, 'none', 1000 / 60, balanceConfig).state;
     }
 
     expect(Math.abs(state.tilt)).toBeGreaterThan(initialTilt);
@@ -68,8 +68,8 @@ describe('balance simulation', () => {
       survivalMs: 18_000,
       difficultyMultiplier: calculateDifficulty(18_000, balanceConfig),
     };
-    const fresh = stepBalanceSimulation({ ...base, previousInput: 'none', heldInputMs: 0 }, 'left', 100, balanceConfig).state;
-    const fatigued = stepBalanceSimulation({ ...base, previousInput: 'left', heldInputMs: 2_200 }, 'left', 100, balanceConfig).state;
+    const fresh = stepBalanceSimulation({ ...base, previousInput: 'none', heldInputMs: 0 }, 'left', 1000 / 60, balanceConfig).state;
+    const fatigued = stepBalanceSimulation({ ...base, previousInput: 'left', heldInputMs: 2_200 }, 'left', 1000 / 60, balanceConfig).state;
 
     expect(fatigued.angularVelocity).toBeGreaterThan(fresh.angularVelocity);
   });
@@ -83,8 +83,8 @@ describe('balance simulation', () => {
       difficultyMultiplier: calculateDifficulty(48_000, balanceConfig),
       tuningPhase: 'Critical',
     };
-    const noInput = stepBalanceSimulation(base, 'none', 100, balanceConfig).state;
-    const correctiveInput = stepBalanceSimulation(base, 'left', 100, balanceConfig).state;
+    const noInput = stepBalanceSimulation(base, 'none', 1000 / 60, balanceConfig).state;
+    const correctiveInput = stepBalanceSimulation(base, 'left', 1000 / 60, balanceConfig).state;
 
     expect(correctiveInput.angularVelocity).toBeLessThan(noInput.angularVelocity - 0.35);
   });
@@ -101,7 +101,7 @@ describe('balance simulation', () => {
       tilt: balanceConfig.failureAngle - 0.2,
       angularVelocity: 2,
     };
-    const next = stepBalanceSimulation(state, 'right', 100, balanceConfig).state;
+    const next = stepBalanceSimulation(state, 'right', 1000 / 60, balanceConfig).state;
 
     expect(next.failed).toBe(true);
     expect(next.failureDirection).toBe('right');
