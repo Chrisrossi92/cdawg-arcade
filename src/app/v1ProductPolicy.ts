@@ -27,8 +27,8 @@ export function getActivePlayer(context: HostContext): HostContext['currentUser'
 }
 
 export function getProductionIdentityLabel(context: HostContext): string {
-  if (context.authenticated) return context.currentUser.displayName;
-  return context.environment === 'discord' ? 'Discord Player' : 'Local Player';
+  if (context.environment === 'discord' && context.authenticated) return context.currentUser.displayName;
+  return 'Local Player';
 }
 
 export function containsLongDiscordId(value: string): boolean {

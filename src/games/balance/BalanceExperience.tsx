@@ -1,3 +1,4 @@
+import { ConnectionStatus } from '../../app/ConnectionStatus';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { createV1ProductUiPolicy, getProductionIdentityLabel } from '../../app/v1ProductPolicy';
 import type { HostContext } from '../../contracts/events';
@@ -22,6 +23,8 @@ interface BalanceExperienceProps {
   scoreRepository: ScoreRepository;
   onExit?: () => void;
   hostContext: HostContext;
+  onRetryConnection?: () => void;
+  onContinuePractice?: () => void;
 }
 
 interface DebugSnapshot {
@@ -30,7 +33,7 @@ interface DebugSnapshot {
   phase: GamePhase;
 }
 
-export function BalanceExperience({ hostContext, scoreRepository, onExit }: BalanceExperienceProps) {
+export function BalanceExperience({ hostContext, scoreRepository, onExit, onRetryConnection, onContinuePractice }: BalanceExperienceProps) {
   const uiPolicy = useMemo(() => createV1ProductUiPolicy(), []);
   const [phase, setPhase] = useState<GamePhase>(() => getInitialBalancePhase());
   const [countdown, setCountdown] = useState(3);
@@ -201,6 +204,7 @@ export function BalanceExperience({ hostContext, scoreRepository, onExit }: Bala
         <div className="balance-brand">
           <span className="prototype-pill">Cdawg Balance</span>
           <h1>Cdawg Balance</h1>
+          <ConnectionStatus context={hostContext} onRetry={onRetryConnection} onPractice={onContinuePractice} />
         </div>
         <div className="audio-controls" aria-label="Audio settings">
           <label><input checked={musicEnabled} onChange={(event) => setMusicEnabled(event.target.checked)} type="checkbox" /> Music</label>
@@ -210,13 +214,13 @@ export function BalanceExperience({ hostContext, scoreRepository, onExit }: Bala
 
       <section className="balance-compact-hud" aria-label="Score">
         <div><span>Score</span><strong>{score.toFixed(1)}s</strong></div>
-        <div><span>Best</span><strong>{personalBest.toFixed(1)}s</strong></div>
+        <div><span>Local best</span><strong>{personalBest.toFixed(1)}s</strong></div>
         <div><span>Player</span><strong>{identityLabel}</strong></div>
       </section>
 
       {uiPolicy.showDiscordDebugState && (
         <section className="activity-status-panel" data-testid="dev-discord-status">
-          <span>State: {hostContext.initializationState ?? 'detecting'}</span>
+          <span>State: {hostContext.connectionState ?? 'local-practice'}</span>
           <span>{hostContext.initializationStatus}</span>
           <span>User: {hostContext.currentUser.displayName}</span>
         </section>
@@ -236,12 +240,12 @@ export function BalanceExperience({ hostContext, scoreRepository, onExit }: Bala
 
         {phase === 'results' && runResult && (
           <div className="result-panel">
-            <p className="result-label">Final Score</p>
+            <p className="result-label">Final Score · Saved locally</p>
             <strong>{runResult.scoreSeconds.toFixed(1)}s</strong>
-            <span>{runResult.isPersonalBest ? 'New personal best' : `Best remains ${personalBest.toFixed(1)}s`}</span>
+            <span>{runResult.isPersonalBest ? 'New local best' : `Local best remains ${personalBest.toFixed(1)}s`}</span>
             <div className="result-actions">
               <button className="primary-button" onClick={startRun} type="button">Play Again</button>
-              <button className="secondary-button" onClick={() => setPhase('leaderboard')} type="button">Leaderboard</button>
+              <button className="secondary-button" onClick={() => setPhase('leaderboard')} type="button">Local results</button>
             </div>
           </div>
         )}
@@ -359,7 +363,8 @@ function cloneBalanceConfig(config: BalanceConfig): BalanceConfig {
 function LeaderboardView({ entries, onBack }: { entries: LeaderboardEntry[]; onBack: () => void }) {
   return (
     <div className="leaderboard-panel">
-      <p className="result-label">Leaderboard</p>
+      <p className="result-label">Local practice results</p>
+      <p>Saved in this browser only. Not shared with your server.</p>
       {entries.length > 0 ? (
         <ol>
           {entries.map((entry, index) => (

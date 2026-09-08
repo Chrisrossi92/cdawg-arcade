@@ -1,70 +1,58 @@
 # Discord Development Setup
 
-These steps must be completed manually in Discord Developer Portal and your local terminal.
+## Browser practice
 
-## 1. Configure Environment
+Use installed dependencies with `npm run dev:all` to start the frontend and token backend. Open the printed local URL without Activity parameters. Local practice must work even when the legacy Discord enable flag is true. No secret is needed for browser play.
 
-Create `.env` from `.env.example` and fill:
+The game opens directly into Cdawg Balance. Start a run, lose, play again, and open Local results. All scores stay in browser storage and are not shared or guild-scoped. Do not clear storage as part of validation.
 
-- `VITE_DISCORD_CLIENT_ID`
-- `DISCORD_CLIENT_ID`
-- `DISCORD_CLIENT_SECRET`
-- `DISCORD_REDIRECT_URI`
-- `ALLOWED_ORIGINS`
+## Discord launch prerequisites
 
-Do not prefix the client secret with `VITE_`.
+Keep actual values only in ignored `.env`. `.env.example` lists the required names with placeholders. Frontend and backend client IDs must agree, and the backend must use the current client secret. Never prefix a secret with `VITE_`.
 
-## 2. Start Local Services
+The existing development workflow uses:
 
 ```bash
 npm run dev:all
-```
-
-The backend serves:
-
-- `GET /api/health`
-- `POST /api/token`
-
-## 3. Expose Through HTTPS Tunnel
-
-Use a temporary tunnel such as cloudflared:
-
-```bash
 cloudflared tunnel --url http://localhost:5173
 ```
 
-If the backend is not reached through the Vite `/api` proxy, expose or map `/api` to the backend route as well.
+Use a tunnel only when its destination is already compatible with the application's existing mappings or configuration changes are separately authorized. A new temporary tunnel hostname does not automatically update Discord mappings. Stop only the processes started for the test.
 
-## 4. Discord Developer Portal
+Existing Discord configuration must provide:
 
-In the Developer Portal:
+- Activities enabled and an available Entry Point launch.
+- A root frontend URL mapping and reachable `/api/token` via the Vite proxy or backend mapping.
+- The registered OAuth redirect URI used by the backend.
+- A real launch from Discord, which supplies `frame_id`, `instance_id`, and `platform` (`desktop` or `mobile`). Preserve the full query string.
 
-1. Enable Developer Mode in Discord.
-2. Open your application.
-3. Under OAuth2, add the redirect URI used by `DISCORD_REDIRECT_URI`.
-4. Under Activities, open URL Mappings.
-5. Add the root frontend Activity URL Mapping for `/`.
-6. Add or verify an `/api` Activity URL Mapping to the backend route or Vite proxy.
-7. Enable Activities.
-8. Use the default Entry Point command or configure a development Launch command.
-9. Launch the Activity from a development server through the App Launcher.
+The client guards missing/blank/duplicate required parameters and invalid platforms before SDK construction. Configuration alone never fabricates Activity context. The SDK handshake and authenticated user response establish the actual connection; URL parameters are not trusted as player identity.
 
-## What Should Work
+## Visible states and recovery
 
-- SDK readiness
-- authorization prompt
-- backend code exchange
-- SDK authentication
-- real Discord user display
-- guild/channel/activity instance context where Discord provides it
-- participant count where supported
-- Cdawg Balance gameplay in the iframe
+- **Local practice:** immediate local identity; gameplay available.
+- **Connecting to Discord:** bounded SDK readiness, authorization, exchange, and authentication.
+- **Discord connected:** authenticated Discord identity, compact indicator, no recovery banner.
+- **Discord unavailable:** safe explanation, retry where meaningful, and Continue in practice.
 
-## Still Mocked
+Incomplete launch information requires relaunching from Discord; its panel does not offer retry. Missing application configuration also requires setup correction. Transient SDK, authorization, exchange, authentication, and timeout failures can be retried. Practice remains available after failure.
 
-- realtime game-state server
-- authoritative scores
-- persistent guild leaderboards
-- challenge delivery
-- bot result posts
-- production infrastructure
+SDK loading/readiness, exchange, and authentication each allow 10 seconds; authorization allows 30 seconds. Concurrent clicks share one attempt. Explicit retries run the flow again; cancellation invalidates stale results and aborts the token request. The SDK transport is reused rather than calling `close()`, which sends an Activity-close message to Discord.
+
+## Safe validation
+
+```bash
+npm test
+npm run typecheck
+npm run build
+```
+
+Automated tests use fake SDKs, fake timers, and mocked exchanges; live credentials are not required. Browser checks can safely use a partial launch query to exercise relaunch/practice UI. A complete-looking synthetic query outside Discord can test connecting and readiness timeout, but cannot prove Discord authentication. Never add tokens or authorization codes to test URLs, screenshots, or logs.
+
+For a real Activity check, confirm SDK connection, OAuth success, real identity, gameplay, and recovery within Discord. Do not change Developer Portal settings or use a revoked backup credential to work around access problems.
+
+## Phase 1 validation limitation
+
+Local tests, typechecking, build, and browser gameplay/recovery were validated. The backend reported configuration present. Live Discord OAuth and iframe gameplay were not validated: no existing development tunnel was running, and the available browser was signed out of the Developer Portal, so current mappings could not be verified. No tunnel, mapping change, permanent deployment, or external Discord mutation was performed.
+
+Shared rankings, result delivery, production sessions, and permanent hosting remain unimplemented.

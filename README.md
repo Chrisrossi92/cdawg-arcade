@@ -4,14 +4,14 @@ Cdawg Arcade is a local browser prototype for short, mobile-friendly arcade game
 
 ## Run Locally
 
-For browser practice, use a plain browser URL without Activity query parameters and set `VITE_DISCORD_ENABLED` to `false` in your ignored local `.env`, if present. No Discord credential is required for practice. The existing environment may force Discord mode; opening that mode outside Discord currently causes an SDK initialization error.
+For browser practice, open the plain local URL. It immediately shows Local practice and never initializes the Discord SDK, even if the legacy `VITE_DISCORD_ENABLED` flag is true. No Discord credential is required. Scores remain in this browser only.
 
 ```bash
 npm install
 npm run dev
 ```
 
-For Discord Activity testing, configure the frontend and backend variables below, set `VITE_DISCORD_ENABLED` to `true`, and launch through Discord with valid Activity URL mappings. Rotate the previous client secret before live validation. Run the Vite client and local backend together:
+For Discord Activity testing, configure the frontend and backend variables below, launch through Discord with valid Activity URL mappings, and use the current backend client secret. Mode selection uses launch context, not the legacy enable flag. Run the Vite client and local backend together:
 
 ```bash
 npm run dev:all
@@ -93,4 +93,14 @@ No secrets are required for standalone practice. Discord authentication requires
 
 ## Recommended Next Slice
 
-Phase 1 should stabilize browser/Discord launch detection, authentication status, and recovery. Shared score writes and deployment remain later work.
+Phase 2 should make simulation timing fair across frame rates and interruptions. Shared score writes and deployment remain later work.
+
+## Connection and recovery
+
+Discord launches must include one nonempty `frame_id`, one nonempty `instance_id`, and one `platform` equal to `desktop` or `mobile`. These values are supplied by Discord; do not invent or strip them in a tunnel or redirect. Partial, empty, duplicate, and invalid platform parameters produce a relaunch/practice message before the SDK is constructed.
+
+A compact indicator shows Local practice, Connecting to Discord, Discord connected, or Discord unavailable. Connected sessions show the authenticated Discord name. All results remain browser-local, including when connected; Local practice results is a storage label, not a claim about the authenticated user's identity.
+
+Connection failures offer Retry Discord connection and Continue in practice. An incomplete launch instead requires relaunching from Discord; retry cannot restore missing context. Practice remains playable during and after failures. No score data is migrated or erased.
+
+SDK loading/readiness, token exchange, and SDK authentication each have a 10-second limit; authorization allows 30 seconds for consent. Retry starts a new bounded flow and ignores stale completions. SDK transport is retained because its close method would close the entire Activity. See `docs/DISCORD_DEVELOPMENT_SETUP.md` for validation and external limitations.
