@@ -1,182 +1,157 @@
 import type { HostContext } from '../../contracts/events';
 import { HttpAuthApiClient, type AuthApiClient } from '../../api/authClient';
+import { bounded, OperationTimeout } from '../../api/bounded';
 import type { HostAdapter } from '../hostAdapter';
 import { makeDefaultLocalContext } from '../hostAdapter';
-import { normalizeDiscordUser, normalizeParticipants, withDiscordContext } from './context';
+import { normalizeDiscordUser, normalizeParticipants, type DiscordUserLike } from './context';
+import { getLaunchDecision } from './launchContext';
 
-interface DiscordSdkLike {
-  ready?: () => Promise<void>;
-  commands?: {
-    authorize?: (args: { client_id: string; scope: string[]; response_type?: 'code' }) => Promise<{ code: string }>;
-    authenticate?: (args: { access_token: string }) => Promise<unknown>;
-    getInstanceConnectedParticipants?: () => Promise<{ participants: Array<{ id: string; username?: string; global_name?: string | null; avatar?: string | null }> }>;
+export interface DiscordSdkLike {
+  ready: () => Promise<void>;
+  commands: {
+    authorize: (args: { client_id: string; scope: string[]; response_type: 'code' }) => Promise<{ code: string }>;
+    authenticate: (args: { access_token: string }) => Promise<unknown>;
+    openInviteDialog?: () => Promise<unknown>;
+    getInstanceConnectedParticipants?: () => Promise<{ participants: DiscordUserLike[] }>;
   };
   subscribe?: (event: string, listener: (event: unknown) => void) => Promise<unknown>;
-  close?: (...args: unknown[]) => unknown;
-  openInviteDialog?: () => Promise<void>;
+  unsubscribe?: (event: string, listener: (event: unknown) => void) => Promise<unknown>;
+  close?: (code: number, message: string) => unknown;
   guildId?: string | null;
   channelId?: string | null;
   instanceId?: string | null;
 }
-
-export function shouldUseDiscordAdapter(search = typeof window === 'undefined' ? '' : window.location.search): boolean {
-  const params = new URLSearchParams(search);
-  return import.meta.env.VITE_DISCORD_ENABLED === 'true' || params.has('frame_id') || params.has('instance_id');
+interface Options {
+  search?: string;
+  clientId?: string;
+  loadSdk?: () => Promise<(clientId: string) => DiscordSdkLike>;
+  timeoutMs?: number;
 }
+const messages = {
+  'invalid-context': 'Discord launch information is incomplete. Relaunch from Discord or continue in practice.',
+  configuration: 'Discord connection is not configured. You can continue in practice.',
+  sdk: 'Could not connect to Discord. Retry the connection or continue in practice.',
+  authorization: 'Discord authorization did not complete. Retry and allow access, or continue in practice.',
+  exchange: 'Could not complete Discord sign-in. Retry in a moment or continue in practice.',
+  timeout: 'Discord sign-in took too long. Retry the connection or continue in practice.',
+  unexpected: 'Discord sign-in could not finish. Retry the connection or continue in practice.',
+};
+export function shouldUseDiscordAdapter(search?: string): boolean { return getLaunchDecision(search) === 'discord'; }
 
 export class DiscordHostAdapter implements HostAdapter {
   readonly environment = 'discord' as const;
-  private context: HostContext;
+  private context: HostContext = { ...makeDefaultLocalContext(), environment: 'discord', connectionState: 'discord-connecting', ready: false, initializationStatus: 'Connecting to Discord…' };
   private listeners = new Set<(context: HostContext) => void>();
   private sdk: DiscordSdkLike | null = null;
-  private authClient: AuthApiClient;
-  private initializePromise: Promise<HostContext> | null = null;
-  private participantsSubscribed = false;
+  private controller: AbortController | null = null;
+  private attempt: Promise<HostContext> | null = null;
+  private participantListener: ((event: unknown) => void) | null = null;
+  private readonly search: string;
 
-  constructor(authClient: AuthApiClient = new HttpAuthApiClient()) {
-    this.authClient = authClient;
-    const params = new URLSearchParams(typeof window === 'undefined' ? '' : window.location.search);
-    this.context = {
-      ...makeDefaultLocalContext(),
-      environment: 'discord',
-      currentUser: { id: params.get('user_id') ?? 'discord-user', displayName: params.get('display_name') ?? 'Discord User' },
-      guildId: params.get('guild_id') ?? undefined,
-      channelId: params.get('channel_id') ?? undefined,
-      activityInstanceId: params.get('instance_id') ?? params.get('frame_id') ?? undefined,
-      authenticated: false,
-      ready: false,
-      initializationStatus: 'Waiting for Discord Activity initialization',
-      initializationState: 'detecting',
-      participantCount: 0,
-      participants: [],
-    };
+  constructor(private readonly authClient: AuthApiClient = new HttpAuthApiClient(), private readonly options: Options = {}) {
+    this.search = options.search ?? (typeof window === 'undefined' ? '' : window.location.search);
   }
-
-  getContext(): HostContext {
+  getContext(): HostContext { return this.context; }
+  subscribe(listener: (context: HostContext) => void): () => void {
+    this.listeners.add(listener); listener(this.context);
+    return () => { this.listeners.delete(listener); };
+  }
+  initialize(): Promise<HostContext> { return this.requestAuthentication(); }
+  requestAuthentication(): Promise<HostContext> {
+    if (this.attempt) return this.attempt;
+    if (this.context.connectionState === 'discord-authenticated') return Promise.resolve(this.context);
+    const controller = new AbortController();
+    this.controller = controller;
+    // Defer work until the attempt is registered, including listener-triggered retries.
+    this.attempt = Promise.resolve().then(() => this.connect(controller)).finally(() => {
+      if (this.controller === controller) this.attempt = null;
+    });
+    return this.attempt;
+  }
+  private async connect(controller: AbortController): Promise<HostContext> {
+    const signal = controller.signal;
+    const current = () => this.controller === controller && !signal.aborted;
+    if (!current()) return this.context;
+    let stage: keyof typeof messages = 'sdk';
+    try {
+      if (getLaunchDecision(this.search) !== 'discord') { stage = 'invalid-context'; throw new Error('invalid_context'); }
+      const clientId = this.options.clientId ?? import.meta.env.VITE_DISCORD_CLIENT_ID;
+      if (!clientId || clientId.startsWith('replace-with-')) { stage = 'configuration'; throw new Error('configuration'); }
+      this.update({ ...makeDefaultLocalContext(), environment: 'discord', connectionState: 'discord-connecting', connectionError: undefined, ready: false, initializationStatus: 'Connecting to Discord…' });
+      const wait = <T>(operation: () => Promise<T>, ms = 10000) => bounded(operation, signal, this.options.timeoutMs ?? ms);
+      if (!this.sdk) {
+        const factory = await wait(this.options.loadSdk ?? (async () => {
+          const { DiscordSDK } = await import('@discord/embedded-app-sdk');
+          return (id: string) => new DiscordSDK(id) as unknown as DiscordSdkLike;
+        }));
+        signal.throwIfAborted();
+        this.sdk = factory(clientId);
+      }
+      const sdk = this.sdk;
+      await wait(() => sdk.ready());
+      signal.throwIfAborted();
+      stage = 'authorization';
+      const { code } = await wait(() => sdk.commands.authorize({ client_id: clientId, response_type: 'code', scope: ['identify', 'guilds'] }), 30000);
+      signal.throwIfAborted();
+      if (!code) throw new Error('authorization');
+      stage = 'exchange';
+      const token = await wait(() => this.authClient.exchangeCode(code, signal));
+      signal.throwIfAborted();
+      stage = 'unexpected';
+      const auth = await wait(() => sdk.commands.authenticate({ access_token: token.access_token })) as { user?: DiscordUserLike } | null;
+      signal.throwIfAborted();
+      if (!auth?.user?.id || !(auth.user.global_name || auth.user.username)) throw new Error('identity_missing');
+      if (current()) {
+        this.update({ currentUser: normalizeDiscordUser(auth.user), guildId: sdk.guildId ?? undefined, channelId: sdk.channelId ?? undefined, activityInstanceId: sdk.instanceId ?? undefined, authenticated: true, ready: true, connectionState: 'discord-authenticated', connectionError: undefined, initializationStatus: 'Connected to Discord' });
+        void this.observeParticipants(sdk, controller);
+      }
+    } catch (error) {
+      if (current()) {
+        const reason = error instanceof OperationTimeout ? 'timeout' : stage;
+        this.update({ authenticated: false, ready: true, connectionState: 'discord-error', connectionError: reason, initializationStatus: messages[reason] });
+        controller.abort();
+      }
+    }
     return this.context;
   }
-
-  subscribe(listener: (context: HostContext) => void): () => void {
-    this.listeners.add(listener);
-    listener(this.context);
-    return () => this.listeners.delete(listener);
+  continuePractice(): void {
+    this.dispose();
+    this.update({ ...makeDefaultLocalContext(), connectionError: undefined });
   }
-
-  async initialize(): Promise<HostContext> {
-    this.initializePromise ??= this.runInitialize();
-    return this.initializePromise;
-  }
-
-  private async runInitialize(): Promise<HostContext> {
-    const clientId = import.meta.env.VITE_DISCORD_CLIENT_ID;
-    if (!clientId || clientId === 'replace-with-discord-application-client-id') {
-      return this.update({ initializationStatus: 'Discord client ID missing; running mocked Discord context', initializationState: 'failed', ready: true });
+  dispose(): void {
+    this.controller?.abort(); this.controller = null; this.attempt = null;
+    if (this.participantListener) {
+      void this.sdk?.unsubscribe?.('ACTIVITY_INSTANCE_PARTICIPANTS_UPDATE', this.participantListener).catch(() => {});
+      this.participantListener = null;
     }
-
-    try {
-      this.update({ initializationStatus: 'Discord SDK initializing', initializationState: 'sdk-initializing' });
-      const module = await import('@discord/embedded-app-sdk');
-      const SdkCtor = module.DiscordSDK;
-      this.sdk = new SdkCtor(clientId) as unknown as DiscordSdkLike;
-      await this.sdk.ready?.();
-      this.update({
-        ready: true,
-        guildId: this.sdk.guildId ?? this.context.guildId,
-        channelId: this.sdk.channelId ?? this.context.channelId,
-        activityInstanceId: this.sdk.instanceId ?? this.context.activityInstanceId,
-        initializationStatus: 'Discord SDK ready; authorization required',
-        initializationState: 'authorization-required',
-      });
-      return this.context;
-    } catch (error) {
-      return this.update({
-        ready: true,
-        initializationState: 'failed',
-        initializationStatus: `Discord SDK unavailable (${describeError(error).slice(0, 120)})`,
-      });
-    }
+    // SDK.close sends CLOSE to Discord, ending the Activity. Keep the single SDK
+    // transport for retries / React effect remounts; cancelled RPC results are ignored.
   }
-
-  async requestAuthentication(): Promise<HostContext> {
-    if (!this.sdk?.commands?.authorize || !this.sdk.commands.authenticate) {
-      return this.update({ initializationState: 'failed', initializationStatus: 'Discord SDK auth commands unavailable' });
-    }
-    const clientId = import.meta.env.VITE_DISCORD_CLIENT_ID;
-    try {
-      this.update({ initializationState: 'authorization-required', initializationStatus: 'Requesting Discord authorization' });
-      const { code } = await this.sdk.commands.authorize({
-        client_id: clientId,
-        response_type: 'code',
-        scope: ['identify', 'guilds'],
-      });
-      this.update({ initializationState: 'exchanging-token', initializationStatus: 'Exchanging authorization code' });
-      const token = await this.authClient.exchangeCode(code);
-      this.update({ initializationState: 'authenticating', initializationStatus: 'Authenticating Activity SDK session' });
-      const auth = (await this.sdk.commands.authenticate({ access_token: token.access_token })) as {
-        user?: { id: string; username?: string; global_name?: string | null; avatar?: string | null };
-      };
-      const user = auth.user ? normalizeDiscordUser(auth.user) : this.context.currentUser;
-      this.update({
-        currentUser: user,
-        authenticated: true,
-        ready: true,
-        initializationState: 'ready',
-        initializationStatus: 'Discord SDK authenticated',
-      });
-      await this.loadParticipants();
-      await this.subscribeParticipants();
-      return this.context;
-    } catch (error) {
-      return this.update({
-        authenticated: false,
-        initializationState: 'failed',
-        initializationStatus: `Discord authentication failed (${describeError(error).slice(0, 120)})`,
-      });
-    }
-  }
-
-  async closeActivity(): Promise<void> {
-    this.sdk?.close?.(1000, 'Cdawg Arcade local close');
-  }
-
+  async closeActivity(): Promise<void> { this.dispose(); this.sdk?.close?.(1000, 'Activity closed'); }
   async inviteOrShareActivity(): Promise<void> {
-    await this.sdk?.openInviteDialog?.();
+    if (this.context.authenticated) await this.sdk?.commands.openInviteDialog?.().catch(() => {});
   }
-
   private update(patch: Partial<HostContext>): HostContext {
-    this.context = withDiscordContext(this.context, patch);
+    this.context = { ...this.context, ...patch };
     for (const listener of this.listeners) listener(this.context);
     return this.context;
   }
-
-  private async loadParticipants(): Promise<void> {
+  private async observeParticipants(sdk: DiscordSdkLike, controller: AbortController): Promise<void> {
+    const current = () => this.controller === controller && !controller.signal.aborted;
+    const listener = (event: unknown) => {
+      if (!current()) return;
+      const participants = normalizeParticipants((event as { participants?: DiscordUserLike[] })?.participants);
+      this.update({ participants, participantCount: participants.length });
+    };
     try {
-      const response = await this.sdk?.commands?.getInstanceConnectedParticipants?.();
-      const participants = normalizeParticipants(response?.participants);
-      this.update({ participants, participantCount: participants.length });
-    } catch {
-      this.update({ participantCount: this.context.participantCount ?? 0 });
-    }
-  }
-
-  private async subscribeParticipants(): Promise<void> {
-    if (this.participantsSubscribed) return;
-    this.participantsSubscribed = true;
-    await this.sdk?.subscribe?.('ACTIVITY_INSTANCE_PARTICIPANTS_UPDATE', (event) => {
-      const participants = normalizeParticipants((event as { participants?: Array<{ id: string; username?: string; global_name?: string | null; avatar?: string | null }> })?.participants);
-      this.update({ participants, participantCount: participants.length });
-    }).catch(() => {
-      this.participantsSubscribed = false;
-    });
-  }
-}
-
-function describeError(error: unknown): string {
-  if (error instanceof Error) return error.message;
-  if (typeof error === 'string') return error;
-  try {
-    return JSON.stringify(error);
-  } catch {
-    return String(error);
+      if (sdk.commands.getInstanceConnectedParticipants) {
+        const result = await bounded(() => sdk.commands.getInstanceConnectedParticipants!(), controller.signal, 10000);
+        if (current()) listener(result);
+      }
+      if (!current() || !sdk.subscribe) return;
+      this.participantListener = listener;
+      await sdk.subscribe('ACTIVITY_INSTANCE_PARTICIPANTS_UPDATE', listener);
+      if (!current()) void sdk.unsubscribe?.('ACTIVITY_INSTANCE_PARTICIPANTS_UPDATE', listener).catch(() => {});
+    } catch { /* Participant information must not change authentication success. */ }
   }
 }

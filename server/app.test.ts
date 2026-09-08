@@ -82,3 +82,18 @@ describe('server routes', () => {
       .expect(200);
   });
 });
+
+
+describe('safe parser and CORS errors', () => {
+  it('does not send raw parser errors or stack traces', async () => {
+    const app = createServerApp(config, { exchangeCode: async () => ({ access_token: 'mock-token' }) });
+    const response = await request(app).post('/api/token').set('Content-Type', 'application/json').send('{PRIVATE_MALFORMED_BODY').expect(400);
+    expect(response.body).toEqual({ error: 'invalid_request' });
+    expect(response.text).not.toContain('PRIVATE_MALFORMED_BODY');
+  });
+  it('sanitizes disallowed origin failures', async () => {
+    const app = createServerApp(config, { exchangeCode: async () => ({ access_token: 'mock-token' }) });
+    const response = await request(app).post('/api/token').set('Origin', 'https://untrusted.example').send({ code: 'mock-code' }).expect(400);
+    expect(response.body).toEqual({ error: 'invalid_request' });
+  });
+});

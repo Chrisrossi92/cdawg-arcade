@@ -7,7 +7,7 @@ describe('LocalHostAdapter', () => {
 
     expect(adapter.getContext().environment).toBe('local');
     expect(adapter.getContext().ready).toBe(true);
-    expect(adapter.getContext().authenticated).toBe(true);
+    expect(adapter.getContext().authenticated).toBe(false);
   });
 
   it('updates local context without reload', () => {

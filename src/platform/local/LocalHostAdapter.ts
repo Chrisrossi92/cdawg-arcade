@@ -33,8 +33,15 @@ export class LocalHostAdapter implements HostAdapter {
   }
 
   async requestAuthentication(): Promise<HostContext> {
-    return this.updateContext({ authenticated: true, initializationStatus: 'Local mock authentication active' });
+    return this.context;
   }
+
+  continuePractice(): void {
+    this.context = makeDefaultLocalContext();
+    this.emit();
+  }
+
+  dispose(): void {}
 
   async closeActivity(): Promise<void> {
     this.updateContext({ initializationStatus: 'Local activity close requested' });

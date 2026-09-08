@@ -804,3 +804,36 @@ h1 {
     min-width: 28px;
   }
 }
+
+/* Compact connection state; recovery expands only when needed. */
+.connection-status { font-size: 0.75rem; font-weight: 500; line-height: 1.4; }
+.connection-recovery { position: fixed; z-index: 20; top: 12px; left: 50%; transform: translateX(-50%); width: min(94vw, 520px); padding: 14px; border: 1px solid #ffc266; border-radius: 12px; background: #151515; box-shadow: 0 8px 32px #0009; }
+.connection-recovery p { margin: 0 0 10px; }
+.connection-recovery > div { display: flex; flex-wrap: wrap; gap: 8px; }
+.connection-recovery button { font-size: 0.8rem; padding: 8px 12px; }
+
+/* Keep the local-only explanation and recovery actions readable in docked views. */
+@media (max-width: 560px), (max-height: 430px) {
+  .result-panel,
+  .leaderboard-panel {
+    gap: 8px;
+    padding: 12px;
+    align-content: safe center;
+    overflow-y: auto;
+  }
+
+  .result-panel p,
+  .leaderboard-panel p {
+    margin: 0;
+  }
+
+  .leaderboard-panel p:not(.result-label) {
+    font-size: 13px;
+    line-height: 1.35;
+  }
+
+  .phase-results,
+  .phase-leaderboard {
+    touch-action: pan-y;
+  }
+}

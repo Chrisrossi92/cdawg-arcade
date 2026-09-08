@@ -1,5 +1,5 @@
 import cors from 'cors';
-import express from 'express';
+import express, { type ErrorRequestHandler } from 'express';
 import type { ServerConfig } from './env';
 import type { TokenExchangeService } from './tokenExchange';
 import { SafeTokenExchangeError } from './tokenExchange';
@@ -70,6 +70,10 @@ export function createServerApp(config: ServerConfig, tokenExchange: TokenExchan
     }
   });
 
+  const safeErrorHandler: ErrorRequestHandler = (_error, _req, res, _next) => {
+    res.status(400).json({ error: 'invalid_request' });
+  };
+  app.use(safeErrorHandler);
   return app;
 }
 

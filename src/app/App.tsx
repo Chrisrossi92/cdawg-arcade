@@ -9,12 +9,11 @@ export function App() {
   const [hostContext, setHostContext] = useState<HostContext>(() => hostAdapter.getContext());
   const scoreRepository = useMemo(() => new LocalScoreRepository(), []);
 
-  useEffect(() => hostAdapter.subscribe(setHostContext), [hostAdapter]);
-
   useEffect(() => {
-    if (hostContext.environment !== 'discord' || hostContext.authenticated || hostContext.initializationState !== 'authorization-required') return;
-    void hostAdapter.requestAuthentication();
-  }, [hostAdapter, hostContext.authenticated, hostContext.environment, hostContext.initializationState]);
+    const unsubscribe = hostAdapter.subscribe(setHostContext);
+    if (hostAdapter.environment === 'discord') void hostAdapter.requestAuthentication();
+    return () => { unsubscribe(); hostAdapter.dispose(); };
+  }, [hostAdapter]);
 
-  return <BalanceExperience hostContext={hostContext} scoreRepository={scoreRepository} />;
+  return <BalanceExperience hostContext={hostContext} scoreRepository={scoreRepository} onRetryConnection={() => { void hostAdapter.requestAuthentication(); }} onContinuePractice={() => hostAdapter.continuePractice()} />;
 }
