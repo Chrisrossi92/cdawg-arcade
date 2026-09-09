@@ -2,9 +2,9 @@
 
 ## Status and architecture
 
-Phase 3B prepares the repository only. **No Render service or production deployment exists yet.** DNS, Discord mappings, and the existing VPS remain unchanged. The approved next host is one paid Render Node web service at `arcade.cdawgbot.xyz`, serving frontend and API from one origin. Gameplay and browser-local scores are unchanged; there is no database, application session, shared ranking, or score submission API.
+Phase 3C established the paid Render service `cdawg-arcade-production` at `https://arcade.cdawgbot.xyz`, serving frontend and API from one origin. DNS/TLS and owner-observed Discord desktop acceptance passed. See [Phase 3C deployment evidence](PHASE_3C_PRODUCTION_DEPLOYMENT.md) for the exact accepted revision, rollback result, and operational limitations. Automatic deployment is off; the existing VPS remains untouched. Gameplay and browser-local scores are unchanged; there is no database, application session, shared ranking, or score submission API.
 
-Node is pinned to **24.20.0 LTS** in `.node-version`, `.nvmrc`, `package.json`, and `render.yaml`. Install that runtime before validation. No unrelated dependency version was changed. Review supported security patches before the eventual deployment.
+Node is pinned to **24.20.0 LTS** in `.node-version`, `.nvmrc`, `package.json`, and `render.yaml`. Install that runtime before validation. No unrelated dependency version was changed. Review supported security patches during separately scoped dependency maintenance; the Phase 3C evidence records the deployment-time advisory limitations.
 
 Build flow: lockfile installation → full tests → typecheck → Vite `dist` → TypeScript `build/server/*.js` → private `build/release.json` → compiled smoke → optional dev-dependency pruning. The runtime starts with Node, Express, and the compiled backend. It needs neither Vite, tsx, TypeScript source, watch mode, nor a global compiler. Keep `dist`, `build`, `package.json`, and installed production dependencies together. Backend paths resolve relative to compiled modules rather than the working directory.
 
@@ -70,7 +70,7 @@ Storage retains at most 2,048 peer records plus one global record. Each request 
 
 Token exchange accepts only an uncompressed JSON object containing one `code` string, 4–512 permitted characters, with an 8 KiB body limit. Malformed JSON returns safe 400; oversized bodies return 413; wrong media/encoding returns 415. CORS permits only the configured site and the matching application Activity origin in production, with explicit methods/headers on preflight. Requests without Origin remain possible for non-browser clients; CORS is not authentication.
 
-The upstream is fixed to Discord's OAuth token endpoint with redirects forbidden. Its eight-second abort signal covers headers and body reads; a disconnected client also aborts the exchange. Responses contain only the intended token fields; errors are sanitized. There is no arbitrary target URL, request-body logging, authorization-code logging, or credential logging. Do not enable verbose HTTP body/header logging or dump provider environment settings. Safe application logs contain startup/drain events and release metadata only; provider log retention must be selected and verified in Phase 3C.
+The upstream is fixed to Discord's OAuth token endpoint with redirects forbidden. Its eight-second abort signal covers headers and body reads; a disconnected client also aborts the exchange. Responses contain only the intended token fields; errors are sanitized. There is no arbitrary target URL, request-body logging, authorization-code logging, or credential logging. Do not enable verbose HTTP body/header logging or dump provider environment settings. Safe application logs contain startup/drain events and release metadata only; plan-specific log retention remains unverified; do not assume long-term access to historical logs.
 
 ## Lifecycle
 
@@ -92,9 +92,9 @@ The last command executes the complete production build with public dummy values
 
 Smoke assertions cover root/assets/cache, SPA routing, API 404, forbidden paths, safe malformed token requests, CORS, readiness/configuration/artifact failures, approved health fields, logs, artifact contents, SIGTERM/SIGINT and port closure. Tests separately cover limiter expiry/capacity/spoofing, configuration, token cancellation/timeout/concurrency, symlinks, and normal/forced drain. The smoke fixture omits source and scripts; dependencies come from the installed tree. Run smoke again after pruning dev dependencies to verify runtime independence.
 
-Browser acceptance uses the compiled loopback service with dummy configuration: Local practice, Start Game, countdown, controls, interruption/resume, loss, results, replay, and narrow layout. No live Discord test is required until Phase 3C. Do not treat dummy configuration readiness as live OAuth acceptance.
+Browser acceptance uses the compiled loopback service with dummy configuration: Local practice, Start Game, countdown, controls, interruption/resume, loss, results, replay, and narrow layout. Repeat real Discord acceptance after material launch, authentication, or deployment changes. Do not treat dummy configuration readiness as live OAuth acceptance.
 
-## Phase 3C: ordered deployment and rollback gate — not executed
+## Ordered deployment and rollback procedure
 
 1. Review and approve the Phase 3B commit; decide the release branch/commit explicitly. Do not assume the repository's default branch contains this unmerged work. Confirm Node security patch support and the paid Render plan, region, account ownership, log retention, and artifact retention. Target one instance; no disk/database.
 2. With deployment authorization, create one paid Node web service using the reviewed commit and descriptor settings. Creation itself triggers a first deploy even when automatic deploys are off. If using a Blueprint, set Blueprint Auto Sync to **No** as well as service `autoDeployTrigger: off`; confirm both dashboard settings. No service is created merely by checking in `render.yaml`.
@@ -109,6 +109,6 @@ Render can restore a [previous deployed artifact](https://render.com/docs/rollba
 
 ## Remaining production limits
 
-Managed-host creation, provider health checks, actual ingress behavior, DNS/TLS, real OAuth on the stable hostname, log/retention settings, capacity under shared Discord bursts, and provider rollback are unvalidated until Phase 3C. One instance is not high availability. In-memory limits are process-local; scores remain browser-local. The existing large Phaser bundle warning is unchanged and intentionally outside this phase.
+Managed hosting, health checks, DNS/TLS, and real OAuth on the stable hostname were validated in Phase 3C; consult its evidence for rollback results. Exact trusted ingress topology, plan-specific log/artifact retention, and capacity under shared Discord bursts remain unverified. One instance is not high availability. In-memory limits are process-local; scores remain browser-local. The existing large Phaser bundle warning is unchanged and intentionally outside this phase.
 
-Reference descriptor fields were checked against the [Render Blueprint specification](https://render.com/docs/blueprint-spec); the provider has not applied or validated this file against an account. The pinned runtime is the official [Node 24.20.0 LTS release](https://github.com/nodejs/node/releases/tag/v24.20.0).
+Reference descriptor fields were checked against the [Render Blueprint specification](https://render.com/docs/blueprint-spec); the live service was created manually with the approved production name rather than by applying this file. Do not apply the reference descriptor as a duplicate service. Keep the verified dashboard settings and existing service identity when planning future infrastructure changes. The pinned runtime is the official [Node 24.20.0 LTS release](https://github.com/nodejs/node/releases/tag/v24.20.0).
