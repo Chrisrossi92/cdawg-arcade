@@ -1,104 +1,141 @@
-# Phase 4B database foundation evidence
+# Phase 4B production database foundation
 
 ## A. Executive result
 
-**IN PROGRESS: production schema validated; application merge/deployment next.** The explicit migration passed; Phase 4B application rollout remains pending. Official scoring remains disabled and absent from the UI. Chris confirmed the local production page appears and the visible gameplay checks passed, and approved the revised $6.30/month database cost. The prepared form was rechecked unchanged. Chris then explicitly authorized Create Database. Creation succeeded; status became available.
+**PASS WITH LIMITATIONS — Phase 4B accepted.** The paid database exists, schema migration passed, and Phase 4B was merged normally and manually deployed. Official scoring remains disabled, with no official APIs or UI. Browser practice and all three health checks pass. No production gameplay rows were created by the completed browser and owner-observed Discord checks.
+
+Accepted production deployment: `c98e6bdd0fa4bdcb96332f3b17ec39fec679b74b`. Chris reported a fresh successful Discord playthrough, and the subsequent read-only production row-count and health checks passed. All Phase 4B acceptance gates are complete. Limitations are the deliberately unexecuted provider restore and artifact rollback drills, plus the operational boundaries documented below.
 
 ## B. Starting state
 
-Authoritative checkout: `Projects/cdawg-arcade`. Started on clean, synchronized `main` at `e22f433912608363445df489cfc3eeee7ec8b5a4`; work is on `codex/phase-4b-database-foundation`. Preflight production readiness passed at `4c09960c6a5a47508b4bb6e3071f42e28b408337`. Render still identifies that revision as live. No repository or ancestor AGENTS instructions were present.
+- Authoritative checkout: `Projects/cdawg-arcade`.
+- Initial branch: clean, synchronized `main` at `e22f433912608363445df489cfc3eeee7ec8b5a4`.
+- Working branch: `codex/phase-4b-database-foundation`.
+- Prior accepted live release: `4c09960c6a5a47508b4bb6e3071f42e28b408337`; readiness passed before work and during failed builds.
+- No repository or ancestor AGENTS instructions were present.
 
-## C. Database foundation
+## C. Foundation
 
-Pinned `pg` 8.23.0, standard SQL, typed wrapper, transaction-scoped advisory migration lock, checksums and atomic metadata. Fourteen foundation tables plus migration history; only nonissuable version metadata is seeded. Seed: Balance / `balance-official-v1`, 60 Hz, 18,000 ticks, NULL digest, unimplemented validator, issuance false. See [architecture](DATABASE_ARCHITECTURE.md) for enforced and deferred invariants.
+Pinned `pg` 8.23.0; standard SQL; typed connection/transaction wrapper; bounded pool/timeouts; sanitized errors; explicit shutdown. No ORM, gameplay changes, normal gameplay write paths, application-session implementation, or automatic startup migrations.
+
+Fourteen foundation tables plus migration metadata use UUIDs, bounded decimal snowflakes, `timestamptz`, integer ticks, ownership foreign keys, uniqueness/check constraints, immutable terminal facts, and deliberate restrict/cascade rules. See [architecture](DATABASE_ARCHITECTURE.md) for exact invariants and deferred write-path responsibilities.
+
+Migration history is checksummed and contiguous. A transaction-scoped advisory lock serializes migration; all SQL and metadata commit together. SQL failure and timeout interruption roll back without false success. No destructive down migration exists.
+
+The only seed is Balance / `balance-official-v1`, 60 Hz, 18,000 ticks / 300 seconds, NULL simulation digest, validator `unimplemented`, issuance false. Production read-only verification confirmed it remains nonissuable. Future official issuance needs a reviewed real validator definition; no digest was fabricated. The 24-month inactivity threshold is review only; no automatic deletion is implemented. Historical local scores are never imported.
 
 ## D. Readiness and fallback
 
-Liveness and core readiness never query Postgres. Separate persistence readiness has safe categories, a lazy bounded pool, single-flight probing and ten-second success/failure cache. Compiled tests passed with absent, explicitly disabled, compatible, unreachable and newer-than-supported databases. Stopping an initially healthy test database while the server remained running caused persistence 503 while frontend, liveness and core readiness stayed 200. Visible playthrough during the outage is not yet observed; no gameplay source changed.
+| Endpoint | Production result |
+| --- | --- |
+| `/api/health` | 200, alive, exact deployed revision |
+| `/api/ready` | 200, ready, exact deployed revision; remains Render health check |
+| `/api/persistence/ready` | 200, available, compatible, exact deployed revision |
 
-## E. Render database gate (form inspected 2026-09-09)
+Public response keys were checked: status, releaseSha, version; persistence also schema. No connection details, SQL, driver errors or paths appear. Core health/static/OAuth paths never query Postgres. Persistence probes are lazy, single-flight and cached for ten seconds, including failures.
 
-Created after explicit final confirmation; verified configuration:
+Real disposable-Postgres tests stopped an initially healthy database while the compiled server remained running: persistence became 503, while frontend, liveness and core readiness remained 200. Absent, disabled, unreachable and incompatible configurations also passed. The live production database was not deliberately stopped. Browser-visible outage gameplay was not separately observed; the compiled fallback tests and unchanged gameplay code establish the tested boundary.
 
-| Item | Current form / documentation |
+## E. Render database
+
+| Setting | Verified result |
 | --- | --- |
 | Name | `cdawg-arcade-production-db` |
 | Workspace | Cdawg's Discord |
-| Region | Virginia (US East), same region as application |
-| PostgreSQL | 18 (minor version determined after provisioning) |
-| Compute | `0.1c-256mb`, 0.1 CPU, 256 MB RAM |
-| Compute base | $6/month |
-| Storage | 1 GB, **$0.30/month additional**, not included |
-| Database total | **$6.30/month**, prorated by the second |
-| Autoscaling | Disabled |
-| High availability | Disabled; unavailable at this size |
-| Monitoring add-on | No Datadog key configured |
-| Connections | 100 maximum per current provider documentation; app pool defaults to 5 |
-| PITR | Hobby workspace: past 3 days per provider documentation; verify actual UI after creation |
-| Logical exports | On demand, retained 7 days per provider documentation |
+| Region | Virginia (US East), same as application |
+| PostgreSQL | 18.6, verified through a safe version query |
+| Compute | `0.1c-256mb`, 0.1 CPU / 256 MB RAM |
+| Compute cost | $6/month |
+| Storage | 1 GB, $0.30/month additional |
+| Database total | $6.30/month, prorated by the second |
+| Storage autoscaling | Disabled |
+| High availability / monitoring add-on | Not enabled |
+| Status | Available |
+| Storage observation | 8.32% of 1 GB used at acceptance check |
+| Connections | Provider-documented maximum 100; application pool 5 |
+| PITR | Three-day Hobby window; initialization complete, restore control enabled |
+| Logical exports | Retained at least seven days, export control enabled |
 
-The form initially defaulted to 15 GB/$10.50 total. It was reduced to the intended 1 GB before review. Chris separately approved the $0.30 increase and then gave explicit final creation confirmation on 2026-09-09. Removed the database-specific broad external source and saved. The Networking section confirms all internet traffic is blocked by PostgreSQL inbound IP rules. Workspace-wide rules were not changed.
+Chris approved the increase from the earlier included-storage assumption, then separately authorized the billable creation. No recovery instance, paid job, add-on or workspace upgrade was created.
 
-Sources: [connection limits and external access](https://render.com/docs/postgresql-creating-connecting), [recovery and backups](https://render.com/docs/postgresql-backups), [recovery instance billing](https://render.com/tutorials/postgres-on-render/backups-and-pitr). Recovery creates a new billable database; no recovery instance is authorized or created.
+Database-specific external access is **blocked and verified after page reload**. The initial removal required a separate confirmation dialog; the first on-page warning alone did not prove persistence. Final validation caught that, the confirmation was completed, and a fresh page showed no database IP sources plus the explicit internet-blocked warning. Workspace-wide rules were untouched. The app's private persistence readiness stayed 200 after this restriction.
 
-## F. Configuration
+Sources: [connections and limits](https://render.com/docs/postgresql-creating-connecting), [recovery](https://render.com/docs/postgresql-backups). Recovery creates another billable database; it was not initiated.
 
-Introduced server-only names: `DATABASE_URL`, `PERSISTENCE_CONFIGURED`, `OFFICIAL_SCORING_ENABLED`, `DATABASE_TLS_MODE`, `DATABASE_POOL_MAX`, `DATABASE_CONNECT_TIMEOUT_MS`, `DATABASE_STATEMENT_TIMEOUT_MS`. Schema bounds are code constants rather than an environment override. Saved only `PERSISTENCE_CONFIGURED=true`, `OFFICIAL_SCORING_ENABLED=false`, and `DATABASE_TLS_MODE=render-internal` on the Arcade service. No deploy was triggered. A blank `DATABASE_URL` row is prepared for private owner entry; browser inspection is paused before entry. Owner-only secret entry protocol is documented; no secret or existing `.env` was read.
+## F. Configuration and secret handling
+
+Server-only names: `DATABASE_URL`, `PERSISTENCE_CONFIGURED`, `OFFICIAL_SCORING_ENABLED`, `DATABASE_TLS_MODE`, `DATABASE_POOL_MAX`, `DATABASE_CONNECT_TIMEOUT_MS`, `DATABASE_STATEMENT_TIMEOUT_MS`. Schema support bounds are code constants, not an environment override.
+
+Production explicitly has persistence configured, official scoring false, Render private transport, and a pool of five. Timeout defaults remain bounded. The private transport mode requires Render's environment marker and an internal hostname; external connections require verified TLS.
+
+Chris personally entered/corrected the URL. Browser inspection stopped during entry and resumed only after confirmation that it was saved and hidden. Neither the URL nor existing credential values were read or reported. Runtime checks returned only safe booleans. No `.env`, preservation backup, shared environment group or frontend database variable was used.
+
+Initial malformed URL values were rejected before connection or migration. Configuration-only restarts applied saved settings to the prior accepted artifact. After successful URL correction, two application builds stopped at the public configuration guard because the frontend Discord application ID setting was invalid. The public ID was corrected to match the working backend, allowed to finish loading in Render's editor, and verified saved through an expected-value boolean. No secret values were printed and no invalid build reached traffic.
 
 ## G. Validation
 
-- **184 unit tests / 19 files pass**, including all original 162 tests.
-- **123 real ephemeral Postgres checks pass**, Docker official PostgreSQL 18.6, loopback-only disposable cluster and temporary data; no supplied production URL accepted.
-- Clean install, repeat no-op, checksum mismatch, concurrent serialization, SQL failure rollback and timeout-interrupted rollback pass.
-- Empty, too-old, too-new, incomplete and compatible schema distinctions pass.
-- Ownership, tick bounds, interruptions, duplicate terminal outcomes, immutable facts, aggregate ownership and record-event uniqueness pass.
-- Pool limit/shutdown, statement timeout/recovery and transaction rollback pass.
-- Logical custom-format dump/restore into a separate disposable database passes, including restored accepted test facts and schema compatibility.
-- Typecheck, frontend build and compiled backend/production build pass.
-- **88 compiled production smoke assertions pass**, including artifact checks with dummy OAuth/database-secret sentinels.
-- Compiled fallback matrices and actual database-stop test pass; status/log output is sanitized. Normal frontend/core requests do not change fixture table counts.
-- Staged source, SQL, documentation and generated artifact scans passed: 21 staged files, zero credential-pattern findings; frontend excludes database configuration names and secret sentinels. CLI, HTTP and log redaction checks passed. No private values are included in evidence.
-- Local visible browser acceptance **PASS, owner-reported on 2026-09-09**: Chris confirmed the local production page appears and the requested visible gameplay checks passed. Earlier automated access returned `ERR_BLOCKED_BY_CLIENT`; no substitute browser/tunnel was used to bypass that block. This acceptance is owner observation, not an automated browser playthrough.
-- Production Discord acceptance for this phase **not yet performed**; the previously accepted Phase 3C release remains live.
+- **184 unit tests / 19 files**, including the original 162, passed on the branch, merged main, and Render.
+- **123 real ephemeral Postgres checks** passed on the branch and main using PostgreSQL 18.6 in an owned loopback-only disposable Docker cluster.
+- Migration install/no-op/checksum/concurrency/failure/interruption, compatibility categories, ownership, ticks, interruption constraints, duplicate terminal outcomes, aggregate references and record uniqueness passed.
+- Pool bounds, timeout/error sanitation, shutdown, transaction rollback, readiness cache/coalescing and disabled-probe behavior passed.
+- Local custom-format `pg_dump` / `pg_restore` into a separate disposable database passed, including restored schema and accepted test facts.
+- Typecheck, frontend/backend/production builds passed locally and on Render.
+- **88 compiled production smoke assertions** passed locally and on Render; all fallback matrices passed locally.
+- Source/staged SQL/docs and generated artifact scans passed: no credential-pattern findings or secret sentinels; frontend excludes database/private configuration names. CLI/HTTP/runtime output checks passed.
+- Owner reported local production page visible and requested visible gameplay checks passed before database creation. Earlier automatic browser access was blocked; no alternate tunnel/browser bypass was used.
+- Production browser: Local practice, Local Player, Local Best 0.7s; Start Game/countdown; terminal result at 0.7s with “Saved locally”; existing Local Best remained 0.7s; Play Again began a fresh countdown. No direct local-storage access or reset was performed.
+- Official session/attempt/leaderboard routes tested returned 404. No official score claim was rendered.
+- **Production Discord acceptance PASS, owner-observed:** fresh authentication and correct identity; Start Game and controls; pause/resume without score jump, immediate loss or stuck input; loss/results correctly labeled browser-local/practice; Play Again started a clean attempt. No authentication, database, SDK, technical error, or official/shared-score claim appeared. The final health checks still identified the accepted release.
+- Runtime logs show normal listening/draining and release metadata, without database/credential/raw technical error output in the inspected window.
+- Application CPU/memory charts were below allocated limits: low steady utilization with brief deployment/migration spikes; no saturation/OOM evidence. This is a short acceptance observation, not a load test.
 
-A broad existing-tab listing was rejected by automatic approval review as potentially exposing unrelated session metadata. Work continued using a dedicated local test tab and a narrowly scoped Arcade Render tab; no unrelated tab contents were inspected.
+Existing large-frontend-bundle warning and dependency audit findings remain as documented in prior deployment work; no unrelated dependency remediation was attempted. Render's pruned dependency audit reported 7 advisories (2 moderate, 5 high).
 
-## H–I. Deployment, rollback and data verification
+## H. Deployment and rollback
 
-Production migration, merge, deployment and postdeployment row-count checks remain pending. No application data write paths have been deployed. The database exists; explicit post-migration zero-row verification remains pending. Local seed-only row counts remain unchanged after compiled frontend/core requests. No application rollback or provider recovery was executed this phase. Render rollback may restore historical environment values; document rather than execute if secret/configuration restoration is ambiguous. No destructive down migration exists.
+The migration ran from exact reviewed branch commit `0d7606c564a71711e7f647aaf528d7dce96004da`, in a separate temporary checkout on existing service compute. Locked dependencies were installed without lifecycle scripts; only the backend was compiled. The explicit migration and schema-status commands completed successfully. Temporary checkout/logs were removed; the live checkout was never modified. No separately billed one-off job was created.
 
-## J–L. Isolation, Git and cost
+After compatible schema and zero-data checks, the phase branch was merged normally into main as `c98e6bdd0fa4bdcb96332f3b17ec39fec679b74b`. Full validation passed, main was pushed, and that exact commit was manually deployed. Successful deployment was observed on 2026-09-09 at 4:54 PM EDT. Automatic deployment is **Off** and health path remains `/api/ready`.
 
-No direct browser database access, DNS/Discord Developer Portal/VPS changes, unrelated service changes or screenshots committed. Work remains on the phase branch; main and the accepted production release are unchanged. The branch validation commit contains the implementation and this evidence. Exact commit and origin synchronization are reported after commit/push.
+The earlier failed builds preserved the previous live release. No destructive database action occurred. Artifact rollback drill is documented rather than executed because Render may restore historical environment configuration, including the newly added database credential. The prior code was observed healthy with the new server-only variables during configuration-only restarts, demonstrating that compatibility boundary. Restore the exact accepted Phase 4B artifact with reviewed current configuration if a future rollback is performed; never drop tables or run down migrations.
 
-Current expected baseline is application $7 + database $6.30 = **$13.30/month before overages**, approved by Chris on 2026-09-09. The earlier $13 assumption omitted database storage. No extra add-on, recovery resource or subscription upgrade is authorized.
+Provider recovery was inspected but not executed because it creates an additional billable database. Future restore drills require separate approval, an isolated target, accepted-fact reconciliation and reapplication of deletion tombstones before traffic. No live database was overwritten.
 
-## M–N. Outstanding gates and next phase
+## I. Production data verification
 
-Local visible gameplay acceptance and the revised price are now owner-approved. Implementation commit `8b16678340d36ab32192852d54fe423ec78fc9c5` was pushed and verified synchronized. Final confirmation was received and creation completed. Await owner confirmation that the private database URL is saved and no longer visible. Then create/configure/migrate, validate schema, merge normally, validate main, manually deploy exact commit and complete production acceptance, safe recovery/rollback evidence and zero-data checks.
+After migration, after production browser gameplay, and finally after Chris reported the fresh production Discord playthrough:
 
-Future Phase 4C should implement server-verified identity and Arcade sessions only, including a restricted runtime role before future write capabilities. No Phase 4C implementation has begun.
+- `game_versions`: exactly 1 nonissuable application-owned seed.
+- All 13 other foundation tables: **0 rows** — players, guilds, guild_participations, application_sessions, auth_challenges, attempt_authorizations, game_attempts, attempt_traces, personal_game_stats, guild_leaderboard_entries, guild_game_records, guild_record_events, security_events.
 
-## Provisioning and recovery observation
+The final `npm run db:status` check after owner Discord acceptance confirmed compatible schema and the exact counts above. `/api/health`, `/api/ready`, and `/api/persistence/ready` all returned 200 on the accepted deployed revision. Migration metadata is administrative history, not a gameplay record.
 
-The new database reports available in Virginia on PostgreSQL 18; the minor version remains unverified. Its Recovery page confirms a three-day PITR window and exports retained for at least seven days. PITR initialization is still in progress (provider says up to ten minutes for new databases); neither restore nor export was triggered. No extra billable job, add-on or recovery database was created. Render one-off jobs are separately billed, so a controlled command on existing compute is preferred; do not create a paid job without approval.
+## J. Security and isolation
 
-## Private connection validation
+No connection strings, credential values, account IDs or sensitive provider identifiers are stored in this evidence. No screenshots were committed. The browser never accesses Postgres directly. DNS, Discord Developer Portal, Arcade bot credentials, VPS and unrelated services were untouched. Database inbound-rule edits were scoped to this database.
 
-Chris confirmed the URL was saved and hidden. A names-only editor check confirmed the expected variables. A configuration-only Save and deploy applied the saved environment to the existing accepted artifact; HTTPS core readiness remained healthy at `4c09960c6a5a47508b4bb6e3071f42e28b408337`. No Phase 4B application code has been deployed.
+A broad tab-list attempt was rejected by automatic approval review; work used scoped tabs afterward. The initial DB credential is administrative. Before future authenticated write functionality, establish separate least-privilege runtime and migration roles; public database privileges are already revoked. There are no production write repositories in this phase.
 
-A controlled migration command cloned reviewed commit `8093dede38f00f7a4bccdf197ab182bece398375` into a separate temporary directory on existing service compute, installed locked dependencies without lifecycle scripts, compiled only the backend, and invoked the explicit migration CLI. It exited with the sanitized `database_command_failed` diagnostic. A separate boolean-only check showed the saved `DATABASE_URL` could not be parsed as a URL. Configuration validation therefore stopped before a database connection or schema mutation. Temporary checkout and installation logs were removed by the command’s cleanup trap. No paid one-off job was created.
+## K. Git state
 
-Owner correction of the private URL is required. The environment editor and database Info tab are prepared; all browser inspection is paused until the corrected value is saved and no longer visible. Existing credential values, connection strings and raw driver errors were not read or reported.
+- Implementation commit: `8b16678340d36ab32192852d54fe423ec78fc9c5`.
+- Phase branch tip at merge: `23871c6` (successful migration evidence).
+- Main merge and deployed artifact: `c98e6bdd0fa4bdcb96332f3b17ec39fec679b74b`.
+- Acceptance evidence is committed on the phase branch and merged normally into main after the owner’s explicit documentation-merge authorization. The merge is verified to change only Markdown documentation. Final main SHA and origin/working-tree verification are reported after the merge. No redeployment is required or performed; the live artifact remains the accepted application commit above.
+- No squash, rebase, force-push or history rewrite.
 
-### Second owner correction check
+## L. Cost
 
-After a further owner save/deploy and confirmation that the value was hidden, a new service instance still reported an unparseable URL. Boolean-only diagnostics established that the value is present but lacks a Postgres URL prefix; trimming whitespace or removing enclosing quotes does not produce a valid Postgres URL. No part of the value was printed. Migration was not retried. The exact database Info row was inspected for control metadata only: its Internal Database URL remains a password field with enabled Show secret and Copy controls. Neither control was activated by the agent. Owner is asked to copy that complete URL and privately verify its protocol prefix before saving. Production core readiness still passes on the accepted Phase 3C revision.
+Application $7/month + database $6.30/month = **$13.30/month before overages**. Hobby workspace subscription remains $0. Storage is additional, not included in the $6 compute price. Autoscaling/HA/add-ons are off. Recovery would create additional cost and was not started. Builds used the existing service's included build usage; no paid one-off job or extra compute resource was provisioned.
 
-## Successful migration gate
+## M. Remaining limitations
 
-The next owner correction passed all boolean-only configuration checks: parseable private URL, internal hostname, no URL options, Render runtime marker, private transport selected, persistence configured, and official scoring disabled. No value was exposed.
+No acceptance checks remain outstanding. Provider PITR restore is not exercised; logical restore passed locally. Artifact rollback is not exercised because of environment-restoration ambiguity. Short resource observations do not establish sustained capacity. Schema compatibility checks history/checksums and required relations, not every possible manual schema mutation. All session/score validation/write logic remains intentionally deferred.
 
-Reviewed branch commit `0d7606c564a71711e7f647aaf528d7dce96004da` was cloned into an isolated temporary checkout on existing Render application compute. The explicit migration and status commands completed successfully; the completion marker was observed. Status reports `compatible`. Row counts: game_versions 1; players, guilds, guild_participations, application_sessions, auth_challenges, attempt_authorizations, game_attempts, attempt_traces, personal_game_stats, guild_leaderboard_entries, guild_game_records, guild_record_events and security_events all 0. The live checkout was not modified, temporary files were cleaned up, and no separately billed job was created.
+## N. Recommended Phase 4C
 
-Recovery initialization completed: Restore database and Create export controls are enabled. Three-day PITR and at-least-seven-day export retention are displayed. No restore/export was initiated. Application artifact rollback is documented rather than executed because Render can restore historical environment configuration; the earlier release predates the private database credential. Database contents will remain intact.
+Server-verified identity and Arcade sessions only, with restricted runtime privileges and tests for server-owned identity/guild/session boundaries. No Phase 4C implementation has begun. Official issuance, score submission, replay validation, shared statistics/leaderboards and announcements remain out of scope.
+
+## Final documentation validation
+
+The final evidence merge changes only Markdown under `docs/`. Validate whitespace, local Markdown links, credential-pattern absence and the documentation-only diff against the accepted deployed revision. The previously passed code/build/database suites apply because runtime source, migrations, dependency manifests and build scripts are unchanged. No additional deployment, paid resource or Phase 4C work is part of this closeout.

@@ -1,6 +1,6 @@
 # Persistence foundation (Phase 4B)
 
-Status: implementation candidate; production creation, migration, and deployment are separate gates. See [validation evidence](PHASE_4B_DATABASE_FOUNDATION.md). This phase adds no official scoring, application sessions, score submission, replay validator, leaderboard UI, or Discord posting. Existing browser practice and Local Best remain unchanged. Historical local scores are never imported automatically.
+Status: database provisioned, schema migrated, application deployed, and owner Discord acceptance plus final zero-data verification passed. See [validation evidence](PHASE_4B_DATABASE_FOUNDATION.md). This phase adds no official scoring, application sessions, score submission, replay validator, leaderboard UI, or Discord posting. Existing browser practice and Local Best remain unchanged. Historical local scores are never imported automatically.
 
 ## Boundary and driver
 
