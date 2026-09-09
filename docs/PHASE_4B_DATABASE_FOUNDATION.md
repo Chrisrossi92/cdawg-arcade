@@ -2,7 +2,7 @@
 
 ## A. Executive result
 
-**IN PROGRESS: approved database created; private connection entry pending.** No production migration has run, and Phase 4B has not been merged or deployed. Official scoring remains disabled and absent from the UI. Chris confirmed the local production page appears and the visible gameplay checks passed, and approved the revised $6.30/month database cost. The prepared form was rechecked unchanged. Chris then explicitly authorized Create Database. Creation succeeded; status became available.
+**IN PROGRESS: production schema validated; application merge/deployment next.** The explicit migration passed; Phase 4B application rollout remains pending. Official scoring remains disabled and absent from the UI. Chris confirmed the local production page appears and the visible gameplay checks passed, and approved the revised $6.30/month database cost. The prepared form was rechecked unchanged. Chris then explicitly authorized Create Database. Creation succeeded; status became available.
 
 ## B. Starting state
 
@@ -94,3 +94,11 @@ Owner correction of the private URL is required. The environment editor and data
 ### Second owner correction check
 
 After a further owner save/deploy and confirmation that the value was hidden, a new service instance still reported an unparseable URL. Boolean-only diagnostics established that the value is present but lacks a Postgres URL prefix; trimming whitespace or removing enclosing quotes does not produce a valid Postgres URL. No part of the value was printed. Migration was not retried. The exact database Info row was inspected for control metadata only: its Internal Database URL remains a password field with enabled Show secret and Copy controls. Neither control was activated by the agent. Owner is asked to copy that complete URL and privately verify its protocol prefix before saving. Production core readiness still passes on the accepted Phase 3C revision.
+
+## Successful migration gate
+
+The next owner correction passed all boolean-only configuration checks: parseable private URL, internal hostname, no URL options, Render runtime marker, private transport selected, persistence configured, and official scoring disabled. No value was exposed.
+
+Reviewed branch commit `0d7606c564a71711e7f647aaf528d7dce96004da` was cloned into an isolated temporary checkout on existing Render application compute. The explicit migration and status commands completed successfully; the completion marker was observed. Status reports `compatible`. Row counts: game_versions 1; players, guilds, guild_participations, application_sessions, auth_challenges, attempt_authorizations, game_attempts, attempt_traces, personal_game_stats, guild_leaderboard_entries, guild_game_records, guild_record_events and security_events all 0. The live checkout was not modified, temporary files were cleaned up, and no separately billed job was created.
+
+Recovery initialization completed: Restore database and Create export controls are enabled. Three-day PITR and at-least-seven-day export retention are displayed. No restore/export was initiated. Application artifact rollback is documented rather than executed because Render can restore historical environment configuration; the earlier release predates the private database credential. Database contents will remain intact.
