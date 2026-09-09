@@ -214,7 +214,10 @@ async function smoke(overrides, schema) {
       "/api/balance/attempts",
       "/api/guild/balance/leaderboard",
     ])
-      eq((await fetch(run.base + p)).status, 404);
+      eq((await fetch(run.base + p)).status, p === "/api/session" ? 403 : 404);
+    const o='https://arcade.cdawgbot.xyz';
+    const session=await fetch(run.base+'/api/auth/challenges',{method:'POST',headers:{Origin:o,'X-Arcade-Origin':o,'X-Arcade-Request':'1','Content-Type':'application/json'},body:'{}'});
+    eq(session.status,503);
   } finally {
     await stop(run);
   }
@@ -483,7 +486,7 @@ try {
   await migrate(db);
   const before = await counts();
   await smoke({}, "absent");
-  await smoke({ ...env, PERSISTENCE_CONFIGURED: "false" }, "disabled");
+  await smoke({ ...env, PERSISTENCE_CONFIGURED: "false", ARCADE_SESSIONS_ENABLED:"false", DISCORD_ARCADE_BOT_TOKEN:"DUMMY_SESSION_BOT" }, "disabled");
   await smoke(env, "compatible");
   eq(await counts(), before);
   const cli = execFileSync(
@@ -520,6 +523,7 @@ try {
   await smoke(
     {
       ...env,
+      ARCADE_SESSIONS_ENABLED:"true",OFFICIAL_SCORING_ENABLED:"false",DISCORD_ARCADE_BOT_TOKEN:"DUMMY_SESSION_BOT",
       DATABASE_URL: `postgresql://arcade_test@127.0.0.1:${await port()}/${databaseName}`,
     },
     "unreachable",
@@ -528,8 +532,32 @@ try {
     "INSERT INTO arcade.schema_migrations VALUES(2,'002_future.sql',$1,now())",
     ["b".repeat(64)],
   );
-  await smoke(env, "too_new");
+  await smoke({...env,ARCADE_SESSIONS_ENABLED:"true",OFFICIAL_SCORING_ENABLED:"false",DISCORD_ARCADE_BOT_TOKEN:"DUMMY_SESSION_BOT"}, "too_new");
   await db.query("DELETE FROM arcade.schema_migrations WHERE version=$1", [2]);
+  stage = "session integration";
+  const {testSessions} = await import('./test-sessions.mjs');
+  const {restrictedSessionRole} = await import('../build/server/sessions/privileges.js');
+  eq(await restrictedSessionRole(db), false);
+  const roleOutput=execFileSync(process.execPath,['scripts/provision-session-role.mjs'],{
+    env:{PATH:process.env.PATH,...env,ARCADE_RUNTIME_PASSWORD:'synthetic_disposable_password_1234567890'},encoding:'utf8'});
+  ok(!roleOutput.includes('synthetic_disposable_password'));
+  const restrictedUrl=new URL(env.DATABASE_URL);restrictedUrl.username='arcade_session_runtime';restrictedUrl.password='synthetic_disposable_password_1234567890';
+  const restrictedDb=new Database(databaseConfig({...env,DATABASE_URL:restrictedUrl.toString()}));
+  try {
+    eq(await restrictedSessionRole(restrictedDb),true);
+    await rejects(()=>restrictedDb.query("UPDATE arcade.game_versions SET issuance_enabled=false"));
+    await rejects(()=>restrictedDb.query("DELETE FROM arcade.game_attempts"));
+    await rejects(()=>restrictedDb.query("CREATE TABLE arcade.forbidden_test(id int)"));
+    await testSessions(restrictedDb);
+    const enabled=await launch({...env,DATABASE_URL:restrictedUrl.toString(),ARCADE_SESSIONS_ENABLED:'true',OFFICIAL_SCORING_ENABLED:'false',DISCORD_ARCADE_BOT_TOKEN:'synthetic-bot'});
+    try {
+      const o='https://arcade.cdawgbot.xyz';
+      const response=await fetch(enabled.base+'/api/auth/challenges',{method:'POST',headers:{Origin:o,'X-Arcade-Origin':o,'X-Arcade-Request':'1','Content-Type':'application/json'},body:'{}'});
+      eq(response.status,200);ok(response.headers.get('set-cookie').includes('SameSite=None; Partitioned'));
+      eq((await fetch(enabled.base+'/')).status,200);
+    } finally {await stop(enabled);}
+  } finally {await restrictedDb.close();}
+  stage = "database outage";
   const outage = await launch(env);
   try {
     eq((await fetch(outage.base + "/api/persistence/ready")).status, 200);

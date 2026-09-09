@@ -1,3 +1,8 @@
+import { restrictedSessionRole } from './sessions/privileges.js';
+import { Database } from './database/pool.js';
+import { databaseConfig } from './database/config.js';
+import { SessionStore } from './sessions/store.js';
+import { DiscordIdentityProvider } from './sessions/discord.js';
 import { createPersistence } from './database/readiness.js';
 import { pathToFileURL } from 'node:url';
 import { createServer } from 'node:http';
@@ -17,13 +22,29 @@ export async function startServer() {
   }
   const config = loadServerConfig();
   let draining = false;
-  const persistence = createPersistence();
-  const app = createServerApp(config, new DiscordTokenExchangeService(config), { isDraining: () => draining, persistence });
+  const dbConfig = databaseConfig();
+  const database = dbConfig.mode === 'configured' ? new Database(dbConfig) : undefined;
+  const persistence = createPersistence(dbConfig, {database});
+  const sessions = process.env.ARCADE_SESSIONS_ENABLED === 'true' && process.env.OFFICIAL_SCORING_ENABLED === 'false' &&
+    process.env.DISCORD_ARCADE_BOT_TOKEN && database ? {
+      store: new SessionStore(database), provider: new DiscordIdentityProvider(config,process.env.DISCORD_ARCADE_BOT_TOKEN), persistence: {
+        close: () => persistence.close(),
+        check: async () => {
+          const health = await persistence.check();
+          if (health.status !== 'available') return health;
+          try { if (await restrictedSessionRole(database)) return health; } catch { /* Fail closed without driver details. */ }
+          return {status:'unavailable' as const,schema:'invalid_configuration' as const};
+        },
+      },
+    } : undefined;
+  const cleanup = sessions ? setInterval(() => {void sessions.persistence.check().then(status => status.status === 'available' ? sessions.store.purge() : undefined).catch(() => {});},60_000) : undefined;
+  cleanup?.unref();
+  const app = createServerApp(config, new DiscordTokenExchangeService(config), { isDraining: () => draining, persistence, sessions });
   const server = createServer({ requestTimeout: 10_000, headersTimeout: 10_000, keepAliveTimeout: 5_000, maxHeaderSize: 16_384 }, app);
   server.setTimeout(10_000, socket => socket.destroy());
   server.on('error', () => { console.error('Arcade runtime failed'); process.exit(1); });
   server.listen(config.port, config.host, () => console.log(JSON.stringify({ event: 'listening', releaseSha: config.releaseSha })));
-  installShutdown(server, () => { draining = true; console.log('Arcade draining'); }, undefined, undefined, () => persistence.close());
+  installShutdown(server, () => { draining = true; console.log('Arcade draining'); }, undefined, undefined, () => { if (cleanup) clearInterval(cleanup); return persistence.close(); });
   return server;
 }
 // Importing this module never starts a listener or installs signal handlers.

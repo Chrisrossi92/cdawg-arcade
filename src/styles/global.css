@@ -842,3 +842,6 @@ h1 {
 .pause-panel strong { font-size: 2rem; }
 .pause-panel p { margin: 0; }
 .control-button { touch-action: none; }
+
+.connection-status > span { display: block; }
+.connection-status > div:not(.connection-recovery) { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.3rem; }
