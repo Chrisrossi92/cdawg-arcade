@@ -82,3 +82,11 @@ Future Phase 4C should implement server-verified identity and Arcade sessions on
 ## Provisioning and recovery observation
 
 The new database reports available in Virginia on PostgreSQL 18; the minor version remains unverified. Its Recovery page confirms a three-day PITR window and exports retained for at least seven days. PITR initialization is still in progress (provider says up to ten minutes for new databases); neither restore nor export was triggered. No extra billable job, add-on or recovery database was created. Render one-off jobs are separately billed, so a controlled command on existing compute is preferred; do not create a paid job without approval.
+
+## Private connection validation
+
+Chris confirmed the URL was saved and hidden. A names-only editor check confirmed the expected variables. A configuration-only Save and deploy applied the saved environment to the existing accepted artifact; HTTPS core readiness remained healthy at `4c09960c6a5a47508b4bb6e3071f42e28b408337`. No Phase 4B application code has been deployed.
+
+A controlled migration command cloned reviewed commit `8093dede38f00f7a4bccdf197ab182bece398375` into a separate temporary directory on existing service compute, installed locked dependencies without lifecycle scripts, compiled only the backend, and invoked the explicit migration CLI. It exited with the sanitized `database_command_failed` diagnostic. A separate boolean-only check showed the saved `DATABASE_URL` could not be parsed as a URL. Configuration validation therefore stopped before a database connection or schema mutation. Temporary checkout and installation logs were removed by the command’s cleanup trap. No paid one-off job was created.
+
+Owner correction of the private URL is required. The environment editor and database Info tab are prepared; all browser inspection is paused until the corrected value is saved and no longer visible. Existing credential values, connection strings and raw driver errors were not read or reported.
