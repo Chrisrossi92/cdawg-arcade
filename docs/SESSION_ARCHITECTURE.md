@@ -1,6 +1,6 @@
 # Arcade sessions — Phase 4C
 
-Implementation is under validation on `codex/phase-4c-server-sessions`. Production remains the accepted Phase 4B release until the deployment gates below pass. Official scoring stays disabled. A verified session does not make a practice result official. Historical prototype session codes and local leaderboards are unrelated to this authorization boundary.
+Phase 4C implementation is deployed at `eef3ef4` with sessions disabled. The corrected restricted database connection and practice checkpoint have passed; session-enabled live acceptance remains pending. Official scoring stays disabled. A verified session does not make a practice result official. Historical prototype session codes and local leaderboards are unrelated to this authorization boundary.
 
 ## Authority and Discord capabilities
 
