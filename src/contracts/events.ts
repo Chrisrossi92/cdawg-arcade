@@ -11,6 +11,7 @@ export interface ArcadeUser {
 }
 
 export interface HostContext {
+  arcadeSessionState?: 'verifying' | 'verified' | 'unavailable' | 'expired' | 'account-changed' | 'signed-out';
   connectionState?: 'local-practice' | 'discord-connecting' | 'discord-authenticated' | 'discord-error';
   connectionError?: 'invalid-context' | 'configuration' | 'sdk' | 'authorization' | 'exchange' | 'timeout' | 'unexpected';
   environment: HostEnvironmentType;

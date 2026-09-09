@@ -53,7 +53,7 @@ function scan(dir, frontend = false) {
     check(!/\.env|\.map$|\.ts$|\.tsx$/.test(item.name));
     const data = readFileSync(path, 'utf8');
     check(!data.includes('DUMMY_ONLY_DATABASE_SENTINEL') && !data.includes(secret) && !data.includes(process.cwd()) && !data.includes('/Users/'));
-    if (frontend) check(!/DISCORD_CLIENT_SECRET|DISCORD_REDIRECT_URI|ALLOWED_ORIGINS|RELEASE_SHA|DATABASE_URL|PERSISTENCE_CONFIGURED/.test(data));
+    if (frontend) check(!/DISCORD_CLIENT_SECRET|DISCORD_REDIRECT_URI|ALLOWED_ORIGINS|RELEASE_SHA|DATABASE_URL|PERSISTENCE_CONFIGURED|DISCORD_ARCADE_BOT_TOKEN|ARCADE_SESSIONS_ENABLED|ARCADE_RUNTIME_PASSWORD/.test(data));
     else if (item.name.endsWith('.js')) check(!/from ['"]tsx|import\(['"]tsx|tsx watch/.test(data));
   }
 }
