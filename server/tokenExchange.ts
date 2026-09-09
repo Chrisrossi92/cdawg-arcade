@@ -1,7 +1,7 @@
-import type { ServerConfig } from './env';
+import type { ServerConfig } from './env.js';
 
 export interface TokenExchangeService {
-  exchangeCode(code: string): Promise<TokenExchangeResult>;
+  exchangeCode(code: string, signal?: AbortSignal): Promise<TokenExchangeResult>;
 }
 
 export interface TokenExchangeResult {
@@ -17,7 +17,7 @@ export class DiscordTokenExchangeService implements TokenExchangeService {
     private readonly fetchImpl: typeof fetch = fetch,
   ) {}
 
-  async exchangeCode(code: string): Promise<TokenExchangeResult> {
+  async exchangeCode(code: string, signal?: AbortSignal): Promise<TokenExchangeResult> {
     if (!this.config.discordConfigPresent) {
       throw new SafeTokenExchangeError('missing_discord_config', 500);
     }
@@ -32,11 +32,12 @@ export class DiscordTokenExchangeService implements TokenExchangeService {
         code,
         redirect_uri: this.config.discordRedirectUri,
       }),
-      signal: AbortSignal.timeout(8000),
+      redirect: 'error',
+      signal: signal ? AbortSignal.any([signal, AbortSignal.timeout(8000)]) : AbortSignal.timeout(8000),
     });
 
     const body = (await response.json().catch(() => ({}))) as Partial<TokenExchangeResult>;
-    if (!response.ok || !body.access_token) {
+    if (!response.ok || typeof body.access_token !== 'string' || !body.access_token) {
       throw new SafeTokenExchangeError('discord_token_exchange_failed', response.status || 502);
     }
     return {

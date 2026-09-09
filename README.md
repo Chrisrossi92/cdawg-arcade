@@ -104,3 +104,7 @@ A compact indicator shows Local practice, Connecting to Discord, Discord connect
 Connection failures offer Retry Discord connection and Continue in practice. An incomplete launch instead requires relaunching from Discord; retry cannot restore missing context. Practice remains playable during and after failures. No score data is migrated or erased.
 
 SDK loading/readiness, token exchange, and SDK authentication each have a 10-second limit; authorization allows 30 seconds for consent. Retry starts a new bounded flow and ignores stale completions. SDK transport is retained because its close method would close the entire Activity. See `docs/DISCORD_DEVELOPMENT_SETUP.md` for validation and external limitations.
+
+## Production preparation
+
+The compiled single-service runtime and Render reference configuration are prepared; no production deployment exists yet. See [Production runbook](docs/PRODUCTION_RUNBOOK.md) for configuration, validation, deployment gates, and rollback. `npm run test:production` builds and smoke-tests the compiled runtime using dummy configuration without reading local `.env` files. Production startup is `npm start` with `NODE_ENV=production` and the documented runtime variables.
