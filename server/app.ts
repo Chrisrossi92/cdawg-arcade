@@ -1,3 +1,4 @@
+import type { Persistence } from './database/readiness.js';
 import cors from 'cors';
 import express, { type ErrorRequestHandler } from 'express';
 import type { ServerConfig } from './env.js';
@@ -7,7 +8,7 @@ import { BoundedLimiter } from './limiter.js';
 import { loadArtifacts } from './artifacts.js';
 
 const codePattern = /^[A-Za-z0-9._-]{4,512}$/;
-export interface AppOptions { distDir?: string; manifestPath?: string; isDraining?: () => boolean; limiter?: BoundedLimiter }
+export interface AppOptions { distDir?: string; manifestPath?: string; isDraining?: () => boolean; limiter?: BoundedLimiter; persistence?: Persistence }
 export function createServerApp(config: ServerConfig, tokenExchange: TokenExchangeService, options: AppOptions = {}) {
   const app = express();
   // Render documents TLS termination, but no invariant hop count or trusted ingress CIDRs.
@@ -27,6 +28,10 @@ export function createServerApp(config: ServerConfig, tokenExchange: TokenExchan
   const release = { releaseSha: config.releaseSha, version: artifacts.manifest?.version ?? 'development-unconfigured' };
   app.get('/api/health', (_req, res) => res.json({ status: 'alive', ...release }));
   app.get('/api/ready', (_req, res) => res.status(ready() ? 200 : 503).json({ status: ready() ? 'ready' : 'unready', ...release }));
+  app.get('/api/persistence/ready', async (_req, res) => {
+    const result = options.isDraining?.() ? { status: 'unavailable', schema: 'closed' } : await options.persistence?.check() ?? { status: 'unavailable', schema: 'absent' };
+    return res.status(result.status === 'available' ? 200 : 503).json({ ...result, ...release });
+  });
   app.use('/api', (req, res, next) => {
     if (options.isDraining?.()) return res.status(503).json({ error: 'service_unavailable' });
     const origin = req.headers.origin;

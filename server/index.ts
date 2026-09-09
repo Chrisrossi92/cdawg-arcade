@@ -1,3 +1,4 @@
+import { createPersistence } from './database/readiness.js';
 import { pathToFileURL } from 'node:url';
 import { createServer } from 'node:http';
 import { createServerApp } from './app.js';
@@ -16,12 +17,13 @@ export async function startServer() {
   }
   const config = loadServerConfig();
   let draining = false;
-  const app = createServerApp(config, new DiscordTokenExchangeService(config), { isDraining: () => draining });
+  const persistence = createPersistence();
+  const app = createServerApp(config, new DiscordTokenExchangeService(config), { isDraining: () => draining, persistence });
   const server = createServer({ requestTimeout: 10_000, headersTimeout: 10_000, keepAliveTimeout: 5_000, maxHeaderSize: 16_384 }, app);
   server.setTimeout(10_000, socket => socket.destroy());
   server.on('error', () => { console.error('Arcade runtime failed'); process.exit(1); });
   server.listen(config.port, config.host, () => console.log(JSON.stringify({ event: 'listening', releaseSha: config.releaseSha })));
-  installShutdown(server, () => { draining = true; console.log('Arcade draining'); });
+  installShutdown(server, () => { draining = true; console.log('Arcade draining'); }, undefined, undefined, () => persistence.close());
   return server;
 }
 // Importing this module never starts a listener or installs signal handlers.

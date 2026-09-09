@@ -18,7 +18,10 @@
     "build:production": "npm run typecheck && node scripts/build-production.mjs",
     "start": "node build/server/index.js",
     "smoke:production": "node scripts/smoke-production.mjs",
-    "test:production": "node scripts/test-production.mjs"
+    "test:production": "node scripts/test-production.mjs",
+    "db:migrate": "node build/server/database/cli.js migrate",
+    "db:status": "node build/server/database/cli.js status",
+    "test:database": "node scripts/test-database.mjs"
   },
   "dependencies": {
     "@discord/embedded-app-sdk": "^2.5.0",
@@ -27,6 +30,7 @@
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "pg": "8.23.0",
     "phaser": "^3.87.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -36,6 +40,7 @@
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/node": "^26.1.1",
+    "@types/pg": "8.23.1",
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",
     "@types/supertest": "^7.2.0",
