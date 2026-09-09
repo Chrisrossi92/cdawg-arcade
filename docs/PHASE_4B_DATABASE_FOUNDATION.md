@@ -2,7 +2,7 @@
 
 ## A. Executive result
 
-**BLOCKED at production gates; repository implementation validated.** No paid database has been created, no production migration has run, and Phase 4B has not been merged or deployed. Official scoring remains disabled and absent from the UI. The current form exceeds the approved expected cost; owner approval and local browser acceptance remain outstanding.
+**READY for final billable-creation confirmation; repository implementation validated.** No paid database has been created, no production migration has run, and Phase 4B has not been merged or deployed. Official scoring remains disabled and absent from the UI. Chris confirmed the local production page appears and the visible gameplay checks passed, and approved the revised $6.30/month database cost. The prepared form was rechecked unchanged. Final permission to click Create Database is still pending, explicitly at Chris’s request.
 
 ## B. Starting state
 
@@ -37,7 +37,7 @@ Prepared but **not submitted**:
 | PITR | Hobby workspace: past 3 days per provider documentation; verify actual UI after creation |
 | Logical exports | On demand, retained 7 days per provider documentation |
 
-The form initially defaulted to 15 GB/$10.50 total. It was reduced to the intended 1 GB before review. No billable action was taken. User instructions require separate approval for the $0.30 increase. Public access must be disabled after creation; the provider documents an initially broad external allowlist.
+The form initially defaulted to 15 GB/$10.50 total. It was reduced to the intended 1 GB before review. No billable action was taken. Chris separately approved the $0.30 increase on 2026-09-09; this is not permission to click Create Database. Public access must be disabled after creation; the provider documents an initially broad external allowlist.
 
 Sources: [connection limits and external access](https://render.com/docs/postgresql-creating-connecting), [recovery and backups](https://render.com/docs/postgresql-backups), [recovery instance billing](https://render.com/tutorials/postgres-on-render/backups-and-pitr). Recovery creates a new billable database; no recovery instance is authorized or created.
 
@@ -58,7 +58,7 @@ Introduced server-only names: `DATABASE_URL`, `PERSISTENCE_CONFIGURED`, `OFFICIA
 - **88 compiled production smoke assertions pass**, including artifact checks with dummy OAuth/database-secret sentinels.
 - Compiled fallback matrices and actual database-stop test pass; status/log output is sanitized. Normal frontend/core requests do not change fixture table counts.
 - Staged source, SQL, documentation and generated artifact scans passed: 21 staged files, zero credential-pattern findings; frontend excludes database configuration names and secret sentinels. CLI, HTTP and log redaction checks passed. No private values are included in evidence.
-- Local visible browser acceptance **pending**: the browser client returned `ERR_BLOCKED_BY_CLIENT` for the dedicated loopback test tab. Owner has been asked to allow/open the local page. No substitute browser/tunnel was used to bypass the block.
+- Local visible browser acceptance **PASS, owner-reported on 2026-09-09**: Chris confirmed the local production page appears and the requested visible gameplay checks passed. Earlier automated access returned `ERR_BLOCKED_BY_CLIENT`; no substitute browser/tunnel was used to bypass that block. This acceptance is owner observation, not an automated browser playthrough.
 - Production Discord acceptance for this phase **not yet performed**; the previously accepted Phase 3C release remains live.
 
 A broad existing-tab listing was rejected by automatic approval review as potentially exposing unrelated session metadata. Work continued using a dedicated local test tab and a narrowly scoped Arcade Render tab; no unrelated tab contents were inspected.
@@ -71,10 +71,10 @@ Production migration, merge, deployment and postdeployment row-count checks rema
 
 No direct browser database access, DNS/Discord Developer Portal/VPS changes, unrelated service changes or screenshots committed. Work remains on the phase branch; main and the accepted production release are unchanged. The branch validation commit contains the implementation and this evidence. Exact commit and origin synchronization are reported after commit/push.
 
-Current expected baseline is application $7 + database $6.30 = **$13.30/month before overages**, subject to new approval. The earlier $13 assumption omitted database storage. No extra add-on, recovery resource or subscription upgrade is authorized.
+Current expected baseline is application $7 + database $6.30 = **$13.30/month before overages**, approved by Chris on 2026-09-09. The earlier $13 assumption omitted database storage. No extra add-on, recovery resource or subscription upgrade is authorized.
 
 ## M–N. Outstanding gates and next phase
 
-Resolve local browser access; finish start/countdown, keyboard/visible controls, pause/resume, loss/results/replay and narrow-layout acceptance. Obtain separate approval for the increased current price and final billable creation confirmation only after all precreation gates pass. Then create/configure/migrate, validate schema, merge normally, validate main, manually deploy exact commit and complete production acceptance, safe recovery/rollback evidence and zero-data checks.
+Local visible gameplay acceptance and the revised price are now owner-approved. Implementation commit `8b16678340d36ab32192852d54fe423ec78fc9c5` was pushed and verified synchronized. Obtain final billable creation confirmation for the rechecked form; no Create Database action has been taken. Then create/configure/migrate, validate schema, merge normally, validate main, manually deploy exact commit and complete production acceptance, safe recovery/rollback evidence and zero-data checks.
 
 Future Phase 4C should implement server-verified identity and Arcade sessions only, including a restricted runtime role before future write capabilities. No Phase 4C implementation has begun.
