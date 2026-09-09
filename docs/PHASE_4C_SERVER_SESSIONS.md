@@ -18,13 +18,13 @@ One-use five-minute encrypted challenges; direct user and instance verification;
 
 ## E. Arcade credential
 
-Read-only portal inspection currently requires owner sign-in. No token has been inspected, created or reset. Before any reset, determine existing use and explain its Arcade-only impact, intended zero posting permissions/intents, then obtain explicit approval. Stop all browser inspection while the owner copies/enters the credential into the Arcade service as server-only `DISCORD_ARCADE_BOT_TOKEN`; resume only after “saved and no longer visible.” Never access unrelated CDAWG Bot or the VPS.
+Read-only Arcade Bot inspection passed after owner sign-in: an existing token reset control was present and all three privileged Gateway intents were off. The owner confirmed the Arcade token was not used elsewhere and explicitly approved resetting only that token after the invalidation consequence was explained. Browser inspection stopped before the owner reset/copied/saved it privately. The owner then confirmed “saved and no longer visible.” A subsequent name-only Render check confirmed `DISCORD_ARCADE_BOT_TOKEN` is listed; its value was never read. No posting permissions, intents, scopes, unrelated CDAWG Bot settings or VPS changes were made. Live validity and instance lookup remain to be tested.
 
 A bot credential inherently authorizes its application's API identity; this code restricts its use to the fixed instance lookup. Do not promise a token itself lacks every Discord API capability. Do not install a guild bot or grant permissions unless current verification demonstrates necessity and the exact change is approved.
 
 ## F. Database effects
 
-No production writes performed. A subsequent scoped provider check confirmed automatic deployment Off and health path `/api/ready`. Schema remains version 1; no migration needed. Allowed runtime writes are the six identity/session/security tables. All seven score-related tables remain forbidden. The separate runtime role is mandatory before production session writes; the current administrative URL must be replaced privately, with no admin credential retained by the web process. Local real-Postgres tests verify role restrictions and unchanged score counts.
+The owner explicitly approved creation of `arcade_session_runtime` after automatic approval review requested specific authorization for the production access change. Role creation succeeded transactionally on existing Arcade compute using the reviewed phase implementation. Safe production checks returned roleRestricted=true, scoreWritesBlocked=true and schemaCreationBlocked=true. No application-table writes were made by this setup. The owner privately replaced the saved web-service database credential and confirmed “saved and no longer visible.” The restricted login must still be validated on the next deployed runtime; no secret field was read. A subsequent scoped provider check confirmed automatic deployment Off and health path `/api/ready`. Schema remains version 1; no migration needed. Allowed runtime writes are the six identity/session/security tables. All seven score-related tables remain forbidden. The separate runtime role is mandatory before production session writes; the current administrative URL must be replaced privately, with no admin credential retained by the web process. Local real-Postgres tests verify role restrictions and unchanged score counts.
 
 ## G. UI
 
@@ -59,15 +59,17 @@ Checkpoint: prior live release `c98e6bdd0fa4bdcb96332f3b17ec39fec679b74b`, schem
 
 ## J. Security
 
+The browser terminal visibly echoed password input despite the server-side hidden-input setting. Inspection remained paused; the owner was instructed to cancel, close the tab and discard that password. The completed replacement used a native masked Mac dialog, local RSA-OAEP/SHA-256 encryption with a temporary server public key, and server-only decryption immediately before the reviewed provisioner. No plaintext password was displayed to the assistant or saved by the helper. The temporary server private key, matching checkout, local helper and encrypted transfer file were removed after success. Do not retry browser-terminal password entry.
+
 Credentials, codes, cookies and provider tokens are excluded from source, artifacts, logs, screenshots and this evidence. Challenge replay/concurrency, CSRF rotation, absolute expiry, durable logout/restart and allowed-table boundaries are covered by local tests. Local security review covered fixed upstream targets, bounded concurrency/deadlines, startup/drain and restricted-role maintenance gates, cancellation, cookie/CSRF isolation and logout/reconnect races. Live cookie/PKCE proof remains pending. No screenshots committed.
 
 ## K. Git state
 
-Implementation and validation evidence are prepared for commit/push on the requested phase branch. The exact pushed SHA is reported in the handoff. No main merge or deployment is authorized by the still-pending credential/live gates. Final phase/main/live SHAs will be recorded on completion; no rebase, squash or force-push.
+Implementation and validation evidence are prepared for commit/push on the requested phase branch. Implementation commit `7e7152da81c25c89a1b665e103b6ba1669ca7f33` was pushed to the verified existing GitHub origin; working tree and tracking branch were synchronized. The first push was blocked by automatic approval review pending destination verification; after the exact existing repository destination and explicit phase-brief authorization were established, the same push succeeded. No main merge or deployment is authorized by the still-pending credential/live gates. Final phase/main/live SHAs will be recorded on completion; no rebase, squash or force-push.
 
 ## L. Remaining gates
 
-Local browser/tests/scans are complete. Remaining gates: owner Developer Portal sign-in; establish existing credential usage/reset impact; private credential and restricted-role setup; live PKCE/cookie/client matrix; production deployment, row counts and safe rollback drill. Production acceptance must not be inferred from mocked fixtures.
+Local browser/tests/scans are complete. Remaining gates: activation and runtime verification of the saved restricted database credential; live credential verification; live PKCE/cookie/client matrix; production deployment, row counts and safe rollback drill. Production acceptance must not be inferred from mocked fixtures.
 
 ## M. Recommended Phase 4D
 
