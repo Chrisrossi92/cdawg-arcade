@@ -2,7 +2,7 @@
 
 ## A. Executive result
 
-**READY for final billable-creation confirmation; repository implementation validated.** No paid database has been created, no production migration has run, and Phase 4B has not been merged or deployed. Official scoring remains disabled and absent from the UI. Chris confirmed the local production page appears and the visible gameplay checks passed, and approved the revised $6.30/month database cost. The prepared form was rechecked unchanged. Final permission to click Create Database is still pending, explicitly at Chris’s request.
+**IN PROGRESS: approved database created; private connection entry pending.** No production migration has run, and Phase 4B has not been merged or deployed. Official scoring remains disabled and absent from the UI. Chris confirmed the local production page appears and the visible gameplay checks passed, and approved the revised $6.30/month database cost. The prepared form was rechecked unchanged. Chris then explicitly authorized Create Database. Creation succeeded; status became available.
 
 ## B. Starting state
 
@@ -18,7 +18,7 @@ Liveness and core readiness never query Postgres. Separate persistence readiness
 
 ## E. Render database gate (form inspected 2026-09-09)
 
-Prepared but **not submitted**:
+Created after explicit final confirmation; verified configuration:
 
 | Item | Current form / documentation |
 | --- | --- |
@@ -37,13 +37,13 @@ Prepared but **not submitted**:
 | PITR | Hobby workspace: past 3 days per provider documentation; verify actual UI after creation |
 | Logical exports | On demand, retained 7 days per provider documentation |
 
-The form initially defaulted to 15 GB/$10.50 total. It was reduced to the intended 1 GB before review. No billable action was taken. Chris separately approved the $0.30 increase on 2026-09-09; this is not permission to click Create Database. Public access must be disabled after creation; the provider documents an initially broad external allowlist.
+The form initially defaulted to 15 GB/$10.50 total. It was reduced to the intended 1 GB before review. Chris separately approved the $0.30 increase and then gave explicit final creation confirmation on 2026-09-09. Removed the database-specific broad external source and saved. The Networking section confirms all internet traffic is blocked by PostgreSQL inbound IP rules. Workspace-wide rules were not changed.
 
 Sources: [connection limits and external access](https://render.com/docs/postgresql-creating-connecting), [recovery and backups](https://render.com/docs/postgresql-backups), [recovery instance billing](https://render.com/tutorials/postgres-on-render/backups-and-pitr). Recovery creates a new billable database; no recovery instance is authorized or created.
 
 ## F. Configuration
 
-Introduced server-only names: `DATABASE_URL`, `PERSISTENCE_CONFIGURED`, `OFFICIAL_SCORING_ENABLED`, `DATABASE_TLS_MODE`, `DATABASE_POOL_MAX`, `DATABASE_CONNECT_TIMEOUT_MS`, `DATABASE_STATEMENT_TIMEOUT_MS`. Schema bounds are code constants rather than an environment override. No production environment change has been made. Owner-only secret entry protocol is documented; no secret or existing `.env` was read.
+Introduced server-only names: `DATABASE_URL`, `PERSISTENCE_CONFIGURED`, `OFFICIAL_SCORING_ENABLED`, `DATABASE_TLS_MODE`, `DATABASE_POOL_MAX`, `DATABASE_CONNECT_TIMEOUT_MS`, `DATABASE_STATEMENT_TIMEOUT_MS`. Schema bounds are code constants rather than an environment override. Saved only `PERSISTENCE_CONFIGURED=true`, `OFFICIAL_SCORING_ENABLED=false`, and `DATABASE_TLS_MODE=render-internal` on the Arcade service. No deploy was triggered. A blank `DATABASE_URL` row is prepared for private owner entry; browser inspection is paused before entry. Owner-only secret entry protocol is documented; no secret or existing `.env` was read.
 
 ## G. Validation
 
@@ -65,7 +65,7 @@ A broad existing-tab listing was rejected by automatic approval review as potent
 
 ## H–I. Deployment, rollback and data verification
 
-Production migration, merge, deployment and postdeployment row-count checks remain pending. There are no new production data rows because no database has been provisioned. Local seed-only row counts remain unchanged after compiled frontend/core requests. No application rollback or provider recovery was executed this phase. Render rollback may restore historical environment values; document rather than execute if secret/configuration restoration is ambiguous. No destructive down migration exists.
+Production migration, merge, deployment and postdeployment row-count checks remain pending. No application data write paths have been deployed. The database exists; explicit post-migration zero-row verification remains pending. Local seed-only row counts remain unchanged after compiled frontend/core requests. No application rollback or provider recovery was executed this phase. Render rollback may restore historical environment values; document rather than execute if secret/configuration restoration is ambiguous. No destructive down migration exists.
 
 ## J–L. Isolation, Git and cost
 
@@ -75,6 +75,10 @@ Current expected baseline is application $7 + database $6.30 = **$13.30/month be
 
 ## M–N. Outstanding gates and next phase
 
-Local visible gameplay acceptance and the revised price are now owner-approved. Implementation commit `8b16678340d36ab32192852d54fe423ec78fc9c5` was pushed and verified synchronized. Obtain final billable creation confirmation for the rechecked form; no Create Database action has been taken. Then create/configure/migrate, validate schema, merge normally, validate main, manually deploy exact commit and complete production acceptance, safe recovery/rollback evidence and zero-data checks.
+Local visible gameplay acceptance and the revised price are now owner-approved. Implementation commit `8b16678340d36ab32192852d54fe423ec78fc9c5` was pushed and verified synchronized. Final confirmation was received and creation completed. Await owner confirmation that the private database URL is saved and no longer visible. Then create/configure/migrate, validate schema, merge normally, validate main, manually deploy exact commit and complete production acceptance, safe recovery/rollback evidence and zero-data checks.
 
 Future Phase 4C should implement server-verified identity and Arcade sessions only, including a restricted runtime role before future write capabilities. No Phase 4C implementation has begun.
+
+## Provisioning and recovery observation
+
+The new database reports available in Virginia on PostgreSQL 18; the minor version remains unverified. Its Recovery page confirms a three-day PITR window and exports retained for at least seven days. PITR initialization is still in progress (provider says up to ten minutes for new databases); neither restore nor export was triggered. No extra billable job, add-on or recovery database was created. Render one-off jobs are separately billed, so a controlled command on existing compute is preferred; do not create a paid job without approval.
