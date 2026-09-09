@@ -2,9 +2,9 @@
 
 ## A. Executive result
 
-**DEPLOYED; final owner Discord acceptance pending.** The paid database exists, schema migration passed, and Phase 4B was merged normally and manually deployed. Official scoring remains disabled, with no official APIs or UI. Browser practice and all three health checks pass. No production gameplay rows were created by the completed browser checks.
+**PASS WITH LIMITATIONS — Phase 4B accepted.** The paid database exists, schema migration passed, and Phase 4B was merged normally and manually deployed. Official scoring remains disabled, with no official APIs or UI. Browser practice and all three health checks pass. No production gameplay rows were created by the completed browser and owner-observed Discord checks.
 
-Accepted technical deployment: `c98e6bdd0fa4bdcb96332f3b17ec39fec679b74b`. The remaining gate is Chris's fresh Discord authentication/practice/results/replay/focus-change check and a final row-count check after it. This document does not claim that gate passed.
+Accepted production deployment: `c98e6bdd0fa4bdcb96332f3b17ec39fec679b74b`. Chris reported a fresh successful Discord playthrough, and the subsequent read-only production row-count and health checks passed. All Phase 4B acceptance gates are complete. Limitations are the deliberately unexecuted provider restore and artifact rollback drills, plus the operational boundaries documented below.
 
 ## B. Starting state
 
@@ -85,7 +85,7 @@ Initial malformed URL values were rejected before connection or migration. Confi
 - Owner reported local production page visible and requested visible gameplay checks passed before database creation. Earlier automatic browser access was blocked; no alternate tunnel/browser bypass was used.
 - Production browser: Local practice, Local Player, Local Best 0.7s; Start Game/countdown; terminal result at 0.7s with “Saved locally”; existing Local Best remained 0.7s; Play Again began a fresh countdown. No direct local-storage access or reset was performed.
 - Official session/attempt/leaderboard routes tested returned 404. No official score claim was rendered.
-- Production Discord acceptance for this exact release remains **pending owner report**.
+- **Production Discord acceptance PASS, owner-observed:** fresh authentication and correct identity; Start Game and controls; pause/resume without score jump, immediate loss or stuck input; loss/results correctly labeled browser-local/practice; Play Again started a clean attempt. No authentication, database, SDK, technical error, or official/shared-score claim appeared. The final health checks still identified the accepted release.
 - Runtime logs show normal listening/draining and release metadata, without database/credential/raw technical error output in the inspected window.
 - Application CPU/memory charts were below allocated limits: low steady utilization with brief deployment/migration spikes; no saturation/OOM evidence. This is a short acceptance observation, not a load test.
 
@@ -103,12 +103,12 @@ Provider recovery was inspected but not executed because it creates an additiona
 
 ## I. Production data verification
 
-After migration and again after production browser gameplay:
+After migration, after production browser gameplay, and finally after Chris reported the fresh production Discord playthrough:
 
 - `game_versions`: exactly 1 nonissuable application-owned seed.
 - All 13 other foundation tables: **0 rows** — players, guilds, guild_participations, application_sessions, auth_challenges, attempt_authorizations, game_attempts, attempt_traces, personal_game_stats, guild_leaderboard_entries, guild_game_records, guild_record_events, security_events.
 
-A final count check after owner Discord acceptance remains pending. Migration metadata is administrative history, not a gameplay record.
+The final `npm run db:status` check after owner Discord acceptance confirmed compatible schema and the exact counts above. `/api/health`, `/api/ready`, and `/api/persistence/ready` all returned 200 on the accepted deployed revision. Migration metadata is administrative history, not a gameplay record.
 
 ## J. Security and isolation
 
@@ -121,7 +121,7 @@ A broad tab-list attempt was rejected by automatic approval review; work used sc
 - Implementation commit: `8b16678340d36ab32192852d54fe423ec78fc9c5`.
 - Phase branch tip at merge: `23871c6` (successful migration evidence).
 - Main merge and deployed artifact: `c98e6bdd0fa4bdcb96332f3b17ec39fec679b74b`.
-- Later evidence-only commits do not change deployed application code. Final main SHA and origin/working-tree verification are reported after documentation commit.
+- Acceptance evidence is committed on the phase branch and merged normally into main after the owner’s explicit documentation-merge authorization. The merge is verified to change only Markdown documentation. Final main SHA and origin/working-tree verification are reported after the merge. No redeployment is required or performed; the live artifact remains the accepted application commit above.
 - No squash, rebase, force-push or history rewrite.
 
 ## L. Cost
@@ -130,8 +130,12 @@ Application $7/month + database $6.30/month = **$13.30/month before overages**. 
 
 ## M. Remaining limitations
 
-Owner Discord acceptance and the subsequent final row check are outstanding. Provider PITR restore is not exercised; logical restore passed locally. Artifact rollback is not exercised because of environment-restoration ambiguity. Short resource observations do not establish sustained capacity. Schema compatibility checks history/checksums and required relations, not every possible manual schema mutation. All session/score validation/write logic remains intentionally deferred.
+No acceptance checks remain outstanding. Provider PITR restore is not exercised; logical restore passed locally. Artifact rollback is not exercised because of environment-restoration ambiguity. Short resource observations do not establish sustained capacity. Schema compatibility checks history/checksums and required relations, not every possible manual schema mutation. All session/score validation/write logic remains intentionally deferred.
 
 ## N. Recommended Phase 4C
 
 Server-verified identity and Arcade sessions only, with restricted runtime privileges and tests for server-owned identity/guild/session boundaries. No Phase 4C implementation has begun. Official issuance, score submission, replay validation, shared statistics/leaderboards and announcements remain out of scope.
+
+## Final documentation validation
+
+The final evidence merge changes only Markdown under `docs/`. Validate whitespace, local Markdown links, credential-pattern absence and the documentation-only diff against the accepted deployed revision. The previously passed code/build/database suites apply because runtime source, migrations, dependency manifests and build scripts are unchanged. No additional deployment, paid resource or Phase 4C work is part of this closeout.
