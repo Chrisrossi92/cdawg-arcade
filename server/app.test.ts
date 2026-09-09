@@ -49,7 +49,7 @@ describe('server routes', () => {
     const app = createServerApp(config, { exchangeCode: async () => ({ access_token: 'token' }) });
     const response = await request(app).get('/api/health').expect(200);
 
-    expect(response.body.discordConfigPresent).toBe(true);
+    expect(response.body.status).toBe('alive');
     expect(JSON.stringify(response.body)).not.toContain('client-secret');
   });
 

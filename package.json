@@ -12,7 +12,13 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview --host 127.0.0.1",
     "test": "vitest run",
-    "typecheck": "tsc -b"
+    "typecheck": "tsc -b",
+    "build:client": "vite build",
+    "build:server": "node scripts/build-server.mjs",
+    "build:production": "npm run typecheck && node scripts/build-production.mjs",
+    "start": "node build/server/index.js",
+    "smoke:production": "node scripts/smoke-production.mjs",
+    "test:production": "node scripts/test-production.mjs"
   },
   "dependencies": {
     "@discord/embedded-app-sdk": "^2.5.0",
@@ -37,5 +43,8 @@
     "tsx": "^4.23.0",
     "typescript": "~5.7.2",
     "vitest": "^4.1.10"
+  },
+  "engines": {
+    "node": "24.20.0"
   }
 }

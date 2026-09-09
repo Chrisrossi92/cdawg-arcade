@@ -1,0 +1,35 @@
+# Reference descriptor only. Applying this creates a paid service and deploys it.
+# Phase 3C must select the reviewed source branch/commit before creation.
+services:
+  - type: web
+    name: cdawg-arcade
+    runtime: node
+    plan: starter
+    numInstances: 1
+    autoDeployTrigger: "off"
+    buildCommand: npm ci --include=dev && npm test && npm run build:production && npm run smoke:production && npm prune --omit=dev
+    startCommand: node build/server/index.js
+    healthCheckPath: /api/ready
+    maxShutdownDelaySeconds: 30
+    envVars:
+      - key: NODE_VERSION
+        value: 24.20.0
+      - key: NODE_ENV
+        value: production
+      - key: HOST
+        value: 0.0.0.0
+      - key: VITE_API_BASE_URL
+        value: /api
+      - key: VITE_DISCORD_CLIENT_ID
+        sync: false
+      - key: DISCORD_CLIENT_ID
+        sync: false
+      - key: DISCORD_CLIENT_SECRET
+        sync: false
+      - key: DISCORD_REDIRECT_URI
+        sync: false
+      - key: ALLOWED_ORIGINS
+        sync: false
+# PORT and RENDER_GIT_COMMIT are supplied by Render.
+# VITE_APP_VERSION defaults to the source revision; no manual RELEASE_SHA is needed.
+# No domain resource: add the approved hostname only in Phase 3C.
