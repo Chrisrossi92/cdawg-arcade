@@ -53,7 +53,7 @@ function scan(dir, frontend = false) {
     check(!/\.env|\.map$|\.ts$|\.tsx$/.test(item.name));
     const data = readFileSync(path, 'utf8');
     check(!data.includes('DUMMY_ONLY_DATABASE_SENTINEL') && !data.includes(secret) && !data.includes(process.cwd()) && !data.includes('/Users/'));
-    if (frontend) check(!/DISCORD_CLIENT_SECRET|DISCORD_REDIRECT_URI|ALLOWED_ORIGINS|RELEASE_SHA|DATABASE_URL|PERSISTENCE_CONFIGURED|DISCORD_ARCADE_BOT_TOKEN|ARCADE_ATTEMPTS_ENABLED|ARCADE_SESSIONS_ENABLED|ARCADE_RUNTIME_PASSWORD/.test(data));
+    if (frontend) check(!/DISCORD_CLIENT_SECRET|DISCORD_REDIRECT_URI|ALLOWED_ORIGINS|RELEASE_SHA|DATABASE_URL|PERSISTENCE_CONFIGURED|DISCORD_ARCADE_BOT_TOKEN|ARCADE_ATTEMPTS_ENABLED|ARCADE_LEADERBOARDS_ENABLED|ARCADE_SESSIONS_ENABLED|ARCADE_RUNTIME_PASSWORD/.test(data));
     else if (item.name.endsWith('.js')) check(!/from ['"]tsx|import\(['"]tsx|tsx watch/.test(data));
   }
 }
@@ -89,6 +89,8 @@ try {
     const r=await fetch(run.base+path,{headers:{'X-Arcade-Origin':activityOrigin,'X-Arcade-Request':'1'}});
     check(r.status===503);check((await r.json()).error==='official_results_unavailable');check(r.headers.get('cache-control')==='no-store');
   }
+  const board=await fetch(run.base+'/api/guild/balance/leaderboard',{headers:{'X-Arcade-Origin':activityOrigin,'X-Arcade-Request':'1'}});
+  check(board.status===503);check((await board.json()).error==='leaderboard_unavailable');check(board.headers.get('cache-control')==='no-store');
   const asset = Object.keys(release.files).find(x => x.endsWith('.js'));
   const assetResponse = await fetch(run.base + '/' + asset);
   check(assetResponse.status === 200 && assetResponse.headers.get('cache-control').includes('immutable'));

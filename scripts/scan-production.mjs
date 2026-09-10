@@ -17,7 +17,7 @@ function scan(path, content, artifact = false) {
   for (const [name, pattern] of rules) if (pattern.test(content)) failures.push(`${path}: ${name}`);
   if (artifact && (content.includes(process.cwd()) || /\/Users\/|\/home\/[a-z][a-z0-9_-]*\//.test(content))) failures.push(`${path}: absolute-local-path`);
   if (artifact && content.includes('DUMMY_ONLY_ARTIFACT_SENTINEL')) failures.push(`${path}: dummy-secret`);
-  if (path.startsWith('dist/') && /DISCORD_CLIENT_SECRET|DISCORD_REDIRECT_URI|ALLOWED_ORIGINS|RELEASE_SHA|DISCORD_ARCADE_BOT_TOKEN|ARCADE_ATTEMPTS_ENABLED|ARCADE_SESSIONS_ENABLED|ARCADE_PKCE_PROBE_ENABLED|ARCADE_RUNTIME_PASSWORD/.test(content)) failures.push(`${path}: server-only-variable`);
+  if (path.startsWith('dist/') && /DISCORD_CLIENT_SECRET|DISCORD_REDIRECT_URI|ALLOWED_ORIGINS|RELEASE_SHA|DISCORD_ARCADE_BOT_TOKEN|ARCADE_ATTEMPTS_ENABLED|ARCADE_LEADERBOARDS_ENABLED|ARCADE_SESSIONS_ENABLED|ARCADE_PKCE_PROBE_ENABLED|ARCADE_RUNTIME_PASSWORD/.test(content)) failures.push(`${path}: server-only-variable`);
 }
 const source = execFileSync('git', ['ls-files', '-z', '--cached', '--others', '--exclude-standard'], { encoding: 'utf8' }).split('\0').filter(Boolean);
 for (const path of new Set(source)) {

@@ -214,7 +214,7 @@ async function smoke(overrides, schema) {
       "/api/balance/attempts",
       "/api/guild/balance/leaderboard",
     ])
-      eq((await fetch(run.base + p)).status, ["/api/session","/api/balance/attempts"].includes(p) ? 403 : 404);
+      eq((await fetch(run.base + p)).status, ["/api/session","/api/balance/attempts","/api/guild/balance/leaderboard"].includes(p) ? 403 : 404);
     const o='https://arcade.cdawgbot.xyz';
     const session=await fetch(run.base+'/api/auth/challenges',{method:'POST',headers:{Origin:o,'X-Arcade-Origin':o,'X-Arcade-Request':'1','Content-Type':'application/json'},body:'{}'});
     eq(session.status,503);
@@ -222,6 +222,8 @@ async function smoke(overrides, schema) {
     const activityOrigin=`https://${release.clientId}.discordsays.com`;
     const attempt=await fetch(run.base+'/api/balance/attempts',{method:'POST',headers:{Origin:activityOrigin,'X-Arcade-Origin':activityOrigin,'X-Arcade-Request':'1','X-Arcade-CSRF':'b'.repeat(43),Cookie:'__Host-arcade-session='+'a'.repeat(43),'Content-Type':'application/json'},body:JSON.stringify({beginKey:randomUUID(),rulesetId:'balance-replay-v1'})});
     eq(attempt.status,503);eq((await attempt.json()).error,'attempts_unavailable');
+    const board=await fetch(run.base+'/api/guild/balance/leaderboard',{headers:{'X-Arcade-Origin':activityOrigin,'X-Arcade-Request':'1'}});
+    eq(board.status,503);eq((await board.json()).error,'leaderboard_unavailable');eq(board.headers.get('cache-control'),'no-store');
     for(const path of ['/api/me/balance/stats','/api/me/balance/attempts','/api/me/balance/attempts/00000000-0000-4000-8000-000000000099']) {
       const r=await fetch(run.base+path,{headers:{'X-Arcade-Origin':activityOrigin,'X-Arcade-Request':'1',Cookie:'__Host-arcade-session='+'a'.repeat(43)}});
       eq(r.status,503);eq((await r.json()).error,'official_results_unavailable');eq(r.headers.get('cache-control'),'no-store');

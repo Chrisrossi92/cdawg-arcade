@@ -1,3 +1,4 @@
+import {lockGuild,addGuildAccepted,verifyGuild} from '../build/server/guild/projections.js';
 // Invoked only inside the owned disposable Postgres harness, with synthetic identities.
 import assert from 'node:assert/strict';
 import {randomUUID} from 'node:crypto';
@@ -63,7 +64,7 @@ export async function testPersonalResults(admin,db) {
       VALUES($1,$2,$3,$4,$5,$6,now(),now()+interval '5 minutes',now()+interval '15 minutes','submitted')`,[foreignVersionAttempt,source.player_id,source.guild_id,v,source.session_id,randomUUID()]);
     await admin.query(`INSERT INTO arcade.game_attempts(attempt_id,player_id,guild_id,version_id,disposition,ticks,max_ticks,interruption_count,accepted_at,reason_code,evidence_digest,validator_revision)
       VALUES($1,$2,$3,$4,'accepted',100,18000,0,now(),'accepted',$5,'synthetic_version')`,[foreignVersionAttempt,source.player_id,source.guild_id,v,'a'.repeat(64)]);
-    await addAccepted(admin,foreignVersionAttempt);eq((await store.stats(c.token)).acceptedCount,'5');eq((await store.recent(c.token)).attempts.length,5);
+    await addAccepted(admin,foreignVersionAttempt);await admin.transaction(async c=>{await lockGuild(c,source.player_id,source.guild_id,v);await addGuildAccepted(c,foreignVersionAttempt);});eq((await store.stats(c.token)).acceptedCount,'5');eq((await store.recent(c.token)).attempts.length,5);
     await rejects(()=>admin.query('UPDATE arcade.personal_game_stats SET best_attempt_id=$2,best_ticks=100 WHERE player_id=$1 AND version_id=$3',[source.player_id,foreignVersionAttempt,RULESET.versionId]));
     stage='terminal rejection and retention';
     const rejected=await begin(c);const bad={...idle,inputs:[[0,9]],privateField:'DO_NOT_PERSIST_SENTINEL'};
@@ -130,7 +131,7 @@ export async function testPersonalResults(admin,db) {
     const returned=await request(app).get('/api/me/balance/attempts/'+lostAttempt.attemptId).set(h).expect(200);eq(returned.body.reason,'accepted');
     stage='cleanup';
     const statsBefore=await store.stats(lostOwner.token);await admin.query("UPDATE arcade.attempt_traces SET expires_at=clock_timestamp()-interval '1 second'");await store.purge();eq((await db.query('SELECT count(*)::int n FROM arcade.attempt_traces')).rows[0].n,0);eq(await store.stats(lostOwner.token),statsBefore);eq((await verifyPersonal(db)).status,'consistent');
-    for(const table of ['guild_leaderboard_entries','guild_game_records','guild_record_events'])eq((await db.query(`SELECT count(*)::int n FROM arcade.${table}`)).rows[0].n,0);
-    console.log(`Personal results/statistics Postgres suite passed: ${checks} checks; no guild leaderboard or record writes.`);
+    eq((await verifyGuild(db)).status,'consistent');
+    console.log(`Personal results/statistics Postgres suite passed: ${checks} checks; personal and guild projections consistent.`);
   }catch(error){console.error('Personal fixture stage:',stage);throw error;}
 }

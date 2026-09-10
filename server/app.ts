@@ -1,3 +1,4 @@
+import {guildRoutes,type GuildRuntime} from './guild/routes.js';
 import { attemptRoutes, type AttemptRuntime } from './attempts/routes.js';
 import { sessionRoutes, type SessionRuntime } from './sessions/routes.js';
 import type { Persistence } from './database/readiness.js';
@@ -10,7 +11,7 @@ import { BoundedLimiter } from './limiter.js';
 import { loadArtifacts } from './artifacts.js';
 
 const codePattern = /^[A-Za-z0-9._-]{4,512}$/;
-export interface AppOptions { distDir?: string; manifestPath?: string; isDraining?: () => boolean; limiter?: BoundedLimiter; persistence?: Persistence; sessions?: SessionRuntime; attempts?: AttemptRuntime }
+export interface AppOptions { distDir?: string; manifestPath?: string; isDraining?: () => boolean; limiter?: BoundedLimiter; persistence?: Persistence; sessions?: SessionRuntime; attempts?: AttemptRuntime; guild?: GuildRuntime }
 export function createServerApp(config: ServerConfig, tokenExchange: TokenExchangeService, options: AppOptions = {}) {
   const app = express();
   // Render documents TLS termination, but no invariant hop count or trusted ingress CIDRs.
@@ -34,6 +35,7 @@ export function createServerApp(config: ServerConfig, tokenExchange: TokenExchan
     const result = options.isDraining?.() ? { status: 'unavailable', schema: 'closed' } : await options.persistence?.check() ?? { status: 'unavailable', schema: 'absent' };
     return res.status(result.status === 'available' ? 200 : 503).json({ ...result, ...release });
   });
+  app.use('/api', guildRoutes(config,options.guild,ready));
   app.use('/api', attemptRoutes(config, options.attempts, ready));
   app.use('/api', sessionRoutes(config, options.sessions, ready));
   app.use('/api', (req, res, next) => {

@@ -1,6 +1,6 @@
+import {GuildStore} from './guild/store.js';
 import { AttemptStore } from './attempts/store.js';
-import { restrictedAttemptRole } from './attempts/privileges.js';
-import { restrictedSessionRole } from './sessions/privileges.js';
+import { restrictedRuntimeRole } from './attempts/privileges.js';
 import { Database } from './database/pool.js';
 import { databaseConfig } from './database/config.js';
 import { SessionStore } from './sessions/store.js';
@@ -38,15 +38,16 @@ export async function startServer() {
         check: async () => {
           const health = await persistence.check();
           if (health.status !== 'available') return health;
-          try { if (await (attemptEnabled ? restrictedAttemptRole(database) : restrictedSessionRole(database))) return health; } catch { /* Fail closed without driver details. */ }
+          try { if (await restrictedRuntimeRole(database,attemptEnabled)) return health; } catch { /* Fail closed without driver details. */ }
           return {status:'unavailable' as const,schema:'invalid_configuration' as const};
         },
       },
     } : undefined;
   const attempts = attemptEnabled && sessions && database ? {store:new AttemptStore(database),persistence:sessions.persistence} : undefined;
+  const guild=process.env.ARCADE_LEADERBOARDS_ENABLED==='true'&&sessions&&database?{store:new GuildStore(database),persistence:sessions.persistence}:undefined;
   const cleanup = sessions ? setInterval(() => {void sessions.persistence.check().then(status => status.status === 'available' ? Promise.all([sessions.store.purge(),attempts?.store.purge()]) : undefined).catch(() => {});},60_000) : undefined;
   cleanup?.unref();
-  const app = createServerApp(config, new DiscordTokenExchangeService(config), { isDraining: () => draining, persistence, sessions, attempts });
+  const app = createServerApp(config, new DiscordTokenExchangeService(config), { isDraining: () => draining, persistence, sessions, attempts, guild });
   const server = createServer({ requestTimeout: 10_000, headersTimeout: 10_000, keepAliveTimeout: 5_000, maxHeaderSize: 16_384 }, app);
   server.setTimeout(10_000, socket => socket.destroy());
   server.on('error', () => { console.error('Arcade runtime failed'); process.exit(1); });
