@@ -2,7 +2,7 @@
 
 ## A. Executive result
 
-Implementation and branch automated validation complete. Production enablement and the one owner canary are NOT yet accepted. See [experience and rollout design](OFFICIAL_SCORE_EXPERIENCE.md).
+Implementation, merged-main validation and disabled production deployment complete. Production enablement and the one owner canary are NOT yet accepted. See [experience and rollout design](OFFICIAL_SCORE_EXPERIENCE.md).
 
 ## B. Starting state
 
@@ -44,7 +44,7 @@ Not requested yet. One consolidated under-five-minute run only after enabled pro
 
 ## K. Production invariants
 
-No Phase 4G production score rows created. Initial disabled release b07c84f passed all three health checks and 12 public boundary checks. Baseline: players 1, guilds 1, participations 1, versions 1, sessions 4; challenges/security events and all seven score tables 0. Sampled provider logs contained no credential patterns or runtime failures. Final corrected release and post-canary checks pending.
+No Phase 4G production score rows created. Initial disabled release b07c84f passed all three health checks and 12 public boundary checks. Baseline: players 1, guilds 1, participations 1, versions 1, sessions 4; challenges/security events and all seven score tables 0. Sampled provider logs contained no credential patterns or runtime failures. Corrected release 7cd6db0 passed the same 12 public checks, all three health endpoints, exact runtime capability, sessions on and three scoring flags off. The configured hash matches exactly one verified guild and denies a synthetic nonmatching guild without writing data. No version is issuable. Ordinary-browser production practice reached results and Play Again restarted; no official claim appeared. Provider memory graph remained below 20% of the 512 MB limit in the inspected window. Post-canary checks remain pending.
 
 ## L. Security/privacy/isolation
 
@@ -52,7 +52,7 @@ No source hardcoded production guild, raw IDs in UI/evidence, new credentials, c
 
 ## M. Deployment/rollback/Git
 
-Branch `codex/phase-4g-official-score-experience`. Commit/merge/live SHA pending. Exact manual deploy, automatic deployment off, preserve accepted data during flag/code rollback. No documentation-only redeploy.
+Branch `codex/phase-4g-official-score-experience`. Implementation commits 936a6eb and d7604a8; normal merges b07c84f and 7cd6db0. Live release 7cd6db0f89e984ff477f26a5af9155512617d4ff. All 1,223 checks passed on final merged main (362 unit, 681 real Postgres, 180 smoke), with typecheck, immutable digest, security scan and diff checks. Exact manual deploy, automatic deployment off, preserve accepted data during flag/code rollback. No documentation-only redeploy.
 
 ## N. Remaining limitations
 
@@ -60,4 +60,4 @@ Administrator-only version activation still requires existing administrator acce
 
 ## O. Next step
 
-Finish disabled deployment, controlled activation and single-guild enablement, then one consolidated owner canary. Observe and polish before separately authorized announcement delivery. Do not implement delivery.
+Disabled deployment is complete. Controlled activation is blocked only by unavailable administrator access: the restricted runtime cannot write versions, and the previous private handoff was destroyed. A one-time masked encrypted reuse of the existing administrator URL is prepared; no new credential or password change is required. After activation, finish single-guild enablement and request one consolidated owner canary. Observe and polish before separately authorized announcement delivery. Do not implement delivery.
