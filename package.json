@@ -11,7 +11,7 @@
     "server": "tsx server/index.ts",
     "build": "tsc -b && vite build",
     "preview": "vite preview --host 127.0.0.1",
-    "test": "vitest run",
+    "test": "vitest run --maxWorkers=2",
     "typecheck": "tsc -b",
     "build:client": "vite build",
     "build:server": "node scripts/build-server.mjs",
@@ -21,6 +21,7 @@
     "test:production": "node scripts/test-production.mjs",
     "db:migrate": "node build/server/database/cli.js migrate",
     "db:status": "node build/server/database/cli.js status",
+    "db:verify-personal": "node build/server/database/cli.js verify-personal",
     "test:database": "node scripts/test-database.mjs"
   },
   "dependencies": {

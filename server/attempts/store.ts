@@ -1,14 +1,18 @@
+import {addAccepted,verifyPersonal} from '../results/aggregates.js';
+import {canonicalInvalid} from '../results/canonical.js';
+import {retryTransaction,ResultAbort} from '../results/transaction.js';
 import { randomUUID } from 'node:crypto';
 import type { Database, SqlConnection } from '../database/pool.js';
 import { digest, equal } from '../sessions/crypto.js';
 import { RULESET } from './definition.js';
 import { parseEvidence, replayBalance, type ReplayResult } from './replay.js';
 
-export type AttemptError = 'expired_session' | 'csrf_invalid' | 'fresh_verification_required' | 'attempts_unavailable' | 'invalid_request' | 'not_found' | 'attempt_conflict' | 'retry_expired' | 'rate_limited';
+export type AttemptError = 'expired_session' | 'csrf_invalid' | 'fresh_verification_required' | 'attempts_unavailable' | 'invalid_request' | 'not_found' | 'attempt_conflict' | 'retry_expired' | 'rate_limited' | 'submission_conflict' | 'aggregate_mismatch';
 export class AttemptFailure extends Error { constructor(readonly code: AttemptError) { super(code); } }
 export interface Credentials { token: string; csrf: string; }
 export interface AuthorizationView { attemptId: string; rulesetId: string; simulationDigest: string; validatorRevision: string; tickRate: number; maxTicks: number; issuedAt: string; submitDeadline: string; retryDeadline: string; state: string; }
-export interface ResultView { attemptId: string; disposition: ReplayResult['disposition'] | 'expired'; ticks: number; reason: string; }
+export type ResultReason = 'accepted' | 'rejected_invalid_trace' | 'rejected_impossible_result' | 'rejected_interrupted' | 'rejected_version' | 'expired';
+export interface ResultView { attemptId: string; disposition: ReplayResult['disposition'] | 'expired'; ticks: number; reason: ResultReason; }
 type Row = Record<string, any>;
 type Outcome<T> = {value:T} | {error:AttemptError};
 const fail = (error:AttemptError) => ({error} as const);
@@ -19,13 +23,13 @@ export class AttemptStore {
   private unwrap<T>(outcome:Outcome<T>):T { if ('error' in outcome) throw new AttemptFailure(outcome.error); return outcome.value; }
   // Lock session before player, authorization and guild. All write paths use this order.
   // Return domain failures rather than throwing them through the DB's error sanitizer.
-  private async authenticated(c:SqlConnection, credentials:Credentials):Promise<Outcome<Row>> {
+  private async authenticated(c:SqlConnection, credentials:Credentials, mutation=true):Promise<Outcome<Row>> {
     const row = (await c.query(`SELECT * FROM arcade.application_sessions
       WHERE token_digest=$1 AND origin_class='activity' AND transport='cookie'
-      AND revoked_at IS NULL AND expires_at>clock_timestamp() AND idle_expires_at>clock_timestamp() FOR UPDATE`,[digest(credentials.token)])).rows[0];
+      AND revoked_at IS NULL AND expires_at>clock_timestamp() AND idle_expires_at>clock_timestamp() ${mutation?'FOR UPDATE':''}`,[digest(credentials.token)])).rows[0];
     if (!row) return fail('expired_session');
-    if (!equal(digest(credentials.csrf),row.csrf_digest ?? '')) return fail('csrf_invalid');
-    await c.query('SELECT player_id FROM arcade.players WHERE player_id=$1 FOR UPDATE',[row.player_id]);
+    if (mutation && !equal(digest(credentials.csrf),row.csrf_digest ?? '')) return fail('csrf_invalid');
+    if (mutation) await c.query('SELECT player_id FROM arcade.players WHERE player_id=$1 FOR UPDATE',[row.player_id]);
     // Locks may have waited; recheck absolute and idle expiry after acquiring all identity locks.
     const {now} = (await c.query('SELECT clock_timestamp() AS now')).rows[0];
     if (row.expires_at <= now || row.idle_expires_at <= now) return fail('expired_session');
@@ -84,36 +88,98 @@ export class AttemptStore {
   }
   async submit(credentials:Credentials,attemptId:string,raw:unknown):Promise<ResultView> {
     const evidence=parseEvidence(raw);
-    if (!validAttemptId(attemptId) || !evidence) throw new AttemptFailure('invalid_request');
-    // Parse into a bounded canonical representation, independent of caller key order.
-    const bytes=Buffer.from(JSON.stringify(evidence)), evidenceDigest=digest(bytes.toString('utf8'));
-    return this.unwrap(await this.db.transaction<Outcome<ResultView>>(async c=>{
-      const auth=await this.authenticated(c,credentials); if ('error' in auth) return auth;
+    const canonical=evidence ? JSON.stringify(evidence) : canonicalInvalid(raw);
+    if (!validAttemptId(attemptId) || canonical===null) throw new AttemptFailure('invalid_request');
+    const bytes=Buffer.from(canonical),evidenceDigest=digest(canonical);
+    try {return this.unwrap(await retryTransaction<Outcome<ResultView>>(this.db,async c=>{
+      const auth=await this.authenticated(c,credentials);if ('error' in auth) return auth;
       const s=auth.value;
       const a=(await c.query('SELECT * FROM arcade.attempt_authorizations WHERE attempt_id=$1 AND player_id=$2 AND guild_id=$3 AND session_id=$4 FOR UPDATE',[attemptId,s.player_id,s.guild_id,s.session_id])).rows[0];
       if (!a) return fail('not_found');
-      if (s.now >= a.retry_deadline) return fail('retry_expired');
+      if (s.now>=a.retry_deadline) return fail('retry_expired');
       if (a.submission_digest) {
-        if (a.submission_digest !== evidenceDigest) return fail('attempt_conflict');
-        const result=(await c.query('SELECT disposition,ticks,reason_code FROM arcade.game_attempts WHERE attempt_id=$1',[attemptId])).rows[0];
-        if (!result) return fail('attempt_conflict');
-        return {value:{attemptId,disposition:result.disposition,ticks:result.ticks,reason:result.reason_code}};
+        if (a.submission_digest!==evidenceDigest) return fail('submission_conflict');
+        const saved=(await c.query('SELECT disposition,ticks,reason_code FROM arcade.game_attempts WHERE attempt_id=$1',[attemptId])).rows[0];
+        if (!saved) return fail('submission_conflict');
+        return {value:{attemptId,disposition:saved.disposition,ticks:saved.ticks,reason:saved.reason_code}};
       }
-      if (!['open','expired'].includes(a.state) || a.version_id!==RULESET.versionId) return fail('attempt_conflict');
-      const unavailable=await this.eligible(c,s,false); if (unavailable) return fail(unavailable);
-      // Use server time after locking, never a client wall clock or a supplied score.
+      if (!['open','expired'].includes(a.state) || a.version_id!==RULESET.versionId) return fail('submission_conflict');
+      const available=await this.eligible(c,s,false);
+      if (available==='expired_session') return fail(available);
       const received=(await c.query('SELECT clock_timestamp() AS now')).rows[0].now as Date;
-      if (s.expires_at <= received || s.idle_expires_at <= received) return fail('expired_session');
-      let result:Omit<ReplayResult,'disposition'> & {disposition:ResultView['disposition']} = replayBalance(evidence);
-      if (received >= a.submit_deadline || a.state==='expired') result={...result,disposition:'expired',ticks:0,reason:'invalid_evidence',failureDirection:null,failurePhase:null};
-      else if (+received - +a.issued_at < RULESET.countdownMs + evidence.ticks*1000/RULESET.tickRate) result={...result,disposition:'rejected',ticks:0,reason:'invalid_evidence',failureDirection:null,failurePhase:null};
-      const reason=result.disposition==='expired'?'submission_expired':(+received-+a.issued_at < RULESET.countdownMs+evidence.ticks*1000/RULESET.tickRate ? 'too_early' : result.reason);
+      if (s.expires_at<=received || s.idle_expires_at<=received) return fail('expired_session');
+      let disposition:ResultView['disposition']='rejected',ticks=0;
+      let reason:ResultReason='rejected_invalid_trace';
+      let interruptions=evidence?.interruptions??0,failureDirection:ReplayResult['failureDirection']=null,failurePhase:ReplayResult['failurePhase']=null;
+      if (received>=a.submit_deadline || a.state==='expired') {disposition='expired';reason='expired';}
+      else if (available || (evidence && evidence.rulesetId!==RULESET.id)) reason='rejected_version';
+      else if (evidence) {
+        if (evidence.interruptions) {disposition='practice';reason='rejected_interrupted';}
+        else if (+received-+a.issued_at<RULESET.countdownMs+evidence.ticks*1000/RULESET.tickRate) reason='rejected_impossible_result';
+        else {
+          const result=replayBalance(evidence);
+          if (result.disposition==='accepted') {disposition='accepted';ticks=result.ticks;reason='accepted';failureDirection=result.failureDirection;failurePhase=result.failurePhase;}
+          else reason=result.reason==='unsupported_ruleset'?'rejected_version':'rejected_impossible_result';
+        }
+      }
+      // A mismatch is operational failure, never silently repaired or incremented.
+      if (disposition==='accepted' && (await verifyPersonal(c,s.player_id,RULESET.versionId)).status!=='consistent') return fail('aggregate_mismatch');
+      // Preserve a deterministic earlier-best tie order even within one clock microsecond.
+      const recorded=(await c.query(`SELECT GREATEST(clock_timestamp(),COALESCE((SELECT last_accepted_at+interval '1 microsecond'
+        FROM arcade.personal_game_stats WHERE player_id=$1 AND version_id=$2),'-infinity'::timestamptz))::text AS at`,[s.player_id,RULESET.versionId])).rows[0].at;
       await c.query(`INSERT INTO arcade.game_attempts(attempt_id,player_id,guild_id,version_id,disposition,ticks,max_ticks,interruption_count,failure_direction,failure_phase,accepted_at,reason_code,evidence_digest,validator_revision)
-        VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14)`,[attemptId,s.player_id,s.guild_id,RULESET.versionId,result.disposition,result.ticks,RULESET.maxTicks,result.interruptionCount,result.failureDirection,result.failurePhase,received,reason,evidenceDigest,RULESET.validatorRevision]);
-      await c.query("INSERT INTO arcade.attempt_traces(attempt_id,encoding,evidence,expires_at) VALUES($1,'balance-edges-json-v1',$2,$3)",[attemptId,bytes,new Date(+received+7*86400000)]);
-      await c.query("UPDATE arcade.attempt_authorizations SET state=$2,first_received_at=$3,submission_digest=$4 WHERE attempt_id=$1",[attemptId,result.disposition==='expired'?'expired':'submitted',received,evidenceDigest]);
-      // Aggregates and record events intentionally have no write path in Phase 4D.
-      return {value:{attemptId,disposition:result.disposition,ticks:result.ticks,reason}};
+        VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14)`,[attemptId,s.player_id,s.guild_id,RULESET.versionId,disposition,ticks,RULESET.maxTicks,interruptions,failureDirection,failurePhase,recorded,reason,evidenceDigest,RULESET.validatorRevision]);
+      if (disposition==='accepted') {
+        await c.query("INSERT INTO arcade.attempt_traces(attempt_id,encoding,evidence,expires_at) VALUES($1,'balance-edges-json-v1',$2,$3::timestamptz+interval '7 days')",[attemptId,bytes,recorded]);
+        await addAccepted(c,attemptId);
+      }
+      // Rejected/practice/expired traces are omitted; only bounded metadata/digest survive.
+      await c.query("UPDATE arcade.attempt_authorizations SET state=$2,first_received_at=$3,submission_digest=$4 WHERE attempt_id=$1",[attemptId,disposition==='expired'?'expired':'submitted',received,evidenceDigest]);
+      const end=(await c.query('SELECT clock_timestamp() AS now')).rows[0].now;
+      if (s.expires_at<=end || s.idle_expires_at<=end) throw new ResultAbort('expired_session');
+      return {value:{attemptId,disposition,ticks,reason}};
+    }));}catch(error){if(error instanceof ResultAbort)throw new AttemptFailure(error.reason);throw error;}
+  }
+  async stats(token:string) {
+    return this.unwrap(await this.db.transaction<Outcome<Record<string,unknown>>>(async c=>{
+      // Read-only repeatable snapshot: verification and values refer to one committed state.
+      await c.query('SET TRANSACTION ISOLATION LEVEL REPEATABLE READ, READ ONLY');
+      const auth=await this.authenticated(c,{token,csrf:''},false);if ('error' in auth)return auth;
+      const s=auth.value;
+      if ((await verifyPersonal(c,s.player_id,RULESET.versionId)).status!=='consistent') return fail('aggregate_mismatch');
+      const r=(await c.query(`SELECT s.official_count::text,s.total_ticks::text,s.best_ticks,s.best_attempt_id,s.first_accepted_at,s.last_accepted_at,
+        round(s.total_ticks::numeric/s.official_count,6)::text AS average_ticks,
+        round(s.total_ticks::numeric/s.official_count/60,6)::text AS average_seconds,
+        round(s.best_ticks::numeric/60,6)::text AS best_seconds
+        FROM arcade.personal_game_stats s WHERE player_id=$1 AND version_id=$2`,[s.player_id,RULESET.versionId])).rows[0];
+      const enabled=(await c.query("SELECT 1 FROM arcade.game_versions v JOIN arcade.guilds g ON g.guild_id=$2 WHERE v.version_id=$1 AND v.issuance_enabled AND g.status='enabled' AND v.simulation_digest=$3 AND v.ruleset_id=$4 AND v.validator_revision=$5 AND v.tick_rate=$6 AND v.max_ticks=$7 AND (v.submission_deadline IS NULL OR v.submission_deadline>clock_timestamp())",[RULESET.versionId,s.guild_id,RULESET.simulationDigest,RULESET.id,RULESET.validatorRevision,RULESET.tickRate,RULESET.maxTicks])).rowCount===1;
+      return {value:{rulesetId:RULESET.id,officialAvailable:enabled,acceptedCount:r?.official_count??'0',totalTicks:r?.total_ticks??'0',
+        averageTicks:r?.average_ticks??'0.000000',averageSeconds:r?.average_seconds??'0.000000',
+        best:r?{attemptId:r.best_attempt_id,ticks:r.best_ticks,seconds:r.best_seconds}:null,
+        firstAcceptedAt:r?.first_accepted_at.toISOString()??null,lastAcceptedAt:r?.last_accepted_at.toISOString()??null}};
+    }));
+  }
+  async recent(token:string) {
+    return this.unwrap(await this.db.transaction<Outcome<Record<string,unknown>>>(async c=>{
+      await c.query('SET TRANSACTION ISOLATION LEVEL REPEATABLE READ, READ ONLY');
+      const auth=await this.authenticated(c,{token,csrf:''},false);if ('error' in auth)return auth;
+      const rows=(await c.query(`SELECT attempt_id,ticks,accepted_at FROM arcade.game_attempts WHERE player_id=$1 AND version_id=$2 AND disposition='accepted'
+        ORDER BY accepted_at DESC,attempt_id DESC LIMIT 20`,[auth.value.player_id,RULESET.versionId])).rows;
+      return {value:{rulesetId:RULESET.id,attempts:rows.map(r=>({attemptId:r.attempt_id,ticks:r.ticks,acceptedAt:r.accepted_at.toISOString(),disposition:'accepted'}))}};
+    }));
+  }
+  async status(token:string,attemptId:string) {
+    if (!validAttemptId(attemptId)) throw new AttemptFailure('not_found');
+    return this.unwrap(await this.db.transaction<Outcome<Record<string,unknown>>>(async c=>{
+      await c.query('SET TRANSACTION ISOLATION LEVEL REPEATABLE READ, READ ONLY');
+      const auth=await this.authenticated(c,{token,csrf:''},false);if ('error' in auth)return auth;
+      const s=auth.value;
+      const a=(await c.query(`SELECT a.state,a.submit_deadline,t.disposition,t.ticks,t.reason_code FROM arcade.attempt_authorizations a
+        LEFT JOIN arcade.game_attempts t USING(attempt_id) WHERE a.attempt_id=$1 AND a.player_id=$2 AND a.guild_id=$3 AND a.version_id=$4`,[attemptId,s.player_id,s.guild_id,RULESET.versionId])).rows[0];
+      if (!a)return fail('not_found');
+      if(a.disposition)return {value:{attemptId,disposition:a.disposition,ticks:a.ticks,reason:a.reason_code}};
+      const state=a.state==='open'&&a.submit_deadline<=s.now?'expired':a.state;
+      return {value:{attemptId,state,outcome:state==='cancelled'?'practice_only':state}};
     }));
   }
   async purge():Promise<void> {
