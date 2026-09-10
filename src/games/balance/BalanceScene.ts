@@ -87,7 +87,7 @@ export class BalanceScene extends Phaser.Scene {
     this.lastScoreSeconds = scoreSeconds;
     if (frame.steps) this.options.onTick(this.state, scoreSeconds);
 
-    if (this.state.failed) {
+    if (this.options.clock.finished) {
       this.ended = true;
       this.renderImpact();
       this.time.delayedCall(380, () => this.options.onGameOver(calculateScoreSeconds(this.state.survivalMs), this.state));

@@ -8,7 +8,6 @@ export function ConnectionStatus({ context, onRetry, onPractice }: { context: Ho
   return <div className="connection-status">
     <span role="status">{label}</span>
     {context.arcadeSessionState && <span role="status">{{verifying:'Verifying server session…',verified:'Verified for this server',unavailable:'Verification unavailable · Practice',expired:'Session expired · Reconnect','account-changed':'Different Discord account detected · Reconnect','signed-out':'Signed out · Practice'}[context.arcadeSessionState]}</span>}
-    {context.arcadeSessionState && <span>Practice · Saved in this browser</span>}
     {context.arcadeSessionState && state === 'discord-authenticated' && <div>
       <button className="secondary-button" type="button" onClick={onRetry}>Reconnect</button>
       <button className="secondary-button" type="button" onClick={onPractice}>Disconnect and practice</button>

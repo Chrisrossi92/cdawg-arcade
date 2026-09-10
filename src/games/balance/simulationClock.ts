@@ -1,3 +1,5 @@
+import {stepOfficialBalance} from '../../../shared/balance/official';
+import type {TraceRecorder} from '../../official/trace';
 import { createInitialBalanceState, stepBalanceSimulation, type BalanceConfig, type BalanceInputDirection, type BalanceState } from './simulation';
 
 export const FIXED_STEP_MS = 1000 / 60;
@@ -14,7 +16,9 @@ export class SimulationClock {
   private accumulator = 0;
   private direction: BalanceInputDirection = 'none';
   private events: { at: number; direction: BalanceInputDirection }[] = [];
-  constructor(config: BalanceConfig) { this.state = createInitialBalanceState(config); }
+  ticks=0;
+  get finished(){return this.state.failed||!!this.trace&&this.ticks>=18000;}
+  constructor(config: BalanceConfig,private trace?:TraceRecorder) { this.state = createInitialBalanceState(config); }
   input(direction: BalanceInputDirection, at: number): void {
     if (!this.paused && !this.state.failed && Number.isFinite(at)) this.events.push({ at, direction });
   }
@@ -27,7 +31,7 @@ export class SimulationClock {
   }
   resume(): void { this.paused = false; this.lastTime = null; this.accumulator = 0; this.clearInput(); }
   frame(now: number, config: BalanceConfig): { steps: number; interrupted: boolean } {
-    if (this.paused || this.state.failed) return { steps: 0, interrupted: false };
+    if (this.paused || this.finished) return { steps: 0, interrupted: false };
     if (!Number.isFinite(now)) { this.pause(); return { steps: 0, interrupted: true }; }
     if (this.lastTime === null) {
       this.lastTime = now; this.cursor = now;
@@ -41,10 +45,12 @@ export class SimulationClock {
     }
     this.accumulator += delta;
     let steps = 0;
-    while (this.accumulator + EPSILON >= FIXED_STEP_MS && steps < MAX_STEPS && !this.state.failed) {
+    while (this.accumulator + EPSILON >= FIXED_STEP_MS && steps < MAX_STEPS && !this.finished) {
       this.cursor += FIXED_STEP_MS;
       while (this.events.length && this.events[0].at <= this.cursor + EPSILON) this.direction = this.events.shift()!.direction;
-      this.state = stepBalanceSimulation(this.state, this.direction, FIXED_STEP_MS, config).state;
+      this.trace?.step(this.ticks,this.direction);
+      this.state = this.trace?stepOfficialBalance(this.state,this.direction).state:stepBalanceSimulation(this.state, this.direction, FIXED_STEP_MS, config).state;
+      this.ticks++;
       this.accumulator = Math.max(0, this.accumulator - FIXED_STEP_MS);
       steps++;
     }

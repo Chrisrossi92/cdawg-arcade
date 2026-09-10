@@ -53,7 +53,7 @@ function scan(dir, frontend = false) {
     check(!/\.env|\.map$|\.ts$|\.tsx$/.test(item.name));
     const data = readFileSync(path, 'utf8');
     check(!data.includes('DUMMY_ONLY_DATABASE_SENTINEL') && !data.includes(secret) && !data.includes(process.cwd()) && !data.includes('/Users/'));
-    if (frontend) check(!/DISCORD_CLIENT_SECRET|DISCORD_REDIRECT_URI|ALLOWED_ORIGINS|RELEASE_SHA|DATABASE_URL|PERSISTENCE_CONFIGURED|DISCORD_ARCADE_BOT_TOKEN|ARCADE_ATTEMPTS_ENABLED|ARCADE_LEADERBOARDS_ENABLED|ARCADE_SESSIONS_ENABLED|ARCADE_RUNTIME_PASSWORD/.test(data));
+    if (frontend) check(!/DISCORD_CLIENT_SECRET|DISCORD_REDIRECT_URI|ALLOWED_ORIGINS|RELEASE_SHA|DATABASE_URL|PERSISTENCE_CONFIGURED|DISCORD_ARCADE_BOT_TOKEN|ARCADE_ATTEMPTS_ENABLED|ARCADE_LEADERBOARDS_ENABLED|ARCADE_CANARY_GUILD_IDS|ARCADE_CANARY_GUILD_HASH|ARCADE_SESSIONS_ENABLED|ARCADE_RUNTIME_PASSWORD/.test(data));
     else if (item.name.endsWith('.js')) check(!/from ['"]tsx|import\(['"]tsx|tsx watch/.test(data));
   }
 }
@@ -95,7 +95,7 @@ try {
   const assetResponse = await fetch(run.base + '/' + asset);
   check(assetResponse.status === 200 && assetResponse.headers.get('cache-control').includes('immutable'));
   await assetResponse.arrayBuffer();
-  for (const path of ['/api/unknown', '/.env', '/.git/config', '/server/index.ts', '/build/release.json', '/docs/README.md', '/assets/missing.js', '/%2eenv', '/%252e%252e/package.json', '/assets/%2f..%2fpackage.json']) {
+  for (const path of ['/fixtures/official.html', '/fixtures/narrow.html', '/api/unknown', '/.env', '/.git/config', '/server/index.ts', '/build/release.json', '/docs/README.md', '/assets/missing.js', '/%2eenv', '/%252e%252e/package.json', '/assets/%2f..%2fpackage.json']) {
     const res = await fetch(run.base + path); check(res.status === 404 && !res.headers.get('content-type').includes('text/html'));
   }
   const bad = await fetch(run.base + '/api/token', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{' });

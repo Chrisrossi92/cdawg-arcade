@@ -27,7 +27,7 @@ describe('production connection and score wording', () => {
     const context = { ...makeDefaultLocalContext(), environment: 'discord' as const, connectionState: 'discord-error' as const, connectionError: 'sdk' as const, initializationStatus: 'Retry or continue in practice.' };
     const html = renderToStaticMarkup(<BalanceExperience hostContext={context} scoreRepository={new MemoryScoreRepository()} />);
     expect(html).toContain('Start Game');
-    expect(html).toContain('Local best');
+    expect(html).toContain('Historical Local Best');
     expect(html).toContain('Retry Discord connection');
     expect(html).toContain('Local Player');
   });

@@ -22,6 +22,7 @@
     "db:migrate": "node build/server/database/cli.js migrate",
     "db:status": "node build/server/database/cli.js status",
     "db:verify-guild": "node build/server/database/cli.js verify-guild",
+    "db:activate-canary": "node build/server/database/cli.js activate-canary",
     "db:grant-results": "node build/server/database/cli.js grant-results",
     "db:verify-personal": "node build/server/database/cli.js verify-personal",
     "test:database": "node scripts/test-database.mjs"

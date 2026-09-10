@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {randomUUID} from 'node:crypto';
 import request from 'supertest';
-import {AttemptStore} from '../build/server/attempts/store.js';
+import {AttemptStore as BaseAttemptStore} from '../build/server/attempts/store.js';
 import {RULESET} from '../build/server/attempts/definition.js';
 import {SessionStore} from '../build/server/sessions/store.js';
 import {digest,secret} from '../build/server/sessions/crypto.js';
@@ -12,6 +12,7 @@ import {restrictedSessionRole} from '../build/server/sessions/privileges.js';
 import {restrictedAttemptRole} from '../build/server/attempts/privileges.js';
 import {createServerApp} from '../build/server/app.js';
 import {loadServerConfig} from '../build/server/env.js';
+const AttemptStore=class extends BaseAttemptStore {constructor(db){super(db,id=>/^7[0-9]{17}$/.test(id));}};
 export async function testAttempts(admin,db) {
   let checks=0,stage='permissions';
   const eq=(a,b)=>{assert.deepEqual(a,b);checks++;},ok=x=>{assert.ok(x);checks++;};
@@ -163,6 +164,7 @@ export async function testAttempts(admin,db) {
     await testPersonalResults(admin,db);
     const {testGuildResults}=await import('./test-guild-results.mjs');
     await testGuildResults(admin,db);
+    const {testCanary}=await import('./test-canary.mjs');await testCanary(admin,db);
     console.log(`Attempt Postgres ownership, replay, concurrency, atomic rollback and retention passed: ${checks} checks; guild projections consistent.`);
   } catch(error) {console.error('Attempt fixture stage:',stage);throw error;}
   finally {

@@ -1,3 +1,4 @@
+import {canaryConfig,type GuildEligibility} from '../canary.js';
 import {lockGuild,addGuildAccepted,resultMetadata,verifyGuild} from '../guild/projections.js';
 import {addAccepted,verifyPersonal} from '../results/aggregates.js';
 import {canonicalInvalid} from '../results/canonical.js';
@@ -20,15 +21,16 @@ const fail = (error:AttemptError) => ({error} as const);
 const uuid = /^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/;
 export const validAttemptId = (value:unknown): value is string => typeof value === 'string' && uuid.test(value);
 export class AttemptStore {
-  constructor(private db:Database) {}
+  constructor(private db:Database,private allowsGuild:GuildEligibility=canaryConfig().allowsGuild) {}
   private unwrap<T>(outcome:Outcome<T>):T { if ('error' in outcome) throw new AttemptFailure(outcome.error); return outcome.value; }
   // Lock session before player, authorization and guild. All write paths use this order.
   // Return domain failures rather than throwing them through the DB's error sanitizer.
   private async authenticated(c:SqlConnection, credentials:Credentials, mutation=true):Promise<Outcome<Row>> {
-    const row = (await c.query(`SELECT * FROM arcade.application_sessions
+    const row = (await c.query(`SELECT s.*,g.discord_guild_id,g.status AS guild_status FROM arcade.application_sessions s JOIN arcade.guilds g USING(guild_id)
       WHERE token_digest=$1 AND origin_class='activity' AND transport='cookie'
-      AND revoked_at IS NULL AND expires_at>clock_timestamp() AND idle_expires_at>clock_timestamp() ${mutation?'FOR UPDATE':''}`,[digest(credentials.token)])).rows[0];
+      AND revoked_at IS NULL AND expires_at>clock_timestamp() AND idle_expires_at>clock_timestamp() ${mutation?'FOR UPDATE OF s':''}`,[digest(credentials.token)])).rows[0];
     if (!row) return fail('expired_session');
+    if(!this.allowsGuild(row.discord_guild_id)||(!mutation&&row.guild_status!=='enabled'))return fail('attempts_unavailable');
     if (mutation && !equal(digest(credentials.csrf),row.csrf_digest ?? '')) return fail('csrf_invalid');
     if (mutation) await c.query('SELECT player_id FROM arcade.players WHERE player_id=$1 FOR UPDATE',[row.player_id]);
     // Locks may have waited; recheck absolute and idle expiry after acquiring all identity locks.
@@ -41,11 +43,11 @@ export class AttemptStore {
     if (!version || !version.issuance_enabled || version.ruleset_id!==RULESET.id || version.simulation_digest!==RULESET.simulationDigest ||
       version.validator_revision!==RULESET.validatorRevision || version.tick_rate!==RULESET.tickRate || version.max_ticks!==RULESET.maxTicks ||
       (version.submission_deadline && version.submission_deadline <= row.now)) return 'attempts_unavailable';
-    const guild=(await c.query('SELECT status FROM arcade.guilds WHERE guild_id=$1 FOR SHARE',[row.guild_id])).rows[0];
+    const guild=(await c.query('SELECT status,discord_guild_id FROM arcade.guilds WHERE guild_id=$1 FOR SHARE',[row.guild_id])).rows[0];
     row.now = (await c.query('SELECT clock_timestamp() AS now')).rows[0].now;
     if (row.expires_at <= row.now || row.idle_expires_at <= row.now) return 'expired_session';
     if (version.submission_deadline && version.submission_deadline <= row.now) return 'attempts_unavailable';
-    if (guild?.status !== 'enabled') return 'attempts_unavailable';
+    if (guild?.status !== 'enabled'||!this.allowsGuild(guild.discord_guild_id)) return 'attempts_unavailable';
     if (fresh && (row.now - row.membership_verified_at > RULESET.membershipFreshMs || +row.membership_verified_at > +row.now + 5000)) return 'fresh_verification_required';
     return null;
   }
@@ -98,6 +100,7 @@ export class AttemptStore {
       const a=(await c.query('SELECT * FROM arcade.attempt_authorizations WHERE attempt_id=$1 AND player_id=$2 AND guild_id=$3 AND session_id=$4 FOR UPDATE',[attemptId,s.player_id,s.guild_id,s.session_id])).rows[0];
       if (!a) return fail('not_found');
       if (s.now>=a.retry_deadline) return fail('retry_expired');
+      if(s.guild_status!=='enabled')return fail('attempts_unavailable');
       if (a.submission_digest) {
         if (a.submission_digest!==evidenceDigest) return fail('submission_conflict');
         const saved=(await c.query('SELECT disposition,ticks,reason_code FROM arcade.game_attempts WHERE attempt_id=$1',[attemptId])).rows[0];

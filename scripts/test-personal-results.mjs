@@ -3,7 +3,7 @@ import {lockGuild,addGuildAccepted,verifyGuild} from '../build/server/guild/proj
 import assert from 'node:assert/strict';
 import {randomUUID} from 'node:crypto';
 import request from 'supertest';
-import {AttemptStore} from '../build/server/attempts/store.js';
+import {AttemptStore as BaseAttemptStore} from '../build/server/attempts/store.js';
 import {SessionStore} from '../build/server/sessions/store.js';
 import {digest} from '../build/server/sessions/crypto.js';
 import {RULESET} from '../build/server/attempts/definition.js';
@@ -11,6 +11,7 @@ import {verifyPersonal,addAccepted} from '../build/server/results/aggregates.js'
 import {DatabaseError} from '../build/server/database/pool.js';
 import {createServerApp} from '../build/server/app.js';
 import {loadServerConfig} from '../build/server/env.js';
+const AttemptStore=class extends BaseAttemptStore {constructor(db){super(db,id=>/^9[0-9]{17}$/.test(id));}};
 export async function testPersonalResults(admin,db) {
   let checks=0,stage='setup',actor=0;
   const eq=(a,b)=>{assert.deepEqual(a,b);checks++;},ok=x=>{assert.ok(x);checks++;};

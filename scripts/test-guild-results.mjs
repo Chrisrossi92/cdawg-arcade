@@ -2,17 +2,19 @@
 import assert from 'node:assert/strict';
 import {randomUUID} from 'node:crypto';
 import request from 'supertest';
-import {AttemptStore} from '../build/server/attempts/store.js';
+import {AttemptStore as BaseAttemptStore} from '../build/server/attempts/store.js';
 import {SessionStore} from '../build/server/sessions/store.js';
 import {digest} from '../build/server/sessions/crypto.js';
 import {RULESET} from '../build/server/attempts/definition.js';
-import {GuildStore,displayName} from '../build/server/guild/store.js';
+import {GuildStore as BaseGuildStore,displayName} from '../build/server/guild/store.js';
 import {verifyGuild,previewExclusion,lockGuild,addGuildAccepted} from '../build/server/guild/projections.js';
 import {verifyPersonal,addAccepted} from '../build/server/results/aggregates.js';
 import {grantResultRights} from '../build/server/guild/grants.js';
 import {restrictedAttemptRole,restrictedRuntimeRole} from '../build/server/attempts/privileges.js';
 import {createServerApp} from '../build/server/app.js';
 import {loadServerConfig} from '../build/server/env.js';
+const GuildStore=class extends BaseGuildStore {constructor(db,supported){super(db,supported,id=>/^9[0-9]{17}$/.test(id));}};
+const AttemptStore=class extends BaseAttemptStore {constructor(db){super(db,id=>/^9[0-9]{17}$/.test(id));}};
 export async function testGuildResults(admin,db){
  let checks=0,actor=0,stage='setup';
  const eq=(a,b)=>{assert.deepEqual(a,b);checks++;},ok=x=>{assert.ok(x);checks++;};
