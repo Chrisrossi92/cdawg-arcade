@@ -27,7 +27,10 @@ export async function startServer() {
   const persistence = createPersistence(dbConfig, {database});
   const sessions = process.env.ARCADE_SESSIONS_ENABLED === 'true' && process.env.OFFICIAL_SCORING_ENABLED === 'false' &&
     process.env.DISCORD_ARCADE_BOT_TOKEN && database ? {
-      store: new SessionStore(database), provider: new DiscordIdentityProvider(config,process.env.DISCORD_ARCADE_BOT_TOKEN), persistence: {
+      store: new SessionStore(database), provider: new DiscordIdentityProvider(config,process.env.DISCORD_ARCADE_BOT_TOKEN,fetch,{
+        enabled:process.env.ARCADE_PKCE_PROBE_ENABLED === 'true',
+        report:outcome=>console.log(JSON.stringify({event:'arcade_pkce_probe',outcome})),
+      }), persistence: {
         close: () => persistence.close(),
         check: async () => {
           const health = await persistence.check();
