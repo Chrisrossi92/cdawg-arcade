@@ -1,14 +1,12 @@
-# Authoring sources
+# Editable feasibility source
 
-Reserved for reviewed editable model files and deterministic authoring inputs.
-No Blender source exists yet. A procedural low-detail model can be scripted locally
-without services or paid dependencies, but canonical visual matching requires the
-missing references, and mesh/rig/export testing requires Blender. Do not present
-an unexecuted generation script as a validated prototype.
+`cdawg-mascot-feasibility-v001.blend` contains the neutral model, basic quadruped
+rig, five named clips, review camera and lights. Open with Blender 4.5.13 LTS.
+`cdawg-mascot-model-report-v001.json` records palette approximations, counts,
+coordinates, clip ranges and settings. Regenerate using `scripts/mascot/reproduce.mjs`.
 
-Future coordinates: meters, Z up in Blender, ground at Z=0, facing -Y; record any
-change in the model metadata. Export glTF with standard Y-up conversion. Apply mesh
-scale before rigging. Keep neutral pose and left/right lean actions on one skeleton;
-use facial bones or morph targets for panic. Keep score/simulation logic out of all
-source and export scripts. These are proposed technical defaults, not recovered
-requirements from the missing production specification.
+Meters; Blender Z up and -Y forward; GLB Y up and +Z forward. Ground-centered origin.
+Height approximately 0.780 m including ears. Four vertex-color PBR materials; no
+external textures/fonts. The geometric C avoids a font dependency. This is not a
+high-resolution sculpt or final retopology. Disconnected overlapping components,
+approximate chest patch, simple face and rigid accessories remain visible shortcuts.

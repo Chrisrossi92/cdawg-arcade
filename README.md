@@ -113,7 +113,8 @@ Phase 4D backend foundation: [attempt/replay architecture](docs/ATTEMPT_REPLAY_A
 
 ## Mascot production foundation
 
-The [mascot source package](assets/brand/mascot/README.md) records the approved
-bulldog identity and asset boundaries. See [Phase 1 evidence](docs/brand/MASCOT_PHASE_1_VALIDATION.md)
-for missing inputs, toolchain findings and the continuation gate. This foundation
-does not change the live/default game character.
+The [mascot source package](assets/brand/mascot/README.md) preserves the canonical
+bulldog references and a local-only rigged feasibility prototype. See the
+[Phase 1 completion evidence](docs/brand/MASCOT_PHASE_1_COMPLETION.md) and
+[reproduction/preview commands](docs/brand/MASCOT_PRODUCTION_PLAN.md).
+The shipping/default game character is unchanged.

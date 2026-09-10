@@ -1,0 +1,394 @@
+{
+  "glbByteIdentical": false,
+  "glbStructureIdentical": true,
+  "accessorsCompared": 270,
+  "maximumAccessorError": 9.97595489025116e-05,
+  "normalTolerance": 0.0002,
+  "otherFloatTolerance": 1e-06,
+  "integerTolerance": 0,
+  "triangleComparison": "Exact oriented triangle sets; exporter emission order may differ",
+  "rendersCompared": 52,
+  "maximumRenderMeanError": 8.97575773706194e-08,
+  "renderMeanTolerance": 0.001,
+  "files": [
+    {
+      "path": "frames/fall-00.png",
+      "sha256": "1109d9cb27b27770aa7809137e697d3508c8ee9a4c3f4116e107d664a9a6e7bc",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 0.0,
+      "maximumRGBAError": 0.0
+    },
+    {
+      "path": "frames/fall-01.png",
+      "sha256": "5a6226ffda3d60e623ffea090e06ff11b846f6eb5fcf5578c81150b9d1c0cea6",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 2.9919192456873134e-08,
+      "maximumRGBAError": 0.003921568393707275
+    },
+    {
+      "path": "frames/fall-02.png",
+      "sha256": "28731373d2d2595e430022c9fe4b1ada3db8cab40a02c2042441fcbc69847aee",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 2.9919192456873134e-08,
+      "maximumRGBAError": 0.003921568393707275
+    },
+    {
+      "path": "frames/fall-03.png",
+      "sha256": "95455dce845da023b16caaaada322c1692197ade7d7a40cd3cf41b25a26286fc",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 1.4959596228436567e-08,
+      "maximumRGBAError": 0.003921568393707275
+    },
+    {
+      "path": "frames/fall-04.png",
+      "sha256": "e47163178f0fc9353c9ef1f9222d7ed1592712e986a93aaf96c18dff34c33258",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 1.4959596228436567e-08,
+      "maximumRGBAError": 0.003921568393707275
+    },
+    {
+      "path": "frames/fall-05.png",
+      "sha256": "6ed44ffedc68c64f650c57e4f1b4418b99ccbbc6caffb4abf7ac83efbded41b8",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 2.9919192456873134e-08,
+      "maximumRGBAError": 0.003921568393707275
+    },
+    {
+      "path": "frames/fall-06.png",
+      "sha256": "76c5719d429c01bcc9e8910359da5533df1db1c853abc6f827b4596638b03739",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 2.9919192456873134e-08,
+      "maximumRGBAError": 0.003921568393707275
+    },
+    {
+      "path": "frames/fall-07.png",
+      "sha256": "523329d3a16a8cdaf0d6d8ca0d975c5448597bd2ad0538f833e4fb8af76edccf",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 2.9919192456873134e-08,
+      "maximumRGBAError": 0.003921568393707275
+    },
+    {
+      "path": "frames/idle_default-00.png",
+      "sha256": "18812697cfa1f53781c1b91861eb530b580cd47f0928bd071071689bd2efac46",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 0.0,
+      "maximumRGBAError": 0.0
+    },
+    {
+      "path": "frames/idle_default-01.png",
+      "sha256": "6eccf21df184d19d7b1365f6cf3d087b8243bead0c8460e898a4fdde2cd67d2b",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 1.4959596228436567e-08,
+      "maximumRGBAError": 0.003921568393707275
+    },
+    {
+      "path": "frames/idle_default-02.png",
+      "sha256": "8161726a58047aed162a93ae59a271a0e62d4a5f28db72d271e859480fb06077",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 1.4959596228436567e-08,
+      "maximumRGBAError": 0.003921568393707275
+    },
+    {
+      "path": "frames/idle_default-03.png",
+      "sha256": "aed5e539bfd0f012929f1fbc6b6659e9300c511774a5ab9c1024bb06505a5682",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 2.9919192456873134e-08,
+      "maximumRGBAError": 0.003921568393707275
+    },
+    {
+      "path": "frames/idle_default-04.png",
+      "sha256": "4eb8808aed88cac6ebccb363bfc59acd96e69eb4f79755d80939cd7f2244bef2",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 0.0,
+      "maximumRGBAError": 0.0
+    },
+    {
+      "path": "frames/idle_default-05.png",
+      "sha256": "112351d63a275c14175288d790f96be73defba861ce35ffea6e5e52dfa209884",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 0.0,
+      "maximumRGBAError": 0.0
+    },
+    {
+      "path": "frames/idle_default-06.png",
+      "sha256": "6f8ae4b0e9b711b11291bf19b307ec5cd9a7c150f042a53b06fe5e0f46283213",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 5.983838491374627e-08,
+      "maximumRGBAError": 0.003921568393707275
+    },
+    {
+      "path": "frames/idle_default-07.png",
+      "sha256": "47a99c1c6f0013306c9eb9f4982a42c41c32fb06e9fa98fa1a2691297fe9e458",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 0.0,
+      "maximumRGBAError": 0.0
+    },
+    {
+      "path": "frames/lean_left-00.png",
+      "sha256": "485ce8e725e320b4c4bdc06caf219249d184f2423100f833f2d1ffe3e50dd563",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 0.0,
+      "maximumRGBAError": 0.0
+    },
+    {
+      "path": "frames/lean_left-01.png",
+      "sha256": "c4f4a509401317c2d347bfc8899faea3f41495c85cc9f7007d80d32144fec82e",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 1.4959596228436567e-08,
+      "maximumRGBAError": 0.003921568393707275
+    },
+    {
+      "path": "frames/lean_left-02.png",
+      "sha256": "c20a436f182c10209ff35665156867e99b6c8d63ae4e3176876877856b0ea971",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 2.9919192456873134e-08,
+      "maximumRGBAError": 0.003921568393707275
+    },
+    {
+      "path": "frames/lean_left-03.png",
+      "sha256": "fbf4aba0d1eb08c5a80d10b7f50ba1e5cd4d572195ec00fa0fa8ca0756e1339a",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 1.4959598004793406e-08,
+      "maximumRGBAError": 0.003921568859368563
+    },
+    {
+      "path": "frames/lean_left-04.png",
+      "sha256": "73ea06607ebc1974c3bc6cf24a18efa5ff55e6033f1a3a62686c65ca7e8daa0f",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 4.487890237214742e-08,
+      "maximumRGBAError": 0.003921598196029663
+    },
+    {
+      "path": "frames/lean_left-05.png",
+      "sha256": "6ef18699171d8ddbe5358d354d1762d35fda2822cac550a69ed01db0a40cbddc",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 2.9919192456873134e-08,
+      "maximumRGBAError": 0.003921568393707275
+    },
+    {
+      "path": "frames/lean_left-06.png",
+      "sha256": "f289e0da0fc3f3aaa5d02553b6bf21957459a215ecdc00f131611e940b47734e",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 0.0,
+      "maximumRGBAError": 0.0
+    },
+    {
+      "path": "frames/lean_left-07.png",
+      "sha256": "c6dc70d2da48a9b7c6504f7664f1699f50c227c572b2aad138c211f2fe9c976c",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 0.0,
+      "maximumRGBAError": 0.0
+    },
+    {
+      "path": "frames/lean_right-00.png",
+      "sha256": "22f0749881ae23967fcc05f92cebd25d27c4d9f90d7475a0c564d96d396100a8",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 0.0,
+      "maximumRGBAError": 0.0
+    },
+    {
+      "path": "frames/lean_right-01.png",
+      "sha256": "d80436c1b8fc1ee2a046300e783b788f5b531ab0e242af4254a1e7d484915364",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 2.9919192456873134e-08,
+      "maximumRGBAError": 0.003921568393707275
+    },
+    {
+      "path": "frames/lean_right-02.png",
+      "sha256": "982a69eea2f0b52a0a944bea7311d5e96c1cf8f3c97377cb40d6dd2211b52666",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 2.9919192456873134e-08,
+      "maximumRGBAError": 0.003921568393707275
+    },
+    {
+      "path": "frames/lean_right-03.png",
+      "sha256": "fc62908b153f9511e36807cea7bc3506e22344070c8dab7a2382615dadd7ff53",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 4.48787886853097e-08,
+      "maximumRGBAError": 0.003921568393707275
+    },
+    {
+      "path": "frames/lean_right-04.png",
+      "sha256": "ede9268bdd39170189e5fae44bde65c2bc63aab36240f83b3feb6b9b9753102f",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 4.48787886853097e-08,
+      "maximumRGBAError": 0.003921568393707275
+    },
+    {
+      "path": "frames/lean_right-05.png",
+      "sha256": "0174057787cd0748b16d9313ace53e74c0d5d7f7127b63bc4f20fec1dc30297b",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 5.983838491374627e-08,
+      "maximumRGBAError": 0.003921568393707275
+    },
+    {
+      "path": "frames/lean_right-06.png",
+      "sha256": "4f310e58eb2aa258edc53f8daf500e7a0e8c103408dc0557e3b1a4043401600b",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 5.983838491374627e-08,
+      "maximumRGBAError": 0.003921568393707275
+    },
+    {
+      "path": "frames/lean_right-07.png",
+      "sha256": "20b5c120fb16b217459e767f13a7b00c2fdca707c93084375e7ff10efac4bdf9",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 4.48787886853097e-08,
+      "maximumRGBAError": 0.003921568393707275
+    },
+    {
+      "path": "frames/panic-00.png",
+      "sha256": "1652c8759a0a39cce12d32883cf1a06f6f97b8833e5966a8282d06587e06ade6",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 0.0,
+      "maximumRGBAError": 0.0
+    },
+    {
+      "path": "frames/panic-01.png",
+      "sha256": "8a8de22e575ce5b42920840e18c0f25c352d96c406b866ff5be1bf09d5b661bb",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 8.97575773706194e-08,
+      "maximumRGBAError": 0.003921568393707275
+    },
+    {
+      "path": "frames/panic-02.png",
+      "sha256": "1bca7581e3e1a4d07e25813115aa5193ed03850a7698d09d011ca4d3c92496d6",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 2.9919249300291995e-08,
+      "maximumRGBAError": 0.003921583294868469
+    },
+    {
+      "path": "frames/panic-03.png",
+      "sha256": "b33fd22942d2c238d9fd5a84fc429ff92ff0771a92dbb8f2d9542cff97860de5",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 0.0,
+      "maximumRGBAError": 0.0
+    },
+    {
+      "path": "frames/panic-04.png",
+      "sha256": "a84421596054ba828ad50a24f7487332d8a265fc0a31952bcc8360624be95919",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 0.0,
+      "maximumRGBAError": 0.0
+    },
+    {
+      "path": "frames/panic-05.png",
+      "sha256": "5b764482ccf50854081f42dba8d669ca728af082c4a0c46d43e6cb22298f764b",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 4.48787886853097e-08,
+      "maximumRGBAError": 0.003921568393707275
+    },
+    {
+      "path": "frames/panic-06.png",
+      "sha256": "4cf50b4d74e723fad562141faf009c9fe87416777391b850d8bcc943d79b8679",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 1.4959596228436567e-08,
+      "maximumRGBAError": 0.003921568393707275
+    },
+    {
+      "path": "frames/panic-07.png",
+      "sha256": "7fcbfb82b7fd90522423d4762554eb945dcfdf523cb57c87bc6225eb28c5eef2",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 2.9919192456873134e-08,
+      "maximumRGBAError": 0.003921568393707275
+    },
+    {
+      "path": "views/back.png",
+      "sha256": "76d462f973d3e039ceb548e60aef3649d24fc9fd0dc89d8bb5f12b9b51640bc1",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 1.4959596228436567e-08,
+      "maximumRGBAError": 0.003921568393707275
+    },
+    {
+      "path": "views/front.png",
+      "sha256": "7e62f2b16c18ce585159fa766176ddae9593558efa3d749d22a8180028fa1e89",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 2.9919192456873134e-08,
+      "maximumRGBAError": 0.003921568393707275
+    },
+    {
+      "path": "views/side.png",
+      "sha256": "604ef81223d56722f15db8db4be1841e04c3274a5320aad474e26d1d1fdfbc1c",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 2.9919192456873134e-08,
+      "maximumRGBAError": 0.003921568393707275
+    },
+    {
+      "path": "views/three-quarter.png",
+      "sha256": "28a06d6171b8de78e37bbb084bd3c7f28967ba35c2121c24c411658d3b84853c",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 0.0,
+      "maximumRGBAError": 0.0
+    },
+    {
+      "path": "views/turntable-00.png",
+      "sha256": "54e23b589634e139cf931fc067b5ac5fb33fa812e6b80ec97641244a52c874b9",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 8.97575773706194e-08,
+      "maximumRGBAError": 0.003921568393707275
+    },
+    {
+      "path": "views/turntable-01.png",
+      "sha256": "2db7d465e3cb3b6167035b700b1e4b433d0dd870d74bfac87512ec3a6fbf005e",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 2.9919192456873134e-08,
+      "maximumRGBAError": 0.003921568393707275
+    },
+    {
+      "path": "views/turntable-02.png",
+      "sha256": "ec3e5d098de97f6f3702d511f333b2349b201dbfd6ab48478878bdae18f1545e",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 1.4959596228436567e-08,
+      "maximumRGBAError": 0.003921568393707275
+    },
+    {
+      "path": "views/turntable-03.png",
+      "sha256": "52f0a7427c9c990d3ce79bfc8c02d93082029d50b3d4e80f467ff7130c7469db",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 1.495970991527429e-08,
+      "maximumRGBAError": 0.003921598196029663
+    },
+    {
+      "path": "views/turntable-04.png",
+      "sha256": "3f550ced8ba21a2d8513d0d302526e54a54c29b7c4fa74b97db1a6936089bb5c",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 4.48787886853097e-08,
+      "maximumRGBAError": 0.003921568393707275
+    },
+    {
+      "path": "views/turntable-05.png",
+      "sha256": "6b21dfbc3709ed9da796828a6dd93399328f820abe33ca324cd4d8705922feb2",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 4.48787886853097e-08,
+      "maximumRGBAError": 0.003921568393707275
+    },
+    {
+      "path": "views/turntable-06.png",
+      "sha256": "c741c30a6702afb34a6a8e930600ed2a85465880b9710b63bff5afbf42733e18",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 2.9919192456873134e-08,
+      "maximumRGBAError": 0.003921568393707275
+    },
+    {
+      "path": "views/turntable-07.png",
+      "sha256": "078112787eeaad67f9864fa0a4b60e1614febe640f2f4929e90e727f97354789",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 2.9919192456873134e-08,
+      "maximumRGBAError": 0.003921568393707275
+    }
+  ],
+  "blendByteIdentityRequired": false,
+  "reason": "Blend session metadata and PNG metadata are not visual equivalence gates.",
+  "independentImportRenderComparisons": [
+    {
+      "pose": "idle_default",
+      "meanAbsoluteRGBAError": 2.0943437579745705e-06,
+      "threshold": 0.02
+    },
+    {
+      "pose": "panic",
+      "meanAbsoluteRGBAError": 2.228979896656824e-06,
+      "threshold": 0.02
+    }
+  ],
+  "minimumFrameMarginPixels": 4
+}

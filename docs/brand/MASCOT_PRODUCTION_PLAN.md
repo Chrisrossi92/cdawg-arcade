@@ -1,59 +1,76 @@
-# Phase 1 continuation plan
+# Reproduce and inspect the Phase 1 prototype
 
-This is a derived implementation plan, **not** the missing
-`CDAWG_MASCOT_3D_PRODUCTION_SPEC_V1.md`. Import that document verbatim when supplied.
+The original `CDAWG_MASCOT_3D_PRODUCTION_SPEC_V1.md` is preserved verbatim. It defines
+the eventual production asset; this checkpoint implements its small feasibility
+prototype, not the high-resolution sculpt, full retopology and complete face rig.
 
-## Toolchain gate
+## Verified toolchain
 
-Apple Silicon host. Blender was not found on PATH or in system/user Applications;
-no suitable installed 3D authoring application was identified. Nothing installed.
-Use Blender **4.5.13 LTS**, pinned for reproducibility. The official Apple Silicon
-DMG is **311,910,354 bytes** (about 312 MB / 297.5 MiB). Budget approximately **1–2 GB
-installed and 3 GB free working space**; disk estimates are planning allowances,
-not measurements from an installation. No account, API key, fee, or subscription.
+Blender **4.5.13 LTS**, build **daeeeca98fb0**, official Apple Silicon DMG.
+Installer: **311,910,354 bytes**; installed app measured **814 MiB** by `du -sh`.
+Verified official SHA-256:
+`663ce944257c61ff1d6aa09e15c8f57bbd8d59023adb2fa7edde33a9ed960b53`.
+Official [installer and checksum listing](https://download.blender.org/release/Blender4.5/).
+The owner explicitly approved installation. No fee, account, API key, add-on or
+preference change. Factory-startup headless smoke passed. macOS sandbox restrictions
+caused a native crash; approved local execution outside that sandbox succeeded.
 
-After explicit installation approval: download
-[the official DMG](https://download.blender.org/release/Blender4.5/blender-4.5.13-macos-arm64.dmg),
-verify it against the matching entry in
-[the official SHA-256 file](https://download.blender.org/release/Blender4.5/blender-4.5.13.sha256),
-mount it, copy Blender.app to Applications, then unmount it. Do not change global
-preferences or install add-ons. See [official macOS installation instructions](https://docs.blender.org/manual/en/4.5/getting_started/installing/macos.html)
-and [LTS version listing](https://www.blender.org/download/lts/).
+Existing validation environment: Node 24.14.1 and npm 11.11.0. The repository's
+24.20.0 Node pin remains unchanged and was not installed. Preview-only dependencies
+are locked separately from the application's unchanged package/lockfile.
 
-Run the executable with `--background --factory-startup --python-exit-code 1
---python scripts/mascot/blender-smoke.py`. Record exact build/version. This smoke
-script is prepared but unexecuted; it writes no files or preferences.
+## Commands (from repository root)
 
-## Prototype gate
+```sh
+npm ci --prefix scripts/mascot/preview --ignore-scripts
+node scripts/mascot/reproduce.mjs
+```
 
-Repository-contained procedural generation is feasible with Blender's bundled
-Python: primitive blockout, joined low-detail mesh, approximate cream patches,
-collar/tag geometry, one quadruped skeleton, and keyed actions. No external service
-is needed. Preparing the metadata and smoke check is useful before installation;
-implementing and calling a model approved without the images would be misleading.
+The command discovers the standard macOS Blender app or `blender` on other
+platforms. Set `CDAWG_BLENDER_BIN` to override the executable. It starts separate
+factory-clean processes, generates A and B models/rigs/GLBs, renders 52 images per
+run, composes an atlas/contact sheets, imports the GLB through Blender's independent
+importer, and verifies repeat geometry/animation/pixels and Khronos/Three.js checks.
+All output goes to ignored `tmp/mascot/reproduce`; it never overwrites canonical
+inputs or commits exports automatically. Review, then explicitly promote:
 
-After references and tooling are available, add an executable deterministic model
-script with seeded randomness (or none), named materials/bones/actions, fixed scene,
-camera, transparent render background, lighting, resolution, color management,
-and export settings. Store editable `.blend` and valid `.glb` with a settings manifest.
-Minimum actions: idle, blendable left/right lean, readable panic, harmless fall if
-feasible. Clearly label disconnected geometry, rigid skinning, approximate patches,
-missing leather stitches, poor deformation, or other prototype shortcuts.
+```sh
+node scripts/mascot/package-prototype.mjs tmp/mascot/reproduce/a tmp/mascot/reproduce/composed
+node scripts/mascot/validate.mjs
+node scripts/mascot/check-bundle.mjs
+npm run dev --prefix scripts/mascot/preview
+```
 
-Validate GLB 2.0 header/chunks, buffer/accessor bounds, finite transforms, skin joint
-indices/weights, action names/durations, external URI absence, and loadability with
-a real glTF validator. Render twice and compare exported structure and pixel output;
-record hashes, tolerances and any nondeterminism instead of claiming byte identity.
-Render neutral front/side/back views plus a motion contact sheet against references.
+Open local port **5187**. Build the isolated harness with
+`npm run build --prefix scripts/mascot/preview`; outputs go only to ignored
+`tmp/mascot/preview-dist`. It uses no application entry, score adapter, environment
+file, provider endpoint or external CDN. No internal route was added to production.
 
-## Preview and integration gate
+## Design and limits
 
-Use a separate local Vite preview configuration/entry outside the application
-entry graph, bound to loopback with no auth or score API. No production route,
-feature flag, server change, or live/default character replacement in this phase.
-Inspect desktop and 390-pixel narrow layouts. Compare the same pose set and camera
-for GLB and atlas outputs. Test reduced-motion presentation and local context loss.
+Meters, Z-up/-Y-forward in Blender; Y-up/+Z-forward in GLB. Ground-centered origin;
+height about 0.780 m including ears. Fixed orthographic camera and lighting; Cycles
+CPU, seed 11, 32 samples, denoising, Standard/None color management, transparent
+256² output. Explicit fixed triangulation preserves topology; exporter triangle emission order
+can still differ and is compared as exact oriented triangle sets. Model report records all export settings and provisional sRGB colors.
+No textures are required: four PBR materials use vertex colors. Geometry forms the C.
 
-Next phase: finish Phase 1 prototype and measured presentation comparison, then
-request only a meaningful creative choice if references leave one unresolved.
-Production integration is a subsequent, separately authorized phase.
+The basic rig has pelvis/chest/head, jaw, brows, eye-white/ear controls, tail, tag,
+and four two-bone IK chains with world-relative paw targets. Export samples IK
+constraints to ordinary bones; exporter notices about baking constraints are
+expected and do not indicate missing GLB animation. Khronos validation is separate.
+Idle/left lean/right lean/panic/fall each span exactly 0–1 seconds in GLB. Original
+Blender source frames are 1–25 at 24 fps. The held lean is blendable from neutral;
+fall root motion is cosmetic. Atlas samples endpoints in eight frames per clip.
+
+Known gaps: primitive/disconnected overlapping geometry; no production topology,
+high-resolution sculpt, UV texture bakes, fur detail, verified LOD, full IK/FK UI,
+complete nine-expression rig or full reusable animation library. Ears, chest blaze,
+muzzle and collar/tag proportions remain visibly simplified. Panic is readable but
+has less facial nuance than the expression sheet. These are recorded limitations,
+not a redesign or an assertion of final creative acceptance.
+
+Next recommended phase: refine the silhouette/face/markings against the canonical
+sheets, production topology and deforming shoulders, improve folded ears and collar
+fit, then choose a compact atlas budget and sampled animation cadence. Validate
+that refined candidate before authorizing any default-character integration.

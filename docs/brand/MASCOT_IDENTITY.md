@@ -1,9 +1,9 @@
 # CDAWG permanent identity — v1
 
-Authority: the owner's Mascot Production Phase 1 request. The three named visual
-references and original production specification have not yet been received.
-This guide preserves the explicit approved text; it does not invent exact swatches,
-measurements, or markings that must be established from those references.
+Authority: the owner's Phase 1 request and supplied canonical package. The three
+original images and production specification are now preserved and hash-verified.
+See the asset manifest for provenance. Prototype swatches remain approximations;
+final texture colors still require sampling and visual acceptance.
 
 - Compact, chunky quadruped bulldog with charcoal-black fur.
 - Warm cream eyebrows, muzzle, chest blaze, and toes.
@@ -18,8 +18,8 @@ game-specific costumes only. Preserve identity across games and exports.
 
 The B1 turnaround controls anatomy and markings; the expression sheet controls
 facial acting; the movement sheet controls body language. Resolve conflicts in that
-order by subject. Do not silently redesign. Exact color values and ratios remain
-pending receipt of the canonical artwork.
+order by subject. Do not silently redesign. Use the supplied specification and canonical artwork for proportions. Final color
+values remain a production-texturing decision.
 
 The historical character bible describes the existing bipedal jacket-and-sneaker
 prototype. Its clothing, silhouette, proportions, and palette are not instructions

@@ -1,0 +1,51 @@
+{
+  "validator": "2.0.0-dev.3.10",
+  "bytes": 1061368,
+  "triangles": 26344,
+  "materials": 4,
+  "skins": 1,
+  "clips": [
+    "fall",
+    "idle_default",
+    "lean_left",
+    "lean_right",
+    "panic"
+  ],
+  "result": {
+    "uri": "cdawg-mascot-feasibility-v001.glb",
+    "mimeType": "model/gltf-binary",
+    "validatorVersion": "2.0.0-dev.3.10",
+    "issues": {
+      "numErrors": 0,
+      "numWarnings": 0,
+      "numInfos": 0,
+      "numHints": 0,
+      "messages": [],
+      "truncated": false
+    },
+    "info": {
+      "version": "2.0",
+      "generator": "Khronos glTF Blender I/O v4.5.51",
+      "resources": [
+        {
+          "pointer": "/buffers/0",
+          "mimeType": "application/gltf-buffer",
+          "storage": "glb",
+          "byteLength": 974332
+        }
+      ],
+      "animationCount": 5,
+      "materialCount": 4,
+      "hasMorphTargets": false,
+      "hasSkins": true,
+      "hasTextures": false,
+      "hasDefaultScene": true,
+      "drawCallCount": 4,
+      "totalVertexCount": 13985,
+      "totalTriangleCount": 26344,
+      "maxUVs": 0,
+      "maxInfluences": 4,
+      "maxAttributes": 5
+    }
+  }
+}

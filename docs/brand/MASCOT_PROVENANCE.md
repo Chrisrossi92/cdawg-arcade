@@ -1,20 +1,28 @@
 # Provenance and licensing
 
-The only received Phase 1 attachment was the owner's textual task request. No
-turnaround, expression sheet, movement sheet, or original production specification
-was present. The asset manifest records these as missing, with no invented hashes,
-authorship, generation service, copyright owner, or license grant.
+The owner supplied and approved the canonical turnaround, expressions, movement,
+production specification and authority README on 2026-09-10. The originals are
+preserved without modification; manifest hashes tie stable repository names to
+original filenames. The initial foundation's missing-input state is historical.
+The supplied package was already extracted; no ZIP was available to validate its
+owner-provided hash. No rejected concepts were included.
 
-The identity guide is a transcription of the owner's approved direction. New
-foundation documentation and validation utilities were authored for this repository.
-No third-party model, texture, font, generated image, or paid-service asset is added.
+The owner authorized this project use; no separate authorship declaration or broader
+redistribution license was supplied. Original embedded PNG content-credentials
+metadata is retained without modification. Do not invent CC0/open-source rights or
+copyright ownership for the references. This does not block the authorized local
+prototype, but final distribution rights must be documented before shipping.
 
-When references arrive, record original filename, exact byte hash/size, origin,
-creator/tool if known, and any supplied license or usage terms. Authorization to
-use an image in this project does not establish a blanket redistribution license.
-Preserve supplied terms and flag unknowns before shipping derived assets. Do not
-assign CC0, an open-source license, or third-party ownership without evidence.
+The feasibility mesh, geometry C, rig, colors and authoring scripts were generated
+procedurally for this repository from the approved direction. No downloaded model,
+font, texture, external art upload, paid account or generation service was used.
+Approximate colors are recorded explicitly rather than represented as final sampled
+production swatches. Model materials use vertex color instead of licensed textures.
 
-Blender itself is free software under the GNU GPL; its license does not apply to
-artwork merely created with it. See the [official license explanation](https://docs.blender.org/manual/en/dev/getting_started/about/license.html).
-This does not determine the rights in the missing reference artwork.
+Blender 4.5.13 LTS is GPL free software, obtained from its official download source
+with SHA-256 verification. Its license does not impose GPL on rendered artwork
+merely created with it: [official explanation](https://docs.blender.org/manual/en/dev/getting_started/about/license.html).
+The isolated preview pins Three.js 0.180.0 (MIT) and Khronos glTF Validator
+2.0.0-dev.3.10 (Apache-2.0). Their licenses remain in the installed packages; neither
+package was added to production dependencies. Preserve applicable notices if a
+future integration distributes those libraries. No global Blender preferences changed.

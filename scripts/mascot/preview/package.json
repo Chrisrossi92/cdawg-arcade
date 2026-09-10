@@ -1,0 +1,11 @@
+{
+  "name": "cdawg-mascot-local-preview",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --config vite.config.mjs --host 127.0.0.1 --port 5187 --strictPort",
+    "build": "vite build --config vite.config.mjs"
+  },
+  "dependencies": { "three": "0.180.0" },
+  "devDependencies": { "gltf-validator": "2.0.0-dev.3.10" }
+}

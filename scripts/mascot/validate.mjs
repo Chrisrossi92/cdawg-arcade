@@ -6,11 +6,13 @@ import { createHash } from 'node:crypto';
 const manifest = JSON.parse(readFileSync('assets/brand/mascot/manifest.json', 'utf8'));
 assert.equal(manifest.schemaVersion, 1);
 assert.deepEqual(manifest.inputs.map(x => x.role).sort(),
-  ['expressions', 'movement', 'production-spec', 'turnaround']);
-assert.equal(new Set(manifest.inputs.map(x => x.path)).size, 4);
+  ['authority', 'expressions', 'movement', 'production-spec', 'turnaround']);
+assert.equal(new Set(manifest.inputs.map(x => x.path)).size, 5);
 const missing = [];
 for (const input of manifest.inputs) {
-  const permitted = input.role === 'production-spec'
+  const permitted = input.role === 'authority'
+    ? /^assets\/brand\/mascot\/reference\/canonical-package-readme-v001\.md$/
+    : input.role === 'production-spec'
     ? /^docs\/brand\/CDAWG_MASCOT_3D_PRODUCTION_SPEC_V1\.md$/
     : /^assets\/brand\/mascot\/reference\/cdawg-b1-[a-z-]+-v\d{3}\.(png|jpe?g|webp)$/;
   assert.match(input.path, permitted);
@@ -36,11 +38,20 @@ function inspect(dir) {
     assert.ok(!entry.isSymbolicLink(), `Symlink forbidden: ${path}`);
     if (entry.isDirectory()) inspect(path);
     else assert.ok(path.endsWith('.md') || path.endsWith('/manifest.json') ||
-      manifest.inputs.some(x => x.path === path && x.status === 'received'),
+      [...manifest.inputs, ...(manifest.generatedAssets ?? [])].some(x => x.path === path && x.status === 'received'),
     `Unregistered asset: ${path}`);
   }
 }
 inspect('assets/brand/mascot');
+for (const item of manifest.generatedAssets ?? []) {
+  assert.match(item.path, /^assets\/brand\/mascot\/(source|runtime|previews)\/cdawg-[a-z0-9-]+\.(blend|glb|png|json)$/);
+  assert.equal(item.approvedToShip, false);
+  assert.ok(lstatSync(item.path).isFile());
+  const data = readFileSync(item.path);
+  assert.equal(data.length, item.bytes);
+  assert.equal(createHash('sha256').update(data).digest('hex'), item.sha256);
+}
+
 assert.deepEqual(manifest.runtimeExports, [], 'Phase 1 does not authorize shipping exports');
 if (missing.length) {
   console.log(`FOUNDATION ONLY: ${missing.length} missing canonical inputs (${missing.join(', ')}).`);

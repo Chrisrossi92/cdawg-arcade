@@ -1,0 +1,63 @@
+{
+  "productionDeltaBytes": 0,
+  "productionFileHashesIdentical": true,
+  "productionFiles": {
+    "assets/index-DJxLukTz.css": "b2a4669a4adf8b61243ebab362b25a10a264590295fb09a312bba3c40b450dd3",
+    "assets/index-DeNCiVQb.js": "453fdf4e06d212ec83f05ec0f8e525f9b45acbdb8662325d8b1633151228acb4",
+    "assets/index-PgqIN0K2.js": "5badfe6c0e4a626f076a1d3eb34bba50eb03069acd2b9bacc8893418fb20a110",
+    "index.html": "ee43b4ba522c0a548ad72fd2dcf9fd217743a538fa960313558ba020255a3562"
+  },
+  "previewFiles": [
+    {
+      "path": "assets/common-DlvUBwQx.js",
+      "bytes": 844,
+      "gzipBytes": 519,
+      "sha256": "e84c84466f1c08dbafad7c199f9d50ab5a9a910bf5bff7012492ecd216b584d9"
+    },
+    {
+      "path": "assets/index-CKm_ys-b.js",
+      "bytes": 681,
+      "gzipBytes": 347,
+      "sha256": "db4b061f8a2c047a7e83f4788da1b2c9dad1e545272c3aab2f88d351382c2d1b"
+    },
+    {
+      "path": "assets/live-BS2lVtPG.js",
+      "bytes": 586384,
+      "gzipBytes": 150353,
+      "sha256": "e13dbb427776c7891d14a3c9cb5fae559e69cba995d0f3eb443421b46900b131"
+    },
+    {
+      "path": "assets/sprite-CVlMtX5l.js",
+      "bytes": 1162,
+      "gzipBytes": 693,
+      "sha256": "16d6fbdbf11c822464430200e947bb9ece22aaa99d99388ca4aa5c5fead0d706"
+    },
+    {
+      "path": "assets/style-BUdKH2yF.css",
+      "bytes": 1424,
+      "gzipBytes": 703,
+      "sha256": "b95d41420ae3835f899003cc949883c314f521994d3bd18726b58d66e69f8b13"
+    }
+  ],
+  "candidateAssets": [
+    {
+      "path": "assets/brand/mascot/runtime/cdawg-mascot-feasibility-v001.glb",
+      "bytes": 1061368,
+      "gzipBytes": 267571,
+      "sha256": "a7f6d05ef752aa8b8fca1da9feeeba4eb3c8728668367c679b9cc33e34c19541"
+    },
+    {
+      "path": "assets/brand/mascot/runtime/cdawg-mascot-atlas-v001.png",
+      "bytes": 1898883,
+      "gzipBytes": 1826780,
+      "sha256": "8b11c5878143ba7d4cce94286eb2e454f7b4aee9c57fd68bab29931a34febf25"
+    },
+    {
+      "path": "assets/brand/mascot/runtime/cdawg-mascot-atlas-v001.json",
+      "bytes": 5367,
+      "gzipBytes": 635,
+      "sha256": "8008f5cebe73c648711091a30068e3dc0b4c202112c286a14dbebb514153dae5"
+    }
+  ],
+  "atlasDecodedRGBABytes": 10485760
+}

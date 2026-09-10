@@ -1,0 +1,36 @@
+{
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "warmReloads": [
+    {
+      "live": "Ready · 52.6 ms load/parse\n26,344 triangles · 4 draws · 919 KiB geometry\nrAF p50 0.0 / p95 0.0 ms · n=0",
+      "sprite": "Ready · 56.5 ms load/decode\n2048 × 1280 · 10.0 MiB decoded RGBA\nrAF p50 0.0 / p95 0.0 ms · n=0"
+    },
+    {
+      "live": "Ready · 18.4 ms load/parse\n26,344 triangles · 4 draws · 919 KiB geometry\nrAF p50 0.0 / p95 0.0 ms · n=0",
+      "sprite": "Ready · 34.0 ms load/decode\n2048 × 1280 · 10.0 MiB decoded RGBA\nrAF p50 0.0 / p95 0.0 ms · n=0"
+    },
+    {
+      "live": "Ready · 19.9 ms load/parse\n26,344 triangles · 4 draws · 919 KiB geometry\nrAF p50 0.0 / p95 0.0 ms · n=0",
+      "sprite": "Ready · 43.8 ms load/decode\n2048 × 1280 · 10.0 MiB decoded RGBA\nrAF p50 0.0 / p95 0.0 ms · n=0"
+    }
+  ],
+  "notes": [
+    "Built localhost preview; cache not forcibly cleared; no cold-network claim.",
+    "Load/parse and decode timers exclude library download and module evaluation.",
+    "rAF intervals measure browser scheduling, not GPU execution time.",
+    "In-app browser reported an unsourced MutationObserver error even after all MutationObserver calls were removed from the built preview; both renderers and controls remained functional."
+  ],
+  "steadyState": "- banner:\n  - text: CDAWG / MASCOT WORKSHOP\n  - heading \"One dog. Two ways to play.\" [level=1]\n  - paragraph: Phase 1 feasibility prototype · local review only\n- text: Pose\n- combobox \"Pose\":\n  - option \"Neutral idle\" [selected]\n  - option \"Balance lean\"\n  - option \"Comic panic\"\n  - option \"Harmless fall\"\n- text: Lean\n- slider \"Lean\": \"0\"\n- checkbox \"Animate\"\n- text: Animate\n- button \"Reset view\" [active]\n- main:\n  - article:\n    - heading \"Live 3D\" [level=2]\n    - paragraph: Continuous blending · adjustable presentation\n    - iframe:\n      - generic \"Live 3D bulldog feasibility prototype\"\n      - status: Ready · 19.9 ms load/parse 26,344 triangles · 4 draws · 919 KiB geometry rAF p50 16.7 / p95 17.4 ms · n=300\n  - article:\n    - heading \"Pre-rendered atlas\" [level=2]\n    - paragraph: Same source model · 40 baked frames\n    - iframe:\n      - generic \"Pre-rendered bulldog feasibility prototype\"\n      - status: Ready · 43.8 ms load/decode 2048 × 1280 · 10.0 MiB decoded RGBA rAF p50 16.7 / p95 17.5 ms · n=300\n- contentinfo:\n  - strong: Prototype, not final character art.\n  - text: Simplified surfaces, approximate markings and a basic face rig. Gameplay, scoring and production are untouched.",
+  "controls": [
+    "idle",
+    "panic",
+    "fall",
+    "animate on/off",
+    "lean -1",
+    "lean +1",
+    "reset"
+  ]
+}

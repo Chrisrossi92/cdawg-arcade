@@ -1,5 +1,7 @@
 # Mascot Production Phase 1 — foundation handoff
 
+> Historical evidence for be6cb8c. Superseded by [the prototype completion report](MASCOT_PHASE_1_COMPLETION.md).
+
 Result: **BLOCKED for the complete phase; safe repository foundation validated.**
 Three canonical images and the original production specification were absent from
 the received attachment. Blender is not installed. No approved model, GLB, rig,

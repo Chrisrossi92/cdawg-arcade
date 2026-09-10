@@ -1,0 +1,285 @@
+{
+  "frameWidth": 256,
+  "frameHeight": 256,
+  "columns": 8,
+  "rows": 5,
+  "clips": {
+    "idle_default": {
+      "row": 0,
+      "frames": 8,
+      "durationSeconds": 1,
+      "loop": true
+    },
+    "lean_left": {
+      "row": 1,
+      "frames": 8,
+      "durationSeconds": 1,
+      "loop": false
+    },
+    "lean_right": {
+      "row": 2,
+      "frames": 8,
+      "durationSeconds": 1,
+      "loop": false
+    },
+    "panic": {
+      "row": 3,
+      "frames": 8,
+      "durationSeconds": 1,
+      "loop": false
+    },
+    "fall": {
+      "row": 4,
+      "frames": 8,
+      "durationSeconds": 1,
+      "loop": false
+    }
+  },
+  "origin": [
+    0.5,
+    1
+  ],
+  "sampling": "Endpoints included; sample times are rounded source frames 1..25 at 24 fps.",
+  "sourceFrames": [
+    {
+      "clip": "idle_default",
+      "sample": 0,
+      "sourceFrame": 1,
+      "file": "idle_default-00.png"
+    },
+    {
+      "clip": "idle_default",
+      "sample": 1,
+      "sourceFrame": 4,
+      "file": "idle_default-01.png"
+    },
+    {
+      "clip": "idle_default",
+      "sample": 2,
+      "sourceFrame": 8,
+      "file": "idle_default-02.png"
+    },
+    {
+      "clip": "idle_default",
+      "sample": 3,
+      "sourceFrame": 11,
+      "file": "idle_default-03.png"
+    },
+    {
+      "clip": "idle_default",
+      "sample": 4,
+      "sourceFrame": 15,
+      "file": "idle_default-04.png"
+    },
+    {
+      "clip": "idle_default",
+      "sample": 5,
+      "sourceFrame": 18,
+      "file": "idle_default-05.png"
+    },
+    {
+      "clip": "idle_default",
+      "sample": 6,
+      "sourceFrame": 22,
+      "file": "idle_default-06.png"
+    },
+    {
+      "clip": "idle_default",
+      "sample": 7,
+      "sourceFrame": 25,
+      "file": "idle_default-07.png"
+    },
+    {
+      "clip": "lean_left",
+      "sample": 0,
+      "sourceFrame": 1,
+      "file": "lean_left-00.png"
+    },
+    {
+      "clip": "lean_left",
+      "sample": 1,
+      "sourceFrame": 4,
+      "file": "lean_left-01.png"
+    },
+    {
+      "clip": "lean_left",
+      "sample": 2,
+      "sourceFrame": 8,
+      "file": "lean_left-02.png"
+    },
+    {
+      "clip": "lean_left",
+      "sample": 3,
+      "sourceFrame": 11,
+      "file": "lean_left-03.png"
+    },
+    {
+      "clip": "lean_left",
+      "sample": 4,
+      "sourceFrame": 15,
+      "file": "lean_left-04.png"
+    },
+    {
+      "clip": "lean_left",
+      "sample": 5,
+      "sourceFrame": 18,
+      "file": "lean_left-05.png"
+    },
+    {
+      "clip": "lean_left",
+      "sample": 6,
+      "sourceFrame": 22,
+      "file": "lean_left-06.png"
+    },
+    {
+      "clip": "lean_left",
+      "sample": 7,
+      "sourceFrame": 25,
+      "file": "lean_left-07.png"
+    },
+    {
+      "clip": "lean_right",
+      "sample": 0,
+      "sourceFrame": 1,
+      "file": "lean_right-00.png"
+    },
+    {
+      "clip": "lean_right",
+      "sample": 1,
+      "sourceFrame": 4,
+      "file": "lean_right-01.png"
+    },
+    {
+      "clip": "lean_right",
+      "sample": 2,
+      "sourceFrame": 8,
+      "file": "lean_right-02.png"
+    },
+    {
+      "clip": "lean_right",
+      "sample": 3,
+      "sourceFrame": 11,
+      "file": "lean_right-03.png"
+    },
+    {
+      "clip": "lean_right",
+      "sample": 4,
+      "sourceFrame": 15,
+      "file": "lean_right-04.png"
+    },
+    {
+      "clip": "lean_right",
+      "sample": 5,
+      "sourceFrame": 18,
+      "file": "lean_right-05.png"
+    },
+    {
+      "clip": "lean_right",
+      "sample": 6,
+      "sourceFrame": 22,
+      "file": "lean_right-06.png"
+    },
+    {
+      "clip": "lean_right",
+      "sample": 7,
+      "sourceFrame": 25,
+      "file": "lean_right-07.png"
+    },
+    {
+      "clip": "panic",
+      "sample": 0,
+      "sourceFrame": 1,
+      "file": "panic-00.png"
+    },
+    {
+      "clip": "panic",
+      "sample": 1,
+      "sourceFrame": 4,
+      "file": "panic-01.png"
+    },
+    {
+      "clip": "panic",
+      "sample": 2,
+      "sourceFrame": 8,
+      "file": "panic-02.png"
+    },
+    {
+      "clip": "panic",
+      "sample": 3,
+      "sourceFrame": 11,
+      "file": "panic-03.png"
+    },
+    {
+      "clip": "panic",
+      "sample": 4,
+      "sourceFrame": 15,
+      "file": "panic-04.png"
+    },
+    {
+      "clip": "panic",
+      "sample": 5,
+      "sourceFrame": 18,
+      "file": "panic-05.png"
+    },
+    {
+      "clip": "panic",
+      "sample": 6,
+      "sourceFrame": 22,
+      "file": "panic-06.png"
+    },
+    {
+      "clip": "panic",
+      "sample": 7,
+      "sourceFrame": 25,
+      "file": "panic-07.png"
+    },
+    {
+      "clip": "fall",
+      "sample": 0,
+      "sourceFrame": 1,
+      "file": "fall-00.png"
+    },
+    {
+      "clip": "fall",
+      "sample": 1,
+      "sourceFrame": 4,
+      "file": "fall-01.png"
+    },
+    {
+      "clip": "fall",
+      "sample": 2,
+      "sourceFrame": 8,
+      "file": "fall-02.png"
+    },
+    {
+      "clip": "fall",
+      "sample": 3,
+      "sourceFrame": 11,
+      "file": "fall-03.png"
+    },
+    {
+      "clip": "fall",
+      "sample": 4,
+      "sourceFrame": 15,
+      "file": "fall-04.png"
+    },
+    {
+      "clip": "fall",
+      "sample": 5,
+      "sourceFrame": 18,
+      "file": "fall-05.png"
+    },
+    {
+      "clip": "fall",
+      "sample": 6,
+      "sourceFrame": 22,
+      "file": "fall-06.png"
+    },
+    {
+      "clip": "fall",
+      "sample": 7,
+      "sourceFrame": 25,
+      "file": "fall-07.png"
+    }
+  ]
+}
