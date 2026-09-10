@@ -1,3 +1,4 @@
+import {verifyGuild} from '../build/server/guild/projections.js';
 // Only the owned ephemeral Postgres test harness calls this. No production fixtures.
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -36,7 +37,8 @@ export async function testAttempts(admin,db) {
     await admin.query('GRANT INSERT,UPDATE ON arcade.attempt_authorizations TO arcade_session_runtime');
     await admin.query('GRANT INSERT ON arcade.game_attempts,arcade.attempt_traces TO arcade_session_runtime');
     await admin.query('GRANT DELETE ON arcade.attempt_traces TO arcade_session_runtime');
-    await admin.query('GRANT INSERT,UPDATE ON arcade.personal_game_stats TO arcade_session_runtime');
+    await admin.query('GRANT INSERT,UPDATE ON arcade.personal_game_stats,arcade.guild_leaderboard_entries,arcade.guild_game_records TO arcade_session_runtime');
+    await admin.query('GRANT INSERT ON arcade.guild_record_events TO arcade_session_runtime');
     eq(await restrictedAttemptRole(db),true);eq(await restrictedAttemptRole(admin),false);eq(await restrictedSessionRole(db),false);
     await rejects(()=>db.query('DELETE FROM arcade.game_attempts'));
     await rejects(()=>db.query('UPDATE arcade.game_attempts SET ticks=1'));
@@ -45,8 +47,8 @@ export async function testAttempts(admin,db) {
     for(const t of protectedTables)await rejects(()=>db.query(`DELETE FROM arcade.${t}`));
     await admin.query('GRANT UPDATE ON arcade.attempt_traces TO arcade_session_runtime');eq(await restrictedAttemptRole(db),false);
     await admin.query('REVOKE UPDATE ON arcade.attempt_traces FROM arcade_session_runtime');eq(await restrictedAttemptRole(db),true);
-    await admin.query('GRANT UPDATE(best_ticks) ON arcade.guild_leaderboard_entries TO arcade_session_runtime');eq(await restrictedAttemptRole(db),false);
-    await admin.query('REVOKE UPDATE(best_ticks) ON arcade.guild_leaderboard_entries FROM arcade_session_runtime');eq(await restrictedAttemptRole(db),true);
+    await admin.query('GRANT UPDATE(new_ticks) ON arcade.guild_record_events TO arcade_session_runtime');eq(await restrictedAttemptRole(db),false);
+    await admin.query('REVOKE UPDATE(new_ticks) ON arcade.guild_record_events FROM arcade_session_runtime');eq(await restrictedAttemptRole(db),true);
     stage='ruleset and eligibility';
     const a1=await login();await rejects(()=>begin(a1),'attempts_unavailable');
     await admin.query(`INSERT INTO arcade.game_versions(version_id,game_key,ruleset_id,simulation_digest,validator_revision,tick_rate,max_ticks,issuance_enabled)
@@ -86,7 +88,7 @@ export async function testAttempts(admin,db) {
     stage='one immutable terminal result';
     await aged(first);
     const submissions=await Promise.all(Array.from({length:8},()=>store.submit(a1,first.attemptId,idle)));
-    for(const result of submissions)eq(result,{attemptId:first.attemptId,disposition:'accepted',ticks:42,reason:'accepted'});
+    for(const result of submissions)eq(result,{attemptId:first.attemptId,disposition:'accepted',ticks:42,reason:'accepted',personalBest:true,guildBest:true,newGuildRecord:true,recordSequence:'1'});
     eq((await db.query('SELECT count(*)::int n FROM arcade.game_attempts WHERE attempt_id=$1',[first.attemptId])).rows[0].n,1);
     eq((await db.query('SELECT count(*)::int n FROM arcade.attempt_traces WHERE attempt_id=$1',[first.attemptId])).rows[0].n,1);
     const firstRow=await row(first);eq(firstRow.state,'submitted');ok(firstRow.first_received_at instanceof Date);eq(firstRow.submission_digest,digest(JSON.stringify(idle)));
@@ -153,18 +155,21 @@ export async function testAttempts(admin,db) {
     stage='retention and forbidden writes';
     await admin.query("UPDATE arcade.attempt_traces SET expires_at=clock_timestamp()-interval '1 second'");await store.purge();eq((await db.query('SELECT count(*)::int n FROM arcade.attempt_traces')).rows[0].n,0);
     eq(await new AttemptStore(db).submit(httpActor,start.body.attemptId,idle),result.body);
-    eq(await counts(),before);eq(before,[0,0,0]);
+    eq((await verifyGuild(db)).status,'consistent');eq(before,[0,0,0]);
     const persisted=(await db.query('SELECT evidence_digest,validator_revision,interruption_count,ticks FROM arcade.game_attempts WHERE attempt_id=$1',[first.attemptId])).rows[0];
     eq(persisted.evidence_digest,digest(JSON.stringify(idle)));eq(persisted.validator_revision,RULESET.validatorRevision);eq(persisted.interruption_count,0);eq(persisted.ticks,42);
     ok(!JSON.stringify(persisted).includes(a1.token));
     const {testPersonalResults}=await import('./test-personal-results.mjs');
     await testPersonalResults(admin,db);
-    console.log(`Attempt Postgres ownership, replay, concurrency, atomic rollback and retention passed: ${checks} checks; guild leaderboard/record tables unchanged.`);
+    const {testGuildResults}=await import('./test-guild-results.mjs');
+    await testGuildResults(admin,db);
+    console.log(`Attempt Postgres ownership, replay, concurrency, atomic rollback and retention passed: ${checks} checks; guild projections consistent.`);
   } catch(error) {console.error('Attempt fixture stage:',stage);throw error;}
   finally {
     await admin.query('REVOKE INSERT,UPDATE ON arcade.attempt_authorizations FROM arcade_session_runtime');
     await admin.query('REVOKE INSERT ON arcade.game_attempts,arcade.attempt_traces FROM arcade_session_runtime');
     await admin.query('REVOKE DELETE ON arcade.attempt_traces FROM arcade_session_runtime');
-    await admin.query('REVOKE INSERT,UPDATE ON arcade.personal_game_stats FROM arcade_session_runtime');
+    await admin.query('REVOKE INSERT,UPDATE ON arcade.personal_game_stats,arcade.guild_leaderboard_entries,arcade.guild_game_records FROM arcade_session_runtime');
+    await admin.query('REVOKE INSERT ON arcade.guild_record_events FROM arcade_session_runtime');
   }
 }

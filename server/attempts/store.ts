@@ -1,3 +1,4 @@
+import {lockGuild,addGuildAccepted,resultMetadata,verifyGuild} from '../guild/projections.js';
 import {addAccepted,verifyPersonal} from '../results/aggregates.js';
 import {canonicalInvalid} from '../results/canonical.js';
 import {retryTransaction,ResultAbort} from '../results/transaction.js';
@@ -12,7 +13,7 @@ export class AttemptFailure extends Error { constructor(readonly code: AttemptEr
 export interface Credentials { token: string; csrf: string; }
 export interface AuthorizationView { attemptId: string; rulesetId: string; simulationDigest: string; validatorRevision: string; tickRate: number; maxTicks: number; issuedAt: string; submitDeadline: string; retryDeadline: string; state: string; }
 export type ResultReason = 'accepted' | 'rejected_invalid_trace' | 'rejected_impossible_result' | 'rejected_interrupted' | 'rejected_version' | 'expired';
-export interface ResultView { attemptId: string; disposition: ReplayResult['disposition'] | 'expired'; ticks: number; reason: ResultReason; }
+export interface ResultView { attemptId: string; disposition: ReplayResult['disposition'] | 'expired'; ticks: number; reason: ResultReason; personalBest?:boolean; guildBest?:boolean; newGuildRecord?:boolean; recordSequence?:string|null; }
 type Row = Record<string, any>;
 type Outcome<T> = {value:T} | {error:AttemptError};
 const fail = (error:AttemptError) => ({error} as const);
@@ -101,7 +102,7 @@ export class AttemptStore {
         if (a.submission_digest!==evidenceDigest) return fail('submission_conflict');
         const saved=(await c.query('SELECT disposition,ticks,reason_code FROM arcade.game_attempts WHERE attempt_id=$1',[attemptId])).rows[0];
         if (!saved) return fail('submission_conflict');
-        return {value:{attemptId,disposition:saved.disposition,ticks:saved.ticks,reason:saved.reason_code}};
+        return {value:{attemptId,disposition:saved.disposition,ticks:saved.ticks,reason:saved.reason_code,...await resultMetadata(c,attemptId)}};
       }
       if (!['open','expired'].includes(a.state) || a.version_id!==RULESET.versionId) return fail('submission_conflict');
       const available=await this.eligible(c,s,false);
@@ -124,20 +125,25 @@ export class AttemptStore {
       }
       // A mismatch is operational failure, never silently repaired or incremented.
       if (disposition==='accepted' && (await verifyPersonal(c,s.player_id,RULESET.versionId)).status!=='consistent') return fail('aggregate_mismatch');
+      if(disposition==='accepted') {
+        await lockGuild(c,s.player_id,s.guild_id,RULESET.versionId);
+        if((await verifyGuild(c,s.guild_id,RULESET.versionId)).status!=='consistent')throw new ResultAbort('aggregate_mismatch');
+      }
       // Preserve a deterministic earlier-best tie order even within one clock microsecond.
       const recorded=(await c.query(`SELECT GREATEST(clock_timestamp(),COALESCE((SELECT last_accepted_at+interval '1 microsecond'
-        FROM arcade.personal_game_stats WHERE player_id=$1 AND version_id=$2),'-infinity'::timestamptz))::text AS at`,[s.player_id,RULESET.versionId])).rows[0].at;
+        FROM arcade.personal_game_stats WHERE player_id=$1 AND version_id=$2),'-infinity'::timestamptz),COALESCE((SELECT max(accepted_at)+interval '1 microsecond' FROM arcade.game_attempts WHERE guild_id=$3 AND version_id=$2 AND disposition='accepted'),'-infinity'::timestamptz))::text AS at`,[s.player_id,RULESET.versionId,s.guild_id])).rows[0].at;
       await c.query(`INSERT INTO arcade.game_attempts(attempt_id,player_id,guild_id,version_id,disposition,ticks,max_ticks,interruption_count,failure_direction,failure_phase,accepted_at,reason_code,evidence_digest,validator_revision)
         VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14)`,[attemptId,s.player_id,s.guild_id,RULESET.versionId,disposition,ticks,RULESET.maxTicks,interruptions,failureDirection,failurePhase,recorded,reason,evidenceDigest,RULESET.validatorRevision]);
       if (disposition==='accepted') {
         await c.query("INSERT INTO arcade.attempt_traces(attempt_id,encoding,evidence,expires_at) VALUES($1,'balance-edges-json-v1',$2,$3::timestamptz+interval '7 days')",[attemptId,bytes,recorded]);
         await addAccepted(c,attemptId);
+        await addGuildAccepted(c,attemptId);
       }
       // Rejected/practice/expired traces are omitted; only bounded metadata/digest survive.
       await c.query("UPDATE arcade.attempt_authorizations SET state=$2,first_received_at=$3,submission_digest=$4 WHERE attempt_id=$1",[attemptId,disposition==='expired'?'expired':'submitted',received,evidenceDigest]);
       const end=(await c.query('SELECT clock_timestamp() AS now')).rows[0].now;
       if (s.expires_at<=end || s.idle_expires_at<=end) throw new ResultAbort('expired_session');
-      return {value:{attemptId,disposition,ticks,reason}};
+      return {value:{attemptId,disposition,ticks,reason,...await resultMetadata(c,attemptId)}};
     }));}catch(error){if(error instanceof ResultAbort)throw new AttemptFailure(error.reason);throw error;}
   }
   async stats(token:string) {
@@ -177,7 +183,7 @@ export class AttemptStore {
       const a=(await c.query(`SELECT a.state,a.submit_deadline,t.disposition,t.ticks,t.reason_code FROM arcade.attempt_authorizations a
         LEFT JOIN arcade.game_attempts t USING(attempt_id) WHERE a.attempt_id=$1 AND a.player_id=$2 AND a.guild_id=$3 AND a.version_id=$4`,[attemptId,s.player_id,s.guild_id,RULESET.versionId])).rows[0];
       if (!a)return fail('not_found');
-      if(a.disposition)return {value:{attemptId,disposition:a.disposition,ticks:a.ticks,reason:a.reason_code}};
+      if(a.disposition)return {value:{attemptId,disposition:a.disposition,ticks:a.ticks,reason:a.reason_code,...await resultMetadata(c,attemptId)}};
       const state=a.state==='open'&&a.submit_deadline<=s.now?'expired':a.state;
       return {value:{attemptId,state,outcome:state==='cancelled'?'practice_only':state}};
     }));
