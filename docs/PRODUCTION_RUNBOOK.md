@@ -126,3 +126,7 @@ Current results transaction, personal APIs, read-only integrity verification, re
 ## Phase 4F guild foundation
 
 See [guild architecture](GUILD_LEADERBOARD_ARCHITECTURE.md) and [acceptance evidence](PHASE_4F_GUILD_LEADERBOARDS.md). `ARCADE_LEADERBOARDS_ENABLED` is server-only and defaults false. Keep it false alongside disabled attempts and scoring. `npm run db:verify-guild` is SELECT-only and never repairs. `npm run db:grant-results` is explicit separate administration with the existing administrator credential, never runtime startup. Deploy the compatible artifact before adding grants because the older session guard rejects score-write privileges. Follow the documented grant-aware rollback sequence before restoring an older artifact. No new credentials, Discord permissions, messages or manual gameplay checks are part of this phase.
+
+## Phase 4G official-score experience
+
+See [official experience and private canary rollout](OFFICIAL_SCORE_EXPERIENCE.md) and [Phase 4G evidence](PHASE_4G_OFFICIAL_SCORE_EXPERIENCE.md). Keep flags off until the controlled ruleset activation and single-guild configuration are verified. The runtime cannot activate versions; reuse existing administrator access in a separate short-lived process. No new credentials or public rollout is implied. Preserve canary facts during rollback. One consolidated owner acceptance follows all automated gates.

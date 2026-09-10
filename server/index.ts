@@ -1,3 +1,4 @@
+import {canaryConfig} from './canary.js';
 import {GuildStore} from './guild/store.js';
 import { AttemptStore } from './attempts/store.js';
 import { restrictedRuntimeRole } from './attempts/privileges.js';
@@ -27,10 +28,11 @@ export async function startServer() {
   const dbConfig = databaseConfig();
   const database = dbConfig.mode === 'configured' ? new Database(dbConfig) : undefined;
   const persistence = createPersistence(dbConfig, {database});
-  const attemptEnabled = process.env.ARCADE_ATTEMPTS_ENABLED === 'true';
-  const sessions = process.env.ARCADE_SESSIONS_ENABLED === 'true' && process.env.OFFICIAL_SCORING_ENABLED === 'false' &&
+  const canary=canaryConfig();
+  const attemptEnabled=canary.issuance&&canary.scoring;
+  const sessions = process.env.ARCADE_SESSIONS_ENABLED === 'true' &&
     process.env.DISCORD_ARCADE_BOT_TOKEN && database ? {
-      store: new SessionStore(database), provider: new DiscordIdentityProvider(config,process.env.DISCORD_ARCADE_BOT_TOKEN,fetch,{
+      store: new SessionStore(database,Date.now,canary), provider: new DiscordIdentityProvider(config,process.env.DISCORD_ARCADE_BOT_TOKEN,fetch,{
         enabled:process.env.ARCADE_PKCE_PROBE_ENABLED === 'true',
         report:outcome=>console.log(JSON.stringify({event:'arcade_pkce_probe',outcome})),
       }), persistence: {
@@ -43,8 +45,8 @@ export async function startServer() {
         },
       },
     } : undefined;
-  const attempts = attemptEnabled && sessions && database ? {store:new AttemptStore(database),persistence:sessions.persistence} : undefined;
-  const guild=process.env.ARCADE_LEADERBOARDS_ENABLED==='true'&&sessions&&database?{store:new GuildStore(database),persistence:sessions.persistence}:undefined;
+  const attempts = attemptEnabled && sessions && database ? {store:new AttemptStore(database,canary.allowsGuild),persistence:sessions.persistence} : undefined;
+  const guild=process.env.ARCADE_LEADERBOARDS_ENABLED==='true'&&sessions&&database?{store:new GuildStore(database,undefined,canary.allowsGuild),persistence:sessions.persistence}:undefined;
   const cleanup = sessions ? setInterval(() => {void sessions.persistence.check().then(status => status.status === 'available' ? Promise.all([sessions.store.purge(),attempts?.store.purge()]) : undefined).catch(() => {});},60_000) : undefined;
   cleanup?.unref();
   const app = createServerApp(config, new DiscordTokenExchangeService(config), { isDraining: () => draining, persistence, sessions, attempts, guild });

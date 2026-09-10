@@ -43,8 +43,13 @@ export function attemptRoutes(config:ServerConfig,runtime?:AttemptRuntime,ready:
       if ((await runtime!.persistence.check()).status!=='available') return res.status(503).json({error:read?'official_results_unavailable':'attempts_unavailable'});
       if (read) return res.json(req.path==='/me/balance/stats'?await runtime!.store.stats(token):req.path==='/me/balance/attempts'?await runtime!.store.recent(token):await runtime!.store.status(token,String(req.params.attemptId)));
       const credentials={token,csrf:csrf as string};
+      const issuanceStarted=performance.now();
       const result=req.path==='/balance/attempts'?await runtime!.store.begin(credentials,data.beginKey,data.rulesetId):
         req.path.endsWith('/cancel')?await runtime!.store.cancel(credentials,data.attemptId):await runtime!.store.submit(credentials,data.attemptId,data.evidence);
+      if(req.path==='/balance/attempts'){
+        const durationMs=Math.ceil(performance.now()-issuanceStarted);res.set('Server-Timing',`issuance;dur=${durationMs}`);
+        if(process.env.NODE_ENV==='production')console.log(JSON.stringify({event:'official_issuance',durationMs}));
+      }
       return res.json(result);
     } catch(error) {
       if (error instanceof AttemptFailure) {

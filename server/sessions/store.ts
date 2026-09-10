@@ -1,3 +1,4 @@
+import {canaryConfig,officialAvailability,type CanaryConfig} from '../canary.js';
 import { randomUUID } from 'node:crypto';
 import type { Database, SqlConnection } from '../database/pool.js';
 import { ChallengeVault, csrfFor, digest, equal, secret } from './crypto.js';
@@ -5,19 +6,19 @@ import type { VerifiedIdentity } from './discord.js';
 export const IDLE_MS = 30 * 60_000, ABSOLUTE_MS = 8 * 60 * 60_000, CHALLENGE_MS = 5 * 60_000;
 export class SessionFailure extends Error { constructor(readonly code: 'expired' | 'invalid_challenge' | 'account_changed' | 'csrf_invalid') { super(code); } }
 interface Challenge { verifier: string; origin: string; prior: string | null; }
-export interface SessionView { status: 'verified'; player: {id: string; displayName: string}; guild: {id: string}; expiresAt: string; idleExpiresAt: string; csrf: string; }
+export interface SessionView { status: 'verified'; player: {id: string; displayName: string}; guild: {id: string}; expiresAt: string; idleExpiresAt: string; csrf: string; officialAvailability?:'eligible'|'unavailable'|'other-server'|'practice'; }
 interface SessionRow { [key: string]: unknown; session_id: string; player_id: string; guild_id: string; discord_user_id: string; discord_guild_id: string; display_name: string; authenticated_at: Date; expires_at: Date; idle_expires_at: Date; csrf_digest: string; }
 export class SessionStore {
   private vault = new ChallengeVault();
-  constructor(private db: Database, private now = Date.now) {}
+  constructor(private db: Database, private now = Date.now,private canary:CanaryConfig=canaryConfig()) {}
   private async row(c: SqlConnection, token: string, origin: string, lock = false): Promise<SessionRow | undefined> {
-    return (await c.query<SessionRow>(`SELECT s.*,p.discord_user_id,p.display_name,g.discord_guild_id FROM arcade.application_sessions s
+    return (await c.query<SessionRow>(`SELECT s.*,p.discord_user_id,p.display_name,g.discord_guild_id,g.status AS guild_status FROM arcade.application_sessions s
       JOIN arcade.players p USING(player_id) JOIN arcade.guilds g USING(guild_id)
       WHERE token_digest=$1 AND revoked_at IS NULL AND expires_at>$2 AND idle_expires_at>$2 AND origin_class=$3
       ${lock ? 'FOR UPDATE OF s' : ''}`, [digest(token), new Date(this.now()), origin.includes('.discordsays.com') ? 'activity' : 'browser'])).rows[0];
   }
   private view(row: SessionRow, token: string): SessionView {
-    return {status:'verified',player:{id:row.discord_user_id,displayName:row.display_name},guild:{id:row.discord_guild_id},
+    return {status:'verified',officialAvailability:officialAvailability(this.canary,row.discord_guild_id,String(row.guild_status),row.origin_class==='activity'),player:{id:row.discord_user_id,displayName:row.display_name},guild:{id:row.discord_guild_id},
       expiresAt:row.expires_at.toISOString(),idleExpiresAt:row.idle_expires_at.toISOString(),csrf:csrfFor(token)};
   }
   async me(token: string, origin: string): Promise<SessionView> {

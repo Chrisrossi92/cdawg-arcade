@@ -1,3 +1,4 @@
+import {canaryConfig,type GuildEligibility} from '../canary.js';
 import type {Database} from '../database/pool.js';
 import {digest} from '../sessions/crypto.js';
 import {RULESET} from '../attempts/definition.js';
@@ -9,7 +10,7 @@ export function displayName(raw:string) {
 }
 export interface BoardQuery {limit?:string;ruleset?:string;cursor?:string;}
 export class GuildStore {
-  constructor(private db:Database,private supported:readonly string[]=[RULESET.id]){}
+  constructor(private db:Database,private supported:readonly string[]=[RULESET.id],private allowsGuild:GuildEligibility=canaryConfig().allowsGuild){}
   async leaderboard(token:string,q:BoardQuery={}) {
     if(Object.keys(q).some(k=>!['limit','ruleset','cursor'].includes(k))||Object.values(q).some(v=>typeof v!=='string'))throw new BoardFailure('invalid_request');
     const limit=q.limit===undefined?25:Number(q.limit),ruleset=q.ruleset??RULESET.id;
@@ -23,10 +24,11 @@ export class GuildStore {
     // Return domain failures as values so the DB error sanitizer never sees personal errors.
     const result=await this.db.transaction(async c=>{
       await c.query('SET TRANSACTION ISOLATION LEVEL REPEATABLE READ, READ ONLY');
-      const s=(await c.query(`SELECT s.player_id,s.guild_id FROM arcade.application_sessions s JOIN arcade.guilds g USING(guild_id)
+      const s=(await c.query(`SELECT s.player_id,s.guild_id,g.discord_guild_id FROM arcade.application_sessions s JOIN arcade.guilds g USING(guild_id)
         WHERE s.token_digest=$1 AND s.origin_class='activity' AND s.transport='cookie' AND s.revoked_at IS NULL
         AND s.expires_at>clock_timestamp() AND s.idle_expires_at>clock_timestamp() AND g.status='enabled'`,[digest(token)])).rows[0];
       if(!s)return {error:'expired_session' as const};
+      if(!this.allowsGuild(s.discord_guild_id))return {error:'board_unavailable' as const};
       const v=(await c.query('SELECT version_id,issuance_enabled FROM arcade.game_versions WHERE game_key=$1 AND ruleset_id=$2',['balance',ruleset])).rows[0];
       if(!v)return {error:'board_unavailable' as const};
       if((await verifyGuild(c,s.guild_id,v.version_id)).status!=='consistent')return {error:'projection_mismatch' as const};
