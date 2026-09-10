@@ -2,7 +2,7 @@
 
 ## A. Executive result
 
-Implementation, merged-main validation, controlled ruleset activation and enabled single-guild production gates are complete. The one owner canary and post-run acceptance remain pending. See [experience and rollout design](OFFICIAL_SCORE_EXPERIENCE.md).
+Implementation, merged-main validation, controlled ruleset activation and enabled single-guild production gates are complete. The consolidated owner canary and post-run verification PASS. Phase 4G is accepted for the existing single-guild private audience. See [experience and rollout design](OFFICIAL_SCORE_EXPERIENCE.md).
 
 ## B. Starting state
 
@@ -40,15 +40,19 @@ Browser automation exercised an integrated fixture from Start through accepted r
 
 ## J. Owner canary
 
-Ready for the one consolidated under-five-minute owner canary. Enabled production gates passed; no intermediate owner gameplay was requested. Confirm new verified runs availability, complete one uninterrupted run, check committed result and board, and confirm Play Again readiness without requiring a second completed run.
+Owner reported “ok it all worked” after the consolidated Discord checklist on 2026-09-10. Supplied screenshots show eligible first-run explanation, a saved 23.083-second result with new personal best/server record, and a later saved 0.700-second result with the 23.083-second best/record unchanged and rank #1. The requested Play Again check resulted in a second genuine completed run; this explains two accepted facts rather than the originally anticipated one. No additional owner test was requested. Leaderboard and controls success are owner-attested; screenshots show result/rank but not a standalone board view. Private Discord screenshots remain outside Git.
 
 ## K. Production invariants
 
-No Phase 4G production score rows created. Initial disabled release b07c84f passed all three health checks and 12 public boundary checks. Baseline: players 1, guilds 1, participations 1, versions 1, sessions 4; challenges/security events and all seven score tables 0. Sampled provider logs contained no credential patterns or runtime failures. Corrected release 7cd6db0 passed the same 12 public checks, all three health endpoints, exact runtime capability, sessions on and three scoring flags off. The configured hash matches exactly one verified guild and denies a synthetic nonmatching guild without writing data. No version is issuable. Ordinary-browser production practice reached results and Play Again restarted; no official claim appeared. Provider memory graph remained below 20% of the 512 MB limit in the inspected window. Post-canary checks remain pending.
+Both genuine accepted runs were replayed read-only inside the service: 1,385 ticks and 42 ticks, each exactly matching stored authoritative ticks. Personal reconstruction reports one expected/stored group and zero mismatches. Guild reconstruction reports one entry, one record, one record event and zero board/record/event mismatches. The lower second result created no second record event. This is genuine owner activity, not synthetic production test data.
+
+Post-run counts: players 1; guilds 1; participations 1; versions 2; application sessions 5; auth challenges 0; attempt authorizations 2; game attempts 2 (both accepted); retained traces 2; personal stats 1; guild leaderboard entries 1; guild records 1; guild record events 1; security events 1 (ruleset activation).
+
+All three health endpoints returned 200 with compatible schema and the expected live SHA; all 12 public boundary checks passed. Enabled-runtime verification confirms the single eligible guild, other-guild denial, browser practice, exact restricted rights and unchanged canonical version. Sampled logs (50 lines) contained no credential patterns or runtime failures. Server issuance durations were 49 ms and 9 ms (server-side only, not full client latency). Post-run memory graph remained below 20% of the 512 MB limit in the observed window. No data repairs, deletions or rollback were needed.
 
 ## L. Security/privacy/isolation
 
-No source hardcoded production guild, raw IDs in UI/evidence, new credentials, costs, scopes, DNS or public rollout. No trace storage/logs, synthetic production data or Discord messages.
+No source hardcoded production guild, raw IDs in UI/evidence, new credentials, costs, scopes, DNS or public rollout. No client trace persistence or raw trace logs. Accepted evidence retains the established seven-day server retention policy. No synthetic production data or Discord messages.
 
 ## M. Deployment/rollback/Git
 
@@ -60,8 +64,10 @@ Administrator activation used the existing credential through a masked local dia
 
 ## O. Next step
 
-Disabled deployment and controlled activation are complete. Canary enablement verification passed. Two restarts retained disabled flags. Read-only verification of the three nonsecret provider values showed that masked-field edits had retained their prior values. Loading only those flag values before editing, blurring, saving and rereading confirmed all three persisted as true; the same exact SHA was then restarted. No activation retry or data change was necessary. Enabled runtime confirms sessions/issuance/scoring/boards true, exactly one eligible verified guild, other-guild denial, ordinary-browser practice, exact runtime rights, correct immutable issuable version, and one activation audit. All 12 public health/authentication boundary checks passed on live 7cd6db0; no synthetic authenticated requests or score rows were created. Personal/guild verification reports zero mismatches. Sampled logs (50 lines) showed no credential patterns or runtime failures; observed memory stayed below 20% of the 512 MB limit. Request one consolidated owner canary, then verify genuine outcome and record evidence. Observe and polish before separately authorized announcement delivery. Do not implement delivery.
+Keep the accepted single-guild canary active. Observe and polish before separately authorizing announcement delivery or public rollout; neither is implemented. No further owner gameplay is required for Phase 4G. The compact Discord viewport requires scrolling for some result/actions, as shown in the supplied screenshots; broader device/layout certification remains deferred.
+
+Operational note: two pre-canary restarts retained disabled flags because edits to masked provider fields retained their prior values. Loading only the three nonsecret flag values before editing, blurring, saving and rereading confirmed true values before the successful restart. Activation ran exactly once. No credential changed and no administrator credential remains in the service. All deployments used the exact committed application SHA; final acceptance documentation is merged normally without redeployment.
 
 ## Enabled pre-canary baseline
 
-Players 1; guilds 1; participations 1; versions 2 (original placeholder plus canonical version); sessions 4; auth challenges 0; security events 1 (activation). Attempt authorizations, game attempts, traces, personal stats, guild entries, guild records and guild record events each 0. Automatic deployment remains off; exact live application 7cd6db0 is unchanged. No Discord message or delivery occurred. Canary remains unaccepted until the owner run and post-run invariants pass.
+Players 1; guilds 1; participations 1; versions 2 (original placeholder plus canonical version); sessions 4; auth challenges 0; security events 1 (activation). Attempt authorizations, game attempts, traces, personal stats, guild entries, guild records and guild record events each 0. Automatic deployment remains off; exact live application 7cd6db0 is unchanged. No Discord message or delivery occurred. This baseline was recorded before the accepted owner canary; final counts are in section K.
