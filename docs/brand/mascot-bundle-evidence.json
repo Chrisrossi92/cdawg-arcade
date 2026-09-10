@@ -1,0 +1,33 @@
+{
+  "baselineCommit": "6f2f87a5c21a94a3e6f51a7031aec1d526bba109",
+  "command": "npm run test:production",
+  "node": "24.14.1",
+  "addedBytes": 0,
+  "identicalSha256": true,
+  "files": [
+    {
+      "path": "dist/index.html",
+      "bytes": 415,
+      "gzipBytes": 278,
+      "sha256": "ee43b4ba522c0a548ad72fd2dcf9fd217743a538fa960313558ba020255a3562"
+    },
+    {
+      "path": "dist/assets/index-DJxLukTz.css",
+      "bytes": 13418,
+      "gzipBytes": 3651,
+      "sha256": "b2a4669a4adf8b61243ebab362b25a10a264590295fb09a312bba3c40b450dd3"
+    },
+    {
+      "path": "dist/assets/index-DeNCiVQb.js",
+      "bytes": 2130476,
+      "gzipBytes": 601614,
+      "sha256": "453fdf4e06d212ec83f05ec0f8e525f9b45acbdb8662325d8b1633151228acb4"
+    },
+    {
+      "path": "dist/assets/index-PgqIN0K2.js",
+      "bytes": 159736,
+      "gzipBytes": 48353,
+      "sha256": "5badfe6c0e4a626f076a1d3eb34bba50eb03069acd2b9bacc8893418fb20a110"
+    }
+  ]
+}

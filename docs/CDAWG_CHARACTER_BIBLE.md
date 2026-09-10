@@ -1,5 +1,10 @@
 # Cdawg Character Bible
 
+> Historical: describes the existing game prototype only. For all new mascot work,
+> use [the approved permanent identity](brand/MASCOT_IDENTITY.md). The jacket,
+> sneakers, bipedal anatomy and wardrobe requirements below are superseded.
+> Existing runtime art is unchanged pending a separately approved integration.
+
 Cdawg is the Cdawg Arcade mascot: a stylized cartoon dog built for readable 2D game animation, Discord Activities, stickers, and future brand art.
 
 ## Core Identity

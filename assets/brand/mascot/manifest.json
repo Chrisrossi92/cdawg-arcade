@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "status": "foundation-only",
+  "inputs": [
+    {
+      "role": "turnaround",
+      "path": "assets/brand/mascot/reference/cdawg-b1-turnaround-v001.png",
+      "status": "missing",
+      "sha256": null,
+      "bytes": null,
+      "originalFilename": null
+    },
+    {
+      "role": "expressions",
+      "path": "assets/brand/mascot/reference/cdawg-b1-expressions-v001.png",
+      "status": "missing",
+      "sha256": null,
+      "bytes": null,
+      "originalFilename": null
+    },
+    {
+      "role": "movement",
+      "path": "assets/brand/mascot/reference/cdawg-b1-movement-v001.png",
+      "status": "missing",
+      "sha256": null,
+      "bytes": null,
+      "originalFilename": null
+    },
+    {
+      "role": "production-spec",
+      "path": "docs/brand/CDAWG_MASCOT_3D_PRODUCTION_SPEC_V1.md",
+      "status": "missing",
+      "sha256": null,
+      "bytes": null,
+      "originalFilename": null
+    }
+  ],
+  "runtimeExports": []
+}
