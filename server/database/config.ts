@@ -29,7 +29,7 @@ export function databaseConfig(
   if (
     env.PERSISTENCE_CONFIGURED !== "true" ||
     (env.OFFICIAL_SCORING_ENABLED !== undefined &&
-      env.OFFICIAL_SCORING_ENABLED !== "false")
+      !["false", "true"].includes(env.OFFICIAL_SCORING_ENABLED))
   )
     return result("invalid_configuration");
   if (!env.DATABASE_URL) return result("absent");
