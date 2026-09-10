@@ -2,7 +2,7 @@
 
 ## A. Executive result
 
-Implementation complete; deployment acceptance pending. Backend remains disabled. No UI integration or Discord delivery is included. See [architecture](GUILD_LEADERBOARD_ARCHITECTURE.md).
+Implementation merged and deployed with features disabled; final acceptance pending only the administrator grant step. Backend remains disabled. No UI integration or Discord delivery is included. See [architecture](GUILD_LEADERBOARD_ARCHITECTURE.md).
 
 ## B. Starting state
 
@@ -34,7 +34,13 @@ Final branch validation passed: 333 unit tests; 172 compiled production smoke as
 
 ## I. Production deployment and empty-table verification
 
-Pre-deployment read-only status on 2026-09-10: schema compatible; players 1, guilds 1, participations 1, game_versions 1, sessions 4, auth_challenges 0, security_events 0. Each of attempt_authorizations, game_attempts, attempt_traces, personal_game_stats, guild_leaderboard_entries, guild_game_records and guild_record_events is 0. Deployment acceptance remains pending. Do not infer acceptance from local results. Live release remains the accepted Phase 4E artifact until an exact committed deployment and post-deploy checks are recorded. All seven production score-table counts must be reconfirmed before acceptance, together with three health endpoints, session gates, disabled APIs, logs and resources.
+Pre-deployment read-only status on 2026-09-10: schema compatible; players 1, guilds 1, participations 1, game_versions 1, sessions 4, auth_challenges 0, security_events 0. Each of attempt_authorizations, game_attempts, attempt_traces, personal_game_stats, guild_leaderboard_entries, guild_game_records and guild_record_events is 0. Exact production merge `b0dc390c8d2ec32f89b5da6e10a4450f9d26bae8` is Live. Required main validation passed again before push/deploy. Twelve public endpoint checks passed: three health endpoints 200 with exact release and compatible schema, disabled attempt/personal/leaderboard routes 503/no-store, anonymous session boundary 401, practice page 200. No unchanged manual gameplay was requested.
+
+Fresh running-instance checks confirmed exact release, sessions on, attempts/scoring/leaderboards/probe off, session-only restricted role and runtime ready. Every count above remained identical after the public checks. Personal verification: zero groups/mismatches; guild verification: zero entries/records/events and zero mismatches. Automatic deployment remains Off and health gate remains `/api/ready`.
+
+Displayed log scans: 11 application lines and 50 deployment lines, no credential patterns; no inspected runtime failure. Recent 30-minute resource charts show memory below 20% of 512 MB and CPU near idle. This is a bounded inspection, not a load certification or claim about all historical logs. No screenshots committed.
+
+Only the administrator grant remains pending. Provider inspection found an authenticated database dashboard but no SQL console; runtime and local checkout have no configured administrator connection. An isolated native masked-entry/encrypted-transfer helper has been prepared and tested with synthetic data. It will reuse the existing administrator credential in a short-lived process, never store it in the service environment, and remove its temporary transfer key afterward. No grant has been applied yet; do not mark Phase 4F fully accepted until exact capability and unchanged-count checks pass after it.
 
 ## J. Security and isolation
 
@@ -42,7 +48,7 @@ No credentials/real identities/traces in evidence. No new secret generated, serv
 
 ## K. Git and live release
 
-Work branch `codex/phase-4f-guild-leaderboards`. Exact feature/merge/live SHAs pending. Normal merges only; no history rewrite, automatic deployment or documentation-only redeployment.
+Work branch `codex/phase-4f-guild-leaderboards`. Feature commit `dc58723`; normally merged main and live artifact `b0dc390c8d2ec32f89b5da6e10a4450f9d26bae8`. Evidence-only follow-up does not require redeployment. Normal merges only; no history rewrite, automatic deployment or documentation-only redeployment.
 
 ## L. Remaining limitations
 
