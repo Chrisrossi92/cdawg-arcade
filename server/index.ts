@@ -1,3 +1,5 @@
+import { AttemptStore } from './attempts/store.js';
+import { restrictedAttemptRole } from './attempts/privileges.js';
 import { restrictedSessionRole } from './sessions/privileges.js';
 import { Database } from './database/pool.js';
 import { databaseConfig } from './database/config.js';
@@ -25,6 +27,7 @@ export async function startServer() {
   const dbConfig = databaseConfig();
   const database = dbConfig.mode === 'configured' ? new Database(dbConfig) : undefined;
   const persistence = createPersistence(dbConfig, {database});
+  const attemptEnabled = process.env.ARCADE_ATTEMPTS_ENABLED === 'true';
   const sessions = process.env.ARCADE_SESSIONS_ENABLED === 'true' && process.env.OFFICIAL_SCORING_ENABLED === 'false' &&
     process.env.DISCORD_ARCADE_BOT_TOKEN && database ? {
       store: new SessionStore(database), provider: new DiscordIdentityProvider(config,process.env.DISCORD_ARCADE_BOT_TOKEN,fetch,{
@@ -35,14 +38,15 @@ export async function startServer() {
         check: async () => {
           const health = await persistence.check();
           if (health.status !== 'available') return health;
-          try { if (await restrictedSessionRole(database)) return health; } catch { /* Fail closed without driver details. */ }
+          try { if (await (attemptEnabled ? restrictedAttemptRole(database) : restrictedSessionRole(database))) return health; } catch { /* Fail closed without driver details. */ }
           return {status:'unavailable' as const,schema:'invalid_configuration' as const};
         },
       },
     } : undefined;
-  const cleanup = sessions ? setInterval(() => {void sessions.persistence.check().then(status => status.status === 'available' ? sessions.store.purge() : undefined).catch(() => {});},60_000) : undefined;
+  const attempts = attemptEnabled && sessions && database ? {store:new AttemptStore(database),persistence:sessions.persistence} : undefined;
+  const cleanup = sessions ? setInterval(() => {void sessions.persistence.check().then(status => status.status === 'available' ? Promise.all([sessions.store.purge(),attempts?.store.purge()]) : undefined).catch(() => {});},60_000) : undefined;
   cleanup?.unref();
-  const app = createServerApp(config, new DiscordTokenExchangeService(config), { isDraining: () => draining, persistence, sessions });
+  const app = createServerApp(config, new DiscordTokenExchangeService(config), { isDraining: () => draining, persistence, sessions, attempts });
   const server = createServer({ requestTimeout: 10_000, headersTimeout: 10_000, keepAliveTimeout: 5_000, maxHeaderSize: 16_384 }, app);
   server.setTimeout(10_000, socket => socket.destroy());
   server.on('error', () => { console.error('Arcade runtime failed'); process.exit(1); });

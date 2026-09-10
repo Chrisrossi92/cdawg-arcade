@@ -1,0 +1,166 @@
+// Only the owned ephemeral Postgres test harness calls this. No production fixtures.
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {randomUUID} from 'node:crypto';
+import request from 'supertest';
+import {AttemptStore} from '../build/server/attempts/store.js';
+import {RULESET} from '../build/server/attempts/definition.js';
+import {SessionStore} from '../build/server/sessions/store.js';
+import {digest,secret} from '../build/server/sessions/crypto.js';
+import {restrictedSessionRole} from '../build/server/sessions/privileges.js';
+import {restrictedAttemptRole} from '../build/server/attempts/privileges.js';
+import {createServerApp} from '../build/server/app.js';
+import {loadServerConfig} from '../build/server/env.js';
+export async function testAttempts(admin,db) {
+  let checks=0,stage='permissions';
+  const eq=(a,b)=>{assert.deepEqual(a,b);checks++;},ok=x=>{assert.ok(x);checks++;};
+  const rejects=async(f,code)=>{await assert.rejects(f,code?e=>e.code===code:undefined);checks++;};
+  const origin='https://123456789012345678.discordsays.com';
+  const sessions=new SessionStore(db),store=new AttemptStore(db);
+  const idle={rulesetId:RULESET.id,ticks:42,interruptions:0,inputs:[]};
+  const protectedTables=['personal_game_stats','guild_leaderboard_entries','guild_game_records','guild_record_events'];
+  const counts=async()=>Promise.all(protectedTables.map(async t=>(await db.query(`SELECT count(*)::int n FROM arcade.${t}`)).rows[0].n));
+  const before=await counts();
+  let actor=0;
+  const login=async(userId=String(600000000000000000n+BigInt(++actor)),guildId='700000000000000001',selectedOrigin=origin)=>{
+    const c=await sessions.challenge(selectedOrigin,null);await sessions.consume(c.id,c.binding,selectedOrigin,null);
+    const value=await sessions.finish(c.id,c.binding,{userId,guildId,displayName:'Synthetic Replay Player',avatarHash:null},selectedOrigin,null);
+    return {token:value.token,csrf:value.view.csrf};
+  };
+  const begin=(credentials,key=randomUUID())=>store.begin(credentials,key,RULESET.id);
+  // Backdate only test authorizations; server receipt time stays the real database clock.
+  const aged=async(a,seconds=10)=>admin.query("UPDATE arcade.attempt_authorizations SET issued_at=clock_timestamp()-($2*interval '1 second') WHERE attempt_id=$1",[a.attemptId,seconds]);
+  const row=async(a)=>(await db.query('SELECT * FROM arcade.attempt_authorizations WHERE attempt_id=$1',[a.attemptId])).rows[0];
+  try {
+    eq(await restrictedAttemptRole(db),false);eq(await restrictedSessionRole(db),true);
+    await admin.query('GRANT INSERT,UPDATE ON arcade.attempt_authorizations TO arcade_session_runtime');
+    await admin.query('GRANT INSERT ON arcade.game_attempts,arcade.attempt_traces TO arcade_session_runtime');
+    await admin.query('GRANT DELETE ON arcade.attempt_traces TO arcade_session_runtime');
+    eq(await restrictedAttemptRole(db),true);eq(await restrictedAttemptRole(admin),false);eq(await restrictedSessionRole(db),false);
+    await rejects(()=>db.query('DELETE FROM arcade.game_attempts'));
+    await rejects(()=>db.query('UPDATE arcade.game_attempts SET ticks=1'));
+    await rejects(()=>db.query('DELETE FROM arcade.attempt_authorizations'));
+    await rejects(()=>db.query('UPDATE arcade.game_versions SET issuance_enabled=true'));
+    for(const t of protectedTables)await rejects(()=>db.query(`DELETE FROM arcade.${t}`));
+    await admin.query('GRANT UPDATE ON arcade.attempt_traces TO arcade_session_runtime');eq(await restrictedAttemptRole(db),false);
+    await admin.query('REVOKE UPDATE ON arcade.attempt_traces FROM arcade_session_runtime');eq(await restrictedAttemptRole(db),true);
+    await admin.query('GRANT UPDATE(best_ticks) ON arcade.personal_game_stats TO arcade_session_runtime');eq(await restrictedAttemptRole(db),false);
+    await admin.query('REVOKE UPDATE(best_ticks) ON arcade.personal_game_stats FROM arcade_session_runtime');eq(await restrictedAttemptRole(db),true);
+    stage='ruleset and eligibility';
+    const a1=await login();await rejects(()=>begin(a1),'attempts_unavailable');
+    await admin.query(`INSERT INTO arcade.game_versions(version_id,game_key,ruleset_id,simulation_digest,validator_revision,tick_rate,max_ticks,issuance_enabled)
+      VALUES($1,'balance',$2,$3,$4,60,18000,false)`,[RULESET.versionId,RULESET.id,RULESET.simulationDigest,RULESET.validatorRevision]);
+    await rejects(()=>begin(a1),'attempts_unavailable');
+    await admin.query('UPDATE arcade.game_versions SET issuance_enabled=true WHERE version_id=$1',[RULESET.versionId]);
+    await rejects(()=>begin(a1),'attempts_unavailable');
+    await admin.query("UPDATE arcade.guilds SET status='enabled'");
+    await rejects(()=>store.begin(a1,randomUUID(),'balance-official-v1'),'invalid_request');
+    await rejects(()=>store.begin(a1,'bad-id',RULESET.id),'invalid_request');
+    await rejects(()=>begin({...a1,csrf:secret()}),'csrf_invalid');
+    await rejects(()=>begin({...a1,token:secret()}),'expired_session');
+    const browser=await login(undefined,undefined,'https://arcade.cdawgbot.xyz');await rejects(()=>begin(browser),'expired_session');
+    const stale=await login();await admin.query("UPDATE arcade.application_sessions SET membership_verified_at=clock_timestamp()-interval '6 minutes' WHERE token_digest=$1",[digest(stale.token)]);
+    await rejects(()=>begin(stale),'fresh_verification_required');
+    // An immutable definition mismatch cannot be enabled by a database flag alone.
+    await admin.query('DELETE FROM arcade.game_versions WHERE version_id=$1',[RULESET.versionId]);
+    await admin.query(`INSERT INTO arcade.game_versions(version_id,game_key,ruleset_id,simulation_digest,validator_revision,tick_rate,max_ticks,issuance_enabled)
+      VALUES($1,'balance',$2,$3,$4,60,18000,true)`,[RULESET.versionId,RULESET.id,'a'.repeat(64),RULESET.validatorRevision]);
+    await rejects(()=>begin(a1),'attempts_unavailable');
+    await admin.query('DELETE FROM arcade.game_versions WHERE version_id=$1',[RULESET.versionId]);
+    await admin.query(`INSERT INTO arcade.game_versions(version_id,game_key,ruleset_id,simulation_digest,validator_revision,tick_rate,max_ticks,issuance_enabled)
+      VALUES($1,'balance',$2,$3,$4,60,18000,true)`,[RULESET.versionId,RULESET.id,RULESET.simulationDigest,RULESET.validatorRevision]);
+    const future=await login();await admin.query("UPDATE arcade.application_sessions SET membership_verified_at=clock_timestamp()+interval '1 minute' WHERE token_digest=$1",[digest(future.token)]);await rejects(()=>begin(future),'fresh_verification_required');
+    stage='idempotent issuance';
+    const key=randomUUID();const concurrent=await Promise.all(Array.from({length:8},()=>begin(a1,key)));
+    eq(new Set(concurrent.map(x=>x.attemptId)).size,1);const first=concurrent[0];
+    eq(first.rulesetId,RULESET.id);eq(first.simulationDigest,RULESET.simulationDigest);eq(first.maxTicks,18000);
+    eq(Date.parse(first.submitDeadline)-Date.parse(first.issuedAt),RULESET.submitWindowMs);
+    eq(Date.parse(first.retryDeadline)-Date.parse(first.issuedAt),RULESET.retryWindowMs);
+    ok(!JSON.stringify(first).includes(a1.token));ok(!JSON.stringify(first).includes('playerId'));
+    await rejects(()=>begin(a1),'attempt_conflict');
+    const a2=await login();await rejects(()=>store.submit(a2,first.attemptId,idle),'not_found');await rejects(()=>store.cancel(a2,first.attemptId),'not_found');
+    const sameUser=(await db.query('SELECT discord_user_id FROM arcade.players p JOIN arcade.application_sessions s USING(player_id) WHERE token_digest=$1',[digest(a1.token)])).rows[0].discord_user_id;
+    const otherSession=await login(sameUser);await rejects(()=>store.submit(otherSession,first.attemptId,idle),'not_found');await rejects(()=>begin(otherSession,key),'attempt_conflict');
+    const otherGuild=await login(sameUser,'700000000000000002');await rejects(()=>store.submit(otherGuild,first.attemptId,idle),'not_found');
+    stage='one immutable terminal result';
+    await aged(first);
+    const submissions=await Promise.all(Array.from({length:8},()=>store.submit(a1,first.attemptId,idle)));
+    for(const result of submissions)eq(result,{attemptId:first.attemptId,disposition:'accepted',ticks:42,reason:'validated'});
+    eq((await db.query('SELECT count(*)::int n FROM arcade.game_attempts WHERE attempt_id=$1',[first.attemptId])).rows[0].n,1);
+    eq((await db.query('SELECT count(*)::int n FROM arcade.attempt_traces WHERE attempt_id=$1',[first.attemptId])).rows[0].n,1);
+    const firstRow=await row(first);eq(firstRow.state,'submitted');ok(firstRow.first_received_at instanceof Date);eq(firstRow.submission_digest,digest(JSON.stringify(idle)));
+    eq(await new AttemptStore(db).submit(a1,first.attemptId,{inputs:[],interruptions:0,ticks:42,rulesetId:RULESET.id}),submissions[0]);
+    await rejects(()=>store.submit(a1,first.attemptId,{...idle,ticks:43}),'attempt_conflict');
+    await rejects(()=>store.cancel(a1,first.attemptId),'attempt_conflict');
+    eq((await begin(a1,key)).state,'submitted');
+    await admin.query('UPDATE arcade.game_versions SET issuance_enabled=false WHERE version_id=$1',[RULESET.versionId]);
+    eq(await store.submit(a1,first.attemptId,idle),submissions[0]);await rejects(()=>begin(a1),'attempts_unavailable');
+    await admin.query('UPDATE arcade.game_versions SET issuance_enabled=true WHERE version_id=$1',[RULESET.versionId]);
+    stage='timing, expiry, interruption and cancellation';
+    const early=await begin(a1);eq((await store.submit(a1,early.attemptId,idle)).reason,'too_early');
+    const interrupted=await begin(a1);await aged(interrupted);eq((await store.submit(a1,interrupted.attemptId,{...idle,interruptions:1})).disposition,'practice');
+    const forged=await begin(a1);await aged(forged);eq((await store.submit(a1,forged.attemptId,{...idle,ticks:43})).reason,'early_failure');
+    const unfinished=await begin(a1);await aged(unfinished);eq((await store.submit(a1,unfinished.attemptId,{...idle,ticks:41})).reason,'incomplete_run');
+    const unknown=await begin(a1);await aged(unknown);eq((await store.submit(a1,unknown.attemptId,{...idle,rulesetId:'unknown'})).reason,'unsupported_ruleset');
+    const cancelled=await begin(a1);eq(await store.cancel(a1,cancelled.attemptId),{state:'cancelled'});eq(await store.cancel(a1,cancelled.attemptId),{state:'cancelled'});await rejects(()=>store.submit(a1,cancelled.attemptId,idle),'attempt_conflict');
+    const expired=await begin(a1);await aged(expired,400);await admin.query("UPDATE arcade.attempt_authorizations SET submit_deadline=clock_timestamp()-interval '1 second' WHERE attempt_id=$1",[expired.attemptId]);
+    const fresh=await begin(a1);eq((await row(expired)).state,'expired');eq((await store.submit(a1,expired.attemptId,idle)).disposition,'expired');await store.cancel(a1,fresh.attemptId);
+    await admin.query("UPDATE arcade.attempt_authorizations SET retry_deadline=submit_deadline WHERE attempt_id=$1",[expired.attemptId]);await rejects(()=>store.submit(a1,expired.attemptId,idle),'retry_expired');
+    stage='session revocation and concurrency';
+    const actor3=await login(),revoked=await begin(actor3);await aged(revoked);await sessions.logout(actor3.token,null);await rejects(()=>store.submit(actor3,revoked.attemptId,idle),'expired_session');
+    const actor4=await login(),raceKey1=randomUUID(),raceKey2=randomUUID();
+    const issuance=await Promise.allSettled([begin(actor4,raceKey1),begin(actor4,raceKey2)]);eq(issuance.filter(x=>x.status==='fulfilled').length,1);eq(issuance.filter(x=>x.status==='rejected').length,1);
+    const race=issuance.find(x=>x.status==='fulfilled').value;await aged(race);
+    const competing=await Promise.allSettled([store.submit(actor4,race.attemptId,idle),store.submit(actor4,race.attemptId,{...idle,ticks:43})]);eq(competing.filter(x=>x.status==='fulfilled').length,1);eq(competing.filter(x=>x.status==='rejected').length,1);
+    // Revocation wins if it owns the session lock before submission authorization.
+    const lockedActor=await login(),lockedAttempt=await begin(lockedActor);await aged(lockedAttempt);
+    let signalLocked,signalRelease;
+    const locked=new Promise(r=>signalLocked=r),release=new Promise(r=>signalRelease=r);
+    const revocation=admin.transaction(async c=>{
+      await c.query('SELECT session_id FROM arcade.application_sessions WHERE token_digest=$1 FOR UPDATE',[digest(lockedActor.token)]);
+      signalLocked();await release;
+      await c.query('UPDATE arcade.application_sessions SET revoked_at=clock_timestamp() WHERE token_digest=$1',[digest(lockedActor.token)]);
+    });
+    await locked;const waiting=store.submit(lockedActor,lockedAttempt.attemptId,idle);signalRelease();await revocation;await rejects(()=>waiting,'expired_session');
+    const idleActor=await login();await admin.query('UPDATE arcade.application_sessions SET idle_expires_at=clock_timestamp() WHERE token_digest=$1',[digest(idleActor.token)]);await rejects(()=>begin(idleActor),'expired_session');
+    const throttled=await login();for(let n=0;n<20;n++){const a=await begin(throttled);await store.cancel(throttled,a.attemptId);}await rejects(()=>begin(throttled),'rate_limited');
+    stage='atomic rollback';
+    const rollbackActor=await login(),rollbackAttempt=await begin(rollbackActor);await aged(rollbackAttempt);
+    await admin.query(`CREATE FUNCTION arcade.test_trace_failure() RETURNS trigger LANGUAGE plpgsql AS $$ BEGIN RAISE EXCEPTION 'synthetic failure'; END $$`);
+    await admin.query('CREATE TRIGGER test_trace_failure BEFORE INSERT ON arcade.attempt_traces FOR EACH ROW EXECUTE FUNCTION arcade.test_trace_failure()');
+    await rejects(()=>store.submit(rollbackActor,rollbackAttempt.attemptId,idle));
+    eq((await row(rollbackAttempt)).state,'open');eq((await row(rollbackAttempt)).submission_digest,null);
+    eq((await db.query('SELECT count(*)::int n FROM arcade.game_attempts WHERE attempt_id=$1',[rollbackAttempt.attemptId])).rows[0].n,0);
+    await admin.query('DROP TRIGGER test_trace_failure ON arcade.attempt_traces');await admin.query('DROP FUNCTION arcade.test_trace_failure()');
+    eq((await store.submit(rollbackActor,rollbackAttempt.attemptId,idle)).disposition,'accepted');
+    stage='maximum replay';
+    const cap=JSON.parse(readFileSync(new URL('./fixtures/balance-cap-v1.json',import.meta.url),'utf8'));
+    const capActor=await login(),capAttempt=await begin(capActor);await aged(capAttempt,310);
+    eq((await store.submit(capActor,capAttempt.attemptId,cap)).ticks,18000);
+    stage='HTTP integration';
+    const config=loadServerConfig({DISCORD_CLIENT_ID:'123456789012345678',ALLOWED_ORIGINS:origin});
+    const app=createServerApp(config,{exchangeCode:async()=>({access_token:'unused'})},{attempts:{store,persistence:{check:async()=>({status:'available',schema:'compatible'}),close:async()=>{}}}});
+    const httpActor=await login();
+    const headers={Origin:origin,'X-Arcade-Origin':origin,'X-Arcade-Request':'1','X-Arcade-CSRF':httpActor.csrf,Cookie:'__Host-arcade-session='+httpActor.token};
+    const path='/api/balance/attempts';
+    const start=await request(app).post(path).set(headers).send({beginKey:randomUUID(),rulesetId:RULESET.id}).expect(200);checks++;
+    await aged(start.body);
+    const result=await request(app).post(path+'/submit').set(headers).send({attemptId:start.body.attemptId,evidence:idle}).expect(200);eq(result.body.disposition,'accepted');
+    const repeated=await request(app).post(path+'/submit').set(headers).send({attemptId:start.body.attemptId,evidence:idle}).expect(200);eq(repeated.body,result.body);
+    await request(app).post(path+'/submit').set({...headers,'X-Arcade-CSRF':secret()}).send({attemptId:start.body.attemptId,evidence:idle}).expect(403);checks++;
+    await request(app).post(path).set(headers).send({beginKey:randomUUID(),rulesetId:RULESET.id,guildId:'forged'}).expect(400);checks++;
+    stage='retention and forbidden writes';
+    await admin.query("UPDATE arcade.attempt_traces SET expires_at=clock_timestamp()-interval '1 second'");await store.purge();eq((await db.query('SELECT count(*)::int n FROM arcade.attempt_traces')).rows[0].n,0);
+    eq(await new AttemptStore(db).submit(httpActor,start.body.attemptId,idle),result.body);
+    eq(await counts(),before);eq(before,[0,0,0,0]);
+    const persisted=(await db.query('SELECT evidence_digest,validator_revision,interruption_count,ticks FROM arcade.game_attempts WHERE attempt_id=$1',[first.attemptId])).rows[0];
+    eq(persisted.evidence_digest,digest(JSON.stringify(idle)));eq(persisted.validator_revision,RULESET.validatorRevision);eq(persisted.interruption_count,0);eq(persisted.ticks,42);
+    ok(!JSON.stringify(persisted).includes(a1.token));
+    console.log(`Attempt Postgres ownership, replay, concurrency, atomic rollback and retention passed: ${checks} checks; aggregates/events unchanged.`);
+  } catch(error) {console.error('Attempt fixture stage:',stage);throw error;}
+  finally {
+    await admin.query('REVOKE INSERT,UPDATE ON arcade.attempt_authorizations FROM arcade_session_runtime');
+    await admin.query('REVOKE INSERT ON arcade.game_attempts,arcade.attempt_traces FROM arcade_session_runtime');
+    await admin.query('REVOKE DELETE ON arcade.attempt_traces FROM arcade_session_runtime');
+  }
+}

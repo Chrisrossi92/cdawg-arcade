@@ -214,10 +214,14 @@ async function smoke(overrides, schema) {
       "/api/balance/attempts",
       "/api/guild/balance/leaderboard",
     ])
-      eq((await fetch(run.base + p)).status, p === "/api/session" ? 403 : 404);
+      eq((await fetch(run.base + p)).status, ["/api/session","/api/balance/attempts"].includes(p) ? 403 : 404);
     const o='https://arcade.cdawgbot.xyz';
     const session=await fetch(run.base+'/api/auth/challenges',{method:'POST',headers:{Origin:o,'X-Arcade-Origin':o,'X-Arcade-Request':'1','Content-Type':'application/json'},body:'{}'});
     eq(session.status,503);
+    const release=JSON.parse(readFileSync('build/release.json','utf8'));
+    const activityOrigin=`https://${release.clientId}.discordsays.com`;
+    const attempt=await fetch(run.base+'/api/balance/attempts',{method:'POST',headers:{Origin:activityOrigin,'X-Arcade-Origin':activityOrigin,'X-Arcade-Request':'1','X-Arcade-CSRF':'b'.repeat(43),Cookie:'__Host-arcade-session='+'a'.repeat(43),'Content-Type':'application/json'},body:JSON.stringify({beginKey:randomUUID(),rulesetId:'balance-replay-v1'})});
+    eq(attempt.status,503);eq((await attempt.json()).error,'attempts_unavailable');
   } finally {
     await stop(run);
   }
@@ -556,7 +560,12 @@ try {
       eq(response.status,200);ok(response.headers.get('set-cookie').includes('SameSite=None; Partitioned'));
       eq((await fetch(enabled.base+'/')).status,200);
     } finally {await stop(enabled);}
+    stage = 'attempt integration';
+    const {testAttempts} = await import('./test-attempts.mjs');
+    await testAttempts(db,restrictedDb);
+    eq(await restrictedSessionRole(restrictedDb),true);
   } finally {await restrictedDb.close();}
+  await smoke({...env,ARCADE_SESSIONS_ENABLED:'true',ARCADE_ATTEMPTS_ENABLED:'true',OFFICIAL_SCORING_ENABLED:'false',DISCORD_ARCADE_BOT_TOKEN:'synthetic-bot'}, 'compatible');
   stage = "database outage";
   const outage = await launch(env);
   try {
