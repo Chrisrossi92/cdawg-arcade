@@ -2,7 +2,7 @@
 
 ## A. Executive result
 
-Implementation merged and deployed with features disabled; final acceptance pending only the administrator grant step. Backend remains disabled. No UI integration or Discord delivery is included. See [architecture](GUILD_LEADERBOARD_ARCHITECTURE.md).
+Accepted on 2026-09-10. Implementation merged and deployed with features disabled; reviewed runtime grants applied and post-grant acceptance passed. Backend remains disabled. No UI integration or Discord delivery is included. See [architecture](GUILD_LEADERBOARD_ARCHITECTURE.md).
 
 ## B. Starting state
 
@@ -26,7 +26,7 @@ SELECT-only full-history verifier checks best entries, current record and transi
 
 ## G. Migrations and runtime privileges
 
-No schema migration needed. Explicit reproducible additive grant command tested with real Postgres; no new role, password, schema ownership or administrative permission. Production grant step is pending existing administrator access. Neither the service nor local checkout has a configured administrator connection; the runtime credential correctly cannot grant itself rights. Deploy compatible code before grants to avoid breaking the old release's session capability check. Administrator credential must remain outside the running application's environment.
+No schema migration needed. Explicit reproducible additive grant command tested with real Postgres; no new role, password, schema ownership or administrative permission. Production grants were applied atomically through the reviewed helper using the existing administrator credential in an isolated short-lived process. The runtime passed the exact result-role guard and session-compatible guard afterward. No credential or application environment value changed. Compatible code was deployed before grants to avoid breaking the old release's session capability check; this is the documented safety exception to the nominal sequence. The administrator credential was never stored in the running application's environment.
 
 ## H. Validation totals
 
@@ -36,11 +36,13 @@ Final branch validation passed: 333 unit tests; 172 compiled production smoke as
 
 Pre-deployment read-only status on 2026-09-10: schema compatible; players 1, guilds 1, participations 1, game_versions 1, sessions 4, auth_challenges 0, security_events 0. Each of attempt_authorizations, game_attempts, attempt_traces, personal_game_stats, guild_leaderboard_entries, guild_game_records and guild_record_events is 0. Exact production merge `b0dc390c8d2ec32f89b5da6e10a4450f9d26bae8` is Live. Required main validation passed again before push/deploy. Twelve public endpoint checks passed: three health endpoints 200 with exact release and compatible schema, disabled attempt/personal/leaderboard routes 503/no-store, anonymous session boundary 401, practice page 200. No unchanged manual gameplay was requested.
 
-Fresh running-instance checks confirmed exact release, sessions on, attempts/scoring/leaderboards/probe off, session-only restricted role and runtime ready. Every count above remained identical after the public checks. Personal verification: zero groups/mismatches; guild verification: zero entries/records/events and zero mismatches. Automatic deployment remains Off and health gate remains `/api/ready`.
+Initial running-instance checks confirmed exact release, sessions on, attempts/scoring/leaderboards/probe off, session-only restricted role and runtime ready. After grants, the exact future result-role check and session-compatible runtime check both passed; sessions stayed on and attempts/scoring/leaderboards stayed off. Every count above remained identical after the public checks. Personal verification: zero groups/mismatches; guild verification: zero entries/records/events and zero mismatches. Automatic deployment remains Off and health gate remains `/api/ready`.
 
-Displayed log scans: 11 application lines and 50 deployment lines, no credential patterns; no inspected runtime failure. Recent 30-minute resource charts show memory below 20% of 512 MB and CPU near idle. This is a bounded inspection, not a load certification or claim about all historical logs. No screenshots committed.
+Displayed log scans: 11 initial application lines, 14 post-grant application lines and 50 deployment lines, no credential patterns; no inspected runtime failure. Recent 30-minute resource charts show memory below 20% of 512 MB and CPU near idle. This is a bounded inspection, not a load certification or claim about all historical logs. No screenshots committed.
 
-Only the administrator grant remains pending. Provider inspection found an authenticated database dashboard but no SQL console; runtime and local checkout have no configured administrator connection. An isolated native masked-entry/encrypted-transfer helper has been prepared and tested with synthetic data. It will reuse the existing administrator credential in a short-lived process, never store it in the service environment, and remove its temporary transfer key afterward. No grant has been applied yet; do not mark Phase 4F fully accepted until exact capability and unchanged-count checks pass after it.
+The owner supplied the existing administrator connection through a native masked dialog and confirmed it was closed and no longer visible. RSA-OAEP/SHA-256 encryption kept plaintext out of tool output, terminal commands and persisted files. The isolated receiver validated the destination against the existing runtime database, required this exact live SHA and disabled flags, and applied only the reviewed grants. Its sanitized result reported success with credentials unchanged. The temporary private transfer key, remote receiver and local encrypted handoff files were removed.
+
+Post-grant acceptance repeated all twelve public checks successfully. Schema and both projection verifiers remain compatible/consistent with zero mismatches. Every table count listed above remains unchanged, including all seven score/leaderboard/record tables at zero. No redeployment or environment change was needed for the transactional grants. Phase 4F is accepted; no further owner action or gameplay check is outstanding.
 
 ## J. Security and isolation
 
