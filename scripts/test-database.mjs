@@ -584,6 +584,17 @@ try {
     eq((await db.query('SELECT official_count::text n FROM arcade.personal_game_stats WHERE player_id=$1 AND version_id=$2',[target.player_id,target.version_id])).rows[0].n,String(BigInt(target.official_count)+1n));
     await db.query('UPDATE arcade.personal_game_stats SET official_count=official_count-1 WHERE player_id=$1 AND version_id=$2',[target.player_id,target.version_id]);
     eq(await restrictedSessionRole(restrictedDb),true);
+    stage='fully enabled compiled canary';
+    const {grantResultRights}=await import('../build/server/guild/grants.js');
+    await db.transaction(grantResultRights);
+    const {restrictedAttemptRole}=await import('../build/server/attempts/privileges.js');eq(await restrictedAttemptRole(restrictedDb),true);
+    const canaryServer=await launch({...env,DATABASE_URL:restrictedUrl.toString(),ARCADE_SESSIONS_ENABLED:'true',ARCADE_ATTEMPTS_ENABLED:'true',OFFICIAL_SCORING_ENABLED:'true',ARCADE_LEADERBOARDS_ENABLED:'true',ARCADE_CANARY_GUILD_IDS:'900000000000000001',DISCORD_ARCADE_BOT_TOKEN:'synthetic-bot'});
+    try {
+      for(const path of ['/api/health','/api/ready','/api/persistence/ready'])eq((await fetch(canaryServer.base+path)).status,200);
+      const o=`https://${JSON.parse(readFileSync('build/release.json','utf8')).clientId}.discordsays.com`,headers={Origin:o,'X-Arcade-Origin':o,'X-Arcade-Request':'1','Content-Type':'application/json'};
+      for(const path of ['/api/me','/api/me/balance/stats','/api/guild/balance/leaderboard'])eq((await fetch(canaryServer.base+path,{headers})).status,401);
+      eq((await fetch(canaryServer.base+'/api/balance/attempts',{method:'POST',headers,body:'{}'})).status,401);
+    } finally {await stop(canaryServer);}
   } finally {await restrictedDb.close();}
   await smoke({...env,ARCADE_SESSIONS_ENABLED:'true',ARCADE_ATTEMPTS_ENABLED:'true',OFFICIAL_SCORING_ENABLED:'false',DISCORD_ARCADE_BOT_TOKEN:'synthetic-bot'}, 'compatible');
   stage = "database outage";

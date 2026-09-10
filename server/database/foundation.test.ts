@@ -72,9 +72,9 @@ describe("persistence configuration", () => {
       "invalid_configuration",
     ),
   );
-  it("cannot enable official scoring even explicitly", () => {
+  it("allows persistence with scoring controlled independently", () => {
     const c = databaseConfig({ ...local, OFFICIAL_SCORING_ENABLED: "true" });
-    expect(c.mode).toBe("invalid_configuration");
+    expect(c.mode).toBe("configured");
     expect(c.officialScoringEnabled).toBe(false);
   });
   it("sanitizes driver errors without retaining their cause", () => {

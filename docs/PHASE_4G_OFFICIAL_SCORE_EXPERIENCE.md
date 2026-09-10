@@ -34,7 +34,7 @@ Single-guild explicit server configuration with hashed identifier supported. Ses
 
 ## I. Automated and visual checks
 
-Current completed runs: 362 unit tests, 670 real Postgres checks (249 foundation/fallback, 74 sessions, 99 attempts, 107 personal, 125 guild, 16 canary), and 180 compiled smoke assertions. Final merged-main totals pending. Five frame-rate trace fixtures and the 18,000-tick golden cap pass. Existing suites retained; synthetic eligibility is explicitly injected in tests.
+Current completed runs: 362 unit tests, 681 real Postgres checks (260 foundation/fallback, 74 sessions, 99 attempts, 107 personal, 125 guild, 16 canary), and 180 compiled smoke assertions. The enabled compiled-server regression also verifies persistence, required restricted grants, and authenticated route gates with the full scoring flag set. Five frame-rate trace fixtures and the 18,000-tick golden cap pass. Existing suites retained; synthetic eligibility is explicitly injected in tests.
 
 Browser automation exercised an integrated fixture from Start through accepted result, leaderboard and Play Again. Ten state fixtures verified checking, accepted, rejected, interrupted, unconfirmed, empty, own-rank-outside, other-guild, unavailable and practice wording. Desktop layout checks found/fixed the fixed-grid overlap; desktop rectangles no longer overlap. 375×667 iframe screenshots were inspected for eligible, accepted and populated/outside-rank layouts; no horizontal clipping observed. These are development fixtures, not live Discord evidence. The integrated interruption fixture paused, resumed, and finished with “Practice result · This run was paused”. Preparing-state and account-switch fixtures also passed: authorization pending stayed distinct, and switching accounts cleared official eligibility while keeping local history.
 
@@ -44,7 +44,7 @@ Not requested yet. One consolidated under-five-minute run only after enabled pro
 
 ## K. Production invariants
 
-No Phase 4G production score rows created. Fresh disabled deployment counts and post-canary invariant checks pending.
+No Phase 4G production score rows created. Initial disabled release b07c84f passed all three health checks and 12 public boundary checks. Baseline: players 1, guilds 1, participations 1, versions 1, sessions 4; challenges/security events and all seven score tables 0. Sampled provider logs contained no credential patterns or runtime failures. Final corrected release and post-canary checks pending.
 
 ## L. Security/privacy/isolation
 
