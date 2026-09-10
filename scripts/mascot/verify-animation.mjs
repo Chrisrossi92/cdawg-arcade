@@ -18,4 +18,14 @@ mixer.stopAllAction();const idle=mixer.clipAction(g.animations.find(c=>c.name===
 for(const action of [idle,lean]){action.reset().play();action.paused=true}idle.time=0;lean.time=1;
 const blend=[];for(const weight of [0,.25,.5,.75,1]){idle.setEffectiveWeight(1-weight);lean.setEffectiveWeight(weight);mixer.update(0);g.scene.updateMatrixWorld(true);const head=g.scene.getObjectByName('head');blend.push({weight,position:head.getWorldPosition(new THREE.Vector3()).toArray()})}
 assert.ok(new THREE.Vector3(...blend[0].position).distanceTo(new THREE.Vector3(...blend[4].position))>.01);
-const report={engine:THREE.REVISION,paws:paws.map(p=>p.name),clips:results,leanBlend:blend};if(process.argv[3])writeFileSync(process.argv[3],JSON.stringify(report,null,2)+'\n');console.log('Independent Three.js load and five animation clips passed; planted-paw and continuous lean checks passed.');
+const facial=[];
+if(g.animations.some(c=>c.name==='expr_default')){
+ const signatures=new Set();
+ for(const clip of g.animations.filter(c=>c.name.startsWith('expr_'))){
+  mixer.stopAllAction();mixer.clipAction(clip).reset().play();mixer.setTime(0);g.scene.updateMatrixWorld(true);
+  const parts=[];g.scene.traverse(o=>{if(o.isBone&&/^(brow|gaze|jaw|mouth|muzzle|cheek|lip|upper|lower)/.test(o.name))parts.push({name:o.name,matrix:o.matrixWorld.toArray()})});
+  const signature=JSON.stringify(parts);assert.ok(!signatures.has(signature),'Duplicate facial pose');signatures.add(signature);facial.push({clip:clip.name,controlledBones:parts.length});
+ }
+ assert.equal(signatures.size,9);
+}
+const report={facial,engine:THREE.REVISION,paws:paws.map(p=>p.name),clips:results,leanBlend:blend};if(process.argv[3])writeFileSync(process.argv[3],JSON.stringify(report,null,2)+'\n');console.log(`Independent Three.js load and ${g.animations.length} animation clips passed; planted-paw and continuous lean checks passed.`);

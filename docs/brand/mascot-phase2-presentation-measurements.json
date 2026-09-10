@@ -1,0 +1,65 @@
+{
+  "glb": {
+    "bytes": 1564196,
+    "gzipBytes": 405089
+  },
+  "localPreviewBundles": [
+    {
+      "file": "GLTFLoader-CX-9PL0C.js",
+      "bytes": 583860,
+      "gzipBytes": 148686
+    },
+    {
+      "file": "candidate-BqC0I2xh.css",
+      "bytes": 1357,
+      "gzipBytes": 630
+    },
+    {
+      "file": "candidate-NBNKh62y.js",
+      "bytes": 1489878,
+      "gzipBytes": 342975
+    },
+    {
+      "file": "candidateLive-nOJMTvmy.js",
+      "bytes": 2501,
+      "gzipBytes": 1345
+    },
+    {
+      "file": "common-DlvUBwQx.js",
+      "bytes": 844,
+      "gzipBytes": 519
+    },
+    {
+      "file": "index-CKm_ys-b.js",
+      "bytes": 681,
+      "gzipBytes": 347
+    },
+    {
+      "file": "live-DkVHrqur.js",
+      "bytes": 2187,
+      "gzipBytes": 1210
+    },
+    {
+      "file": "sprite-CVlMtX5l.js",
+      "bytes": 1162,
+      "gzipBytes": 693
+    },
+    {
+      "file": "style-BUdKH2yF.css",
+      "bytes": 1424,
+      "gzipBytes": 703
+    }
+  ],
+  "production": {
+    "identical": true,
+    "deltaBytes": 0,
+    "moduleCount": 133,
+    "artifactHashes": {
+      "assets/index-DJxLukTz.css": "b2a4669a4adf8b61243ebab362b25a10a264590295fb09a312bba3c40b450dd3",
+      "assets/index-DeNCiVQb.js": "453fdf4e06d212ec83f05ec0f8e525f9b45acbdb8662325d8b1633151228acb4",
+      "assets/index-PgqIN0K2.js": "5badfe6c0e4a626f076a1d3eb34bba50eb03069acd2b9bacc8893418fb20a110",
+      "index.html": "ee43b4ba522c0a548ad72fd2dcf9fd217743a538fa960313558ba020255a3562"
+    }
+  },
+  "measurements": "Raw and gzip(6) sizes; local preview chunks are excluded from application artifacts. Live renderer is incremental; Phaser already exists in application."
+}

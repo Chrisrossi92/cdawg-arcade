@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "status": "feasibility-prototype-not-production-approved",
+  "status": "canonical-candidate-awaiting-creative-approval",
   "inputs": [
     {
       "role": "turnaround",
@@ -109,6 +109,83 @@
       "status": "received",
       "bytes": 2477,
       "sha256": "d3fc1573cda96f2cb4f4b5e1074cc437b62f13c028c7ce440e2585eab9137fea",
+      "approvedToShip": false
+    },
+    {
+      "path": "assets/brand/mascot/runtime/cdawg-mascot-candidate-v002.glb",
+      "status": "received",
+      "bytes": 1564196,
+      "sha256": "a21a0432ac559d0188d119f35cdd9f7e3b8853e09c178809a21e000e46e2d07a",
+      "approvedToShip": false
+    },
+    {
+      "path": "assets/brand/mascot/source/cdawg-mascot-candidate-v002.blend",
+      "status": "received",
+      "bytes": 1350069,
+      "sha256": "941f59d9b344a0f9cfcb599f697dd464aa6b937f1187a73fb567d3af2e60538c",
+      "approvedToShip": false
+    },
+    {
+      "path": "assets/brand/mascot/runtime/cdawg-mascot-critical-v002.webp",
+      "status": "received",
+      "bytes": 511692,
+      "sha256": "b0a98aeae6dcfd312742f84f53baaa946683e5ee717f594033fb14457675f789",
+      "approvedToShip": false
+    },
+    {
+      "path": "assets/brand/mascot/runtime/cdawg-mascot-critical-v002.json",
+      "status": "received",
+      "bytes": 18523,
+      "sha256": "d5411ff813c98528828fa4e330c9052ac0283c870214d8fd871641f4a55af103",
+      "approvedToShip": false
+    },
+    {
+      "path": "assets/brand/mascot/runtime/cdawg-mascot-optional-v002.webp",
+      "status": "received",
+      "bytes": 600550,
+      "sha256": "312ce9fda3f64db908ab98a8e7d8a861b9c0fece4b6c49cb981cc9e9157ba991",
+      "approvedToShip": false
+    },
+    {
+      "path": "assets/brand/mascot/runtime/cdawg-mascot-optional-v002.json",
+      "status": "received",
+      "bytes": 20691,
+      "sha256": "c69cd04b6b01814304515633d59fbb820648e590392f48474934a4ea7fb84907",
+      "approvedToShip": false
+    },
+    {
+      "path": "assets/brand/mascot/previews/cdawg-mascot-expressions-v002.png",
+      "status": "received",
+      "bytes": 886949,
+      "sha256": "37b9615661c2bf59ac5216b89453af3b4e14ae3a00cd401af819bd4a681c0fe3",
+      "approvedToShip": false
+    },
+    {
+      "path": "assets/brand/mascot/previews/cdawg-mascot-turnaround-v002.png",
+      "status": "received",
+      "bytes": 160797,
+      "sha256": "e56e41ee68ec1a18a48ecc08459a78c0ae4f049ac72afc54d11a3149f32c336d",
+      "approvedToShip": false
+    },
+    {
+      "path": "assets/brand/mascot/previews/cdawg-mascot-motion-v002.png",
+      "status": "received",
+      "bytes": 346084,
+      "sha256": "09e1b5b2c2fbaeb2398d33dfa306021f3441f0efdb719475129df19d27e22640",
+      "approvedToShip": false
+    },
+    {
+      "path": "assets/brand/mascot/source/cdawg-mascot-model-report-v002.json",
+      "status": "received",
+      "bytes": 6124,
+      "sha256": "9096f50d0f1ba18d86e9376d831239fa2c70a1dfa01e381c3ca27eea7cb56684",
+      "approvedToShip": false
+    },
+    {
+      "path": "assets/brand/mascot/source/cdawg-mascot-optimization-v002.json",
+      "status": "received",
+      "bytes": 3476,
+      "sha256": "45ee6dc0f4183b24c46bdee7d04afa4e979a372be7a789827eda619d3de65f1d",
       "approvedToShip": false
     }
   ]

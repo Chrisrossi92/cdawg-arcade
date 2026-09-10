@@ -1,15 +1,17 @@
 # CDAWG mascot source package
 
-Status: **Phase 1 feasibility prototype; not approved production character art.**
+Status: **Phase 2 canonical candidate; awaiting creative approval.**
+
+See [Phase 2 evidence and preview commands](../../../docs/brand/MASCOT_PHASE_2_COMPLETION.md). Version 001 remains historical Phase 1 evidence; version 002 is the current candidate.
 The original approved images/specification are preserved byte-for-byte. Generated
-assets are intentionally simple and remain separate from the default game.
+assets are stylized interpretations and remain separate from the default game.
 
 | Directory | Contents | Shipping policy |
 | --- | --- | --- |
 | reference | Three canonical PNGs and original authority README | Never ship |
 | source | Editable `.blend`, model/export settings report | Never ship |
-| runtime | Prototype GLB, 40-frame PNG atlas, frame metadata | Local review only; not approved to ship |
-| previews | Eight-view contact sheet and turntable contact sheet | Never ship |
+| runtime | Historical prototype plus candidate GLB, split WebP atlases and metadata | Local review only; not approved to ship |
+| previews | Historical review sheets plus candidate turnaround, nine expressions and motion sheet | Never ship |
 
 The [original specification](../../../docs/brand/CDAWG_MASCOT_3D_PRODUCTION_SPEC_V1.md)
 and [identity guide](../../../docs/brand/MASCOT_IDENTITY.md) govern new work.
@@ -38,6 +40,6 @@ node scripts/mascot/check-bundle.mjs
 ```
 
 All `generatedAssets` explicitly have `approvedToShip: false`; `runtimeExports`
-remains empty. No LFS: originals are each about 1.6–2.1 MB and the model is about
-1 MB; the repository has no existing LFS workflow. Trial frames, caches, installer,
+remains empty. No LFS: originals are each about 1.6–2.1 MB and the model is under
+2 MB; the repository has no existing LFS workflow. Trial frames, caches, installer,
 logs, repeat exports and Blender backups stay in ignored `tmp/mascot`.

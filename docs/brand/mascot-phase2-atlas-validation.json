@@ -1,0 +1,26 @@
+[
+  {
+    "group": "critical",
+    "frames": 96,
+    "dimensions": [
+      2048,
+      1270
+    ],
+    "webpBytes": 511692,
+    "metadataBytes": 18523,
+    "textureRGBABytes": 10403840,
+    "alphaGutters": "exact"
+  },
+  {
+    "group": "optional",
+    "frames": 108,
+    "dimensions": [
+      2048,
+      1445
+    ],
+    "webpBytes": 600550,
+    "metadataBytes": 20691,
+    "textureRGBABytes": 11837440,
+    "alphaGutters": "exact"
+  }
+]

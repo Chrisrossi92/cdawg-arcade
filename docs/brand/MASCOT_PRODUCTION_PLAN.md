@@ -1,3 +1,5 @@
+Current continuation: [Phase 2 candidate completion and commands](MASCOT_PHASE_2_COMPLETION.md). Earlier feasibility evidence below remains historical.
+
 # Reproduce and inspect the Phase 1 prototype
 
 The original `CDAWG_MASCOT_3D_PRODUCTION_SPEC_V1.md` is preserved verbatim. It defines

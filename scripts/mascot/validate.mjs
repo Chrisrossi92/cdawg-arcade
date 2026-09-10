@@ -44,7 +44,7 @@ function inspect(dir) {
 }
 inspect('assets/brand/mascot');
 for (const item of manifest.generatedAssets ?? []) {
-  assert.match(item.path, /^assets\/brand\/mascot\/(source|runtime|previews)\/cdawg-[a-z0-9-]+\.(blend|glb|png|json)$/);
+  assert.match(item.path, /^assets\/brand\/mascot\/(source|runtime|previews)\/cdawg-[a-z0-9-]+\.(blend|glb|png|webp|json)$/);
   assert.equal(item.approvedToShip, false);
   assert.ok(lstatSync(item.path).isFile());
   const data = readFileSync(item.path);
@@ -52,7 +52,7 @@ for (const item of manifest.generatedAssets ?? []) {
   assert.equal(createHash('sha256').update(data).digest('hex'), item.sha256);
 }
 
-assert.deepEqual(manifest.runtimeExports, [], 'Phase 1 does not authorize shipping exports');
+assert.deepEqual(manifest.runtimeExports, [], 'Production shipping remains unauthorized');
 if (missing.length) {
   console.log(`FOUNDATION ONLY: ${missing.length} missing canonical inputs (${missing.join(', ')}).`);
   if (!process.argv.includes('--allow-missing')) process.exitCode = 1;

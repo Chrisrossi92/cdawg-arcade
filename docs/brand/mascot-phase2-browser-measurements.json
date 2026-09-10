@@ -1,0 +1,238 @@
+{
+  "desktop": {
+    "viewport": [
+      1280,
+      900
+    ],
+    "samples": 1242,
+    "maxBounds": {
+      "width": 188.98836742872817,
+      "height": 198.26749105845283
+    },
+    "strokeOverscan": 4,
+    "renderCell": 256,
+    "observedGameCanvases": {
+      "desktop": {
+        "viewport": [
+          1280,
+          900
+        ],
+        "canvas": [
+          974,
+          502
+        ]
+      },
+      "narrow": {
+        "viewport": [
+          390,
+          844
+        ],
+        "canvas": [
+          364,
+          203
+        ],
+        "cssHeight": 203.875
+      }
+    },
+    "source": "Unmodified CdawgRig; all nine states; tilt -34..34; panic endpoints; maximum pulse. Phaser RESIZE uses CSS pixels at both layouts.",
+    "canvases": [
+      {
+        "width": 520,
+        "height": 260,
+        "cssWidth": 520,
+        "cssHeight": 260
+      },
+      {
+        "width": 520,
+        "height": 260,
+        "cssWidth": 520,
+        "cssHeight": 260
+      }
+    ],
+    "requestedMascotFiles": [
+      "cdawg-mascot-critical-v002.json",
+      "cdawg-mascot-critical-v002.webp"
+    ],
+    "loadMs": [
+      {
+        "candidate": false,
+        "milliseconds": 0
+      },
+      {
+        "candidate": true,
+        "milliseconds": 71.59999999403954
+      }
+    ],
+    "renderer": [
+      "WebGL",
+      "WebGL"
+    ],
+    "atlas": {
+      "app": "CDAWG local Blender pipeline",
+      "version": 2,
+      "image": "cdawg-mascot-critical-v002.webp",
+      "format": "RGBA8888",
+      "size": {
+        "w": 2048,
+        "h": 1270
+      },
+      "scale": "1",
+      "groundOffset": 33,
+      "clips": {
+        "idle_default": [
+          "idle_default-00",
+          "idle_default-01",
+          "idle_default-02",
+          "idle_default-03",
+          "idle_default-04",
+          "idle_default-05",
+          "idle_default-06",
+          "idle_default-07",
+          "idle_default-08",
+          "idle_default-09",
+          "idle_default-10",
+          "idle_default-11"
+        ],
+        "lean_left": [
+          "lean_left-00",
+          "lean_left-01",
+          "lean_left-02",
+          "lean_left-03",
+          "lean_left-04",
+          "lean_left-05",
+          "lean_left-06",
+          "lean_left-07",
+          "lean_left-08",
+          "lean_left-09",
+          "lean_left-10",
+          "lean_left-11"
+        ],
+        "lean_right": [
+          "lean_right-00",
+          "lean_right-01",
+          "lean_right-02",
+          "lean_right-03",
+          "lean_right-04",
+          "lean_right-05",
+          "lean_right-06",
+          "lean_right-07",
+          "lean_right-08",
+          "lean_right-09",
+          "lean_right-10",
+          "lean_right-11"
+        ],
+        "wobble_left": [
+          "wobble_left-00",
+          "wobble_left-01",
+          "wobble_left-02",
+          "wobble_left-03",
+          "wobble_left-04",
+          "wobble_left-05",
+          "wobble_left-06",
+          "wobble_left-07",
+          "wobble_left-08",
+          "wobble_left-09",
+          "wobble_left-10",
+          "wobble_left-11"
+        ],
+        "wobble_right": [
+          "wobble_right-00",
+          "wobble_right-01",
+          "wobble_right-02",
+          "wobble_right-03",
+          "wobble_right-04",
+          "wobble_right-05",
+          "wobble_right-06",
+          "wobble_right-07",
+          "wobble_right-08",
+          "wobble_right-09",
+          "wobble_right-10",
+          "wobble_right-11"
+        ],
+        "panic": [
+          "panic-00",
+          "panic-01",
+          "panic-02",
+          "panic-03",
+          "panic-04",
+          "panic-05",
+          "panic-06",
+          "panic-07",
+          "panic-08",
+          "panic-09",
+          "panic-10",
+          "panic-11"
+        ],
+        "fall": [
+          "fall-00",
+          "fall-01",
+          "fall-02",
+          "fall-03",
+          "fall-04",
+          "fall-05",
+          "fall-06",
+          "fall-07",
+          "fall-08",
+          "fall-09",
+          "fall-10",
+          "fall-11"
+        ],
+        "victory_small": [
+          "victory_small-00",
+          "victory_small-01",
+          "victory_small-02",
+          "victory_small-03",
+          "victory_small-04",
+          "victory_small-05",
+          "victory_small-06",
+          "victory_small-07",
+          "victory_small-08",
+          "victory_small-09",
+          "victory_small-10",
+          "victory_small-11"
+        ]
+      },
+      "durationSeconds": 0.9583333333333334,
+      "cadence": "12 endpoint-inclusive samples across 24 source frames; deterministic selection",
+      "extrusion": 2,
+      "group": "critical"
+    }
+  },
+  "narrow": {
+    "documentWidth": 390,
+    "height": 844,
+    "width": 390
+  },
+  "stateChecks": [
+    "idle_default · frame 11 · Paused for reproducible review · WebP atlas loaded in Phaser",
+    "lean_left · frame 11 · Paused for reproducible review · WebP atlas loaded in Phaser",
+    "lean_right · frame 11 · Paused for reproducible review · WebP atlas loaded in Phaser",
+    "wobble_left · frame 11 · Paused for reproducible review · WebP atlas loaded in Phaser",
+    "wobble_right · frame 11 · Paused for reproducible review · WebP atlas loaded in Phaser",
+    "panic · frame 11 · Paused for reproducible review · WebP atlas loaded in Phaser",
+    "fall · frame 11 · Paused for reproducible review · WebP atlas loaded in Phaser",
+    "victory_small · frame 11 · Paused for reproducible review · WebP atlas loaded in Phaser"
+  ],
+  "playback": {
+    "before": "0.28",
+    "after": "0.14",
+    "advanced": true
+  },
+  "reducedMotion": {
+    "before": "idle_default · frame 0 · Reduced motion: still pose · WebP atlas loaded in Phaser",
+    "after": "idle_default · frame 0 · Reduced motion: still pose · WebP atlas loaded in Phaser",
+    "stable": true,
+    "systemPreferenceEmulation": "Not exercised; media-query listener inspected"
+  },
+  "liveObservation": "- text: 3D pose\n- combobox \"3D pose\":\n  - option \"blink\"\n  - option \"defeat\"\n  - option \"expr default\"\n  - option \"expr delighted\"\n  - option \"expr determined\"\n  - option \"expr dizzy\"\n  - option \"expr frustrated\"\n  - option \"expr mischief\"\n  - option \"expr panic\"\n  - option \"expr proud\"\n  - option \"expr worried\"\n  - option \"fall\"\n  - option \"host point\"\n  - option \"host wave\"\n  - option \"idle default\" [selected]\n  - option \"idle mischief\"\n  - option \"lean left\"\n  - option \"lean right\"\n  - option \"look direction\"\n  - option \"panic\"\n  - option \"ready\"\n  - option \"recover\"\n  - option \"victory big\"\n  - option \"victory small\"\n  - option \"wobble left\"\n  - option \"wobble right\"\n- generic \"Live 3D bulldog candidate\"\n- status: Ready · 61.6 ms load/parse 29,782 triangles · 4 draws · 1032 KiB geometry rAF p50 16.7 / p95 17.7 ms · n=300",
+  "screenshots": [
+    "tmp/mascot/phase2/browser-desktop.png",
+    "tmp/mascot/phase2/browser-narrow.png",
+    "tmp/mascot/phase2/browser-light.png"
+  ],
+  "limits": [
+    "Local desktop development server, not real Discord/device qualification",
+    "Full-page narrow screenshot stitching unreliable; viewport captures used",
+    "Tool observer error encountered; no clean-console assertion"
+  ]
+}

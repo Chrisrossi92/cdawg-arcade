@@ -10,6 +10,6 @@ export default defineConfig({
     modulePreload: { polyfill: false },
     outDir: fileURLToPath(new URL('../../../tmp/mascot/preview-dist/', import.meta.url)),
     emptyOutDir: true,
-    rollupOptions: { input: { index: here + 'index.html', live: here + 'live.html', sprite: here + 'sprite.html' } },
+    rollupOptions: { input: { candidateLive: here + 'candidate-live.html', candidate: here + 'candidate.html', index: here + 'index.html', live: here + 'live.html', sprite: here + 'sprite.html' } },
   },
 });

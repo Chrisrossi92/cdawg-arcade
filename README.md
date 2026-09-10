@@ -118,3 +118,5 @@ bulldog references and a local-only rigged feasibility prototype. See the
 [Phase 1 completion evidence](docs/brand/MASCOT_PHASE_1_COMPLETION.md) and
 [reproduction/preview commands](docs/brand/MASCOT_PRODUCTION_PLAN.md).
 The shipping/default game character is unchanged.
+
+Local mascot candidate: [Phase 2 review and reproduction](docs/brand/MASCOT_PHASE_2_COMPLETION.md). This tooling is excluded from production.
