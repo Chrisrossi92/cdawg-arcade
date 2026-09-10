@@ -2,7 +2,7 @@
 
 ## A. Executive result
 
-**IN PROGRESS — not yet accepted or deployed.** Sessions remain disabled in production and official scoring remains disabled. No Phase 4D work is included.
+**IN PROGRESS — deployed private canary, not yet accepted.** Sessions are enabled on `eef3ef4`; official scoring and automatic deployment remain disabled. Live authenticated Discord/cookie acceptance and wrong-verifier PKCE enforcement proof remain pending. No Phase 4D work is included.
 
 ## B. Starting state
 
@@ -46,6 +46,10 @@ Current completed runs: 221 unit tests (including original 184); 140 Postgres/fa
 Do not read or record cookie values. Demonstrate return through `/api/me` success and safe status/profile UI; test header attributes using synthetic responses. Ordinary browser sessions cannot be fabricated without a real authoritative Activity participant. Cookie failure leaves sessions unavailable; no weakened SameSite/HttpOnly policy or persistent bearer fallback is authorized.
 
 ## I. Deployment and rollback procedure
+
+Approved canary batch completed on the same `eef3ef4` artifact: sessions on, sessions off for the rollback drill, then sessions on again. Each deployment became Live; the off-state retained 200 health/readiness/persistence and returned 503 sessions_unavailable from `/api/me`. The restored on-state retains all three health endpoints at 200 with compatible schema and returns 401 expired for anonymous `/api/me`. Runtime booleans confirm sessionsOn=true and scoringOff=true. No code, credentials, schema or historical environment was restored. Read-only counts after restoration are one game_versions seed and zero in all other 13 tables. The temporary HTTP challenge used for validation was cancelled through logout. Final 50 displayed deployment log lines showed no database URL or credential patterns. This proves the feature-flag rollback path, not authenticated-session revocation across restart.
+
+Live HTTP checks passed: missing/wrong Origin rejected, extra submitted identity field rejected, anonymous session rejected, challenge issued with S256 and Secure/HttpOnly/host-only/Path=/SameSite=None/Partitioned/300-second cookie attributes, no-store, and challenge cleanup. These are direct HTTPS checks, not Discord browser cookie transport or proof that Discord enforces PKCE. No OAuth code was used and no synthetic identity/session/score row was created.
 
 Verified corrected checkpoint: the owner privately corrected the full internal connection URL and explicitly approved redeploying only `eef3ef4f0143cb804935879f50ca1fc8d4c43aa3`. The subsequent deployment is Live, all three health endpoints return 200, and schema is compatible. Read-only status reports one nonissuable game_versions seed and zero rows in all 13 other application tables. Runtime sessions/scoring flags are false, automatic deployment is Off, and browser practice start, focus pause/resume, local results and clean replay passed. A boolean-only scan of 56 displayed deployment log lines, including startup/live events, found no database URL or credential patterns; this is limited to those inspected lines. The owner accepted this checkpoint. No new secret is currently expected under the approved shared-score architecture.
 

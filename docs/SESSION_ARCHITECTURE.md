@@ -1,6 +1,6 @@
 # Arcade sessions — Phase 4C
 
-Phase 4C implementation is deployed at `eef3ef4` with sessions disabled. The corrected restricted database connection and practice checkpoint have passed; session-enabled live acceptance remains pending. Official scoring stays disabled. A verified session does not make a practice result official. Historical prototype session codes and local leaderboards are unrelated to this authorization boundary.
+Phase 4C implementation is deployed at `eef3ef4` with sessions enabled for the approved canary and scoring disabled. The restricted database checkpoint and same-artifact flag rollback drill passed; authenticated Discord/cookie acceptance and live wrong-verifier PKCE enforcement proof remain pending. Official scoring stays disabled. A verified session does not make a practice result official. Historical prototype session codes and local leaderboards are unrelated to this authorization boundary.
 
 ## Authority and Discord capabilities
 
