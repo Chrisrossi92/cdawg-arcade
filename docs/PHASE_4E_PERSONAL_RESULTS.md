@@ -2,7 +2,7 @@
 
 ## A. Executive result
 
-Implementation and local validation passed; production rollout is pending. This document will be finalized with observed acceptance evidence. Official attempt issuance/scoring stay disabled. No public UI, guild leaderboard, record recognition or Phase 4F work is included.
+**PASS — implemented, normally merged, deployed and verified as a disabled backend foundation.** No owner interruption was required. Official attempt issuance/scoring stay disabled. No public UI, guild leaderboard, record recognition or Phase 4F work is included.
 
 ## B. Starting state
 
@@ -40,7 +40,39 @@ Initial runs exposed local CPU/connection scheduling pressure and two fixture mi
 
 ## J. Production deployment and empty-table verification
 
-Pending exact-SHA rollout after local tests, phase commit/push, normal merge, main validation and main push. No migration/grant action is needed. Postdeployment evidence will include health, disabled endpoints, session capability, empty counts, aggregate verifier, sanitized logs and resource use.
+Production accepted on 2026-09-09. Exact deployed merge: `677e71b71dee7254df1f2d8b52e83bd9da512bb8`. The phase branch was committed/pushed first; no migration or grant was required; main was normally merged, fully revalidated and pushed before manual exact-commit deployment. Render reported Live on that commit and its displayed build window included the 157-assertion compiled smoke success.
+
+Postdeployment evidence:
+
+- All three health endpoints returned HTTP 200 with the exact release; persistence schema compatible.
+- All three attempt mutations returned 503 `attempts_unavailable`; all three personal reads returned 503 `official_results_unavailable`. All six were no-store. Correct Activity headers were supplied; no session or score was created by these checks.
+- Existing anonymous `/api/me` returned 401 `expired`; the practice page remained HTTP 200. Login/gameplay source was unchanged; 74 session Postgres tests and existing automated gameplay fixtures passed on the merged tree. No repeated manual Discord test was requested.
+- Fresh running-instance booleans all passed: exact release, sessions enabled, attempts/scoring/PKCE probe disabled, existing ruleset nonissuable, session-only restricted role.
+- Read-only `verify-personal` returned consistent: zero expected groups, zero stored groups, zero mismatches. No repair ran.
+- The 26 displayed application-log lines contained no database URL, recognized credential/private-key pattern, sensitive assignment, or tested runtime-failure pattern. The earlier 50-line build window had no matched credential/failure pattern. These are bounded scans, not certification of all historical logs or every secret format.
+- The selected recent 30-minute Render charts showed one instance, memory below approximately 25% of the 512 MB limit (the new instance below the preceding instance's level), and no visible sustained CPU pressure against the 0.5 CPU limit. This idle/disabled-path observation is not a production load test or throughput claim.
+- Automatic deployment remained Off, the health gate remained `/api/ready`, and the dashboard's live commit matched the release.
+
+Exact read-only counts after the production endpoint checks matched the starting baseline:
+
+| Table | Rows |
+| --- | ---: |
+| players | 1 |
+| guilds | 1 |
+| guild_participations | 1 |
+| game_versions | 1 nonissuable seed |
+| application_sessions | 4 |
+| auth_challenges | 0 |
+| security_events | 0 |
+| attempt_authorizations | 0 |
+| game_attempts | 0 |
+| attempt_traces | 0 |
+| personal_game_stats | 0 |
+| guild_leaderboard_entries | 0 |
+| guild_game_records | 0 |
+| guild_record_events | 0 |
+
+**No official production attempt or score row was created.** No production environment variable, database permission, schema, secret, cost, DNS, Discord configuration or audience changed. No regression required rollback, so no extra live rollback drill was performed. The accepted `73390d0` artifact remains the reversible application rollback target while flags remain off and score tables empty. No down migration is needed.
 
 ## K. Security
 
@@ -48,7 +80,7 @@ Parameterized data queries; bounded evidence, replay/request concurrency and ret
 
 ## L. Git and live release
 
-Phase branch `codex/phase-4e-personal-official-results`. Exact commit/merge/deployment evidence pending. No force push, rebase, squash or history rewriting. Automatic deployment remains Off. Final evidence-only changes do not require redeployment.
+Phase branch: `codex/phase-4e-personal-official-results`. Implementation commit: `ec4a12cfea6c5e8b7a18fbeb376ca34ed0541197`. Normal merge and live application: `677e71b71dee7254df1f2d8b52e83bd9da512bb8`. The merge tree matched the phase tree; all 313 unit, 157 smoke, 231 foundation/fallback, 74 session, 99 attempt and 109 personal-result checks passed again on main before push/deployment. Security and whitespace checks also passed. Final evidence is committed/pushed on the phase branch and normally merged into main as documentation only; the live application remains on `677e71b`. No force push, rebase, squash or history rewriting. Automatic deployment stays Off; no documentation-only redeployment.
 
 ## M. Remaining limitations
 
