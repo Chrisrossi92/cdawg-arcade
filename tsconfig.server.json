@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2022", "lib": ["ES2022"], "module": "NodeNext",
-    "moduleResolution": "NodeNext", "rootDir": "server", "outDir": "build/server",
+    "moduleResolution": "NodeNext", "rootDir": ".", "outDir": "build",
     "strict": true, "esModuleInterop": true, "skipLibCheck": true,
     "sourceMap": false, "declaration": false
   },

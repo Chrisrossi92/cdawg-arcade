@@ -1,5 +1,7 @@
 import { rmSync, cpSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
+execFileSync(process.execPath, ['scripts/verify-balance-rules.mjs'], { stdio: 'inherit' });
+rmSync('build/shared', { recursive: true, force: true });
 rmSync('build/server', { recursive: true, force: true });
 execFileSync(process.execPath, ['node_modules/typescript/bin/tsc', '-p', 'tsconfig.server.json'], { stdio: 'inherit' });
 

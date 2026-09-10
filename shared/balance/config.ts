@@ -1,0 +1,67 @@
+import type { BalanceConfig } from './simulation.js';
+
+export const balanceConfig: BalanceConfig = {
+  inputAcceleration: 0.92,
+  gravityAcceleration: 0.46,
+  damping: 0.925,
+  disturbanceBase: 0.1,
+  disturbanceGrowth: 0.072,
+  disturbanceLimit: 0.58,
+  directionalPressureBase: 0.045,
+  directionalPressureGrowth: 0.018,
+  difficultyGrowthPerSecond: 0.066,
+  maxDifficultyMultiplier: 5.2,
+  failureAngle: 30,
+  failureBalance: 1,
+  startingTilt: 6,
+  startingVelocity: 0.08,
+  maxAngularVelocity: 3.6,
+  wobbleFrequency: 1.45,
+  warmupGraceSeconds: 5,
+  holdFatigueStartsMs: 520,
+  holdFatigueMax: 0.42,
+  holdFatigueRampMs: 1600,
+  releaseKickStrength: 0.18,
+  releaseKickDecay: 0.82,
+  centralRecoveryZone: 0.16,
+  phaseBands: [
+    {
+      phase: 'Warmup',
+      startsAtSeconds: 0,
+      gravityMultiplier: 0.84,
+      disturbanceMultiplier: 0.58,
+      dampingOffset: -0.035,
+      pressureMultiplier: 0.55,
+    },
+    {
+      phase: 'Active',
+      startsAtSeconds: 12,
+      gravityMultiplier: 0.96,
+      disturbanceMultiplier: 0.86,
+      dampingOffset: -0.008,
+      pressureMultiplier: 0.9,
+    },
+    {
+      phase: 'Intense',
+      startsAtSeconds: 20,
+      gravityMultiplier: 1.14,
+      disturbanceMultiplier: 1.2,
+      dampingOffset: 0.018,
+      pressureMultiplier: 1.18,
+    },
+    {
+      phase: 'Critical',
+      startsAtSeconds: 45,
+      gravityMultiplier: 1.28,
+      disturbanceMultiplier: 1.42,
+      dampingOffset: 0.034,
+      pressureMultiplier: 1.32,
+    },
+  ],
+};
+
+export const balanceUiConfig = {
+  countdownSeconds: 3,
+  devUpdateMs: 100,
+  maxRecentAttempts: 8,
+};

@@ -53,7 +53,7 @@ function scan(dir, frontend = false) {
     check(!/\.env|\.map$|\.ts$|\.tsx$/.test(item.name));
     const data = readFileSync(path, 'utf8');
     check(!data.includes('DUMMY_ONLY_DATABASE_SENTINEL') && !data.includes(secret) && !data.includes(process.cwd()) && !data.includes('/Users/'));
-    if (frontend) check(!/DISCORD_CLIENT_SECRET|DISCORD_REDIRECT_URI|ALLOWED_ORIGINS|RELEASE_SHA|DATABASE_URL|PERSISTENCE_CONFIGURED|DISCORD_ARCADE_BOT_TOKEN|ARCADE_SESSIONS_ENABLED|ARCADE_RUNTIME_PASSWORD/.test(data));
+    if (frontend) check(!/DISCORD_CLIENT_SECRET|DISCORD_REDIRECT_URI|ALLOWED_ORIGINS|RELEASE_SHA|DATABASE_URL|PERSISTENCE_CONFIGURED|DISCORD_ARCADE_BOT_TOKEN|ARCADE_ATTEMPTS_ENABLED|ARCADE_SESSIONS_ENABLED|ARCADE_RUNTIME_PASSWORD/.test(data));
     else if (item.name.endsWith('.js')) check(!/from ['"]tsx|import\(['"]tsx|tsx watch/.test(data));
   }
 }
@@ -79,6 +79,11 @@ try {
   for (const path of ['/', '/practice/replay']) {
     const res = await fetch(run.base + path);
     check(res.status === 200 && res.headers.get('content-type').includes('text/html') && res.headers.get('cache-control') === 'no-cache');
+  }
+  const activityOrigin=`https://${release.clientId}.discordsays.com`;
+  for (const path of ['/api/balance/attempts','/api/balance/attempts/submit','/api/balance/attempts/cancel']) {
+    const r=await fetch(run.base+path,{method:'POST',headers:{Origin:activityOrigin,'X-Arcade-Origin':activityOrigin,'X-Arcade-Request':'1','Content-Type':'application/json'},body:'{}'});
+    check(r.status===503);check((await r.json()).error==='attempts_unavailable');check(r.headers.get('cache-control')==='no-store');
   }
   const asset = Object.keys(release.files).find(x => x.endsWith('.js'));
   const assetResponse = await fetch(run.base + '/' + asset);
