@@ -85,6 +85,10 @@ try {
     const r=await fetch(run.base+path,{method:'POST',headers:{Origin:activityOrigin,'X-Arcade-Origin':activityOrigin,'X-Arcade-Request':'1','Content-Type':'application/json'},body:'{}'});
     check(r.status===503);check((await r.json()).error==='attempts_unavailable');check(r.headers.get('cache-control')==='no-store');
   }
+  for (const path of ['/api/me/balance/stats','/api/me/balance/attempts','/api/me/balance/attempts/00000000-0000-4000-8000-000000000099']) {
+    const r=await fetch(run.base+path,{headers:{'X-Arcade-Origin':activityOrigin,'X-Arcade-Request':'1'}});
+    check(r.status===503);check((await r.json()).error==='official_results_unavailable');check(r.headers.get('cache-control')==='no-store');
+  }
   const asset = Object.keys(release.files).find(x => x.endsWith('.js'));
   const assetResponse = await fetch(run.base + '/' + asset);
   check(assetResponse.status === 200 && assetResponse.headers.get('cache-control').includes('immutable'));

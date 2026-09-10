@@ -1,5 +1,7 @@
 # Official attempt and replay foundation — Phase 4D
 
+Historical Phase 4D contract. [Phase 4E personal results](PERSONAL_RESULTS_ARCHITECTURE.md) supersedes the result transaction, reason codes, rejected-trace retention, personal permissions and recovery/read APIs; the immutable replay and timing contract below remains unchanged.
+
 This is a disabled backend foundation, not a shared-score launch. Production practice and the accepted Phase 4C session flow remain available. No leaderboard, statistics, record event, posting, score UI, or historical-score import is implemented here. The [owner operating policy](../AGENTS.md) applies; no intermediate manual Discord playthrough is required.
 
 ## Activation boundary

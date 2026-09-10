@@ -83,8 +83,8 @@ const env = {
   DATABASE_URL: `postgresql://arcade_test@127.0.0.1:${pgPort}/${databaseName}`,
   DATABASE_TLS_MODE: "disable",
   DATABASE_POOL_MAX: "2",
-  DATABASE_STATEMENT_TIMEOUT_MS: "500",
-  DATABASE_CONNECT_TIMEOUT_MS: "500",
+  DATABASE_STATEMENT_TIMEOUT_MS: "2000",
+  DATABASE_CONNECT_TIMEOUT_MS: "5000",
 };
 function verifyOwned() {
   const u = new URL(env.DATABASE_URL);
@@ -222,6 +222,10 @@ async function smoke(overrides, schema) {
     const activityOrigin=`https://${release.clientId}.discordsays.com`;
     const attempt=await fetch(run.base+'/api/balance/attempts',{method:'POST',headers:{Origin:activityOrigin,'X-Arcade-Origin':activityOrigin,'X-Arcade-Request':'1','X-Arcade-CSRF':'b'.repeat(43),Cookie:'__Host-arcade-session='+'a'.repeat(43),'Content-Type':'application/json'},body:JSON.stringify({beginKey:randomUUID(),rulesetId:'balance-replay-v1'})});
     eq(attempt.status,503);eq((await attempt.json()).error,'attempts_unavailable');
+    for(const path of ['/api/me/balance/stats','/api/me/balance/attempts','/api/me/balance/attempts/00000000-0000-4000-8000-000000000099']) {
+      const r=await fetch(run.base+path,{headers:{'X-Arcade-Origin':activityOrigin,'X-Arcade-Request':'1',Cookie:'__Host-arcade-session='+'a'.repeat(43)}});
+      eq(r.status,503);eq((await r.json()).error,'official_results_unavailable');eq(r.headers.get('cache-control'),'no-store');
+    }
   } finally {
     await stop(run);
   }
@@ -349,7 +353,7 @@ try {
   await rejects(() => migrate(db, failed));
   eq(await schemaStatus(db), "empty");
   const interrupted = [
-    { ...migration[0], sql: migration[0].sql + "; SELECT pg_sleep(2);" },
+    { ...migration[0], sql: migration[0].sql + "; SELECT pg_sleep(3);" },
   ];
   await rejects(() => migrate(db, interrupted));
   eq(await schemaStatus(db), "empty");
@@ -421,7 +425,7 @@ try {
   await rejects(() =>
     db.query("DELETE FROM arcade.players WHERE player_id=$1", [A.p]),
   );
-  await rejects(() => db.query("SELECT pg_sleep($1)", [2]));
+  await rejects(() => db.query("SELECT pg_sleep($1)", [3]));
   eq((await db.query("SELECT 1 AS n")).rows[0].n, 1);
   await rejects(() =>
     db.transaction(async (c) => {
@@ -563,6 +567,20 @@ try {
     stage = 'attempt integration';
     const {testAttempts} = await import('./test-attempts.mjs');
     await testAttempts(db,restrictedDb);
+    stage='personal verification CLI';
+    const verifyEnv={PATH:process.env.PATH,...env,DATABASE_URL:restrictedUrl.toString()};
+    const verifyCli=()=>execFileSync(process.execPath,['build/server/database/cli.js','verify-personal'],{env:verifyEnv,encoding:'utf8',stdio:['ignore','pipe','pipe']});
+    const summary=JSON.parse(verifyCli().trim().split('\n').at(-1));
+    eq(summary.status,'consistent');eq(summary.mismatches,'0');eq(Object.keys(summary).sort(),['expectedGroups','mismatches','status','storedGroups']);
+    const target=(await db.query('SELECT player_id,version_id,official_count::text FROM arcade.personal_game_stats LIMIT 1')).rows[0];
+    await db.query('UPDATE arcade.personal_game_stats SET official_count=official_count+1 WHERE player_id=$1 AND version_id=$2',[target.player_id,target.version_id]);
+    try{verifyCli();assert.fail('mismatch CLI unexpectedly succeeded');}catch(e){
+      eq(e.status,2);const mismatch=JSON.parse(String(e.stdout).trim().split('\n').at(-1));eq(mismatch.status,'mismatch');eq(mismatch.mismatches,'1');
+      ok(!String(e.stdout).includes(target.player_id));ok(!String(e.stdout).includes(verifyEnv.DATABASE_URL));
+    }
+    // The verifier must not repair. Only this disposable fixture restores its deliberate fault.
+    eq((await db.query('SELECT official_count::text n FROM arcade.personal_game_stats WHERE player_id=$1 AND version_id=$2',[target.player_id,target.version_id])).rows[0].n,String(BigInt(target.official_count)+1n));
+    await db.query('UPDATE arcade.personal_game_stats SET official_count=official_count-1 WHERE player_id=$1 AND version_id=$2',[target.player_id,target.version_id]);
     eq(await restrictedSessionRole(restrictedDb),true);
   } finally {await restrictedDb.close();}
   await smoke({...env,ARCADE_SESSIONS_ENABLED:'true',ARCADE_ATTEMPTS_ENABLED:'true',OFFICIAL_SCORING_ENABLED:'false',DISCORD_ARCADE_BOT_TOKEN:'synthetic-bot'}, 'compatible');

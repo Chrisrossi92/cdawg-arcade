@@ -4,7 +4,9 @@ export type DatabaseErrorCode =
   | "unavailable"
   | "timeout"
   | "constraint"
-  | "closed";
+  | "closed"
+  | "transaction_retry"
+  | "cancelled";
 export class DatabaseError extends Error {
   constructor(readonly code: DatabaseErrorCode) {
     super(`Database operation ${code}`);
@@ -15,7 +17,9 @@ export function safeDatabaseError(error: unknown): DatabaseError {
   if (error instanceof DatabaseError) return error;
   const code = (error as { code?: string })?.code ?? "";
   return new DatabaseError(
-    code === "57014" || code === "55P03"
+    code === "40001" || code === "40P01"
+      ? "transaction_retry"
+      : code === "57014" || code === "55P03"
       ? "timeout"
       : code.startsWith("23")
         ? "constraint"

@@ -118,3 +118,7 @@ Reference descriptor fields were checked against the [Render Blueprint specifica
 ## Phase 4C session rollout
 
 The independent server-only `ARCADE_SESSIONS_ENABLED` defaults false. `DISCORD_ARCADE_BOT_TOKEN` belongs only to this Arcade application. Keep official scoring false and use the restricted session runtime database role before enabling sessions. No additional infrastructure or schema migration is required. Follow the ordered credential, private-entry, deployment, cookie/PKCE validation and rollback gates in [Phase 4C evidence](PHASE_4C_SERVER_SESSIONS.md); current production acceptance is not yet claimed.
+
+## Phase 4E disabled results foundation
+
+Current results transaction, personal APIs, read-only integrity verification, retention and rollback boundaries are documented in [personal results architecture](PERSONAL_RESULTS_ARCHITECTURE.md). Run `npm run db:verify-personal` with the existing restricted runtime configuration for sanitized SELECT-only verification. It never repairs data. No schema or production grant change is needed. Keep attempt issuance and official scoring disabled; validate health, disabled endpoints, session capability, exact empty score-table counts, logs and resource use automatically. The standing [owner policy](../AGENTS.md) supersedes historical routine manual acceptance instructions above. No additional Discord playthrough is due for this backend-only phase.
