@@ -2,7 +2,7 @@
 
 ## A. Executive result
 
-Implementation, merged-main validation and disabled production deployment complete. Production enablement and the one owner canary are NOT yet accepted. See [experience and rollout design](OFFICIAL_SCORE_EXPERIENCE.md).
+Implementation, merged-main validation, controlled ruleset activation and enabled single-guild production gates are complete. The one owner canary and post-run acceptance remain pending. See [experience and rollout design](OFFICIAL_SCORE_EXPERIENCE.md).
 
 ## B. Starting state
 
@@ -30,7 +30,7 @@ Top 25, precision, current-user highlight, outside-page own rank, empty/unavaila
 
 ## H. Canary and ruleset
 
-Single-guild explicit server configuration with hashed identifier supported. Session/issuance/submission/board boundaries fail closed. Existing placeholder remains immutable; explicit additive canonical version activation requires separate administrator access. Not yet activated in production.
+Single-guild explicit server configuration with hashed identifier supported. Session/issuance/submission/board boundaries fail closed. Existing placeholder remains immutable; explicit additive canonical version activation requires separate administrator access. Activated additively in production through the explicit administrator transaction: balance-replay-v1, immutable semantics unchanged, exactly one intended guild, one ruleset_activation audit event. The original placeholder remains unchanged.
 
 ## I. Automated and visual checks
 
@@ -40,7 +40,7 @@ Browser automation exercised an integrated fixture from Start through accepted r
 
 ## J. Owner canary
 
-Not requested yet. One consolidated under-five-minute run only after enabled production gates pass. No intermediate manual gameplay.
+Ready for the one consolidated under-five-minute owner canary. Enabled production gates passed; no intermediate owner gameplay was requested. Confirm new verified runs availability, complete one uninterrupted run, check committed result and board, and confirm Play Again readiness without requiring a second completed run.
 
 ## K. Production invariants
 
@@ -56,8 +56,12 @@ Branch `codex/phase-4g-official-score-experience`. Implementation commits 936a6e
 
 ## N. Remaining limitations
 
-Administrator-only version activation still requires existing administrator access; runtime grants intentionally cannot perform it. The prior encrypted handoff was removed. No secret should be recovered or persisted in the running service. Five-minute fixtures and narrow viewport coverage do not constitute mobile/device load certification. Rebuild and destructive moderation remain separately controlled as in Phase 4F.
+Administrator activation used the existing credential through a masked local dialog and one-use encrypted transfer. Plaintext was never saved, printed, or placed in the runtime environment. The receiver removed its private key and transfer directory; local handoff files were removed and removal verified. No credential or password changed. Five-minute fixtures and narrow viewport coverage do not constitute mobile/device load certification. Rebuild and destructive moderation remain separately controlled as in Phase 4F.
 
 ## O. Next step
 
-Disabled deployment is complete. Controlled activation is blocked only by unavailable administrator access: the restricted runtime cannot write versions, and the previous private handoff was destroyed. A one-time masked encrypted reuse of the existing administrator URL is prepared; no new credential or password change is required. After activation, finish single-guild enablement and request one consolidated owner canary. Observe and polish before separately authorized announcement delivery. Do not implement delivery.
+Disabled deployment and controlled activation are complete. Canary enablement verification passed. Two restarts retained disabled flags. Read-only verification of the three nonsecret provider values showed that masked-field edits had retained their prior values. Loading only those flag values before editing, blurring, saving and rereading confirmed all three persisted as true; the same exact SHA was then restarted. No activation retry or data change was necessary. Enabled runtime confirms sessions/issuance/scoring/boards true, exactly one eligible verified guild, other-guild denial, ordinary-browser practice, exact runtime rights, correct immutable issuable version, and one activation audit. All 12 public health/authentication boundary checks passed on live 7cd6db0; no synthetic authenticated requests or score rows were created. Personal/guild verification reports zero mismatches. Sampled logs (50 lines) showed no credential patterns or runtime failures; observed memory stayed below 20% of the 512 MB limit. Request one consolidated owner canary, then verify genuine outcome and record evidence. Observe and polish before separately authorized announcement delivery. Do not implement delivery.
+
+## Enabled pre-canary baseline
+
+Players 1; guilds 1; participations 1; versions 2 (original placeholder plus canonical version); sessions 4; auth challenges 0; security events 1 (activation). Attempt authorizations, game attempts, traces, personal stats, guild entries, guild records and guild record events each 0. Automatic deployment remains off; exact live application 7cd6db0 is unchanged. No Discord message or delivery occurred. Canary remains unaccepted until the owner run and post-run invariants pass.
