@@ -11,6 +11,8 @@ import { calculatePlaytestStats } from '../../services/playtestStats';
 import type { ScoreRepository } from '../../services/scoreRepository';
 import type { GamePhase, LeaderboardEntry, RunResult } from '../../types/game';
 import { BalanceGameCanvas } from './BalanceGameCanvas';
+import { ResultMascot } from './mascot/ResultMascot';
+import {warmMascot} from './mascot/assets';
 import { getCompactDockedLayoutClasses, getInitialBalancePhase, getPhaseAfterRunResult } from './balanceV1Flow';
 import { balanceConfig } from './config';
 import {
@@ -38,6 +40,7 @@ interface DebugSnapshot {
 }
 
 export function BalanceExperience({ officialController, hostContext, scoreRepository, onExit, onRetryConnection, onContinuePractice }: BalanceExperienceProps) {
+  useEffect(() => { warmMascot(); }, []);
   const official=useMemo(()=>officialController??new OfficialController(),[officialController]);
   const [officialView,setOfficialView]=useState(official.view);
   const [serverBoard,setServerBoard]=useState(false);
@@ -45,6 +48,7 @@ export function BalanceExperience({ officialController, hostContext, scoreReposi
   useEffect(()=>official.subscribe(()=>setOfficialView(official.view)),[official]);
   const uiPolicy = useMemo(() => createV1ProductUiPolicy(), []);
   const [phase, setPhase] = useState<GamePhase>(() => getInitialBalancePhase());
+  useEffect(() => {if (phase === 'countdown') warmMascot(true);}, [phase]);
   const [countdown, setCountdown] = useState(3);
   const [input, setInput] = useState<BalanceInputDirection>('none');
   const [score, setScore] = useState(0);
@@ -266,6 +270,7 @@ export function BalanceExperience({ officialController, hostContext, scoreReposi
 
         {phase === 'results' && runResult && (
           <div className="result-panel">
+            <ResultMascot side={clockRef.current.state.tilt < 0 ? -1 : 1} failed={clockRef.current.state.failed} />
             <OfficialResultPanel view={officialView} controller={official} /><p className="result-label">Local result · Saved in this browser</p>
             <strong className={officialView.phase==='accepted'?'local-result-small':''}>{runResult.scoreSeconds.toFixed(1)}s</strong>
             <span>{runResult.isPersonalBest ? 'New local best' : `Local best remains ${personalBest.toFixed(1)}s`}</span>

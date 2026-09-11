@@ -52,7 +52,12 @@ for (const item of manifest.generatedAssets ?? []) {
   assert.equal(createHash('sha256').update(data).digest('hex'), item.sha256);
 }
 
-assert.deepEqual(manifest.runtimeExports, [], 'Production shipping remains unauthorized');
+assert.deepEqual(manifest.runtimeExports, [], 'Deployment remains unauthorized');
+if (manifest.integrationExports) {
+ const expected=['balance0','balance1','reactions0','reactions1'].flatMap(g=>['webp','json'].map(e=>`assets/brand/mascot/runtime/cdawg-mascot-${g}-v003.${e}`));
+ assert.deepEqual([...manifest.integrationExports].sort(), expected.sort());
+ for(const path of expected)assert.ok(manifest.generatedAssets.some(a=>a.path===path));
+}
 if (missing.length) {
   console.log(`FOUNDATION ONLY: ${missing.length} missing canonical inputs (${missing.join(', ')}).`);
   if (!process.argv.includes('--allow-missing')) process.exitCode = 1;

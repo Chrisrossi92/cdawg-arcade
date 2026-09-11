@@ -1,4 +1,4 @@
-Current continuation: [Phase 2 candidate completion and commands](MASCOT_PHASE_2_COMPLETION.md). Earlier feasibility evidence below remains historical.
+Current continuation: [Phase 3 gameplay integration and commands](MASCOT_PHASE_3_COMPLETION.md). Appearance is approved and integrated on the feature branch. Earlier feasibility evidence below remains historical.
 
 # Reproduce and inspect the Phase 1 prototype
 

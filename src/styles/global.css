@@ -878,3 +878,7 @@ h1 {
 .balance-v1-shell.phase-home .balance-start-panel { position:relative;min-height:240px;box-sizing:border-box; }
 .balance-v1-shell.phase-results .control-deck,.balance-v1-shell.phase-leaderboard .control-deck { display:none; }
 .balance-v1-shell .official-board { place-content:initial;text-align:left; }
+
+/* Decorative sprite reaction never captures gameplay or result controls. */
+.mascot-result { width:256px; height:160px; max-width:100%; margin:0 auto; pointer-events:none; }
+.mascot-result canvas { display:block; max-width:100%; }

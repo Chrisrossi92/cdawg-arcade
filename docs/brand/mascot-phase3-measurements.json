@@ -1,0 +1,367 @@
+{
+  "scope": "Feature-branch presentation integration; no deployment",
+  "renderValidation": {
+    "frames": 345,
+    "repeatMaxMeanRGBAError": 0,
+    "repeatThreshold": 0.001,
+    "minimumMarginPixels": 11,
+    "maximumNeighbourBoneTravelMeters": {
+      "head": 0.0022949884329326207,
+      "tag": 0.002057292709662188
+    },
+    "fallRecoveryResultSeams": "Exact head/tag positions within 1e-6 m; common secondary phase at authored endpoints"
+  },
+  "packing": [
+    {
+      "group": "balance0",
+      "frames": 58,
+      "unique": 58,
+      "dimensions": [
+        2048,
+        888
+      ],
+      "webpBytes": 359976,
+      "jsonBytes": 10259,
+      "pngBytes": 2080428,
+      "decodedRGBABytes": 7274496,
+      "maxFrameRMS": 1.7519679438992248,
+      "minMargin": 27
+    },
+    {
+      "group": "balance1",
+      "frames": 58,
+      "unique": 58,
+      "dimensions": [
+        2048,
+        889
+      ],
+      "webpBytes": 361240,
+      "jsonBytes": 10259,
+      "pngBytes": 2078984,
+      "decodedRGBABytes": 7282688,
+      "maxFrameRMS": 1.7479954781210294,
+      "minMargin": 27
+    },
+    {
+      "group": "reactions0",
+      "frames": 87,
+      "unique": 74,
+      "dimensions": [
+        2048,
+        1296
+      ],
+      "webpBytes": 507550,
+      "jsonBytes": 15163,
+      "pngBytes": 2934245,
+      "decodedRGBABytes": 10616832,
+      "maxFrameRMS": 1.7927643249866005,
+      "minMargin": 11
+    },
+    {
+      "group": "reactions1",
+      "frames": 62,
+      "unique": 51,
+      "dimensions": [
+        2048,
+        917
+      ],
+      "webpBytes": 328288,
+      "jsonBytes": 10855,
+      "pngBytes": 1871762,
+      "decodedRGBABytes": 7512064,
+      "maxFrameRMS": 1.745082570565141,
+      "minMargin": 21
+    }
+  ],
+  "browser": {
+    "desktopLegacy": {
+      "mode": "legacy",
+      "samples": 300,
+      "frameIntervalMs": {
+        "p50": 16.659999999999854,
+        "p95": 16.75
+      },
+      "cpuUpdateMs": {
+        "p50": 0,
+        "p95": 0.10000002384185791
+      },
+      "canvas": [
+        {
+          "width": 974,
+          "height": 502
+        }
+      ],
+      "elapsedMs": 4973.520000000034,
+      "balance": 0.9691610137598007,
+      "reduced": false
+    },
+    "desktopSprite": {
+      "mode": "sweep",
+      "samples": 323,
+      "frameIntervalMs": {
+        "p50": 16.64666666666696,
+        "p95": 16.779999999999927
+      },
+      "cpuUpdateMs": {
+        "p50": 0.09999999403953552,
+        "p95": 0.20000001788139343
+      },
+      "canvas": [
+        {
+          "width": 974,
+          "height": 502
+        }
+      ],
+      "elapsedMs": 5348.2666666667,
+      "balance": 0.8284378276953075,
+      "lean": 0.8781406197380851,
+      "phase": 0.841993220489776,
+      "mood": "panic",
+      "finished": false,
+      "reduced": false
+    },
+    "narrowSprite": {
+      "mode": "sweep",
+      "samples": 600,
+      "frameIntervalMs": {
+        "p50": 16.66999999999989,
+        "p95": 16.74000000000001
+      },
+      "cpuUpdateMs": {
+        "p50": 0.09999999403953552,
+        "p95": 0.19999998807907104
+      },
+      "canvas": [
+        {
+          "width": 364,
+          "height": 204
+        }
+      ],
+      "elapsedMs": 11048.589066666666,
+      "balance": 0.59,
+      "lean": 0.6000303872018752,
+      "phase": 0.32089433206030027,
+      "mood": "wobble",
+      "finished": false,
+      "reduced": false
+    },
+    "narrowLegacy": {
+      "mode": "legacy",
+      "samples": 600,
+      "frameIntervalMs": {
+        "p50": 16.66999999999971,
+        "p95": 16.740000000000144
+      },
+      "cpuUpdateMs": {
+        "p50": 0,
+        "p95": 0.09999999403953552
+      },
+      "canvas": [
+        {
+          "width": 364,
+          "height": 204
+        }
+      ],
+      "elapsedMs": 16435.54799999999,
+      "balance": 0.98,
+      "reduced": false
+    },
+    "reducedMotion": {
+      "mode": "sweep",
+      "samples": 600,
+      "frameIntervalMs": {
+        "p50": 16.66999999999971,
+        "p95": 16.75
+      },
+      "cpuUpdateMs": {
+        "p50": 0.09999999403953552,
+        "p95": 0.19999998807907104
+      },
+      "canvas": [
+        {
+          "width": 364,
+          "height": 204
+        }
+      ],
+      "elapsedMs": 12617.871200000029,
+      "balance": 0.19841195961712874,
+      "lean": -0.3387900289438549,
+      "phase": 0,
+      "mood": "lean",
+      "finished": false,
+      "reduced": true
+    },
+    "delayedLoading": {
+      "mode": "slow",
+      "samples": 600,
+      "frameIntervalMs": {
+        "p50": 16.670000000000073,
+        "p95": 16.740000000000144
+      },
+      "cpuUpdateMs": {
+        "p50": 0,
+        "p95": 0.10000002384185791
+      },
+      "canvas": [
+        {
+          "width": 974,
+          "height": 502
+        }
+      ],
+      "activeSamples": 384,
+      "activeFrameIntervalMs": {
+        "p50": 16.65999999999999,
+        "p95": 16.75999999999999
+      },
+      "activeCpuUpdateMs": {
+        "p50": 0.09999999403953552,
+        "p95": 0.4000000059604645
+      },
+      "firstSpriteTick": 302,
+      "atlasReady": true,
+      "ticks": 380,
+      "finished": true,
+      "failed": true,
+      "score": 6.3,
+      "resultCallbackDelayMs": 381.90000000596046,
+      "lean": -0.8056215910957559,
+      "phase": 0.5993733965209606,
+      "mood": "wobble",
+      "lossBeforeFixed": false
+    },
+    "narrowGameplay": {
+      "canvases": [
+        {
+          "height": 203,
+          "rect": {
+            "bottom": 546.28125,
+            "height": 203.875,
+            "left": 13,
+            "right": 377,
+            "top": 342.40625,
+            "width": 364,
+            "x": 13,
+            "y": 342.40625
+          },
+          "width": 364
+        }
+      ],
+      "scrollWidth": 390,
+      "width": 390
+    },
+    "narrowResult": {
+      "buttons": [
+        {
+          "rect": {
+            "bottom": 407.5859375,
+            "height": 52,
+            "left": 37,
+            "right": 353,
+            "top": 355.5859375,
+            "width": 316,
+            "x": 37,
+            "y": 355.5859375
+          },
+          "text": "Start Game"
+        },
+        {
+          "rect": {
+            "bottom": 582.4921875,
+            "height": 104,
+            "left": 12,
+            "right": 131,
+            "top": 478.4921875,
+            "width": 119,
+            "x": 12,
+            "y": 478.4921875
+          },
+          "text": "Left"
+        },
+        {
+          "rect": {
+            "bottom": 582.4921875,
+            "height": 104,
+            "left": 259,
+            "right": 378,
+            "top": 478.4921875,
+            "width": 119,
+            "x": 259,
+            "y": 478.4921875
+          },
+          "text": "Right"
+        }
+      ],
+      "resultCanvas": false,
+      "scrollWidth": 390,
+      "width": 390
+    }
+  },
+  "bundle": [
+    {
+      "path": "dist/assets/cdawg-mascot-balance0-v003-DKp2Yw6X.webp",
+      "bytes": 359976,
+      "gzip6Bytes": 359373,
+      "sha256": "d7aaafb73710490ee57a69c9587a8018f3ce0ee76e1f4555b4fd7e77cb2f1fd6"
+    },
+    {
+      "path": "dist/assets/cdawg-mascot-balance1-v003-CvuX1MVF.webp",
+      "bytes": 361240,
+      "gzip6Bytes": 360673,
+      "sha256": "d9e5679b134c7925697dc73bd87dcccfe9641bb8377842b97764636ec0b3b58a"
+    },
+    {
+      "path": "dist/assets/cdawg-mascot-reactions0-v003-CjAwtkS_.webp",
+      "bytes": 507550,
+      "gzip6Bytes": 507093,
+      "sha256": "eedc398637df4a63078b66128d419bb6e0b12ec68c86685ab50018997df00885"
+    },
+    {
+      "path": "dist/assets/cdawg-mascot-reactions1-v003-K3pX8rbF.webp",
+      "bytes": 328288,
+      "gzip6Bytes": 327545,
+      "sha256": "6833db96dbccf8c4671a6497b16d49edc3ee9e8e613347780109fc4ec612a8e6"
+    },
+    {
+      "path": "dist/assets/index-CK_vzBWA.js",
+      "bytes": 2179498,
+      "gzip6Bytes": 605610,
+      "sha256": "568ec54f438021ed3acd844aad92c3a87fcec2297798d16797b3722cf1a34d52"
+    },
+    {
+      "path": "dist/assets/index-ClDNmLcJ.css",
+      "bytes": 13558,
+      "gzip6Bytes": 3694,
+      "sha256": "380c6ea2e55b5094dcb7b49156a81a9984d03a3a4b2aa7a65c2ffa0f9aa93f9d"
+    },
+    {
+      "path": "dist/assets/index-PgqIN0K2.js",
+      "bytes": 159736,
+      "gzip6Bytes": 47946,
+      "sha256": "5badfe6c0e4a626f076a1d3eb34bba50eb03069acd2b9bacc8893418fb20a110"
+    },
+    {
+      "path": "dist/index.html",
+      "bytes": 415,
+      "gzip6Bytes": 280,
+      "sha256": "1ffe5fa8d74da8dd6ca121a26cf28381f7ba2bebcda1d2252d157efec5dffd85"
+    }
+  ],
+  "compiledServerIdentical": true,
+  "compiledServerFiles": 32,
+  "baselineMainJsBytes": 2130476,
+  "tests": {
+    "unit": 370,
+    "files": 29,
+    "productionSmoke": 192,
+    "ephemeralPostgresChecks": 681
+  },
+  "limits": [
+    "Single local embedded Chromium/WebGL environment; no real mobile GPU or Discord playthrough",
+    "CPU update measures scene update, not isolated GPU duration; RAF includes scheduling",
+    "Narrow benchmark 364x204 versus actual application canvas 364x203",
+    "Node 24.14.1 tested; repository pin 24.20.0 unchanged",
+    "ZIP checksum retained unverified because original ZIP was unavailable"
+  ],
+  "baselineViteGzipApproxBytes": 601610,
+  "gzipComparisonNote": "Use matching Vite reports for baseline comparison; bundle entries use gzip level 6."
+}

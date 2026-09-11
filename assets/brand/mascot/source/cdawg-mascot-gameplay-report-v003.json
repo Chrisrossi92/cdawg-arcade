@@ -1,0 +1,62 @@
+[
+  {
+    "group": "balance0",
+    "frames": 58,
+    "unique": 58,
+    "dimensions": [
+      2048,
+      888
+    ],
+    "webpBytes": 359976,
+    "jsonBytes": 10259,
+    "pngBytes": 2080428,
+    "decodedRGBABytes": 7274496,
+    "maxFrameRMS": 1.7519679438992248,
+    "minMargin": 27
+  },
+  {
+    "group": "balance1",
+    "frames": 58,
+    "unique": 58,
+    "dimensions": [
+      2048,
+      889
+    ],
+    "webpBytes": 361240,
+    "jsonBytes": 10259,
+    "pngBytes": 2078984,
+    "decodedRGBABytes": 7282688,
+    "maxFrameRMS": 1.7479954781210294,
+    "minMargin": 27
+  },
+  {
+    "group": "reactions0",
+    "frames": 87,
+    "unique": 74,
+    "dimensions": [
+      2048,
+      1296
+    ],
+    "webpBytes": 507550,
+    "jsonBytes": 15163,
+    "pngBytes": 2934245,
+    "decodedRGBABytes": 10616832,
+    "maxFrameRMS": 1.7927643249866005,
+    "minMargin": 11
+  },
+  {
+    "group": "reactions1",
+    "frames": 62,
+    "unique": 51,
+    "dimensions": [
+      2048,
+      917
+    ],
+    "webpBytes": 328288,
+    "jsonBytes": 10855,
+    "pngBytes": 1871762,
+    "decodedRGBABytes": 7512064,
+    "maxFrameRMS": 1.745082570565141,
+    "minMargin": 21
+  }
+]

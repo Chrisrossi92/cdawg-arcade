@@ -1,16 +1,16 @@
 # CDAWG mascot source package
 
-Status: **Phase 2 canonical candidate; awaiting creative approval.**
+Status: **Appearance approved; Phase 3 gameplay integration validated on the feature branch.**
 
-See [Phase 2 evidence and preview commands](../../../docs/brand/MASCOT_PHASE_2_COMPLETION.md). Version 001 remains historical Phase 1 evidence; version 002 is the current candidate.
+See [Phase 3 evidence and preview commands](../../../docs/brand/MASCOT_PHASE_3_COMPLETION.md). Versions 001 and 002 retain historical evidence; v003 contains the integrated gameplay atlases.
 The original approved images/specification are preserved byte-for-byte. Generated
-assets are stylized interpretations and remain separate from the default game.
+assets are stylized interpretations. The approved appearance is now integrated into the feature-branch game.
 
 | Directory | Contents | Shipping policy |
 | --- | --- | --- |
 | reference | Three canonical PNGs and original authority README | Never ship |
 | source | Editable `.blend`, model/export settings report | Never ship |
-| runtime | Historical prototype plus candidate GLB, split WebP atlases and metadata | Local review only; not approved to ship |
+| runtime | Historical prototype plus candidate GLB, split WebP atlases and metadata | Only the eight v003 integration exports enter the feature build; no deployment approval |
 | previews | Historical review sheets plus candidate turnaround, nine expressions and motion sheet | Never ship |
 
 The [original specification](../../../docs/brand/CDAWG_MASCOT_3D_PRODUCTION_SPEC_V1.md)
@@ -29,8 +29,7 @@ Version future reviewed visual changes instead of silently replacing canonical
 references. This v001 prototype evolved locally before its first committed export.
 Keep original image formats/quality. No rejected wardrobe art is included.
 
-No imports from this package into `src`, no copying it into production `public` or
-`dist`, and no broad asset glob. The isolated preview has its own entry/config under
+Only the eight paths in `integrationExports` may be imported into `src`. No broad asset glob, source files, historical models or preview assets enter the application. The isolated preview has its own entry/config under
 `scripts/mascot/preview` and builds only into ignored `tmp/mascot/preview-dist`.
 No production route or feature flag is added. Validate with:
 
@@ -40,6 +39,6 @@ node scripts/mascot/check-bundle.mjs
 ```
 
 All `generatedAssets` explicitly have `approvedToShip: false`; `runtimeExports`
-remains empty. No LFS: originals are each about 1.6–2.1 MB and the model is under
+remains empty because deployment remains unauthorized. `integrationExports` separately records the eight files approved for feature-branch integration. No LFS: originals are each about 1.6–2.1 MB and the model is under
 2 MB; the repository has no existing LFS workflow. Trial frames, caches, installer,
 logs, repeat exports and Blender backups stay in ignored `tmp/mascot`.
