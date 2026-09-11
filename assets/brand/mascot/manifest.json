@@ -264,6 +264,7 @@
   ],
   "approval": {
     "design": "User approved Phase 2 appearance for integration",
-    "scope": "Feature-branch gameplay presentation only; no deployment or production configuration authorization"
+    "scope": "Feature-branch gameplay presentation only; no deployment or production configuration authorization",
+    "integratedAnimation": "User approved integrated mascot animation; final pre-merge validation and integration preparation authorized"
   }
 }

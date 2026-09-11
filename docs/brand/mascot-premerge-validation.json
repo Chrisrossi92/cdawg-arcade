@@ -1,0 +1,84 @@
+{
+  "validatedAtUTC": "2026-09-11T02:21:12.305280+00:00",
+  "implementationSha": "0205d8075161b1869cb3eaa9088624e28ddfe407",
+  "targetSha": "6f2f87a5c21a94a3e6f51a7031aec1d526bba109",
+  "featureBranch": "codex/mascot-production-foundation",
+  "targetAncestor": true,
+  "approval": "Integrated mascot animation approved by owner; pre-merge preparation authorized; no merge or deploy",
+  "tests": {
+    "unit": 370,
+    "unitFiles": 29,
+    "productionSmoke": 192,
+    "ephemeralPostgres": 681
+  },
+  "atlasRecords": 265,
+  "bundleModulesChecked": 145,
+  "byteIdenticalFrontendArtifacts": 8,
+  "byteIdenticalServerFiles": 32,
+  "artifactHashes": [
+    {
+      "path": "dist/assets/cdawg-mascot-balance0-v003-DKp2Yw6X.webp",
+      "bytes": 359976,
+      "gzip6Bytes": 359373,
+      "sha256": "d7aaafb73710490ee57a69c9587a8018f3ce0ee76e1f4555b4fd7e77cb2f1fd6"
+    },
+    {
+      "path": "dist/assets/cdawg-mascot-balance1-v003-CvuX1MVF.webp",
+      "bytes": 361240,
+      "gzip6Bytes": 360673,
+      "sha256": "d9e5679b134c7925697dc73bd87dcccfe9641bb8377842b97764636ec0b3b58a"
+    },
+    {
+      "path": "dist/assets/cdawg-mascot-reactions0-v003-CjAwtkS_.webp",
+      "bytes": 507550,
+      "gzip6Bytes": 507093,
+      "sha256": "eedc398637df4a63078b66128d419bb6e0b12ec68c86685ab50018997df00885"
+    },
+    {
+      "path": "dist/assets/cdawg-mascot-reactions1-v003-K3pX8rbF.webp",
+      "bytes": 328288,
+      "gzip6Bytes": 327545,
+      "sha256": "6833db96dbccf8c4671a6497b16d49edc3ee9e8e613347780109fc4ec612a8e6"
+    },
+    {
+      "path": "dist/assets/index-CK_vzBWA.js",
+      "bytes": 2179498,
+      "gzip6Bytes": 605610,
+      "sha256": "568ec54f438021ed3acd844aad92c3a87fcec2297798d16797b3722cf1a34d52"
+    },
+    {
+      "path": "dist/assets/index-ClDNmLcJ.css",
+      "bytes": 13558,
+      "gzip6Bytes": 3694,
+      "sha256": "380c6ea2e55b5094dcb7b49156a81a9984d03a3a4b2aa7a65c2ffa0f9aa93f9d"
+    },
+    {
+      "path": "dist/assets/index-PgqIN0K2.js",
+      "bytes": 159736,
+      "gzip6Bytes": 47946,
+      "sha256": "5badfe6c0e4a626f076a1d3eb34bba50eb03069acd2b9bacc8893418fb20a110"
+    },
+    {
+      "path": "dist/index.html",
+      "bytes": 415,
+      "gzip6Bytes": 280,
+      "sha256": "1ffe5fa8d74da8dd6ca121a26cf28381f7ba2bebcda1d2252d157efec5dffd85"
+    }
+  ],
+  "logs": {
+    "unit.log": {
+      "sha256": "6e9639d4becddf3dd657336018087dfb5c4feccf95897a883cbb5532db924ee6"
+    },
+    "production.log": {
+      "sha256": "c50c962a72dc84e89b17a0be796bf0b83916321db49c72c3bd5297752651b2a8"
+    },
+    "database.log": {
+      "sha256": "fea294e61cf6a3f6ec95a708717f41411ec5675aa19868e68e0ace0be002d220"
+    }
+  },
+  "diffWhitespaceException": "Original canonical specification lines 3 and 4 retain the supplied Markdown hard-break spaces; input hashes must remain unchanged.",
+  "toolchain": "Node 24.14.1; existing 24.20.0 repository pin unchanged",
+  "mergePerformed": false,
+  "deploymentPerformed": false,
+  "productionConfigurationChanged": false
+}

@@ -1,4 +1,12 @@
-# Prototype runtime candidates — local review only
+# Mascot runtime assets
+
+The integrated v003 animation is approved. Four WebP sheets and their four JSON
+metadata files are the only feature-build exports. See
+[Phase 3 evidence](../../../../docs/brand/MASCOT_PHASE_3_COMPLETION.md) and
+[pre-merge readiness](../../../../docs/brand/MASCOT_PREMERGE.md).
+No merge or deployment is authorized. Older v001/v002 assets remain historical.
+
+## Historical v001 feasibility assets
 
 The GLB contains one skinned model, four material primitives and five one-second
 clips: idle_default, lean_left, lean_right, panic and fall. Idle loops; other clips

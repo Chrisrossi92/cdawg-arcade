@@ -9,5 +9,5 @@ const report=`${root}/source/cdawg-mascot-gameplay-report-v003.json`;copyFileSyn
 manifest.generatedAssets=manifest.generatedAssets.filter(a=>!a.path.includes('v003'));
 for(const path of [...files,report]){const bytes=readFileSync(path);manifest.generatedAssets.push({path,status:'received',bytes:bytes.length,sha256:createHash('sha256').update(bytes).digest('hex'),approvedToShip:false})}
 manifest.status='design-approved-gameplay-integration';manifest.integrationExports=files;
-manifest.approval={design:'User approved Phase 2 appearance for integration',scope:'Feature-branch gameplay presentation only; no deployment or production configuration authorization'};
+manifest.approval={...manifest.approval,design:'User approved Phase 2 appearance for integration',scope:'Feature-branch gameplay presentation only; no deployment or production configuration authorization'};
 writeFileSync(root+'/manifest.json',JSON.stringify(manifest,null,2)+'\n');
