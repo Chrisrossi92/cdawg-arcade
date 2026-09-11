@@ -12,5 +12,5 @@ while todo:
    if (r/q).is_file():todo.append(q)
 assert not any('balance-' in p or 'mascot-' in p for p in seen)
 assert all(not any(x in p for x in ['reference','source','.ttf','.blend']) for p in seen)
-report={'lobbyGraphOnly':True,'phaserLoadedByLobby':False,'noReferenceOrSourceAssets':True,'files':files,'totalBytes':sum(x['bytes'] for x in files.values()),'totalGzipBytes':sum(x['gzipBytes'] for x in files.values()),'note':'Build graph bytes, not measured HTTP transfer; SVGs below Vite threshold are embedded in JS. Separate Balance HTML adds unchanged gameplay only on navigation.'}
+report={'lobbyGraphOnly':True,'phaserLoadedByLobby':False,'noReferenceOrSourceAssets':True,'files':files,'totalBytes':sum(x['bytes'] for x in files.values()),'totalGzipBytes':sum(x['gzipBytes'] for x in files.values()),'note':'Build graph bytes, not measured HTTP transfer; SVGs below Vite threshold are embedded in JS. Separate Balance HTML loads gameplay with approved V004 mascot assets only on navigation.'}
 Path('docs/brand/arcade-preview-bundle.json').write_text(json.dumps(report,indent=2)+'\n');print('Lobby build graph:',len(files),'files,',report['totalBytes'],'bytes;',report['totalGzipBytes'],'gzip bytes; no Phaser or source boards')

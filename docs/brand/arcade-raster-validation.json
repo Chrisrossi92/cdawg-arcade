@@ -1,20 +1,35 @@
 {
-  "checks": 48,
+  "checks": 56,
   "sizes": {
     "cdawg-avatar-128-v001.png": {
       "width": 128,
       "height": 128,
       "bytes": 33640
     },
+    "cdawg-avatar-128-v002.png": {
+      "width": 128,
+      "height": 128,
+      "bytes": 31952
+    },
     "cdawg-avatar-256-v001.png": {
       "width": 256,
       "height": 256,
       "bytes": 95401
     },
+    "cdawg-avatar-256-v002.png": {
+      "width": 256,
+      "height": 256,
+      "bytes": 90352
+    },
     "cdawg-avatar-64-v001.png": {
       "width": 64,
       "height": 64,
       "bytes": 10866
+    },
+    "cdawg-avatar-64-v002.png": {
+      "width": 64,
+      "height": 64,
+      "bytes": 10489
     },
     "cdawg-favicon-16-v001.png": {
       "width": 16,
@@ -40,6 +55,11 @@
       "width": 296,
       "height": 343,
       "bytes": 140117
+    },
+    "cdawg-host-v002.png": {
+      "width": 295,
+      "height": 350,
+      "bytes": 136730
     }
   }
 }

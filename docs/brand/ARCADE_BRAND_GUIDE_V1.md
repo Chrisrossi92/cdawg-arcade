@@ -1,6 +1,6 @@
 # CDAWG ARCADE — brand system V1
 
-Candidate for one consolidated creative approval. This is a new vector identity and isolated lobby prototype; production continues to use the accepted mascot integration.
+Brand system and lobby direction creatively approved. The corrected V004 mascot was subsequently approved for animation integration. This is a new vector identity and isolated lobby prototype; production continues to use the accepted mascot integration.
 
 ## Character and hierarchy
 
@@ -41,7 +41,7 @@ Fredoka 600 is the display face: short headings, brand and primary actions. Atki
 
 ## Mascot, cards and motion
 
-One welcoming owned mascot render anchors the lobby; do not repeat him on every card. The 512² render uses the approved candidate model and existing `idle_mischief` action. It adds no costume, changes no geometry and overwrites no mascot source. Avatar framing consumes this same owned render, with the orange collar visible. The flat vector avatar frame is reusable with approved owned portraits; exports at 64/128/256px are derivatives, not new character authority.
+One welcoming owned mascot render anchors the lobby; do not repeat him on every card. The 512² render uses the approved corrected V004 model and approved `expr_default` action. It adds no costume, changes no geometry and overwrites no mascot source. Avatar framing consumes this same owned render, with the orange collar visible. The flat vector avatar frame is reusable with approved owned portraits; exports at 64/128/256px are derivatives, not new character authority.
 
 Game-card anatomy: availability eyebrow, real title, restrained game illustration, one-sentence description, clear primary action, quiet supporting footer. CDAWG BALANCE is the sole playable title. Two COMING SOON cards have no speculative names, release dates or working Play buttons. Their feedback buttons explain availability. The reusable component handles practice, playable example, disabled, loading, error and coming-soon states. Loading uses `aria-busy`; actual disabled buttons cannot receive clicks; error preserves local practice; feedback is announced in a live region. Personal best and guild summaries show honest empty states, never invented scores/rankings.
 

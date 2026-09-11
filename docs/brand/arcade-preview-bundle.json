@@ -5,7 +5,7 @@
   "files": {
     "index.html": {
       "bytes": 560,
-      "gzipBytes": 359
+      "gzipBytes": 360
     },
     "assets/index-BMC5y7nY.css": {
       "bytes": 14594,
@@ -23,17 +23,17 @@
       "bytes": 194724,
       "gzipBytes": 60713
     },
-    "assets/index-DHdX_Or6.js": {
+    "assets/index-e4Z4AEKZ.js": {
       "bytes": 13273,
-      "gzipBytes": 4392
+      "gzipBytes": 4396
     },
-    "assets/cdawg-avatar-128-v001-Npm5eqyj.png": {
-      "bytes": 33640,
-      "gzipBytes": 33673
+    "assets/cdawg-avatar-128-v002-Cb4pMsHG.png": {
+      "bytes": 31952,
+      "gzipBytes": 31980
     },
-    "assets/cdawg-host-v001-BJ5CAuEE.png": {
-      "bytes": 140117,
-      "gzipBytes": 140164
+    "assets/cdawg-host-v002-DkXDOlU8.png": {
+      "bytes": 136730,
+      "gzipBytes": 136793
     },
     "assets/cdawg-wordmark-dark-v001-D7OPT70T.svg": {
       "bytes": 9054,
@@ -56,7 +56,7 @@
       "gzipBytes": 1334
     }
   },
-  "totalBytes": 467398,
-  "totalGzipBytes": 286818,
-  "note": "Build graph bytes, not measured HTTP transfer; SVGs below Vite threshold are embedded in JS. Separate Balance HTML adds unchanged gameplay only on navigation."
+  "totalBytes": 462323,
+  "totalGzipBytes": 281759,
+  "note": "Build graph bytes, not measured HTTP transfer; SVGs below Vite threshold are embedded in JS. Separate Balance HTML loads gameplay with approved V004 mascot assets only on navigation."
 }

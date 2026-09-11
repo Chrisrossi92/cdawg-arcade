@@ -10,8 +10,8 @@ import wordmark from '../../../assets/brand/arcade/vector/cdawg-wordmark-dark-v0
 import tag from '../../../assets/brand/arcade/vector/cdawg-tag-dark-v001.svg';
 import smallTag from '../../../assets/brand/arcade/vector/cdawg-tag-small-v001.svg';
 import mono from '../../../assets/brand/arcade/vector/cdawg-tag-mono-cream-v001.svg';
-import host from '../../../assets/brand/arcade/runtime/cdawg-host-v001.png';
-import avatar from '../../../assets/brand/arcade/runtime/cdawg-avatar-128-v001.png';
+import host from '../../../assets/brand/arcade/runtime/cdawg-host-v002.png';
+import avatar from '../../../assets/brand/arcade/runtime/cdawg-avatar-128-v002.png';
 import tokens from '../../../assets/brand/arcade/tokens.json';
 type State='practice'|'playable'|'disabled'|'loading'|'error';
 const labels:Record<State,string>={practice:'Local practice',playable:'Signed-in example',disabled:'Unavailable',loading:'Loading',error:'Connection error'};

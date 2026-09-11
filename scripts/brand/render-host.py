@@ -3,10 +3,10 @@ import bpy
 from pathlib import Path
 from mathutils import Vector
 root=Path(__file__).resolve().parents[2]
-bpy.ops.wm.open_mainfile(filepath=str(root/'assets/brand/mascot/source/cdawg-mascot-candidate-v002.blend'))
+bpy.ops.wm.open_mainfile(filepath=str(root/'assets/brand/mascot/correction-v004/source/cdawg-mascot-correction-v004.blend'))
 scene=bpy.context.scene
 rig=next(o for o in scene.objects if o.type=='ARMATURE')
-rig.animation_data.action=bpy.data.actions['idle_mischief'];scene.frame_set(1)
+rig.animation_data.action=bpy.data.actions['expr_default'];scene.frame_set(1)
 scene.render.resolution_x=512;scene.render.resolution_y=512
 scene.render.resolution_percentage=100
 scene.cycles.samples=48;scene.cycles.seed=11

@@ -31,6 +31,15 @@ for (const input of manifest.inputs) {
     assert.equal(createHash('sha256').update(data).digest('hex'), input.sha256);
   }
 }
+// The approved static correction has its own closed inventory; it remains source-only.
+const correctionRoot='assets/brand/mascot/correction-v004';
+const correction=existsSync(correctionRoot+'/manifest.json')?JSON.parse(readFileSync(correctionRoot+'/manifest.json','utf8')):null;
+const correctionFiles=[];
+if(correction)for(const [relative,expected] of Object.entries(correction.files)){
+ assert.match(relative,/^(source\/cdawg-mascot-correction-v004\.(blend|glb)|previews\/[a-z-]+\.png|reports\/[a-z-]+\.json)$/);
+ const path=correctionRoot+'/'+relative;assert.ok(lstatSync(path).isFile());
+ const bytes=readFileSync(path);assert.equal(bytes.length,expected.bytes);assert.equal(createHash('sha256').update(bytes).digest('hex'),expected.sha256);correctionFiles.push(path);
+}
 // Until the next phase, this package must contain no unregistered binary assets.
 function inspect(dir) {
   for (const entry of readdirSync(dir, { withFileTypes: true })) {
@@ -38,7 +47,7 @@ function inspect(dir) {
     assert.ok(!entry.isSymbolicLink(), `Symlink forbidden: ${path}`);
     if (entry.isDirectory()) inspect(path);
     else assert.ok(path.endsWith('.md') || path.endsWith('/manifest.json') ||
-      [...manifest.inputs, ...(manifest.generatedAssets ?? [])].some(x => x.path === path && x.status === 'received'),
+      correctionFiles.includes(path) || [...manifest.inputs, ...(manifest.generatedAssets ?? [])].some(x => x.path === path && x.status === 'received'),
     `Unregistered asset: ${path}`);
   }
 }
@@ -54,7 +63,9 @@ for (const item of manifest.generatedAssets ?? []) {
 
 assert.deepEqual(manifest.runtimeExports, [], 'Deployment remains unauthorized');
 if (manifest.integrationExports) {
- const expected=['balance0','balance1','reactions0','reactions1'].flatMap(g=>['webp','json'].map(e=>`assets/brand/mascot/runtime/cdawg-mascot-${g}-v003.${e}`));
+ const version=manifest.integrationVersion??'v003';assert.ok(['v003','v004'].includes(version));
+ if(version==='v004')assert.equal(correction?.animationAtlasRegenerationAuthorized,true);
+ const expected=['balance0','balance1','reactions0','reactions1'].flatMap(g=>['webp','json'].map(e=>`assets/brand/mascot/runtime/cdawg-mascot-${g}-${version}.${e}`));
  assert.deepEqual([...manifest.integrationExports].sort(), expected.sort());
  for(const path of expected)assert.ok(manifest.generatedAssets.some(a=>a.path===path));
 }

@@ -1,12 +1,12 @@
 {
-  "status": "static-correction-awaiting-creative-review",
+  "status": "creative-approved-for-animation-integration",
   "parentModel": "assets/brand/mascot/source/cdawg-mascot-candidate-v002.blend",
   "authoring": "scripts/mascot/build-canonical-correction.py",
   "references": [
     "assets/brand/mascot/reference/cdawg-b1-turnaround-v001.png",
     "assets/brand/mascot/reference/cdawg-b1-expressions-v001.png"
   ],
-  "animationAtlasRegenerationAuthorized": false,
+  "animationAtlasRegenerationAuthorized": true,
   "productionImports": false,
   "files": {
     "source/cdawg-mascot-correction-v004.blend": {
@@ -81,5 +81,6 @@
       "bytes": 3573,
       "sha256": "5c6af2bc3bdb5e8cdfb471215bfdabc5ff1cb2ec57015d4f12c13fb5de53e9fe"
     }
-  }
+  },
+  "approval": "Owner explicitly approved the corrected head, six expressions, collar and tag after the static review. Merge and deployment remain unauthorized."
 }

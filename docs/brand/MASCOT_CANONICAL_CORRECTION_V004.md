@@ -1,6 +1,6 @@
 # Focused canonical mascot correction — static checkpoint V004
 
-Status: **technical checks passed; consolidated creative review required**. The owner approved the CDAWG Arcade brand system, Notched Tag, typography, palette and overall lobby direction after `bc803e4`. That approval explicitly excluded the lobby mascot render. This checkpoint does not reopen or edit the approved interface.
+Status: **owner creatively approved; affected atlases regenerated and integrated on the feature branch**. See [V004 pre-merge validation](MASCOT_V004_PREMERGE.md). The evidence below records the original static checkpoint. The owner approved the CDAWG Arcade brand system, Notched Tag, typography, palette and overall lobby direction after `bc803e4`. That approval explicitly excluded the lobby mascot render. This checkpoint does not reopen or edit the approved interface.
 
 ## Scope and canonical authority
 

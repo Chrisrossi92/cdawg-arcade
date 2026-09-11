@@ -163,13 +163,25 @@
       "bytes": 33640,
       "sha256": "c96dd006dc67be2ef30f36bf1e7088763f3810211080c2af10ab9a92d4fafb1a"
     },
+    "runtime/cdawg-avatar-128-v002.png": {
+      "bytes": 31952,
+      "sha256": "05d60b5ce8ad71e871cf04fa807d0ab39298ed037dcbd75d5fd3c3ec6930817c"
+    },
     "runtime/cdawg-avatar-256-v001.png": {
       "bytes": 95401,
       "sha256": "78ae47f590eaee6befbf4ad0913e216372d058409abcc218cc9271061ab5ce86"
     },
+    "runtime/cdawg-avatar-256-v002.png": {
+      "bytes": 90352,
+      "sha256": "24b16c0e8e9273abc7e77c79aa0ab5d8a9ccd8cc284021e3726e9746bf5d7a11"
+    },
     "runtime/cdawg-avatar-64-v001.png": {
       "bytes": 10866,
       "sha256": "b9749a339feb04b346a75ed9384cf6054e34c843c19b59817a2bde5117051d08"
+    },
+    "runtime/cdawg-avatar-64-v002.png": {
+      "bytes": 10489,
+      "sha256": "3d8601ec46544298a0d441e7f983044700c553bcef783e2bfe69cc0819745cfc"
     },
     "runtime/cdawg-display-latin-v001.woff2": {
       "bytes": 15380,
@@ -195,11 +207,15 @@
       "bytes": 140117,
       "sha256": "a2515aaf928590f4b89414ae49f8745bb607f1fd0c9804defc3d77a1006292da"
     },
+    "runtime/cdawg-host-v002.png": {
+      "bytes": 136730,
+      "sha256": "07447717d3326ef930c9424c90144a451fa4c2faf92457e58075f9e777d4d13d"
+    },
     "runtime/cdawg-ui-latin-v001.woff2": {
       "bytes": 15432,
       "sha256": "525717f5415ec7dd68c197effd798eb96d79e85545ec631acea21c4a265fad65"
     }
   },
   "vectorBytes": 117434,
-  "runtimeBytes": 315968
+  "runtimeBytes": 585491
 }

@@ -1,4 +1,4 @@
-"""Author continuous gameplay sprites from the approved, unchanged v002 source.
+"""Author continuous gameplay sprites from the supplied approved source.
 Blender 4.5.13; --source FILE --output DIR. No generated concepts or geometry edits.
 """
 import bpy, argparse, sys, math, json

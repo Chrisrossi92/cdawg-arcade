@@ -1,0 +1,240 @@
+{
+  "beforeDesktop": {
+    "mode": "sweep",
+    "samples": 600,
+    "frameIntervalMs": {
+      "p50": 16.66999999999971,
+      "p95": 16.73999999999978
+    },
+    "cpuUpdateMs": {
+      "p50": 0.09999999403953552,
+      "p95": 0.19999998807907104
+    },
+    "canvas": [
+      {
+        "width": 974,
+        "height": 502
+      }
+    ],
+    "elapsedMs": 19349.109999999935,
+    "balance": 0.98,
+    "lean": 0.9799999999999999,
+    "phase": 0.899266475092356,
+    "mood": "panic",
+    "finished": true,
+    "reduced": false
+  },
+  "beforeNarrow": {
+    "mode": "sweep",
+    "samples": 600,
+    "frameIntervalMs": {
+      "p50": 16.66999999999971,
+      "p95": 16.759999999999856
+    },
+    "cpuUpdateMs": {
+      "p50": 0.09999999403953552,
+      "p95": 0.19999998807907104
+    },
+    "canvas": [
+      {
+        "width": 364,
+        "height": 204
+      }
+    ],
+    "elapsedMs": 23084.42333333329,
+    "balance": 0.98,
+    "lean": 0.9799999999999999,
+    "phase": 0.8571757541246816,
+    "mood": "panic",
+    "finished": true,
+    "reduced": false
+  },
+  "afterDesktop": {
+    "mode": "sweep",
+    "samples": 600,
+    "frameIntervalMs": {
+      "p50": 16.66999999999971,
+      "p95": 16.75
+    },
+    "cpuUpdateMs": {
+      "p50": 0.09999999403953552,
+      "p95": 0.20000001788139343
+    },
+    "canvas": [
+      {
+        "width": 974,
+        "height": 502
+      }
+    ],
+    "elapsedMs": 17793.3537333333,
+    "balance": 0.98,
+    "lean": 0.9799999999999999,
+    "phase": 0.44184889476794814,
+    "mood": "panic",
+    "finished": false,
+    "reduced": false
+  },
+  "afterNarrow": {
+    "mode": "sweep",
+    "samples": 600,
+    "frameIntervalMs": {
+      "p50": 16.66999999999971,
+      "p95": 16.75
+    },
+    "cpuUpdateMs": {
+      "p50": 0.09999999403953552,
+      "p95": 0.20000001788139343
+    },
+    "canvas": [
+      {
+        "width": 364,
+        "height": 204
+      }
+    ],
+    "elapsedMs": 21636.853333333307,
+    "balance": 0.98,
+    "lean": 0.9799999999999999,
+    "phase": 0.8454273402619776,
+    "mood": "panic",
+    "finished": true,
+    "reduced": false
+  },
+  "gameplay": {
+    "mode": "auto",
+    "samples": 600,
+    "frameIntervalMs": {
+      "p50": 16.66999999999971,
+      "p95": 16.759999999999856
+    },
+    "cpuUpdateMs": {
+      "p50": 0.09999999403953552,
+      "p95": 0.29999998211860657
+    },
+    "canvas": [
+      {
+        "width": 364,
+        "height": 204
+      }
+    ],
+    "activeSamples": 391,
+    "activeFrameIntervalMs": {
+      "p50": 16.659999999999854,
+      "p95": 16.73999999999942
+    },
+    "activeCpuUpdateMs": {
+      "p50": 0.19999998807907104,
+      "p95": 0.5
+    },
+    "firstSpriteTick": 3,
+    "atlasReady": true,
+    "ticks": 394,
+    "finished": true,
+    "failed": true,
+    "score": 6.6,
+    "resultCallbackDelayMs": 380.2000000178814,
+    "lean": -0.8209322046016988,
+    "phase": 0.60912287592749,
+    "mood": "wobble",
+    "lossBeforeFixed": false
+  },
+  "delayed": {
+    "mode": "slow",
+    "samples": 600,
+    "frameIntervalMs": {
+      "p50": 16.66999999999971,
+      "p95": 16.720000000001164
+    },
+    "cpuUpdateMs": {
+      "p50": 0.09999999403953552,
+      "p95": 0.19999998807907104
+    },
+    "canvas": [
+      {
+        "width": 364,
+        "height": 204
+      }
+    ],
+    "activeSamples": 386,
+    "activeFrameIntervalMs": {
+      "p50": 16.660000000000583,
+      "p95": 16.76000000000058
+    },
+    "activeCpuUpdateMs": {
+      "p50": 0.09999999403953552,
+      "p95": 0.30000001192092896
+    },
+    "firstSpriteTick": 302,
+    "atlasReady": true,
+    "ticks": 382,
+    "finished": true,
+    "failed": true,
+    "score": 6.4,
+    "resultCallbackDelayMs": 381,
+    "lean": -0.813921409884483,
+    "phase": 0.6164413416353117,
+    "mood": "wobble",
+    "lossBeforeFixed": false
+  },
+  "reduced": {
+    "mode": "sweep",
+    "samples": 600,
+    "frameIntervalMs": {
+      "p50": 16.66999999999971,
+      "p95": 16.76999999999971
+    },
+    "cpuUpdateMs": {
+      "p50": 0.09999999403953552,
+      "p95": 0.20000001788139343
+    },
+    "canvas": [
+      {
+        "width": 364,
+        "height": 204
+      }
+    ],
+    "elapsedMs": 20397.056666666598,
+    "balance": 0.98,
+    "lean": 0.9799999997271562,
+    "phase": 0,
+    "mood": "panic",
+    "finished": true,
+    "reduced": true
+  },
+  "realGameNarrow": {
+    "resultVisible": true,
+    "playAgainVisible": true,
+    "brokenImages": 0,
+    "overflow": false,
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  "realGameDesktop": {
+    "resultVisible": true,
+    "brokenImages": 0,
+    "overflow": false,
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    }
+  },
+  "method": "Same browser and authored Motion stress test using the actual BalanceScene, 600 retained samples per capture, quiet render workload; canvas sizes shown. Scene-update CPU excludes GPU render time. Desktop after capture ends before loss; completed loss is covered by narrow and auto runs. No physical-device or production benchmark.",
+  "lobby": {
+    "viewports": [
+      [
+        1280,
+        900
+      ],
+      [
+        390,
+        844
+      ]
+    ],
+    "horizontalOverflow": false,
+    "brokenImages": 0,
+    "fontsLoaded": true,
+    "host": "cdawg-host-v002.png",
+    "avatar": "cdawg-avatar-128-v002.png"
+  }
+}

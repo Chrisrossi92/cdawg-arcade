@@ -2,7 +2,7 @@ import sharp from './preview/node_modules/sharp/lib/index.js';
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import assert from 'node:assert/strict';
-const [source,out]=process.argv.slice(2);mkdirSync(out,{recursive:true});
+const [source,out,version="v003"]=process.argv.slice(2);assert.match(version,/^v\d{3}$/);mkdirSync(out,{recursive:true});
 const samples=Array.from({length:49},(_,i)=>i).filter(i=>i%2===0||[3,5,43,45].includes(i));
 const inputs=JSON.parse(readFileSync(source+'/frames.json')).filter(f=>!f.group.startsWith('balance')||samples.includes(f.index));const reports=[];
 for(const group of ['balance0','balance1','reactions0','reactions1']){
@@ -16,7 +16,7 @@ for(const group of ['balance0','balance1','reactions0','reactions1']){
  }
  const height=y+row;assert.ok(height<=2048);const png=await sharp({create:{width:2048,height,channels:4,background:{r:0,g:0,b:0,alpha:0}}}).composite(tiles).png().toBuffer();const webp=await sharp(png).webp({quality:90,alphaQuality:100,effort:4}).toBuffer();const raw=await sharp(png).raw().toBuffer(),decoded=await sharp(webp).raw().toBuffer();let maxRMS=0;
  for(const {frame:f} of Object.values(frames)){let sum=0;for(let yy=f.y;yy<f.y+f.h;yy++)for(let xx=f.x;xx<f.x+f.w;xx++){const i=(yy*2048+xx)*4;assert.equal(raw[i+3],decoded[i+3]);for(let c=0;c<3;c++)sum+=((raw[i+c]-decoded[i+c])*raw[i+3]/255)**2}maxRMS=Math.max(maxRMS,Math.sqrt(sum/(256*256*3)))}assert.ok(maxRMS<2,'Quality gate');
- const stem=`cdawg-mascot-${group}-v003`;const metadata={frames,meta:{image:stem+'.webp',size:{w:2048,h:height},groundOffset:30,extrusion:2,balanceSamples:samples.length,sourceIndices:samples,phaseSamples:4,lossSamples:31,resultSamples:25}};writeFileSync(`${out}/${stem}.webp`,webp);writeFileSync(`${out}/${stem}.json`,JSON.stringify(metadata)+'\n');writeFileSync(`${out}/${stem}.png`,png);
+ const stem=`cdawg-mascot-${group}-${version}`;const metadata={frames,meta:{image:stem+'.webp',size:{w:2048,h:height},groundOffset:30,extrusion:2,balanceSamples:samples.length,sourceIndices:samples,phaseSamples:4,lossSamples:31,resultSamples:25}};writeFileSync(`${out}/${stem}.webp`,webp);writeFileSync(`${out}/${stem}.json`,JSON.stringify(metadata)+'\n');writeFileSync(`${out}/${stem}.png`,png);
  reports.push({group,frames:selected.length,unique:tiles.length,dimensions:[2048,height],webpBytes:webp.length,jsonBytes:Buffer.byteLength(JSON.stringify(metadata))+1,pngBytes:png.length,decodedRGBABytes:2048*height*4,maxFrameRMS:maxRMS,minMargin});
 }
 writeFileSync(out+'/pack-report.json',JSON.stringify(reports,null,2)+'\n');console.log(JSON.stringify(reports));
