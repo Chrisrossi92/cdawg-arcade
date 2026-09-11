@@ -1,5 +1,8 @@
 # Approved mascot: pre-merge readiness
 
+Subsequent release status: [production release accepted](MASCOT_RELEASE_ACCEPTANCE.md). This document retains the earlier validation checkpoint.
+
+
 The owner approved both the mascot appearance and integrated animation. Final pre-merge validation is complete. **Ready for merge review; merge and deployment remain separately unauthorized.**
 
 ## Exact integration scope

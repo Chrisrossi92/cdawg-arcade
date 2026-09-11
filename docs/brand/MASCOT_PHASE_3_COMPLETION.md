@@ -1,5 +1,8 @@
 # Mascot Phase 3: smooth gameplay integration
 
+Subsequent release status: [production release accepted](MASCOT_RELEASE_ACCEPTANCE.md). This document retains the earlier validation checkpoint.
+
+
 Status: **implemented and validated on the existing feature branch**. The owner approved the Phase 2 appearance for integration. No further creative approval is required for this checkpoint. The owner subsequently approved the integrated animation; see [final pre-merge readiness](MASCOT_PREMERGE.md). Merge and deployment remain unauthorized.
 
 ## Gameplay behavior
