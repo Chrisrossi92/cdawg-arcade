@@ -1,3 +1,4 @@
+import {createManagedGame} from '../managedGame';
 import {useEffect, useRef} from 'react';
 /** Decorative reaction. Lazy renderer keeps server-side UI tests independent of a browser. */
 export function ResultMascot({side, failed}: {side: number; failed: boolean}) {
@@ -13,8 +14,9 @@ export function ResultMascot({side, failed}: {side: number; failed: boolean}) {
         create() {this.mascot = new SpriteMascot(this, {side, failed})}
         update(_time: number, delta: number) {this.mascot.draw({balance: side, finished: true, failed}, delta, 128, 142, .70)}
       }
-      game = new Phaser.Game({type: Phaser.AUTO, parent: host.current, width: 256, height: 160,
-        transparent: true, audio: {noAudio: true}, banner: false, scene: Reaction});
+      const config:import('phaser').Types.Core.GameConfig = {type: Phaser.AUTO, parent: host.current, width: 256, height: 160,
+        transparent: true, audio: {noAudio: true}, banner: false, scene: Reaction};
+      game=typeof __ARCADE_LOBBY__!=='undefined'&&__ARCADE_LOBBY__?createManagedGame(Phaser,config):new Phaser.Game(config);
     }).catch(() => { /* Decorative failure must never block result controls or score delivery. */ });
     return () => {disposed = true; game?.destroy(true)};
   }, [side, failed]);

@@ -1,0 +1,221 @@
+{
+  "baseline": "758c926e9a733f0c83a904515c4654b2227e7728",
+  "gate": false,
+  "disabled": {
+    "index.html": {
+      "bytes": 415,
+      "gzip": 277,
+      "sha256": "b4f5f9546b948361ce0fad9ef46190252220805ff7d0080d0dc1b8b3150feb19"
+    },
+    "assets/cdawg-mascot-balance0-v004-BDwc5MnW.webp": {
+      "bytes": 375832,
+      "gzip": 375568,
+      "sha256": "42da55184ed19413cadc1c549a2a047ea2ac640d42d987a703dac93275cd8c12"
+    },
+    "assets/cdawg-mascot-balance1-v004-RnhYpwi9.webp": {
+      "bytes": 376956,
+      "gzip": 376489,
+      "sha256": "1c8bd805a87019d7ab0c43525aa62063346f29d5679e3f9983bb8ff36ded3569"
+    },
+    "assets/cdawg-mascot-reactions0-v004-BcYTbBqx.webp": {
+      "bytes": 516782,
+      "gzip": 516482,
+      "sha256": "7e701c7426d7eb270ccd49cf3554946ba2800d368929054071ba3be2e6aa6c31"
+    },
+    "assets/cdawg-mascot-reactions1-v004-BtVb-jPy.webp": {
+      "bytes": 333182,
+      "gzip": 332584,
+      "sha256": "c49f4097c678e50ca7f780c2ca93fa288bc3ec48155d8525d7105fdeb9a809be"
+    },
+    "assets/index-ClDNmLcJ.css": {
+      "bytes": 13558,
+      "gzip": 3689,
+      "sha256": "380c6ea2e55b5094dcb7b49156a81a9984d03a3a4b2aa7a65c2ffa0f9aa93f9d"
+    },
+    "assets/index-PgqIN0K2.js": {
+      "bytes": 159736,
+      "gzip": 48353,
+      "sha256": "5badfe6c0e4a626f076a1d3eb34bba50eb03069acd2b9bacc8893418fb20a110"
+    },
+    "assets/index-xnU_t0jt.js": {
+      "bytes": 2180054,
+      "gzip": 608390,
+      "sha256": "7272e8bf59a29e9aeccef1156c383b26750d623ce9c366a144fa38b6423ae206"
+    }
+  },
+  "enabled": {
+    "index.html": {
+      "bytes": 415,
+      "gzip": 278,
+      "sha256": "ad286a2bdf4aa3fabe4f43e45ce5154ae25f6cc3c3c7ad491d83b6a4fe6e4ea6"
+    },
+    "assets/GameEntry-4Vf8zsRm.js": {
+      "bytes": 1959788,
+      "gzip": 538730,
+      "sha256": "1b2231bd80cd8db1d204a66f382646249212c07bbc454a6970294f818089706c"
+    },
+    "assets/GameEntry-ClDNmLcJ.css": {
+      "bytes": 13558,
+      "gzip": 3689,
+      "sha256": "380c6ea2e55b5094dcb7b49156a81a9984d03a3a4b2aa7a65c2ffa0f9aa93f9d"
+    },
+    "assets/cdawg-display-latin-v001-CeyYqTKY.woff2": {
+      "bytes": 15380,
+      "gzip": 15403,
+      "sha256": "f6fbc09a44f7a52bb3ce94448545b957ae2be96899bfcbcf90c0734fdd57131c"
+    },
+    "assets/cdawg-horizontal-dark-v001-CocDCRX-.svg": {
+      "bytes": 9760,
+      "gzip": 2903,
+      "sha256": "7f749727a504bbe1bee417267910841155d3dcc9c972aad679e316dc33f9d787"
+    },
+    "assets/cdawg-host-default-v004-Dy6_NmHH.webp": {
+      "bytes": 20932,
+      "gzip": 20960,
+      "sha256": "22d76bf8191718d897bd5aab92465d44c029c735902154881d0b68583844d946"
+    },
+    "assets/cdawg-host-delighted-v004-DCuxxOiu.webp": {
+      "bytes": 20390,
+      "gzip": 20418,
+      "sha256": "503e66befa300e6363ca8cdfd87bd63d8cc64e80a4d73c11603b9db4afd46fc1"
+    },
+    "assets/cdawg-host-mischief-v004-BH8_sl9C.webp": {
+      "bytes": 20992,
+      "gzip": 21020,
+      "sha256": "89a06f502e8e6293909ac329b9bdc833eddac5fbc0171c7c87c3aff97ed4a552"
+    },
+    "assets/cdawg-mascot-balance0-v004-BDwc5MnW.webp": {
+      "bytes": 375832,
+      "gzip": 375568,
+      "sha256": "42da55184ed19413cadc1c549a2a047ea2ac640d42d987a703dac93275cd8c12"
+    },
+    "assets/cdawg-mascot-balance1-v004-RnhYpwi9.webp": {
+      "bytes": 376956,
+      "gzip": 376489,
+      "sha256": "1c8bd805a87019d7ab0c43525aa62063346f29d5679e3f9983bb8ff36ded3569"
+    },
+    "assets/cdawg-mascot-reactions0-v004-BcYTbBqx.webp": {
+      "bytes": 516782,
+      "gzip": 516482,
+      "sha256": "7e701c7426d7eb270ccd49cf3554946ba2800d368929054071ba3be2e6aa6c31"
+    },
+    "assets/cdawg-mascot-reactions1-v004-BtVb-jPy.webp": {
+      "bytes": 333182,
+      "gzip": 332584,
+      "sha256": "c49f4097c678e50ca7f780c2ca93fa288bc3ec48155d8525d7105fdeb9a809be"
+    },
+    "assets/cdawg-ui-latin-v001-CfIt6cLC.woff2": {
+      "bytes": 15432,
+      "gzip": 15455,
+      "sha256": "525717f5415ec7dd68c197effd798eb96d79e85545ec631acea21c4a265fad65"
+    },
+    "assets/index-COBSz9hO.css": {
+      "bytes": 21188,
+      "gzip": 4641,
+      "sha256": "23779db18fdb5369f9186d2703afd8a1902bb7f30523a942252a61a879c88d76"
+    },
+    "assets/index-D0uphbUP.js": {
+      "bytes": 235323,
+      "gzip": 73069,
+      "sha256": "878647b76975354fa899c5165c08ff923bffa33ae59e508c6476fbffd60d6563"
+    },
+    "assets/index-PgqIN0K2.js": {
+      "bytes": 159736,
+      "gzip": 48353,
+      "sha256": "5badfe6c0e4a626f076a1d3eb34bba50eb03069acd2b9bacc8893418fb20a110"
+    }
+  },
+  "baselineFrontendBytes": 3955937,
+  "disabledBytes": 3956515,
+  "enabledBytes": 4095646,
+  "disabledDelta": 578,
+  "unchangedBaselineFiles": [
+    "dist/assets/index-ClDNmLcJ.css",
+    "dist/assets/cdawg-mascot-reactions0-v004-BcYTbBqx.webp",
+    "dist/assets/cdawg-mascot-reactions1-v004-BtVb-jPy.webp",
+    "dist/assets/cdawg-mascot-balance0-v004-BDwc5MnW.webp",
+    "dist/assets/cdawg-mascot-balance1-v004-RnhYpwi9.webp",
+    "dist/assets/index-PgqIN0K2.js",
+    "build/server/canary.js",
+    "build/server/index.js",
+    "build/server/env.js",
+    "build/server/artifacts.js",
+    "build/server/limiter.js",
+    "build/server/app.js",
+    "build/server/tokenExchange.js",
+    "build/server/lifecycle.js",
+    "build/shared/balance/simulation.js",
+    "build/shared/balance/config.js",
+    "build/shared/balance/curves.js",
+    "build/shared/balance/official.js",
+    "build/server/database/config.js",
+    "build/server/database/pool.js",
+    "build/server/database/readiness.js",
+    "build/server/database/cli.js",
+    "build/server/database/migrations.js",
+    "build/server/results/transaction.js",
+    "build/server/results/aggregates.js",
+    "build/server/results/canonical.js",
+    "build/server/sessions/discord.js",
+    "build/server/sessions/store.js",
+    "build/server/sessions/privileges.js",
+    "build/server/sessions/routes.js",
+    "build/server/sessions/crypto.js",
+    "build/server/attempts/store.js",
+    "build/server/attempts/privileges.js",
+    "build/server/attempts/routes.js",
+    "build/server/attempts/replay.js",
+    "build/server/attempts/activation.js",
+    "build/server/attempts/definition.js",
+    "build/server/guild/grants.js",
+    "build/server/guild/store.js",
+    "build/server/guild/projections.js",
+    "build/server/guild/routes.js",
+    "build/server/database/migrations/001_foundation.sql"
+  ],
+  "initial": {
+    "assets/cdawg-display-latin-v001-CeyYqTKY.woff2": {
+      "bytes": 15380,
+      "gzip": 15403,
+      "sha256": "f6fbc09a44f7a52bb3ce94448545b957ae2be96899bfcbcf90c0734fdd57131c"
+    },
+    "assets/cdawg-horizontal-dark-v001-CocDCRX-.svg": {
+      "bytes": 9760,
+      "gzip": 2903,
+      "sha256": "7f749727a504bbe1bee417267910841155d3dcc9c972aad679e316dc33f9d787"
+    },
+    "assets/cdawg-host-default-v004-Dy6_NmHH.webp": {
+      "bytes": 20932,
+      "gzip": 20960,
+      "sha256": "22d76bf8191718d897bd5aab92465d44c029c735902154881d0b68583844d946"
+    },
+    "assets/cdawg-host-delighted-v004-DCuxxOiu.webp": {
+      "bytes": 20390,
+      "gzip": 20418,
+      "sha256": "503e66befa300e6363ca8cdfd87bd63d8cc64e80a4d73c11603b9db4afd46fc1"
+    },
+    "assets/cdawg-host-mischief-v004-BH8_sl9C.webp": {
+      "bytes": 20992,
+      "gzip": 21020,
+      "sha256": "89a06f502e8e6293909ac329b9bdc833eddac5fbc0171c7c87c3aff97ed4a552"
+    },
+    "assets/cdawg-ui-latin-v001-CfIt6cLC.woff2": {
+      "bytes": 15432,
+      "gzip": 15455,
+      "sha256": "525717f5415ec7dd68c197effd798eb96d79e85545ec631acea21c4a265fad65"
+    },
+    "assets/index-COBSz9hO.css": {
+      "bytes": 21188,
+      "gzip": 4641,
+      "sha256": "23779db18fdb5369f9186d2703afd8a1902bb7f30523a942252a61a879c88d76"
+    },
+    "assets/index-D0uphbUP.js": {
+      "bytes": 235323,
+      "gzip": 73069,
+      "sha256": "878647b76975354fa899c5165c08ff923bffa33ae59e508c6476fbffd60d6563"
+    }
+  },
+  "initialBytes": 359397,
+  "gameChunkBytes": 1959788,
+  "checks": 59
+}

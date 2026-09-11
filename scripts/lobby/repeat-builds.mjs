@@ -1,0 +1,11 @@
+import fs from 'node:fs';
+import {createHash} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
+import assert from 'node:assert/strict';
+const digest=root=>Object.fromEntries(fs.readdirSync(root,{recursive:true}).filter(p=>fs.statSync(`${root}/${p}`).isFile()).sort().map(p=>[p,createHash('sha256').update(fs.readFileSync(`${root}/${p}`)).digest('hex')]));
+const first={dist:digest('dist'),build:digest('build'),enabled:digest('tmp/lobby-integration/dist')};
+execFileSync(process.execPath,['scripts/test-production.mjs'],{stdio:'inherit',env:{PATH:process.env.PATH}});
+execFileSync(process.execPath,['scripts/lobby/build.mjs'],{stdio:'inherit',env:{PATH:process.env.PATH}});
+const second={dist:digest('dist'),build:digest('build'),enabled:digest('tmp/lobby-integration/dist')};
+assert.deepEqual(second,first);
+fs.writeFileSync('docs/brand/lobby-repeatability.json',JSON.stringify({identical:true,productionFiles:Object.keys(first.dist).length+Object.keys(first.build).length,enabledFiles:Object.keys(first.enabled).length,hashes:second},null,2)+'\n');console.log('Both enabled and disabled artifacts reproduce byte-for-byte.');

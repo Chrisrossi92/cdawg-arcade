@@ -1,3 +1,4 @@
+import {createManagedGame} from './managedGame';
 import { useEffect, useRef } from 'react';
 import type { MutableRefObject } from 'react';
 import Phaser from 'phaser';
@@ -30,7 +31,7 @@ export function BalanceGameCanvas({ configRef, onTick, onGameOver, clock, onPaus
       onTick: (state, score) => callbacksRef.current.onTick(state, score),
       onGameOver: (score, state) => callbacksRef.current.onGameOver(score, state),
     });
-    const game = new Phaser.Game({
+    const config:Phaser.Types.Core.GameConfig = {
       type: Phaser.AUTO,
       parent: hostRef.current,
       backgroundColor: '#090a12',
@@ -41,7 +42,8 @@ export function BalanceGameCanvas({ configRef, onTick, onGameOver, clock, onPaus
       },
       scene,
       physics: { default: 'arcade' },
-    });
+    };
+    const game=typeof __ARCADE_LOBBY__!=='undefined'&&__ARCADE_LOBBY__?createManagedGame(Phaser,config):new Phaser.Game(config);
 
     return () => {
       game.destroy(true);

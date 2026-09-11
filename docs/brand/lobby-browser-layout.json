@@ -1,0 +1,749 @@
+{
+  "viewports": [
+    {
+      "width": 1280,
+      "height": 900,
+      "scrollWidth": 1280,
+      "route": "lobby",
+      "images": [
+        {
+          "loaded": true,
+          "width": 258,
+          "height": 73
+        },
+        {
+          "loaded": true,
+          "width": 220,
+          "height": 220
+        },
+        {
+          "loaded": true,
+          "width": 220,
+          "height": 220
+        },
+        {
+          "loaded": true,
+          "width": 43,
+          "height": 47
+        },
+        {
+          "loaded": true,
+          "width": 98,
+          "height": 106
+        }
+      ],
+      "targets": [
+        {
+          "text": "Less motion",
+          "width": 108,
+          "height": 44
+        },
+        {
+          "text": "Skip to games",
+          "width": 129,
+          "height": 51
+        },
+        {
+          "text": "CDAWG ARCADE home",
+          "width": 258,
+          "height": 73
+        },
+        {
+          "text": "Games",
+          "width": 43,
+          "height": 44
+        },
+        {
+          "text": "Your results",
+          "width": 72,
+          "height": 44
+        },
+        {
+          "text": "Play practice→",
+          "width": 371,
+          "height": 50
+        },
+        {
+          "text": "Coming soon→",
+          "width": 307,
+          "height": 48
+        },
+        {
+          "text": "Coming soon→",
+          "width": 307,
+          "height": 48
+        },
+        {
+          "text": "Back to games ↑",
+          "width": 87,
+          "height": 44
+        }
+      ],
+      "reduced": "false",
+      "hostTransition": "0.35s",
+      "focus": "A little dog.A lot of attitude.",
+      "focusOrder": [],
+      "transitions": []
+    },
+    {
+      "width": 800,
+      "height": 600,
+      "scrollWidth": 800,
+      "route": "lobby",
+      "images": [
+        {
+          "loaded": true,
+          "width": 215,
+          "height": 61
+        },
+        {
+          "loaded": true,
+          "width": 220,
+          "height": 180
+        },
+        {
+          "loaded": true,
+          "width": 220,
+          "height": 180
+        },
+        {
+          "loaded": true,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "loaded": true,
+          "width": 80,
+          "height": 86
+        }
+      ],
+      "targets": [
+        {
+          "text": "Less motion",
+          "width": 108,
+          "height": 44
+        },
+        {
+          "text": "Skip to games",
+          "width": 129,
+          "height": 51
+        },
+        {
+          "text": "CDAWG ARCADE home",
+          "width": 215,
+          "height": 61
+        },
+        {
+          "text": "Games",
+          "width": 43,
+          "height": 44
+        },
+        {
+          "text": "Your results",
+          "width": 72,
+          "height": 44
+        },
+        {
+          "text": "Play practice→",
+          "width": 224,
+          "height": 50
+        },
+        {
+          "text": "Coming soon→",
+          "width": 201,
+          "height": 48
+        },
+        {
+          "text": "Coming soon→",
+          "width": 201,
+          "height": 48
+        },
+        {
+          "text": "Back to games ↑",
+          "width": 87,
+          "height": 44
+        }
+      ],
+      "reduced": "false",
+      "hostTransition": "0.35s",
+      "focus": "A little dog.A lot of attitude.",
+      "focusOrder": [],
+      "transitions": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "route": "lobby",
+      "images": [
+        {
+          "loaded": true,
+          "width": 200,
+          "height": 56
+        },
+        {
+          "loaded": true,
+          "width": 117,
+          "height": 155
+        },
+        {
+          "loaded": true,
+          "width": 117,
+          "height": 155
+        },
+        {
+          "loaded": true,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "loaded": true,
+          "width": 98,
+          "height": 106
+        }
+      ],
+      "targets": [
+        {
+          "text": "Less motion",
+          "width": 108,
+          "height": 44
+        },
+        {
+          "text": "Skip to games",
+          "width": 129,
+          "height": 51
+        },
+        {
+          "text": "CDAWG ARCADE home",
+          "width": 200,
+          "height": 56
+        },
+        {
+          "text": "Games",
+          "width": 43,
+          "height": 44
+        },
+        {
+          "text": "Your results",
+          "width": 72,
+          "height": 44
+        },
+        {
+          "text": "Play practice→",
+          "width": 150,
+          "height": 48
+        },
+        {
+          "text": "Coming soon→",
+          "width": 139,
+          "height": 44
+        },
+        {
+          "text": "Coming soon→",
+          "width": 139,
+          "height": 44
+        },
+        {
+          "text": "Back to games ↑",
+          "width": 87,
+          "height": 44
+        }
+      ],
+      "reduced": "false",
+      "hostTransition": "0.35s",
+      "focus": "A little dog.A lot of attitude.",
+      "focusOrder": [],
+      "transitions": []
+    },
+    {
+      "width": 375,
+      "height": 667,
+      "scrollWidth": 375,
+      "route": "lobby",
+      "images": [
+        {
+          "loaded": true,
+          "width": 180,
+          "height": 51
+        },
+        {
+          "loaded": true,
+          "width": 112,
+          "height": 155
+        },
+        {
+          "loaded": true,
+          "width": 112,
+          "height": 155
+        },
+        {
+          "loaded": true,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "loaded": true,
+          "width": 98,
+          "height": 106
+        }
+      ],
+      "targets": [
+        {
+          "text": "Less motion",
+          "width": 108,
+          "height": 44
+        },
+        {
+          "text": "Skip to games",
+          "width": 129,
+          "height": 51
+        },
+        {
+          "text": "CDAWG ARCADE home",
+          "width": 180,
+          "height": 51
+        },
+        {
+          "text": "Games",
+          "width": 43,
+          "height": 44
+        },
+        {
+          "text": "Your results",
+          "width": 72,
+          "height": 44
+        },
+        {
+          "text": "Play practice→",
+          "width": 147,
+          "height": 48
+        },
+        {
+          "text": "Coming soon→",
+          "width": 140,
+          "height": 44
+        },
+        {
+          "text": "Coming soon→",
+          "width": 140,
+          "height": 44
+        },
+        {
+          "text": "Back to games ↑",
+          "width": 87,
+          "height": 44
+        }
+      ],
+      "reduced": "false",
+      "hostTransition": "0.35s",
+      "focus": "A little dog.A lot of attitude.",
+      "focusOrder": [],
+      "transitions": []
+    }
+  ],
+  "smallGame": {
+    "width": 375,
+    "height": 667,
+    "scrollWidth": 375,
+    "route": "balance",
+    "images": [],
+    "targets": [
+      {
+        "text": "Less motion",
+        "width": 103,
+        "height": 44
+      },
+      {
+        "text": "Back to Arcade",
+        "width": 128,
+        "height": 44
+      },
+      {
+        "text": "Music",
+        "width": 57,
+        "height": 44
+      },
+      {
+        "text": "SFX",
+        "width": 47,
+        "height": 44
+      },
+      {
+        "text": "Back to Arcade",
+        "width": 140,
+        "height": 44
+      },
+      {
+        "text": "Play Again",
+        "width": 129,
+        "height": 44
+      },
+      {
+        "text": "Local results",
+        "width": 121,
+        "height": 44
+      }
+    ],
+    "reduced": "true",
+    "hostTransition": null,
+    "focusOrder": [],
+    "transitions": [
+      343.30000001192093
+    ],
+    "phaseSamples": [
+      {
+        "phase": "lobby",
+        "windowHeight": 667,
+        "main": {
+          "x": 0,
+          "y": 205.8203125,
+          "width": 375,
+          "height": 1372.53125,
+          "top": 205.8203125,
+          "right": 375,
+          "bottom": 1578.3515625,
+          "left": 0
+        }
+      },
+      {
+        "phase": "app-shell game-shell balance-v1-shell layout-docked-safe phase-home ",
+        "windowHeight": 667,
+        "main": {
+          "x": 0,
+          "y": 60,
+          "width": 375,
+          "height": 667,
+          "top": 60,
+          "right": 375,
+          "bottom": 727,
+          "left": 0
+        },
+        "controls": {
+          "x": 8,
+          "y": 512.296875,
+          "width": 359,
+          "height": 44,
+          "top": 512.296875,
+          "right": 367,
+          "bottom": 556.296875,
+          "left": 8
+        }
+      },
+      {
+        "phase": "app-shell game-shell balance-v1-shell layout-docked-safe phase-countdown ",
+        "windowHeight": 667,
+        "main": {
+          "x": 0,
+          "y": 60,
+          "width": 375,
+          "height": 607,
+          "top": 60,
+          "right": 375,
+          "bottom": 667,
+          "left": 0
+        },
+        "controls": {
+          "x": 8,
+          "y": 615,
+          "width": 359,
+          "height": 44,
+          "top": 615,
+          "right": 367,
+          "bottom": 659,
+          "left": 8
+        }
+      },
+      {
+        "phase": "app-shell game-shell balance-v1-shell layout-docked-safe phase-playing ",
+        "windowHeight": 667,
+        "main": {
+          "x": 0,
+          "y": 60,
+          "width": 375,
+          "height": 607,
+          "top": 60,
+          "right": 375,
+          "bottom": 667,
+          "left": 0
+        },
+        "controls": {
+          "x": 8,
+          "y": 615,
+          "width": 359,
+          "height": 44,
+          "top": 615,
+          "right": 367,
+          "bottom": 659,
+          "left": 8
+        }
+      },
+      {
+        "phase": "app-shell game-shell balance-v1-shell layout-docked-safe phase-results ",
+        "windowHeight": 667,
+        "main": {
+          "x": 0,
+          "y": 60,
+          "width": 375,
+          "height": 667,
+          "top": 60,
+          "right": 375,
+          "bottom": 727,
+          "left": 0
+        },
+        "controls": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      }
+    ]
+  },
+  "reducedReturn": {
+    "width": 375,
+    "height": 667,
+    "scrollWidth": 375,
+    "route": "lobby",
+    "images": [
+      {
+        "loaded": true,
+        "width": 180,
+        "height": 51
+      },
+      {
+        "loaded": true,
+        "width": 112,
+        "height": 155
+      },
+      {
+        "loaded": true,
+        "width": 112,
+        "height": 155
+      },
+      {
+        "loaded": true,
+        "width": 0,
+        "height": 0
+      },
+      {
+        "loaded": true,
+        "width": 98,
+        "height": 106
+      }
+    ],
+    "targets": [
+      {
+        "text": "Less motion",
+        "width": 108,
+        "height": 44
+      },
+      {
+        "text": "Skip to games",
+        "width": 129,
+        "height": 51
+      },
+      {
+        "text": "CDAWG ARCADE home",
+        "width": 180,
+        "height": 51
+      },
+      {
+        "text": "Games",
+        "width": 43,
+        "height": 44
+      },
+      {
+        "text": "Your results",
+        "width": 72,
+        "height": 44
+      },
+      {
+        "text": "Play practice→",
+        "width": 147,
+        "height": 48
+      },
+      {
+        "text": "Coming soon→",
+        "width": 140,
+        "height": 44
+      },
+      {
+        "text": "Coming soon→",
+        "width": 140,
+        "height": 44
+      },
+      {
+        "text": "Back to games ↑",
+        "width": 87,
+        "height": 44
+      }
+    ],
+    "reduced": "true",
+    "hostTransition": "0s",
+    "focusOrder": [],
+    "transitions": [
+      343.30000001192093
+    ],
+    "phaseSamples": [
+      {
+        "phase": "lobby",
+        "windowHeight": 667,
+        "main": {
+          "x": 0,
+          "y": 205.8203125,
+          "width": 375,
+          "height": 1372.53125,
+          "top": 205.8203125,
+          "right": 375,
+          "bottom": 1578.3515625,
+          "left": 0
+        }
+      },
+      {
+        "phase": "app-shell game-shell balance-v1-shell layout-docked-safe phase-home ",
+        "windowHeight": 667,
+        "main": {
+          "x": 0,
+          "y": 60,
+          "width": 375,
+          "height": 667,
+          "top": 60,
+          "right": 375,
+          "bottom": 727,
+          "left": 0
+        },
+        "controls": {
+          "x": 8,
+          "y": 512.296875,
+          "width": 359,
+          "height": 44,
+          "top": 512.296875,
+          "right": 367,
+          "bottom": 556.296875,
+          "left": 8
+        }
+      },
+      {
+        "phase": "app-shell game-shell balance-v1-shell layout-docked-safe phase-countdown ",
+        "windowHeight": 667,
+        "main": {
+          "x": 0,
+          "y": 60,
+          "width": 375,
+          "height": 607,
+          "top": 60,
+          "right": 375,
+          "bottom": 667,
+          "left": 0
+        },
+        "controls": {
+          "x": 8,
+          "y": 615,
+          "width": 359,
+          "height": 44,
+          "top": 615,
+          "right": 367,
+          "bottom": 659,
+          "left": 8
+        }
+      },
+      {
+        "phase": "app-shell game-shell balance-v1-shell layout-docked-safe phase-playing ",
+        "windowHeight": 667,
+        "main": {
+          "x": 0,
+          "y": 60,
+          "width": 375,
+          "height": 607,
+          "top": 60,
+          "right": 375,
+          "bottom": 667,
+          "left": 0
+        },
+        "controls": {
+          "x": 8,
+          "y": 615,
+          "width": 359,
+          "height": 44,
+          "top": 615,
+          "right": 367,
+          "bottom": 659,
+          "left": 8
+        }
+      },
+      {
+        "phase": "app-shell game-shell balance-v1-shell layout-docked-safe phase-results ",
+        "windowHeight": 667,
+        "main": {
+          "x": 0,
+          "y": 60,
+          "width": 375,
+          "height": 667,
+          "top": 60,
+          "right": 375,
+          "bottom": 727,
+          "left": 0
+        },
+        "controls": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      {
+        "phase": "lobby",
+        "windowHeight": 667,
+        "main": {
+          "x": 0,
+          "y": 205.8203125,
+          "width": 375,
+          "height": 1416.1328125,
+          "top": 205.8203125,
+          "right": 375,
+          "bottom": 1621.953125,
+          "left": 0
+        }
+      }
+    ]
+  },
+  "keyboard": {
+    "tabFromPreference": "Skip to games",
+    "enterActivatedGame": true,
+    "realPracticeSavedSeconds": 0.7
+  },
+  "states": [
+    {
+      "state": "other-server",
+      "passed": true
+    },
+    {
+      "state": "unavailable",
+      "passed": true
+    },
+    {
+      "state": "board-error",
+      "passed": true
+    },
+    {
+      "state": "auth-error",
+      "passed": true
+    },
+    {
+      "state": "empty",
+      "passed": true
+    },
+    {
+      "state": "practice",
+      "passed": true
+    }
+  ]
+}

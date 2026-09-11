@@ -1,0 +1,35 @@
+{
+  "before": {
+    "card": {
+      "bottom": 1110.9609375,
+      "height": 479.28125,
+      "left": 60,
+      "right": 477.078125,
+      "top": 631.6796875,
+      "width": 417.078125,
+      "x": 60,
+      "y": 631.6796875
+    },
+    "display": "block",
+    "font": "\"CDAWG Display\", Arial, system-ui, sans-serif",
+    "gap": "normal",
+    "shadow": "none"
+  },
+  "after": {
+    "card": {
+      "bottom": 1110.9609375,
+      "height": 479.28125,
+      "left": 60,
+      "right": 477.078125,
+      "top": 631.6796875,
+      "width": 417.078125,
+      "x": 60,
+      "y": 631.6796875
+    },
+    "display": "block",
+    "font": "\"CDAWG Display\", Arial, system-ui, sans-serif",
+    "gap": "normal",
+    "shadow": "none"
+  },
+  "passed": true
+}

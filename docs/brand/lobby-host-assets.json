@@ -1,0 +1,41 @@
+[
+  {
+    "path": "assets/brand/arcade/runtime/cdawg-host-default-v004.webp",
+    "bytes": 20932,
+    "sha256": "22d76bf8191718d897bd5aab92465d44c029c735902154881d0b68583844d946",
+    "source": "approved correction-v004 model",
+    "action": "expr_default",
+    "crop": {
+      "left": 55,
+      "top": 94,
+      "width": 374,
+      "height": 374
+    }
+  },
+  {
+    "path": "assets/brand/arcade/runtime/cdawg-host-mischief-v004.webp",
+    "bytes": 20992,
+    "sha256": "89a06f502e8e6293909ac329b9bdc833eddac5fbc0171c7c87c3aff97ed4a552",
+    "source": "approved correction-v004 model",
+    "action": "expr_mischief",
+    "crop": {
+      "left": 55,
+      "top": 94,
+      "width": 374,
+      "height": 374
+    }
+  },
+  {
+    "path": "assets/brand/arcade/runtime/cdawg-host-delighted-v004.webp",
+    "bytes": 20390,
+    "sha256": "503e66befa300e6363ca8cdfd87bd63d8cc64e80a4d73c11603b9db4afd46fc1",
+    "source": "approved correction-v004 model",
+    "action": "expr_delighted",
+    "crop": {
+      "left": 55,
+      "top": 94,
+      "width": 374,
+      "height": 374
+    }
+  }
+]

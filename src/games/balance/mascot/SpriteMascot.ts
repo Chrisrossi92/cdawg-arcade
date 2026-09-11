@@ -16,7 +16,7 @@ export class SpriteMascot {
   reducedOverride: boolean | null = null;
   private angle = 0;
   get ready(): boolean {return this.images.length > 0}
-  get reduced(): boolean {return this.reducedOverride ?? this.preference.matches}
+  get reduced(): boolean {return this.reducedOverride ?? ((typeof __ARCADE_LOBBY__ !== 'undefined' && __ARCADE_LOBBY__ && document.documentElement.dataset.arcadeReducedMotion==='true') || this.preference.matches)}
   constructor(private readonly scene: Phaser.Scene, result?: {side: number; failed: boolean}) {
     this.motion = new MascotMotion(result);
 

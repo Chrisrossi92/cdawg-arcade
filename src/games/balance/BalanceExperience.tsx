@@ -24,7 +24,11 @@ import {
 } from './inputManager';
 import { getMilestoneForScore, type BalanceConfig, type BalanceInputDirection, type BalanceState } from './simulation';
 
+const lobbyIntegration = typeof __ARCADE_LOBBY__ !== 'undefined' && __ARCADE_LOBBY__;
+const audioPreference=(key:string,fallback:boolean)=>{try{return localStorage.getItem(key)===null?fallback:localStorage.getItem(key)==='true';}catch{return fallback;}};
+
 interface BalanceExperienceProps {
+  integration?: {onPhase:(phase:GamePhase)=>void};
   scoreRepository: ScoreRepository;
   officialController?:OfficialController;
   onExit?: () => void;
@@ -39,7 +43,7 @@ interface DebugSnapshot {
   phase: GamePhase;
 }
 
-export function BalanceExperience({ officialController, hostContext, scoreRepository, onExit, onRetryConnection, onContinuePractice }: BalanceExperienceProps) {
+export function BalanceExperience({ integration, officialController, hostContext, scoreRepository, onExit, onRetryConnection, onContinuePractice }: BalanceExperienceProps) {
   useEffect(() => { warmMascot(); }, []);
   const official=useMemo(()=>officialController??new OfficialController(),[officialController]);
   const [officialView,setOfficialView]=useState(official.view);
@@ -55,8 +59,8 @@ export function BalanceExperience({ officialController, hostContext, scoreReposi
   const [runResult, setRunResult] = useState<RunResult | null>(null);
   const [showDev, setShowDev] = useState(false);
   const [debug, setDebug] = useState<DebugSnapshot | null>(null);
-  const [musicEnabled, setMusicEnabled] = useState(false);
-  const [sfxEnabled, setSfxEnabled] = useState(true);
+  const [musicEnabled, setMusicEnabled] = useState(()=>lobbyIntegration?audioPreference('cdawg.arcade.music.v1',false):false);
+  const [sfxEnabled, setSfxEnabled] = useState(()=>lobbyIntegration?audioPreference('cdawg.arcade.sfx.v1',true):true);
   const [tuning, setTuning] = useState<BalanceConfig>(() => cloneBalanceConfig(balanceConfig));
   const [milestone, setMilestone] = useState<number | null>(null);
   const inputRef = useRef<BalanceInputDirection>('none');
@@ -68,6 +72,12 @@ export function BalanceExperience({ officialController, hostContext, scoreReposi
   const phaseRef = useRef<GamePhase>(getInitialBalancePhase());
   const previousScoreRef = useRef(0);
   const audio = useMemo(() => new WebAudioManager(), []);
+
+  const mounted=useRef(true);
+  const milestoneTimer=useRef<number | undefined>(undefined);
+  useEffect(()=>{mounted.current=true;return()=>{mounted.current=false;if(lobbyIntegration){clearTimeout(milestoneTimer.current);audio.dispose();}};},[audio]);
+  useEffect(()=>{if(lobbyIntegration)integration?.onPhase(phase);},[phase,integration?.onPhase]);
+  useEffect(()=>{if(lobbyIntegration)try{localStorage.setItem('cdawg.arcade.music.v1',String(musicEnabled));localStorage.setItem('cdawg.arcade.sfx.v1',String(sfxEnabled));}catch{/* Optional audio preferences. */}},[musicEnabled,sfxEnabled]);
 
   const personalStats = scoreRepository.getPersonalStats(hostContext.currentUser.id, hostContext.guildId);
   const personalBest = personalStats.personalBest;
@@ -152,6 +162,7 @@ export function BalanceExperience({ officialController, hostContext, scoreReposi
   }, [audio]);
 
   useEffect(()=>{
+    if(lobbyIntegration&&integration)return;
     if(isGameplayInputActive(phaseRef.current))pauseRun();
     setServerBoard(false);
     if(hostContext.environment==='discord'&&hostContext.arcadeSessionState==='verified'&&hostContext.authenticated&&hostContext.guildId){void official.connect(hostContext.currentUser.id,hostContext.guildId);}else official.reset();
@@ -168,7 +179,7 @@ export function BalanceExperience({ officialController, hostContext, scoreReposi
     phaseRef.current='countdown';setPhase('countdown');
   };
   const starting=useRef(false);
-  const startRun=async()=>{if(starting.current)return;starting.current=true;try{const result=await official.start();if(result==='official'||result==='practice')beginGameplay(result==='official');}finally{starting.current=false;}};
+  const startRun=async()=>{if(starting.current)return;starting.current=true;try{const result=await official.start();if((!lobbyIntegration||mounted.current)&&(result==='official'||result==='practice'))beginGameplay(result==='official');}finally{starting.current=false;}};
   const playPractice=()=>{official.practice();beginGameplay(false);};
 
   const pointerDown = (event: React.PointerEvent<HTMLButtonElement>, direction: 'left' | 'right') => {
@@ -193,7 +204,8 @@ export function BalanceExperience({ officialController, hostContext, scoreReposi
       if (nextMilestone) {
         setMilestone(nextMilestone);
         audio.playCue('record');
-        window.setTimeout(() => setMilestone((current) => (current === nextMilestone ? null : current)), 1300);
+        if(lobbyIntegration)clearTimeout(milestoneTimer.current);
+        milestoneTimer.current=window.setTimeout(() => setMilestone((current) => (current === nextMilestone ? null : current)), 1300);
       }
       if (Math.abs(state.tilt) > configRef.current.failureAngle * 0.72) audio.playCue('danger');
     },
@@ -254,7 +266,7 @@ export function BalanceExperience({ officialController, hostContext, scoreReposi
         {phase === 'home' && (
           <div className="start-panel balance-start-panel">
             <p>One attempt. Hold the line. Keep Cdawg standing.</p>
-            <button className="primary-button" disabled={officialView.phase==='preparing'} onClick={()=>void startRun()} type="button">{officialView.phase==='accepted'?'Official score saved':officialView.phase==='checking'?'Checking your run…':officialView.phase==='unconfirmed'?'Submission not confirmed · Retry':officialView.phase==='preparing'?'Preparing official run…':'Start Game'}</button>
+            <button className="primary-button" disabled={officialView.phase==='preparing'} onClick={()=>void startRun()} type="button">{officialView.phase==='accepted'&&!lobbyIntegration?'Official score saved':officialView.phase==='checking'?'Checking your run…':officialView.phase==='unconfirmed'?'Submission not confirmed · Retry':officialView.phase==='preparing'?'Preparing official run…':'Start Game'}</button>
             {officialView.phase==='unavailable'&&<button className="secondary-button" onClick={playPractice}>Play practice now</button>}
             {['eligible','accepted'].includes(officialView.phase)&&<button className="secondary-button" onClick={()=>{setServerBoard(true);setPhase('leaderboard');}}>View Leaderboard</button>}
           </div>
@@ -275,6 +287,7 @@ export function BalanceExperience({ officialController, hostContext, scoreReposi
             <strong className={officialView.phase==='accepted'?'local-result-small':''}>{runResult.scoreSeconds.toFixed(1)}s</strong>
             <span>{runResult.isPersonalBest ? 'New local best' : `Local best remains ${personalBest.toFixed(1)}s`}</span>
             <div className="result-actions">
+              {lobbyIntegration&&onExit&&<button className="secondary-button" disabled={['checking','preparing','unconfirmed'].includes(officialView.phase)} onClick={onExit}>Back to Arcade</button>}
               <button className="primary-button" disabled={['checking','preparing'].includes(officialView.phase)} onClick={()=>void startRun()} type="button">Play Again</button>
               {!['practice','other-server','unavailable'].includes(officialView.phase)&&<button className="secondary-button" onClick={()=>{setServerBoard(true);setPhase('leaderboard');void official.refresh();}} type="button">View Leaderboard</button>}
               <button className="secondary-button" onClick={() => {setServerBoard(false);setPhase('leaderboard');}} type="button">Local results</button>

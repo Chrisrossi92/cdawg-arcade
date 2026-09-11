@@ -1,5 +1,7 @@
 # Cdawg Arcade
 
+Current optional frontend work: [Arcade lobby integration](docs/brand/ARCADE_LOBBY_INTEGRATION.md) is behind a disabled source gate. Ordinary production still opens Cdawg Balance directly. See the [validation report](docs/brand/ARCADE_LOBBY_VALIDATION.md) for the isolated candidate and evidence.
+
 Cdawg Arcade is a local browser prototype for short, mobile-friendly arcade games that can later launch as Discord Activities. The current active experience opens directly into one playable game: Cdawg Balance.
 
 ## Run Locally
