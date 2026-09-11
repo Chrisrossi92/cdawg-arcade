@@ -1,0 +1,81 @@
+{
+  "checks": 142,
+  "images": [
+    {
+      "path": "previews/before-front-head.png",
+      "width": 640,
+      "height": 640,
+      "bytes": 357833
+    },
+    {
+      "path": "previews/before-three-quarter-head.png",
+      "width": 640,
+      "height": 640,
+      "bytes": 343884
+    },
+    {
+      "path": "previews/expr-default.png",
+      "width": 480,
+      "height": 480,
+      "bytes": 219279
+    },
+    {
+      "path": "previews/expr-delighted.png",
+      "width": 480,
+      "height": 480,
+      "bytes": 220288
+    },
+    {
+      "path": "previews/expr-determined.png",
+      "width": 480,
+      "height": 480,
+      "bytes": 217902
+    },
+    {
+      "path": "previews/expr-mischief.png",
+      "width": 480,
+      "height": 480,
+      "bytes": 219026
+    },
+    {
+      "path": "previews/expr-panic.png",
+      "width": 480,
+      "height": 480,
+      "bytes": 221508
+    },
+    {
+      "path": "previews/expr-worried.png",
+      "width": 480,
+      "height": 480,
+      "bytes": 220374
+    },
+    {
+      "path": "previews/front-head.png",
+      "width": 640,
+      "height": 640,
+      "bytes": 355239
+    },
+    {
+      "path": "previews/gameplay.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 49776
+    },
+    {
+      "path": "previews/lobby-host.png",
+      "width": 295,
+      "height": 350,
+      "bytes": 134516
+    },
+    {
+      "path": "previews/three-quarter-head.png",
+      "width": 640,
+      "height": 640,
+      "bytes": 337141
+    }
+  ],
+  "canonicalInputsUnchanged": true,
+  "approvedBrandAndProductionSourcesUnchanged": true,
+  "productionArtifactsIdentical": 45,
+  "atlasesRegenerated": false
+}

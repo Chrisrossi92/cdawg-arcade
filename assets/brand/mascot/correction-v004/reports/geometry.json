@@ -1,0 +1,26 @@
+{
+  "checks": 22,
+  "rigRestHierarchyIdentical": true,
+  "bones": 43,
+  "actions": 26,
+  "triangles": 38330,
+  "vertices": 19513,
+  "materials": 4,
+  "boundaryEdges": 0,
+  "nonManifoldEdges": 0,
+  "zeroAreaFaces": 0,
+  "normalizedWeights": true,
+  "staticPosesChecked": [
+    "default",
+    "delighted",
+    "determined",
+    "worried",
+    "panic",
+    "mischief"
+  ],
+  "gazeTranslationsMatched": true,
+  "limitations": [
+    "Separate intersecting closed facial components remain; this is the existing stylized vertex-color production approach, not a new retopology or fur pass.",
+    "Static checkpoint only; updated animation atlas deformation and continuity are gated on creative approval."
+  ]
+}
