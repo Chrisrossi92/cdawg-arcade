@@ -27,7 +27,17 @@ for (const path of new Set(source)) {
 const staged = execFileSync('git', ['diff', '--cached', '--name-only', '--diff-filter=ACMR', '-z'], { encoding: 'utf8' }).split('\0').filter(Boolean);
 for (const path of staged) {
   if (/^\.env(?:$|\.)/.test(path) && path !== '.env.example') continue;
-  scan(`staged:${path}`, execFileSync('git', ['show', `:${path}`], { encoding: 'utf8' }));
+  // Canonical binary assets can exceed execFileSync's default 1 MiB buffer.
+  // Size from the index, read bytes, then decode; never dump a failed read's payload.
+  let content;
+  try {
+    const size = Number(execFileSync('git', ['cat-file', '-s', `:${path}`], { encoding: 'utf8' }).trim());
+    if (!Number.isSafeInteger(size) || size < 0) throw new Error('Invalid staged size');
+    content = execFileSync('git', ['show', `:${path}`], { maxBuffer: Math.max(1024 * 1024, size + 1024) }).toString('utf8');
+  } catch {
+    throw new Error(`Unable to scan staged file: ${path}; content withheld`);
+  }
+  scan(`staged:${path}`, content);
 }
 function artifacts(dir) {
   for (const item of readdirSync(dir, { withFileTypes: true })) {

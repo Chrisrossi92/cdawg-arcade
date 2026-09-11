@@ -110,3 +110,13 @@ SDK loading/readiness, token exchange, and SDK authentication each have a 10-sec
 The compiled single-service runtime and Render reference configuration are prepared; no production deployment exists yet. See [Production runbook](docs/PRODUCTION_RUNBOOK.md) for configuration, validation, deployment gates, and rollback. `npm run test:production` builds and smoke-tests the compiled runtime using dummy configuration without reading local `.env` files. Production startup is `npm start` with `NODE_ENV=production` and the documented runtime variables.
 
 Phase 4D backend foundation: [attempt/replay architecture](docs/ATTEMPT_REPLAY_ARCHITECTURE.md), [validation and rollout](docs/PHASE_4D_ATTEMPT_REPLAY.md), and [owner operating policy](AGENTS.md). Attempt/scoring features remain disabled.
+
+## Mascot production foundation
+
+The [mascot source package](assets/brand/mascot/README.md) preserves the canonical
+bulldog references and a local-only rigged feasibility prototype. See the
+[Phase 1 completion evidence](docs/brand/MASCOT_PHASE_1_COMPLETION.md) and
+[reproduction/preview commands](docs/brand/MASCOT_PRODUCTION_PLAN.md).
+The approved mascot is integrated on the feature branch; production deployment remains separate.
+
+Smooth gameplay mascot: [Phase 3 validation and local preview](docs/brand/MASCOT_PHASE_3_COMPLETION.md). Review tooling and source art are excluded from production.

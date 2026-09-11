@@ -2,7 +2,8 @@ import Phaser from 'phaser';
 import { SimulationClock } from './simulationClock';
 import type { MutableRefObject } from 'react';
 import { balanceConfig } from './config';
-import { CdawgRig, getCdawgPoseForBalance } from './CdawgRig';
+import { SpriteMascot, preloadMascot } from './mascot/SpriteMascot';
+import {CdawgRig, getCdawgPoseForBalance} from './CdawgRig';
 import {
   calculateScoreSeconds,
   createInitialBalanceState,
@@ -24,12 +25,14 @@ export class BalanceScene extends Phaser.Scene {
   private platform!: Phaser.GameObjects.Rectangle;
   private platformGlow!: Phaser.GameObjects.Rectangle;
   private background!: Phaser.GameObjects.Rectangle;
-  private cdawg!: CdawgRig;
+  protected cdawg!: SpriteMascot;
+  private visualDelta = 0;
+  private fallback!: CdawgRig;
   private scoreText!: Phaser.GameObjects.Text;
   private impactText!: Phaser.GameObjects.Text;
   private particles: Phaser.GameObjects.Arc[] = [];
   private lastScoreSeconds = 0;
-  private milestonePulseUntil = 0;
+
   private ended = false;
 
   constructor(private readonly options: BalanceSceneOptions) {
@@ -52,7 +55,10 @@ export class BalanceScene extends Phaser.Scene {
     this.platformGlow = this.add.rectangle(width / 2, height * 0.7, Math.min(width * 0.72, 460), 24, 0xff8a22, 0.2);
     this.platform = this.add.rectangle(width / 2, height * 0.67, Math.min(width * 0.72, 460), 20, 0xff8a22);
     this.platform.setStrokeStyle(4, 0xffc266);
-    this.cdawg = new CdawgRig(this, width / 2, height * 0.55);
+    this.cdawg = new SpriteMascot(this);
+    this.fallback = new CdawgRig(this, width / 2, height * .55);
+    // Loading never gates scene creation or the existing deterministic clock.
+    preloadMascot(this); this.load.start();
 
     this.impactText = this.add.text(width / 2, height * 0.28, '', {
       color: '#ffc266',
@@ -73,8 +79,9 @@ export class BalanceScene extends Phaser.Scene {
     this.scale.on('resize', this.handleResize, this);
   }
 
-  update(): void {
-    if (this.ended) return;
+  update(_time: number, delta: number): void {
+    this.visualDelta = delta;
+    if (this.ended) { this.drawMascot(); return; }
     const config = this.options.configRef.current;
     const frame = this.options.clock.frame(performance.now(), config);
     if (frame.interrupted) this.options.onPause();
@@ -89,7 +96,7 @@ export class BalanceScene extends Phaser.Scene {
 
     if (this.options.clock.finished) {
       this.ended = true;
-      this.renderImpact();
+      if (this.state.failed) this.time.delayedCall(300, () => this.renderImpact());
       this.time.delayedCall(380, () => this.options.onGameOver(calculateScoreSeconds(this.state.survivalMs), this.state));
     }
   }
@@ -111,19 +118,26 @@ export class BalanceScene extends Phaser.Scene {
     const panic = Math.abs(tilt) / config.failureAngle;
     this.platform.setPosition(width / 2, height * 0.67).setAngle(tilt);
     this.platformGlow.setPosition(width / 2, height * 0.7).setAngle(tilt).setAlpha(0.18 + panic * 0.35);
-    this.cdawg.setPosition(width / 2 + tilt * 2.1, height * 0.56 + Math.sin(this.state.survivalMs / 120) * 3);
-    this.cdawg.setAngle(tilt * 0.74);
-    const pulseProgress = Math.max(0, this.milestonePulseUntil - this.time.now) / 420;
-    this.cdawg.setScale(1 + panic * 0.04 + pulseProgress * 0.08, 1 - panic * 0.03 - pulseProgress * 0.04);
-    this.cdawg.applyPose(getCdawgPoseForBalance(tilt, panic, false), panic);
+    this.drawMascot();
     this.scoreText.setText(`${scoreSeconds.toFixed(1)}s`);
   }
 
+  private drawMascot(): void {
+    const {width, height} = this.scale;
+    const scale = Math.min(1, Math.max(.45, (height * .67 - 14) / 190));
+    const ready = this.cdawg.draw({balance: this.state.tilt / this.options.configRef.current.failureAngle,
+      finished: this.options.clock.finished, failed: this.state.failed}, this.visualDelta,
+      width / 2, height * .67 - 10, scale, this.state.tilt);
+    this.fallback.container.setVisible(!ready);
+    if (!ready) {
+      this.fallback.setPosition(width / 2, height * .67 - 10 - 93 * scale).setScale(scale);
+      this.fallback.applyPose(getCdawgPoseForBalance(this.state.tilt, Math.abs(this.state.tilt) / this.options.configRef.current.failureAngle, this.options.clock.finished && this.state.failed), 0);
+    }
+  }
+
   private renderImpact(): void {
-    this.cdawg.setPosition(this.scale.width / 2 + (this.state.tilt > 0 ? 82 : -82), this.scale.height * 0.72);
-    this.cdawg.applyPose('impact', 1);
     this.impactText.setText('WHAM!').setAlpha(1);
-    this.particles.forEach((particle, index) => {
+    if (!this.cdawg.reduced) this.particles.forEach((particle, index) => {
       const angle = (Math.PI * 2 * index) / this.particles.length;
       const distance = 34 + (index % 4) * 12;
       particle.setPosition(this.scale.width / 2, this.scale.height * 0.68).setAlpha(0.9);
@@ -135,11 +149,11 @@ export class BalanceScene extends Phaser.Scene {
         duration: 360,
       });
     });
-    this.cameras.main.shake(160, 0.012);
+    if (!this.cdawg.reduced) this.cameras.main.shake(160, 0.012);
   }
 
   private pulseCdawg(): void {
-    this.milestonePulseUntil = this.time.now + 420;
+    // Existing score milestone stays cosmetic; the continuous oscillator is never restarted.
   }
 
   private handleResize(gameSize: Phaser.Structs.Size): void {

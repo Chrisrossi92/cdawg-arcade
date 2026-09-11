@@ -1,0 +1,122 @@
+{
+  "blender": "4.5.13 LTS",
+  "buildHash": "daeeeca98fb0",
+  "triangles": 26344,
+  "vertices": 13985,
+  "materials": 4,
+  "bones": 31,
+  "heightMeters": 0.7804635763168335,
+  "forwardBlender": "-Y",
+  "forwardGLTF": "+Z",
+  "origin": "ground between paws",
+  "clips": [
+    {
+      "name": "idle_default",
+      "seconds": 1,
+      "frames": [
+        1,
+        25
+      ],
+      "loop": true,
+      "rootMotion": false
+    },
+    {
+      "name": "lean_left",
+      "seconds": 1,
+      "frames": [
+        1,
+        25
+      ],
+      "loop": false,
+      "rootMotion": false
+    },
+    {
+      "name": "lean_right",
+      "seconds": 1,
+      "frames": [
+        1,
+        25
+      ],
+      "loop": false,
+      "rootMotion": false
+    },
+    {
+      "name": "panic",
+      "seconds": 1,
+      "frames": [
+        1,
+        25
+      ],
+      "loop": false,
+      "rootMotion": false
+    },
+    {
+      "name": "fall",
+      "seconds": 1,
+      "frames": [
+        1,
+        25
+      ],
+      "loop": false,
+      "rootMotion": true
+    }
+  ],
+  "exportSettings": {
+    "export_format": "GLB",
+    "use_selection": true,
+    "export_animations": true,
+    "export_animation_mode": "ACTIONS",
+    "export_force_sampling": true,
+    "export_frame_range": false,
+    "export_anim_slide_to_zero": true,
+    "export_skins": true,
+    "export_yup": true,
+    "export_materials": "EXPORT",
+    "export_texcoords": false,
+    "export_cameras": false,
+    "export_lights": false
+  },
+  "paletteSRGB": {
+    "fur": "302822",
+    "cream": "F1D5A9",
+    "orange": "BD4D15",
+    "brass": "AD8147",
+    "nose": "201C19",
+    "white": "FFF3DB",
+    "iris": "653415",
+    "mouth": "32110E",
+    "tongue": "D87670"
+  },
+  "camera": {
+    "blenderPosition": [
+      0.95,
+      -1.65,
+      0.95
+    ],
+    "target": [
+      0,
+      0,
+      0.38
+    ],
+    "orthographicHeight": 1.12
+  },
+  "render": {
+    "engine": "Cycles CPU",
+    "samples": 32,
+    "denoise": true,
+    "seed": 11,
+    "size": [
+      256,
+      256
+    ],
+    "colorManagement": "Standard / None",
+    "transparent": true
+  },
+  "shortcuts": [
+    "Disconnected overlapping blockout surfaces, not production retopology",
+    "Approximate cream shapes and flat vertex colors; no baked fur texture",
+    "Basic baked IK; no animator-facing IK/FK switching",
+    "Panic via jaw/brow/ear bones; full nine-expression set not built",
+    "No final sculpt, LOD, full face controls or production deformation approval"
+  ]
+}

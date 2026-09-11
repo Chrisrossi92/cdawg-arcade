@@ -1,0 +1,331 @@
+{
+  "blender": "4.5.13 LTS",
+  "buildHash": "daeeeca98fb0",
+  "triangles": 29782,
+  "vertices": 15685,
+  "materials": 4,
+  "bones": 43,
+  "heightMeters": 0.7389999628067017,
+  "forwardBlender": "-Y",
+  "forwardGLTF": "+Z",
+  "origin": "ground between paws",
+  "clips": [
+    {
+      "name": "idle_default",
+      "seconds": 0.9583333333333334,
+      "frames": [
+        1,
+        24
+      ],
+      "loop": true,
+      "rootMotion": false
+    },
+    {
+      "name": "idle_mischief",
+      "seconds": 0.9583333333333334,
+      "frames": [
+        1,
+        24
+      ],
+      "loop": true,
+      "rootMotion": false
+    },
+    {
+      "name": "ready",
+      "seconds": 0.9583333333333334,
+      "frames": [
+        1,
+        24
+      ],
+      "loop": false,
+      "rootMotion": false
+    },
+    {
+      "name": "lean_left",
+      "seconds": 0.9583333333333334,
+      "frames": [
+        1,
+        24
+      ],
+      "loop": false,
+      "rootMotion": false
+    },
+    {
+      "name": "lean_right",
+      "seconds": 0.9583333333333334,
+      "frames": [
+        1,
+        24
+      ],
+      "loop": false,
+      "rootMotion": false
+    },
+    {
+      "name": "wobble_left",
+      "seconds": 0.9583333333333334,
+      "frames": [
+        1,
+        24
+      ],
+      "loop": true,
+      "rootMotion": false
+    },
+    {
+      "name": "wobble_right",
+      "seconds": 0.9583333333333334,
+      "frames": [
+        1,
+        24
+      ],
+      "loop": true,
+      "rootMotion": false
+    },
+    {
+      "name": "panic",
+      "seconds": 0.9583333333333334,
+      "frames": [
+        1,
+        24
+      ],
+      "loop": false,
+      "rootMotion": false
+    },
+    {
+      "name": "fall",
+      "seconds": 0.9583333333333334,
+      "frames": [
+        1,
+        24
+      ],
+      "loop": false,
+      "rootMotion": true
+    },
+    {
+      "name": "recover",
+      "seconds": 0.9583333333333334,
+      "frames": [
+        1,
+        24
+      ],
+      "loop": false,
+      "rootMotion": true
+    },
+    {
+      "name": "victory_small",
+      "seconds": 0.9583333333333334,
+      "frames": [
+        1,
+        24
+      ],
+      "loop": false,
+      "rootMotion": false
+    },
+    {
+      "name": "victory_big",
+      "seconds": 0.9583333333333334,
+      "frames": [
+        1,
+        24
+      ],
+      "loop": false,
+      "rootMotion": true
+    },
+    {
+      "name": "defeat",
+      "seconds": 0.9583333333333334,
+      "frames": [
+        1,
+        24
+      ],
+      "loop": false,
+      "rootMotion": false
+    },
+    {
+      "name": "host_wave",
+      "seconds": 0.9583333333333334,
+      "frames": [
+        1,
+        24
+      ],
+      "loop": false,
+      "rootMotion": false
+    },
+    {
+      "name": "host_point",
+      "seconds": 0.9583333333333334,
+      "frames": [
+        1,
+        24
+      ],
+      "loop": false,
+      "rootMotion": false
+    },
+    {
+      "name": "blink",
+      "seconds": 0.9583333333333334,
+      "frames": [
+        1,
+        24
+      ],
+      "loop": false,
+      "rootMotion": false
+    },
+    {
+      "name": "look_direction",
+      "seconds": 0.9583333333333334,
+      "frames": [
+        1,
+        24
+      ],
+      "loop": false,
+      "rootMotion": false
+    },
+    {
+      "name": "expr_default",
+      "seconds": 0.9583333333333334,
+      "frames": [
+        1,
+        24
+      ],
+      "loop": false,
+      "rootMotion": false
+    },
+    {
+      "name": "expr_delighted",
+      "seconds": 0.9583333333333334,
+      "frames": [
+        1,
+        24
+      ],
+      "loop": false,
+      "rootMotion": false
+    },
+    {
+      "name": "expr_determined",
+      "seconds": 0.9583333333333334,
+      "frames": [
+        1,
+        24
+      ],
+      "loop": false,
+      "rootMotion": false
+    },
+    {
+      "name": "expr_worried",
+      "seconds": 0.9583333333333334,
+      "frames": [
+        1,
+        24
+      ],
+      "loop": false,
+      "rootMotion": false
+    },
+    {
+      "name": "expr_panic",
+      "seconds": 0.9583333333333334,
+      "frames": [
+        1,
+        24
+      ],
+      "loop": false,
+      "rootMotion": false
+    },
+    {
+      "name": "expr_frustrated",
+      "seconds": 0.9583333333333334,
+      "frames": [
+        1,
+        24
+      ],
+      "loop": false,
+      "rootMotion": false
+    },
+    {
+      "name": "expr_proud",
+      "seconds": 0.9583333333333334,
+      "frames": [
+        1,
+        24
+      ],
+      "loop": false,
+      "rootMotion": false
+    },
+    {
+      "name": "expr_dizzy",
+      "seconds": 0.9583333333333334,
+      "frames": [
+        1,
+        24
+      ],
+      "loop": false,
+      "rootMotion": false
+    },
+    {
+      "name": "expr_mischief",
+      "seconds": 0.9583333333333334,
+      "frames": [
+        1,
+        24
+      ],
+      "loop": false,
+      "rootMotion": false
+    }
+  ],
+  "exportSettings": {
+    "export_format": "GLB",
+    "use_selection": true,
+    "export_animations": true,
+    "export_animation_mode": "ACTIONS",
+    "export_force_sampling": true,
+    "export_frame_range": false,
+    "export_anim_slide_to_zero": true,
+    "export_skins": true,
+    "export_yup": true,
+    "export_materials": "EXPORT",
+    "export_texcoords": false,
+    "export_cameras": false,
+    "export_lights": false
+  },
+  "paletteSRGB": {
+    "fur": "282625",
+    "cream": "F5DBB7",
+    "orange": "B74A17",
+    "brass": "AD8147",
+    "nose": "201C19",
+    "white": "FFF3DB",
+    "iris": "653415",
+    "mouth": "32110E",
+    "tongue": "D87670"
+  },
+  "camera": {
+    "blenderPosition": [
+      0.65,
+      -1.85,
+      0.85
+    ],
+    "target": [
+      0,
+      0,
+      0.38
+    ],
+    "orthographicHeight": 1.12
+  },
+  "render": {
+    "engine": "Cycles CPU",
+    "samples": 48,
+    "denoise": true,
+    "seed": 11,
+    "size": [
+      256,
+      256
+    ],
+    "colorManagement": "Standard / None",
+    "transparent": true
+  },
+  "shortcuts": [
+    "Unified voxel-remeshed coat; face components remain separate",
+    "Vertex-color stylized materials; no texture maps or strand fur",
+    "Baked IK with composable facial bones; no animator-facing FK switch",
+    "Candidate requires final creative approval"
+  ]
+}
