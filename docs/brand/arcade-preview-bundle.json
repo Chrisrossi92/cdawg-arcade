@@ -1,0 +1,62 @@
+{
+  "lobbyGraphOnly": true,
+  "phaserLoadedByLobby": false,
+  "noReferenceOrSourceAssets": true,
+  "files": {
+    "index.html": {
+      "bytes": 560,
+      "gzipBytes": 359
+    },
+    "assets/index-BMC5y7nY.css": {
+      "bytes": 14594,
+      "gzipBytes": 3838
+    },
+    "assets/cdawg-ui-latin-v001-CfIt6cLC.woff2": {
+      "bytes": 15432,
+      "gzipBytes": 15455
+    },
+    "assets/cdawg-display-latin-v001-CeyYqTKY.woff2": {
+      "bytes": 15380,
+      "gzipBytes": 15403
+    },
+    "assets/hostAdapter-vv14jY1N.js": {
+      "bytes": 194724,
+      "gzipBytes": 60713
+    },
+    "assets/index-DHdX_Or6.js": {
+      "bytes": 13273,
+      "gzipBytes": 4392
+    },
+    "assets/cdawg-avatar-128-v001-Npm5eqyj.png": {
+      "bytes": 33640,
+      "gzipBytes": 33673
+    },
+    "assets/cdawg-host-v001-BJ5CAuEE.png": {
+      "bytes": 140117,
+      "gzipBytes": 140164
+    },
+    "assets/cdawg-wordmark-dark-v001-D7OPT70T.svg": {
+      "bytes": 9054,
+      "gzipBytes": 2618
+    },
+    "assets/cdawg-stacked-dark-v001-D2mGMEc4.svg": {
+      "bytes": 9793,
+      "gzipBytes": 2962
+    },
+    "assets/cdawg-horizontal-light-v001-B3I7SDMR.svg": {
+      "bytes": 9760,
+      "gzipBytes": 2955
+    },
+    "assets/cdawg-horizontal-dark-v001-CocDCRX-.svg": {
+      "bytes": 9760,
+      "gzipBytes": 2952
+    },
+    "assets/cdawg-favicon-32-v001-CSlVtYvt.png": {
+      "bytes": 1311,
+      "gzipBytes": 1334
+    }
+  },
+  "totalBytes": 467398,
+  "totalGzipBytes": 286818,
+  "note": "Build graph bytes, not measured HTTP transfer; SVGs below Vite threshold are embedded in JS. Separate Balance HTML adds unchanged gameplay only on navigation."
+}

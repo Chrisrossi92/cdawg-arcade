@@ -1,0 +1,35 @@
+/* Generated from tokens.json; isolated brand preview only. */
+:root {
+  --brand-background: #0F1113;
+  --brand-surface: #191C1E;
+  --brand-surfaceRaised: #23272A;
+  --brand-text: #F7E6CD;
+  --brand-muted: #BDB7AE;
+  --brand-action: #FF8A2B;
+  --brand-actionHover: #FFA458;
+  --brand-actionActive: #EA771A;
+  --brand-onAction: #0F1113;
+  --brand-brass: #B08B4F;
+  --brand-border: #77736D;
+  --brand-focus: #FF8A2B;
+  --brand-success: #95D5A7;
+  --brand-warning: #F2C46D;
+  --brand-error: #FFAAAA;
+  --brand-disabled: #A39F98;
+  --brand-lightBackground: #F7E6CD;
+  --brand-lightInk: #0F1113;
+  --brand-lightAccent: #AD4300;
+  --brand-divider: #343431;
+  --brand-decorativeBorder: #49443E;
+  --brand-ticketBorder: #514536;
+  --brand-cardBorder: #504A42;
+  --brand-captionBorder: #3B3934;
+  --brand-mysteryBorder: #60503C;
+  --brand-beamShadow: #904500;
+  --brand-shadow: #00000077;
+  --brand-shadowStrong: #00000088;
+  --brand-hostGlow: #B08B4F22;
+  --brand-ticketGlow: #B08B4F09;
+  --brand-cardGlow: #FF8A2B15;
+  --brand-orbit: #B08B4F33;
+}

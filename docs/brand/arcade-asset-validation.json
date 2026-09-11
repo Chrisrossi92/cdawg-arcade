@@ -1,0 +1,205 @@
+{
+  "checks": 104,
+  "contrast": [
+    {
+      "foreground": "text",
+      "background": "background",
+      "ratio": 15.46,
+      "minimum": 4.5
+    },
+    {
+      "foreground": "text",
+      "background": "surface",
+      "ratio": 13.99,
+      "minimum": 4.5
+    },
+    {
+      "foreground": "muted",
+      "background": "surfaceRaised",
+      "ratio": 7.56,
+      "minimum": 4.5
+    },
+    {
+      "foreground": "onAction",
+      "background": "action",
+      "ratio": 8.04,
+      "minimum": 4.5
+    },
+    {
+      "foreground": "onAction",
+      "background": "actionHover",
+      "ratio": 9.64,
+      "minimum": 4.5
+    },
+    {
+      "foreground": "onAction",
+      "background": "actionActive",
+      "ratio": 6.44,
+      "minimum": 4.5
+    },
+    {
+      "foreground": "disabled",
+      "background": "surfaceRaised",
+      "ratio": 5.71,
+      "minimum": 4.5
+    },
+    {
+      "foreground": "success",
+      "background": "surface",
+      "ratio": 10.07,
+      "minimum": 4.5
+    },
+    {
+      "foreground": "warning",
+      "background": "surface",
+      "ratio": 10.51,
+      "minimum": 4.5
+    },
+    {
+      "foreground": "error",
+      "background": "surface",
+      "ratio": 9.45,
+      "minimum": 4.5
+    },
+    {
+      "foreground": "focus",
+      "background": "surfaceRaised",
+      "ratio": 6.4,
+      "minimum": 3
+    },
+    {
+      "foreground": "border",
+      "background": "surfaceRaised",
+      "ratio": 3.2,
+      "minimum": 3
+    },
+    {
+      "foreground": "lightInk",
+      "background": "lightBackground",
+      "ratio": 15.46,
+      "minimum": 4.5
+    },
+    {
+      "foreground": "lightAccent",
+      "background": "lightBackground",
+      "ratio": 4.79,
+      "minimum": 4.5
+    }
+  ],
+  "files": {
+    "vector/cdawg-avatar-frame-v001.svg": {
+      "bytes": 313,
+      "sha256": "fa80653cbd0084c75e382df80b64a4cb77e137197fd75670685e75fd427a2485"
+    },
+    "vector/cdawg-horizontal-dark-v001.svg": {
+      "bytes": 9760,
+      "sha256": "7f749727a504bbe1bee417267910841155d3dcc9c972aad679e316dc33f9d787"
+    },
+    "vector/cdawg-horizontal-light-v001.svg": {
+      "bytes": 9760,
+      "sha256": "81c52a2febdce473f41168da63cca94143c53d093ec0340c8d470874cdcb58b7"
+    },
+    "vector/cdawg-horizontal-mono-charcoal-v001.svg": {
+      "bytes": 9529,
+      "sha256": "72534c41f55c58cc69213cd82718ee7f898569d60c74a2fb7fb086aeefa6a8d0"
+    },
+    "vector/cdawg-horizontal-mono-cream-v001.svg": {
+      "bytes": 9529,
+      "sha256": "12996c47663042a946d3e06e39790a6217489f5bb98b3f620a4aa67ce5fad944"
+    },
+    "vector/cdawg-stacked-dark-v001.svg": {
+      "bytes": 9793,
+      "sha256": "8b49a2e99ff218b0a556dac8215b194c7af9f6a450477fc8eea640d4dcc4c008"
+    },
+    "vector/cdawg-stacked-light-v001.svg": {
+      "bytes": 9793,
+      "sha256": "e81e1b977ac35429b709a71c9108ba9ac4a102a5b62bf8c21e5cca978d8bb1ac"
+    },
+    "vector/cdawg-stacked-mono-charcoal-v001.svg": {
+      "bytes": 9562,
+      "sha256": "eb01d40a1c5dfb9cf8a4d150ae6ecac68750e76774d681ff99e63c204c6021b1"
+    },
+    "vector/cdawg-stacked-mono-cream-v001.svg": {
+      "bytes": 9562,
+      "sha256": "2bc964c6df2288783ca095e6ce76b151989cd9c1eba48f6173dcbce718d1d25e"
+    },
+    "vector/cdawg-tag-dark-v001.svg": {
+      "bytes": 836,
+      "sha256": "92e9f421dc4fb013c0554f141267021e5225c470d6e4a1329d58094468b8db3e"
+    },
+    "vector/cdawg-tag-light-v001.svg": {
+      "bytes": 836,
+      "sha256": "92e9f421dc4fb013c0554f141267021e5225c470d6e4a1329d58094468b8db3e"
+    },
+    "vector/cdawg-tag-mono-charcoal-v001.svg": {
+      "bytes": 605,
+      "sha256": "2e65304dee230b6e632b351678b92dc8d7302de2fb8ff122deb69514cae23966"
+    },
+    "vector/cdawg-tag-mono-cream-v001.svg": {
+      "bytes": 605,
+      "sha256": "0093263ed52fc1d8fedfde8d5fbc10f596d5e88b0bc2373d4bb884a2e5791de8"
+    },
+    "vector/cdawg-tag-small-v001.svg": {
+      "bytes": 735,
+      "sha256": "778c759becebfd51e5ea4f45f28c8e22137d949cb9b23d6288676def153ccf99"
+    },
+    "vector/cdawg-wordmark-dark-v001.svg": {
+      "bytes": 9054,
+      "sha256": "ab3f094e6a5c2f5f61e27744983801354a453b8c0b6695f36cf81ea3163b79f2"
+    },
+    "vector/cdawg-wordmark-light-v001.svg": {
+      "bytes": 9054,
+      "sha256": "5250609ca1e40de54120a959414738bc2fdf5b6b476f1fd7661ea1dd0c20a915"
+    },
+    "vector/cdawg-wordmark-mono-charcoal-v001.svg": {
+      "bytes": 9054,
+      "sha256": "91a914a09de4cf930fee28d4584a53a28e58b65504373d3becb1e9598721ee7e"
+    },
+    "vector/cdawg-wordmark-mono-cream-v001.svg": {
+      "bytes": 9054,
+      "sha256": "ef91b6d6c27fbf6045b7b09d4bd9f730446ac215f465a1c4f3c17d2aa6ccd319"
+    },
+    "runtime/cdawg-avatar-128-v001.png": {
+      "bytes": 33640,
+      "sha256": "c96dd006dc67be2ef30f36bf1e7088763f3810211080c2af10ab9a92d4fafb1a"
+    },
+    "runtime/cdawg-avatar-256-v001.png": {
+      "bytes": 95401,
+      "sha256": "78ae47f590eaee6befbf4ad0913e216372d058409abcc218cc9271061ab5ce86"
+    },
+    "runtime/cdawg-avatar-64-v001.png": {
+      "bytes": 10866,
+      "sha256": "b9749a339feb04b346a75ed9384cf6054e34c843c19b59817a2bde5117051d08"
+    },
+    "runtime/cdawg-display-latin-v001.woff2": {
+      "bytes": 15380,
+      "sha256": "f6fbc09a44f7a52bb3ce94448545b957ae2be96899bfcbcf90c0734fdd57131c"
+    },
+    "runtime/cdawg-favicon-16-v001.png": {
+      "bytes": 658,
+      "sha256": "04754962743e14bf432aafc0504492f83b5832bec44d152d58634bcccfa37e45"
+    },
+    "runtime/cdawg-favicon-24-v001.png": {
+      "bytes": 1025,
+      "sha256": "a88303e9554b35f8a6b8aa5d0fb899d4aa6c1bafbd06e7ec9e0b16ba6a0e9576"
+    },
+    "runtime/cdawg-favicon-32-v001.png": {
+      "bytes": 1311,
+      "sha256": "bb91f123b979136145f56cbf1a042b3488c8018c97d3b0f47e31e9e04fe37239"
+    },
+    "runtime/cdawg-favicon-48-v001.png": {
+      "bytes": 2138,
+      "sha256": "a445e643bfbd793ff5023c40b5da4fd7cd7356e1c8fbe54ddb7c27af0388e935"
+    },
+    "runtime/cdawg-host-v001.png": {
+      "bytes": 140117,
+      "sha256": "a2515aaf928590f4b89414ae49f8745bb607f1fd0c9804defc3d77a1006292da"
+    },
+    "runtime/cdawg-ui-latin-v001.woff2": {
+      "bytes": 15432,
+      "sha256": "525717f5415ec7dd68c197effd798eb96d79e85545ec631acea21c4a265fad65"
+    }
+  },
+  "vectorBytes": 117434,
+  "runtimeBytes": 315968
+}

@@ -1,0 +1,1 @@
+{"extends":"../../../tsconfig.app.json","compilerOptions":{"incremental":false,"tsBuildInfoFile":null},"include":["*.tsx","../../../src/vite-env.d.ts"]}
