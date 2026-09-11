@@ -1,5 +1,7 @@
 # Approved V004 mascot — animation integration and pre-merge validation
 
+Final owner-approved preparation: [release gates and rollback plan](V004_RELEASE_AND_ROLLBACK_PLAN.md); [final automated evidence](mascot-v004-final-validation.json).
+
 The owner approved the corrected static mascot after the V004 checkpoint at `bc9e4cb`. This closes the head, expression, collar and tag creative gate and authorizes affected atlas regeneration and feature-branch integration. No additional creative review is requested. No merge or deployment is authorized by this approval.
 
 The unchanged approved Blender model supplies the new V004 gameplay atlases and the V002 lobby host/avatar derivatives. The approved brand vectors, typography, palette, layout and styles remain unchanged. The only production source change since the checkpoint is eight asset-version substitutions in `src/games/balance/mascot/assets.ts`. Motion logic, deterministic physics, timing, replay, scoring, session and database behavior are unchanged.

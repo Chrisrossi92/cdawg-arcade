@@ -1,0 +1,49 @@
+{
+  "approvedCommit": "d6a56c99edb3f7190c0f16ae69733a03af4e86d1",
+  "targetMain": "af3c5d7242ed94958ac1c5dcbdede05da70ed4c5",
+  "branch": "codex/arcade-brand-foundation",
+  "targetIsAncestor": true,
+  "tests": 370,
+  "testFiles": 29,
+  "productionSmokeAssertions": 192,
+  "disposablePostgresChecks": 681,
+  "coreTotal": 1243,
+  "buildFilesMatchingApproved": 45,
+  "serverFilesMatchingBaseline": 36,
+  "atlasRecords": 265,
+  "intakeChecks": 4,
+  "glbChecks": 16,
+  "glbErrors": 0,
+  "glbWarnings": 0,
+  "brandChecks": 104,
+  "rasterChecks": 56,
+  "bundleModules": 145,
+  "historicalRollbackSource": "615898dcc24214206774e551b5bfb935171eefa1",
+  "historicalRollbackArtifact": "dep-dahmqmjm8hqs73cgdbn0",
+  "preservedRollbackAssets": 8,
+  "providerAvailabilityReverified": false,
+  "productionContacted": false,
+  "merged": false,
+  "deployed": false,
+  "logs": {
+    "unit": {
+      "sha256": "27715fb2770feede94c3881f0148734620df76bcfae6c6623ef6ffe07af279be",
+      "passed": true
+    },
+    "postgres": {
+      "sha256": "fea294e61cf6a3f6ec95a708717f41411ec5675aa19868e68e0ace0be002d220",
+      "passed": true
+    },
+    "production": {
+      "sha256": "f76a1c72a6d1a555b12dbb554b0b81841498c947927999dd7aba980e4b9a1f7a",
+      "passed": true
+    }
+  },
+  "browserEvidence": "mascot-v004-browser.json",
+  "renderEvidence": "mascot-v004-reproducibility.json",
+  "harnessCorrections": [
+    "Database suite rerun after production build to avoid missing migration file during output replacement",
+    "GLB validation rerun with required path arguments"
+  ],
+  "finalChangeScope": "Documentation only; approved application and assets unchanged"
+}
