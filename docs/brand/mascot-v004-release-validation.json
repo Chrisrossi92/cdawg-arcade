@@ -1,0 +1,539 @@
+{
+  "database": {
+    "counts": {
+      "players": "1",
+      "guilds": "1",
+      "guild_participations": "1",
+      "game_versions": "2",
+      "application_sessions": "2",
+      "auth_challenges": "0",
+      "attempt_authorizations": "3",
+      "game_attempts": "3",
+      "attempt_traces": "2",
+      "personal_game_stats": "1",
+      "guild_leaderboard_entries": "1",
+      "guild_game_records": "1",
+      "guild_record_events": "1",
+      "security_events": "1"
+    },
+    "personal": {
+      "status": "consistent",
+      "expectedGroups": "1",
+      "storedGroups": "1",
+      "mismatches": "0"
+    },
+    "guild": {
+      "status": "consistent",
+      "entries": "1",
+      "records": "1",
+      "events": "1",
+      "boardMismatches": "0",
+      "recordMismatches": "0",
+      "eventMismatches": "0"
+    },
+    "restrictedRuntimeRole": true,
+    "replay": [
+      {
+        "storedTicks": 42,
+        "replayedTicks": 42,
+        "match": true
+      },
+      {
+        "storedTicks": 1385,
+        "replayedTicks": 1385,
+        "match": true
+      }
+    ],
+    "outcomes": [
+      {
+        "disposition": "accepted",
+        "reason_code": "accepted",
+        "interruption_count": 0,
+        "ticks": 42,
+        "n": "1"
+      },
+      {
+        "disposition": "accepted",
+        "reason_code": "accepted",
+        "interruption_count": 0,
+        "ticks": 1385,
+        "n": "1"
+      },
+      {
+        "disposition": "practice",
+        "reason_code": "rejected_interrupted",
+        "interruption_count": 1,
+        "ticks": 0,
+        "n": "1"
+      }
+    ]
+  },
+  "browser": {
+    "desktop": {
+      "canvas": [
+        {
+          "height": 160,
+          "width": 256
+        }
+      ],
+      "lobbyVisible": false,
+      "overflow": false,
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      }
+    },
+    "pauseObserved": true,
+    "resumeCompleted": true,
+    "resultVisible": true,
+    "narrow": {
+      "canvas": [
+        {
+          "displayHeight": 203.875,
+          "displayWidth": 364,
+          "height": 203,
+          "width": 364
+        }
+      ],
+      "overflow": false,
+      "paused": true,
+      "viewport": {
+        "height": 844,
+        "width": 390
+      }
+    },
+    "narrowResult": {
+      "overflow": false,
+      "result": true,
+      "viewport": {
+        "height": 844,
+        "width": 390
+      }
+    },
+    "popoutSized": {
+      "overflow": false,
+      "result": true,
+      "viewport": {
+        "height": 600,
+        "width": 800
+      }
+    }
+  },
+  "logs": {
+    "observed": 12,
+    "errorLines": 0,
+    "startupRelease": "b8f04949721f41fe1c87d50e9037581a2aa16197",
+    "priorInstanceDrained": true
+  },
+  "rollback": {
+    "source": "615898dcc24214206774e551b5bfb935171eefa1",
+    "artifact": "dep-dahmqmjm8hqs73cgdbn0",
+    "retained": true,
+    "configurationMessage": "No configuration changes since this deploy.",
+    "executed": false
+  },
+  "merge": "b8f04949721f41fe1c87d50e9037581a2aa16197",
+  "feature": "34be5b5afd2098e855a423ef36eb20f61b29dcff",
+  "deployment": "dep-dahv5euk1f9s73feiat0",
+  "postMerge": {
+    "unit": 370,
+    "smoke": 192,
+    "postgres": 681,
+    "total": 1243,
+    "exactBuildFiles": 45,
+    "securityScanFiles": 446,
+    "bundleModules": 145,
+    "atlasRecords": 265
+  },
+  "providerRepeated": {
+    "unit": 370,
+    "smoke": 192
+  },
+  "publicProbes": 39,
+  "databaseCountsUnchanged": true,
+  "lobby": {
+    "productionModuleGraphExcluded": true,
+    "previewAndAssetPaths404": true,
+    "rootIsBalance": true
+  },
+  "canary": "passed; owner-attested Discord identity, corrected appearance, smooth animation, official result, personal result, guild leaderboard and Play Again",
+  "limitations": [
+    "Seven existing dependency advisories (2 moderate, 5 high); dependencies unchanged",
+    "Browser measured desktop, narrow and pop-out-sized viewport, not native Discord pop-out certification",
+    "Frame performance carries forward exact-asset local measurement; no live GPU instrumentation",
+    "Canary confirms official flow by owner attestation; post-canary data verifies a new interrupted-practice result, not a new accepted score."
+  ],
+  "assets": [
+    {
+      "path": "dist/assets/cdawg-mascot-balance0-v004-BDwc5MnW.webp",
+      "sha256": "42da55184ed19413cadc1c549a2a047ea2ac640d42d987a703dac93275cd8c12",
+      "bytes": 375832
+    },
+    {
+      "path": "dist/assets/cdawg-mascot-balance1-v004-RnhYpwi9.webp",
+      "sha256": "1c8bd805a87019d7ab0c43525aa62063346f29d5679e3f9983bb8ff36ded3569",
+      "bytes": 376956
+    },
+    {
+      "path": "dist/assets/cdawg-mascot-reactions0-v004-BcYTbBqx.webp",
+      "sha256": "7e701c7426d7eb270ccd49cf3554946ba2800d368929054071ba3be2e6aa6c31",
+      "bytes": 516782
+    },
+    {
+      "path": "dist/assets/cdawg-mascot-reactions1-v004-BtVb-jPy.webp",
+      "sha256": "c49f4097c678e50ca7f780c2ca93fa288bc3ec48155d8525d7105fdeb9a809be",
+      "bytes": 333182
+    }
+  ],
+  "probes": {
+    "release": "b8f04949721f41fe1c87d50e9037581a2aa16197",
+    "checks": 36,
+    "results": [
+      {
+        "path": "/api/health",
+        "method": "GET",
+        "status": 200,
+        "bytes": 127,
+        "elapsedMs": 227.6
+      },
+      {
+        "path": "/api/ready",
+        "method": "GET",
+        "status": 200,
+        "bytes": 127,
+        "elapsedMs": 154.0
+      },
+      {
+        "path": "/api/persistence/ready",
+        "method": "GET",
+        "status": 200,
+        "bytes": 153,
+        "elapsedMs": 362.5
+      },
+      {
+        "path": "/",
+        "method": "GET",
+        "status": 200,
+        "bytes": 415,
+        "elapsedMs": 149.1
+      },
+      {
+        "path": "/assets/index-DEXtXNlX.js",
+        "method": "GET",
+        "status": 200,
+        "bytes": 2179477,
+        "elapsedMs": 405.1
+      },
+      {
+        "path": "/assets/index-ClDNmLcJ.css",
+        "method": "GET",
+        "status": 200,
+        "bytes": 13558,
+        "elapsedMs": 192.2
+      },
+      {
+        "path": "/assets/cdawg-mascot-reactions0-v004-BcYTbBqx.webp",
+        "method": "GET",
+        "status": 200,
+        "bytes": 516782,
+        "elapsedMs": 248.8
+      },
+      {
+        "path": "/assets/cdawg-mascot-reactions1-v004-BtVb-jPy.webp",
+        "method": "GET",
+        "status": 200,
+        "bytes": 333182,
+        "elapsedMs": 257.9
+      },
+      {
+        "path": "/assets/cdawg-mascot-balance0-v004-BDwc5MnW.webp",
+        "method": "GET",
+        "status": 200,
+        "bytes": 375832,
+        "elapsedMs": 271.1
+      },
+      {
+        "path": "/assets/cdawg-mascot-balance1-v004-RnhYpwi9.webp",
+        "method": "GET",
+        "status": 200,
+        "bytes": 376956,
+        "elapsedMs": 213.8
+      },
+      {
+        "path": "/api/me",
+        "method": "GET",
+        "status": 401,
+        "bytes": 19,
+        "elapsedMs": 112.0
+      },
+      {
+        "path": "/api/me/balance/stats",
+        "method": "GET",
+        "status": 401,
+        "bytes": 27,
+        "elapsedMs": 109.7
+      },
+      {
+        "path": "/api/me/balance/attempts",
+        "method": "GET",
+        "status": 401,
+        "bytes": 27,
+        "elapsedMs": 125.6
+      },
+      {
+        "path": "/api/guild/balance/leaderboard",
+        "method": "GET",
+        "status": 401,
+        "bytes": 27,
+        "elapsedMs": 122.3
+      },
+      {
+        "path": "/api/balance/attempts",
+        "method": "POST",
+        "status": 401,
+        "bytes": 27,
+        "elapsedMs": 153.0
+      },
+      {
+        "path": "/api/balance/attempts/submit",
+        "method": "POST",
+        "status": 401,
+        "bytes": 27,
+        "elapsedMs": 121.0
+      },
+      {
+        "path": "/api/me",
+        "method": "OPTIONS",
+        "status": 204,
+        "bytes": 0,
+        "elapsedMs": 105.8
+      },
+      {
+        "path": "/api/me",
+        "method": "OPTIONS",
+        "status": 403,
+        "bytes": 26,
+        "elapsedMs": 140.4
+      },
+      {
+        "path": "/api/balance/attempts",
+        "method": "OPTIONS",
+        "status": 204,
+        "bytes": 0,
+        "elapsedMs": 119.5
+      },
+      {
+        "path": "/api/balance/attempts",
+        "method": "OPTIONS",
+        "status": 403,
+        "bytes": 26,
+        "elapsedMs": 158.9
+      },
+      {
+        "path": "/api/guild/balance/leaderboard",
+        "method": "OPTIONS",
+        "status": 204,
+        "bytes": 0,
+        "elapsedMs": 188.4
+      },
+      {
+        "path": "/api/guild/balance/leaderboard",
+        "method": "OPTIONS",
+        "status": 403,
+        "bytes": 26,
+        "elapsedMs": 139.0
+      },
+      {
+        "path": "/api/token",
+        "method": "OPTIONS",
+        "status": 204,
+        "bytes": 0,
+        "elapsedMs": 156.1
+      },
+      {
+        "path": "/api/token",
+        "method": "OPTIONS",
+        "status": 400,
+        "bytes": 27,
+        "elapsedMs": 186.9
+      },
+      {
+        "path": "/api/token",
+        "method": "POST",
+        "status": 400,
+        "bytes": 38,
+        "elapsedMs": 148.5
+      },
+      {
+        "path": "/assets/missing.webp",
+        "method": "GET",
+        "status": 404,
+        "bytes": 21,
+        "elapsedMs": 126.0
+      },
+      {
+        "path": "/api/not-a-route",
+        "method": "GET",
+        "status": 404,
+        "bytes": 21,
+        "elapsedMs": 129.8
+      },
+      {
+        "path": "/scripts/mascot/preview/integrated.html",
+        "method": "GET",
+        "status": 404,
+        "bytes": 21,
+        "elapsedMs": 111.9
+      },
+      {
+        "path": "/docs/brand/MASCOT_PREMERGE.md",
+        "method": "GET",
+        "status": 404,
+        "bytes": 21,
+        "elapsedMs": 115.3
+      },
+      {
+        "path": "/build/release.json",
+        "method": "GET",
+        "status": 404,
+        "bytes": 21,
+        "elapsedMs": 127.5
+      },
+      {
+        "path": "/.env",
+        "method": "GET",
+        "status": 404,
+        "bytes": 21,
+        "elapsedMs": 143.8
+      },
+      {
+        "path": "/scripts/brand/preview/index.html",
+        "method": "GET",
+        "status": 404,
+        "bytes": 21,
+        "elapsedMs": 118.0
+      },
+      {
+        "path": "/scripts/brand/preview/balance.html",
+        "method": "GET",
+        "status": 404,
+        "bytes": 21,
+        "elapsedMs": 169.2
+      },
+      {
+        "path": "/assets/brand/arcade/runtime/cdawg-host-v002.png",
+        "method": "GET",
+        "status": 404,
+        "bytes": 21,
+        "elapsedMs": 99.2
+      },
+      {
+        "path": "/assets/brand/arcade/tokens.css",
+        "method": "GET",
+        "status": 404,
+        "bytes": 21,
+        "elapsedMs": 115.6
+      },
+      {
+        "path": "/balance.html",
+        "method": "GET",
+        "status": 404,
+        "bytes": 21,
+        "elapsedMs": 100.2
+      }
+    ]
+  },
+  "postCanary": {
+    "database": {
+      "counts": {
+        "players": "1",
+        "guilds": "1",
+        "guild_participations": "1",
+        "game_versions": "2",
+        "application_sessions": "3",
+        "auth_challenges": "0",
+        "attempt_authorizations": "4",
+        "game_attempts": "4",
+        "attempt_traces": "2",
+        "personal_game_stats": "1",
+        "guild_leaderboard_entries": "1",
+        "guild_game_records": "1",
+        "guild_record_events": "1",
+        "security_events": "1"
+      },
+      "personal": {
+        "status": "consistent",
+        "expectedGroups": "1",
+        "storedGroups": "1",
+        "mismatches": "0"
+      },
+      "guild": {
+        "status": "consistent",
+        "entries": "1",
+        "records": "1",
+        "events": "1",
+        "boardMismatches": "0",
+        "recordMismatches": "0",
+        "eventMismatches": "0"
+      },
+      "restrictedRuntimeRole": true,
+      "replay": [
+        {
+          "storedTicks": 42,
+          "replayedTicks": 42,
+          "match": true
+        },
+        {
+          "storedTicks": 1385,
+          "replayedTicks": 1385,
+          "match": true
+        }
+      ],
+      "outcomes": [
+        {
+          "disposition": "accepted",
+          "reason_code": "accepted",
+          "interruption_count": 0,
+          "ticks": 42,
+          "n": "1"
+        },
+        {
+          "disposition": "accepted",
+          "reason_code": "accepted",
+          "interruption_count": 0,
+          "ticks": 1385,
+          "n": "1"
+        },
+        {
+          "disposition": "practice",
+          "reason_code": "rejected_interrupted",
+          "interruption_count": 1,
+          "ticks": 0,
+          "n": "2"
+        }
+      ]
+    },
+    "health": {
+      "/api/health": {
+        "status": "alive",
+        "releaseSha": "b8f04949721f41fe1c87d50e9037581a2aa16197",
+        "version": "b8f04949721f41fe1c87d50e9037581a2aa16197"
+      },
+      "/api/ready": {
+        "status": "ready",
+        "releaseSha": "b8f04949721f41fe1c87d50e9037581a2aa16197",
+        "version": "b8f04949721f41fe1c87d50e9037581a2aa16197"
+      },
+      "/api/persistence/ready": {
+        "status": "available",
+        "schema": "compatible",
+        "releaseSha": "b8f04949721f41fe1c87d50e9037581a2aa16197",
+        "version": "b8f04949721f41fe1c87d50e9037581a2aa16197"
+      }
+    },
+    "newAcceptedScoreVerified": false,
+    "additionalResult": "practice: rejected_interrupted; interruption_count=1; ticks=0",
+    "screenshot": "Owner supplied screenshot shows paused-practice result; screenshot not committed",
+    "evidenceDistinction": "Official flow is owner-attested. No new accepted score was added; both existing accepted runs replay exactly."
+  }
+}

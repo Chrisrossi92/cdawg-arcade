@@ -1,5 +1,7 @@
 # V004 mascot and Arcade identity: final preparation
 
+Subsequent status: [V004 production release accepted](MASCOT_V004_RELEASE_ACCEPTANCE.md). This document preserves the preparation checkpoint.
+
 Status: creatively approved for pre-merge preparation; **no merge or deployment performed or authorized in this phase**.
 
 Approved implementation: `d6a56c99edb3f7190c0f16ae69733a03af4e86d1` on `codex/arcade-brand-foundation`. Target main: `af3c5d7242ed94958ac1c5dcbdede05da70ed4c5`. Both heads were clean and synchronized before this documentation-only preparation. Main is an ancestor, making the current integration conflict-free. This record's commit adds documentation only and does not change the approved application tree.
