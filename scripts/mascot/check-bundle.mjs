@@ -14,7 +14,7 @@ await build({
         if (output.type === 'chunk') {
           for (const id of Object.keys(output.modules)) {
             modules++;
-            assert.ok(allowed.some(p=>id.split('?')[0].endsWith('/'+p))||!/\/(?:assets\/brand\/mascot|docs\/brand|scripts\/mascot)\//.test(id.replaceAll('\\', '/')),
+            assert.ok(allowed.some(p=>id.split('?')[0].endsWith('/'+p))||!/\/(?:assets\/brand\/(?:mascot|arcade)|docs\/brand|scripts\/(?:mascot|brand))\//.test(id.replaceAll('\\', '/')),
               'Source-only mascot material entered the production module graph');
           }
           assert.ok(!output.code.includes('assets/brand/mascot/'), 'Mascot source URL in runtime');

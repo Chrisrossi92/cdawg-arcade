@@ -1,0 +1,72 @@
+{
+  "browser": "In-app Chromium",
+  "checks": 27,
+  "passed": [
+    "Safe signed-in example renders",
+    "Unavailable action disabled",
+    "Loading marks busy",
+    "Error preserves practice",
+    "Coming-soon feedback announced",
+    "Reduced animation disabled",
+    "Header keyboard moves to Games",
+    "Header keyboard moves to Brand system",
+    "Keyboard reaches Play with visible focus",
+    "Keyboard reaches coming soon",
+    "Play opens actual local-practice game",
+    "Return to lobby works",
+    "Small layout has no overflow",
+    "Both local font families loaded",
+    "Less motion disables smooth document scrolling",
+    "narrow fits viewport",
+    "narrow images load",
+    "narrow fonts ready",
+    "popout fits viewport",
+    "popout images load",
+    "popout fonts ready",
+    "small-narrow fits viewport",
+    "small-narrow images load",
+    "small-narrow fonts ready",
+    "desktop fits viewport",
+    "desktop images load",
+    "desktop fonts ready"
+  ],
+  "viewports": [
+    {
+      "brokenImages": 0,
+      "fonts": "ready",
+      "height": 844,
+      "name": "narrow",
+      "scrollWidth": 390,
+      "width": 390
+    },
+    {
+      "brokenImages": 0,
+      "fonts": "ready",
+      "height": 620,
+      "name": "popout",
+      "scrollWidth": 760,
+      "width": 760
+    },
+    {
+      "brokenImages": 0,
+      "fonts": "ready",
+      "height": 667,
+      "name": "small-narrow",
+      "scrollWidth": 375,
+      "width": 375
+    },
+    {
+      "brokenImages": 0,
+      "fonts": "ready",
+      "height": 900,
+      "name": "desktop",
+      "scrollWidth": 1280,
+      "width": 1280
+    }
+  ],
+  "limitations": [
+    "Other browser engines and real Discord embedding were not exercised; this is an isolated local preview.",
+    "OS reduced-motion media rule reviewed in CSS; interactive Less motion override exercised in browser."
+  ],
+  "screenshots": "Desktop, pop-out, narrow and small-narrow captured and reviewed; stored outside Git."
+}

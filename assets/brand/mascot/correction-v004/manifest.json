@@ -1,0 +1,86 @@
+{
+  "status": "creative-approved-for-animation-integration",
+  "parentModel": "assets/brand/mascot/source/cdawg-mascot-candidate-v002.blend",
+  "authoring": "scripts/mascot/build-canonical-correction.py",
+  "references": [
+    "assets/brand/mascot/reference/cdawg-b1-turnaround-v001.png",
+    "assets/brand/mascot/reference/cdawg-b1-expressions-v001.png"
+  ],
+  "animationAtlasRegenerationAuthorized": true,
+  "productionImports": false,
+  "files": {
+    "source/cdawg-mascot-correction-v004.blend": {
+      "bytes": 1531402,
+      "sha256": "e3a66c834679eaf775a6a3340a28c1e1cec78c1d45354b22936c01af37c348b5"
+    },
+    "source/cdawg-mascot-correction-v004.glb": {
+      "bytes": 1840768,
+      "sha256": "97976ebd80a5a69fbf5c429adf57a9d661427ff1bc5fd8a4d3a77d7cb6173645"
+    },
+    "previews/before-front-head.png": {
+      "bytes": 357833,
+      "sha256": "262ba8947ff2d279ddf381de7149d7277a91e42638d806a120b9b75cce8eeac4"
+    },
+    "previews/before-three-quarter-head.png": {
+      "bytes": 343884,
+      "sha256": "a158565f6a235c6349cc990b0f7dedca5dbe57dea20c6f783f6ddbf27b558f90"
+    },
+    "previews/expr-default.png": {
+      "bytes": 219279,
+      "sha256": "c3b43ef6d8ff1a713dadfcc29eef79fa41431184f15959fccdde09143b12230a"
+    },
+    "previews/expr-delighted.png": {
+      "bytes": 220288,
+      "sha256": "b0f11b29b040a8544d53554c68f0a6d1c9344fc55973e503e0293e58d6432d6e"
+    },
+    "previews/expr-determined.png": {
+      "bytes": 217902,
+      "sha256": "2ec6ea927a4784a4320c3dedf40106767071e87d849e6e81c7d51d9cdde86b5b"
+    },
+    "previews/expr-mischief.png": {
+      "bytes": 219026,
+      "sha256": "9cfad084742c248f1b0f852e24e4b6d6f38b76c2f5babd71d8f95ac9822a6d25"
+    },
+    "previews/expr-panic.png": {
+      "bytes": 221508,
+      "sha256": "bc3ee3f3d71d2f88592fb4ca6360ea5803d5501d5be8b1b38e68d3862c1fdafd"
+    },
+    "previews/expr-worried.png": {
+      "bytes": 220374,
+      "sha256": "920668a25ed9dbf11319ff605c19b17ad6bf23661b21ffbd6870e50055b9587e"
+    },
+    "previews/front-head.png": {
+      "bytes": 355239,
+      "sha256": "7ec94cd0f45143344df4411f47c51660bffc8f5f56d650c171134e4c095e5fec"
+    },
+    "previews/gameplay.png": {
+      "bytes": 49776,
+      "sha256": "6539f48d63b7e58b296e5178965d5208ae76b78babddc64aea87c8794c49e100"
+    },
+    "previews/lobby-host.png": {
+      "bytes": 134516,
+      "sha256": "9dd9f298b0c93b9b5b4185097ff87ab4225c10e7c29230f11bd21bc8caf34bf9"
+    },
+    "previews/three-quarter-head.png": {
+      "bytes": 337141,
+      "sha256": "641a648e012ee43a0ae1f630c0a838bb80192b0023844a304e9d6c63a8384d5e"
+    },
+    "reports/cameras.json": {
+      "bytes": 2040,
+      "sha256": "746d7f177be083281d24a3195a6212374faf9c208151fd676f9d6357737ac0ff"
+    },
+    "reports/geometry.json": {
+      "bytes": 703,
+      "sha256": "cd524e5a29dd8f197919e7300f0b554c7e061284b181d7a91c165bf9034fbc91"
+    },
+    "reports/glb.json": {
+      "bytes": 1001,
+      "sha256": "48a8ebeebbcfae8cea00038be78ed60daaa0c147ffcb4e16aaae3550cdfc834b"
+    },
+    "reports/repeatability.json": {
+      "bytes": 3573,
+      "sha256": "5c6af2bc3bdb5e8cdfb471215bfdabc5ff1cb2ec57015d4f12c13fb5de53e9fe"
+    }
+  },
+  "approval": "Owner explicitly approved the corrected head, six expressions, collar and tag after the static review. Merge and deployment remain unauthorized."
+}

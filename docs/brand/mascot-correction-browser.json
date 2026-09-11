@@ -1,0 +1,16 @@
+{
+  "desktop": {
+    "broken": 0,
+    "gameplayWidth": 256,
+    "images": 14,
+    "lobbyHeight": 220,
+    "scrollWidth": 1280,
+    "width": 1280
+  },
+  "narrow": {
+    "broken": 0,
+    "images": 14,
+    "scrollWidth": 390,
+    "width": 390
+  }
+}

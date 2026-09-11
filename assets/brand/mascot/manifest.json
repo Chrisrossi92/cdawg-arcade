@@ -250,21 +250,85 @@
       "bytes": 1148,
       "sha256": "9669a95725d9dd5ca784627d30da417e7d9ffd6edeb82c9d15d8d156dd0dfd8d",
       "approvedToShip": false
+    },
+    {
+      "path": "assets/brand/mascot/runtime/cdawg-mascot-balance0-v004.webp",
+      "status": "received",
+      "bytes": 375832,
+      "sha256": "42da55184ed19413cadc1c549a2a047ea2ac640d42d987a703dac93275cd8c12",
+      "approvedToShip": false
+    },
+    {
+      "path": "assets/brand/mascot/runtime/cdawg-mascot-balance0-v004.json",
+      "status": "received",
+      "bytes": 10259,
+      "sha256": "662a514d6780d4659eb3b69e579d4349b50609c5517cf036585ec992e55ef208",
+      "approvedToShip": false
+    },
+    {
+      "path": "assets/brand/mascot/runtime/cdawg-mascot-balance1-v004.webp",
+      "status": "received",
+      "bytes": 376956,
+      "sha256": "1c8bd805a87019d7ab0c43525aa62063346f29d5679e3f9983bb8ff36ded3569",
+      "approvedToShip": false
+    },
+    {
+      "path": "assets/brand/mascot/runtime/cdawg-mascot-balance1-v004.json",
+      "status": "received",
+      "bytes": 10259,
+      "sha256": "b64ba9dc28c483fcc644048ab87bb633e6695446690119962b8c5475342347f2",
+      "approvedToShip": false
+    },
+    {
+      "path": "assets/brand/mascot/runtime/cdawg-mascot-reactions0-v004.webp",
+      "status": "received",
+      "bytes": 516782,
+      "sha256": "7e701c7426d7eb270ccd49cf3554946ba2800d368929054071ba3be2e6aa6c31",
+      "approvedToShip": false
+    },
+    {
+      "path": "assets/brand/mascot/runtime/cdawg-mascot-reactions0-v004.json",
+      "status": "received",
+      "bytes": 15143,
+      "sha256": "014fbe063d76f169e6068c11a21317211cf27ee1118bc5bbfe77bd7136b22288",
+      "approvedToShip": false
+    },
+    {
+      "path": "assets/brand/mascot/runtime/cdawg-mascot-reactions1-v004.webp",
+      "status": "received",
+      "bytes": 333182,
+      "sha256": "c49f4097c678e50ca7f780c2ca93fa288bc3ec48155d8525d7105fdeb9a809be",
+      "approvedToShip": false
+    },
+    {
+      "path": "assets/brand/mascot/runtime/cdawg-mascot-reactions1-v004.json",
+      "status": "received",
+      "bytes": 10853,
+      "sha256": "63ba541976dd135cf6d4b7c711244f59f32c04b4196eb991a284c67cd29be325",
+      "approvedToShip": false
+    },
+    {
+      "path": "assets/brand/mascot/source/cdawg-mascot-gameplay-report-v004.json",
+      "status": "received",
+      "bytes": 1146,
+      "sha256": "82456d5267e4582a60b019a8ae4586cce9f8882f600ce9583eba104b930a910f",
+      "approvedToShip": false
     }
   ],
   "integrationExports": [
-    "assets/brand/mascot/runtime/cdawg-mascot-balance0-v003.webp",
-    "assets/brand/mascot/runtime/cdawg-mascot-balance0-v003.json",
-    "assets/brand/mascot/runtime/cdawg-mascot-balance1-v003.webp",
-    "assets/brand/mascot/runtime/cdawg-mascot-balance1-v003.json",
-    "assets/brand/mascot/runtime/cdawg-mascot-reactions0-v003.webp",
-    "assets/brand/mascot/runtime/cdawg-mascot-reactions0-v003.json",
-    "assets/brand/mascot/runtime/cdawg-mascot-reactions1-v003.webp",
-    "assets/brand/mascot/runtime/cdawg-mascot-reactions1-v003.json"
+    "assets/brand/mascot/runtime/cdawg-mascot-balance0-v004.webp",
+    "assets/brand/mascot/runtime/cdawg-mascot-balance0-v004.json",
+    "assets/brand/mascot/runtime/cdawg-mascot-balance1-v004.webp",
+    "assets/brand/mascot/runtime/cdawg-mascot-balance1-v004.json",
+    "assets/brand/mascot/runtime/cdawg-mascot-reactions0-v004.webp",
+    "assets/brand/mascot/runtime/cdawg-mascot-reactions0-v004.json",
+    "assets/brand/mascot/runtime/cdawg-mascot-reactions1-v004.webp",
+    "assets/brand/mascot/runtime/cdawg-mascot-reactions1-v004.json"
   ],
   "approval": {
-    "design": "User approved Phase 2 appearance for integration",
+    "design": "User approved corrected V004 head, six expressions, collar and tag for atlas rebuild and pre-merge preparation",
     "scope": "Feature-branch gameplay presentation only; no deployment or production configuration authorization",
     "integratedAnimation": "User approved integrated mascot animation; final pre-merge validation and integration preparation authorized"
-  }
+  },
+  "integrationVersion": "v004"
 }

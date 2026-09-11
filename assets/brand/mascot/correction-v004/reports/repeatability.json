@@ -1,0 +1,100 @@
+{
+  "glbByteIdentical": false,
+  "glbStructureIdentical": true,
+  "accessorsCompared": 701,
+  "maximumAccessorError": 6.949901580810547e-05,
+  "normalTolerance": 0.0002,
+  "otherFloatTolerance": 1e-06,
+  "integerTolerance": 0,
+  "triangleComparison": "Exact oriented triangle sets; exporter emission order may differ",
+  "rendersCompared": 10,
+  "maximumRenderMeanError": 1.2765522114932537e-07,
+  "renderMeanTolerance": 0.001,
+  "files": [
+    {
+      "path": "views/expr-default.png",
+      "sha256": "b07a08e90bb3c0f39910306a8a025beff1fa56734c3356c0aa042d0721e26532",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 3.404139230648677e-08,
+      "maximumRGBAError": 0.003921568393707275
+    },
+    {
+      "path": "views/expr-delighted.png",
+      "sha256": "343823ef92b86c3faafb20cd572d1e0eed53214b69aa9b6e381092741240ad2c",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 5.9572452705146535e-08,
+      "maximumRGBAError": 0.003921583294868469
+    },
+    {
+      "path": "views/expr-determined.png",
+      "sha256": "da3a35ac9fbc16057bfb7b963c31ff6489412a5d799d2f3750b35930e7de31a2",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 3.829656634479761e-08,
+      "maximumRGBAError": 0.003921568393707275
+    },
+    {
+      "path": "views/expr-mischief.png",
+      "sha256": "ac1fbb60c750821f3bc63df7bbadbf624a3fa06f1074b3a8f60791c01781d714",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 5.5317262498040996e-08,
+      "maximumRGBAError": 0.003921568393707275
+    },
+    {
+      "path": "views/expr-panic.png",
+      "sha256": "d6c62d9d2da322d251091dc75f20ebbe99e078189d599680b8f351eb86509c7d",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 6.382761057466268e-08,
+      "maximumRGBAError": 0.003921568393707275
+    },
+    {
+      "path": "views/expr-worried.png",
+      "sha256": "0801043f48e6c75aaf6e047b6ae043eca3ee56d00181b741dcd0a5e282bb42bc",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 1.2765522114932537e-07,
+      "maximumRGBAError": 0.003921568393707275
+    },
+    {
+      "path": "views/front-head.png",
+      "sha256": "725fdb534b5c9eed68d2d3cda89f5e998a51ad0f92ce7032663624bfb6427038",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 8.377378435397986e-08,
+      "maximumRGBAError": 0.003921627998352051
+    },
+    {
+      "path": "views/gameplay.png",
+      "sha256": "44d17c7309a464daec97ad14d42895858cc2c342e094cd8c9fda3aa818cd4adb",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 2.9919192456873134e-08,
+      "maximumRGBAError": 0.003921568393707275
+    },
+    {
+      "path": "views/lobby-host.png",
+      "sha256": "bbf4b12a1f5ae85a667b4c839e8fedf9db9e7412d018b1fbda4c02cccec383e5",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 1.4959596228436567e-08,
+      "maximumRGBAError": 0.003921568393707275
+    },
+    {
+      "path": "views/three-quarter-head.png",
+      "sha256": "53f9c27630006a9e92ab1ace119f6cee2ecd8954aad338de9b4b1c76d4027d06",
+      "byteIdentical": false,
+      "meanAbsoluteRGBAError": 5.7444849517196416e-08,
+      "maximumRGBAError": 0.003921568393707275
+    }
+  ],
+  "blendByteIdentityRequired": false,
+  "reason": "Blend session metadata and PNG metadata are not visual equivalence gates.",
+  "independentImportRenderComparisons": [
+    {
+      "pose": "default",
+      "meanAbsoluteRGBAError": 3.6168982332027453e-06,
+      "threshold": 0.02
+    },
+    {
+      "pose": "panic",
+      "meanAbsoluteRGBAError": 3.7445534376780013e-06,
+      "threshold": 0.02
+    }
+  ],
+  "minimumFrameMarginPixels": 27
+}

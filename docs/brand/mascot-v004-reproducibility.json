@@ -1,0 +1,58 @@
+{
+  "source": "assets/brand/mascot/correction-v004/source/cdawg-mascot-correction-v004.blend",
+  "sourceSha256": "e3a66c834679eaf775a6a3340a28c1e1cec78c1d45354b22936c01af37c348b5",
+  "renderValidation": {
+    "frames": 345,
+    "repeatMaxMeanRGBAError": 0,
+    "repeatThreshold": 0.001,
+    "minimumMarginPixels": 6,
+    "maximumNeighbourBoneTravelMeters": {
+      "head": 0.0022949884329326207,
+      "tag": 0.002057292709662188
+    },
+    "fallRecoveryResultSeams": "Exact head/tag positions within 1e-6 m; common secondary phase at authored endpoints"
+  },
+  "packedByteIdentical": true,
+  "packed": [
+    {
+      "file": "cdawg-mascot-balance0-v004.json",
+      "bytes": 10259,
+      "sha256": "662a514d6780d4659eb3b69e579d4349b50609c5517cf036585ec992e55ef208"
+    },
+    {
+      "file": "cdawg-mascot-balance0-v004.webp",
+      "bytes": 375832,
+      "sha256": "42da55184ed19413cadc1c549a2a047ea2ac640d42d987a703dac93275cd8c12"
+    },
+    {
+      "file": "cdawg-mascot-balance1-v004.json",
+      "bytes": 10259,
+      "sha256": "b64ba9dc28c483fcc644048ab87bb633e6695446690119962b8c5475342347f2"
+    },
+    {
+      "file": "cdawg-mascot-balance1-v004.webp",
+      "bytes": 376956,
+      "sha256": "1c8bd805a87019d7ab0c43525aa62063346f29d5679e3f9983bb8ff36ded3569"
+    },
+    {
+      "file": "cdawg-mascot-reactions0-v004.json",
+      "bytes": 15143,
+      "sha256": "014fbe063d76f169e6068c11a21317211cf27ee1118bc5bbfe77bd7136b22288"
+    },
+    {
+      "file": "cdawg-mascot-reactions0-v004.webp",
+      "bytes": 516782,
+      "sha256": "7e701c7426d7eb270ccd49cf3554946ba2800d368929054071ba3be2e6aa6c31"
+    },
+    {
+      "file": "cdawg-mascot-reactions1-v004.json",
+      "bytes": 10853,
+      "sha256": "63ba541976dd135cf6d4b7c711244f59f32c04b4196eb991a284c67cd29be325"
+    },
+    {
+      "file": "cdawg-mascot-reactions1-v004.webp",
+      "bytes": 333182,
+      "sha256": "c49f4097c678e50ca7f780c2ca93fa288bc3ec48155d8525d7105fdeb9a809be"
+    }
+  ]
+}
