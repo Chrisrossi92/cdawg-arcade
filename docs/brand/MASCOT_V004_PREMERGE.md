@@ -1,5 +1,7 @@
 # Approved V004 mascot — animation integration and pre-merge validation
 
+Subsequent status: [V004 production release accepted](MASCOT_V004_RELEASE_ACCEPTANCE.md). This document preserves the preparation checkpoint.
+
 Final owner-approved preparation: [release gates and rollback plan](V004_RELEASE_AND_ROLLBACK_PLAN.md); [final automated evidence](mascot-v004-final-validation.json).
 
 The owner approved the corrected static mascot after the V004 checkpoint at `bc9e4cb`. This closes the head, expression, collar and tag creative gate and authorizes affected atlas regeneration and feature-branch integration. No additional creative review is requested. No merge or deployment is authorized by this approval.
