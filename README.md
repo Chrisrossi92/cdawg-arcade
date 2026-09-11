@@ -117,6 +117,6 @@ The [mascot source package](assets/brand/mascot/README.md) preserves the canonic
 bulldog references and a local-only rigged feasibility prototype. See the
 [Phase 1 completion evidence](docs/brand/MASCOT_PHASE_1_COMPLETION.md) and
 [reproduction/preview commands](docs/brand/MASCOT_PRODUCTION_PLAN.md).
-The approved mascot is integrated on the feature branch; production deployment remains separate.
+The approved mascot is deployed and accepted; see the [release record](docs/brand/MASCOT_RELEASE_ACCEPTANCE.md).
 
 Smooth gameplay mascot: [Phase 3 validation and local preview](docs/brand/MASCOT_PHASE_3_COMPLETION.md). Review tooling and source art are excluded from production.
