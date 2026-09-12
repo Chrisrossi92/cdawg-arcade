@@ -1,0 +1,432 @@
+{
+  "spec": {
+    "name": "source-warm"
+  },
+  "diagnostic": "timeline",
+  "phase": "paused",
+  "events": [
+    {
+      "event": "DOCUMENT_START",
+      "ms": 1.6,
+      "focused": false,
+      "hidden": false
+    },
+    {
+      "event": "CONTEXT_READY",
+      "ms": 31.2,
+      "activity": false
+    },
+    {
+      "event": "DOM_PHASE",
+      "ms": 31.3,
+      "phase": "home"
+    },
+    {
+      "event": "WINDOW_PAGESHOW",
+      "ms": 51.7,
+      "focused": false,
+      "hidden": false
+    },
+    {
+      "event": "ATLAS_RESOURCE",
+      "ms": 57.3,
+      "duration": 1.9,
+      "transfer": 0,
+      "decodedBytes": 375832,
+      "end": 56.7
+    },
+    {
+      "event": "ATLAS_RESOURCE",
+      "ms": 57.5,
+      "duration": 2.5,
+      "transfer": 0,
+      "decodedBytes": 376956,
+      "end": 57.3
+    },
+    {
+      "event": "WINDOW_FOCUS",
+      "ms": 251.7,
+      "focused": true,
+      "hidden": false
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 251.9
+    },
+    {
+      "event": "CLOCK_RESET",
+      "ms": 252
+    },
+    {
+      "event": "COUNTDOWN_START",
+      "ms": 252.5
+    },
+    {
+      "event": "ATLAS_RESOURCE",
+      "ms": 264,
+      "duration": 7,
+      "transfer": 0,
+      "decodedBytes": 333182,
+      "end": 262.7
+    },
+    {
+      "event": "ATLAS_RESOURCE",
+      "ms": 264,
+      "duration": 7.7,
+      "transfer": 0,
+      "decodedBytes": 516782,
+      "end": 263.4
+    },
+    {
+      "event": "DOM_PHASE",
+      "ms": 331.6,
+      "phase": "countdown"
+    },
+    {
+      "event": "COUNTDOWN_COMPLETE",
+      "ms": 2675.8
+    },
+    {
+      "event": "GAME_CONSTRUCT",
+      "ms": 2678.3
+    },
+    {
+      "event": "SCENE_CREATE",
+      "ms": 2770.6
+    },
+    {
+      "event": "LEGACY_CONSTRUCT",
+      "ms": 2772.1
+    },
+    {
+      "event": "PHASER_TEXTURE_REGISTERED",
+      "ms": 2773.2
+    },
+    {
+      "event": "ATLAS_REQUEST",
+      "ms": 2774.6,
+      "key": "balance0"
+    },
+    {
+      "event": "ATLAS_REQUEST",
+      "ms": 2774.8,
+      "key": "balance1"
+    },
+    {
+      "event": "ATLAS_REQUEST",
+      "ms": 2774.8,
+      "key": "reactions0"
+    },
+    {
+      "event": "ATLAS_REQUEST",
+      "ms": 2774.8,
+      "key": "reactions1"
+    },
+    {
+      "event": "PHASER_TEXTURE_REGISTERED",
+      "ms": 2775.5
+    },
+    {
+      "event": "PHASER_TEXTURE_REGISTERED",
+      "ms": 2776.9
+    },
+    {
+      "event": "CLOCK_FIRST",
+      "ms": 2778.1,
+      "accumulator": 0,
+      "ticks": 0
+    },
+    {
+      "event": "MASCOT_VISIBILITY",
+      "ms": 2778.1,
+      "ready": false,
+      "legacy": true
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 2781.4,
+      "frame": 1,
+      "legacy": true,
+      "v004": false,
+      "ticks": 0
+    },
+    {
+      "event": "LONG_TASK",
+      "ms": 2782,
+      "duration": 74,
+      "start": 2703.7
+    },
+    {
+      "event": "DOM_PHASE",
+      "ms": 2782,
+      "phase": "playing"
+    },
+    {
+      "event": "DOM_CANVAS",
+      "ms": 2782,
+      "count": 1
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 2782.8
+    },
+    {
+      "event": "ATLAS_RESOURCE",
+      "ms": 2783.8,
+      "duration": 4.3,
+      "transfer": 0,
+      "decodedBytes": 376956,
+      "end": 2779.4
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 2783.9
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 2784.9
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 2785.5
+    },
+    {
+      "event": "ATLAS_RESOURCE",
+      "ms": 2787.8,
+      "duration": 4.6,
+      "transfer": 0,
+      "decodedBytes": 516782,
+      "end": 2779.7
+    },
+    {
+      "event": "ATLAS_RESOURCE",
+      "ms": 2787.8,
+      "duration": 4.5,
+      "transfer": 0,
+      "decodedBytes": 375832,
+      "end": 2779.6
+    },
+    {
+      "event": "ATLAS_RESOURCE",
+      "ms": 2787.8,
+      "duration": 4.8,
+      "transfer": 0,
+      "decodedBytes": 333182,
+      "end": 2780
+    },
+    {
+      "event": "IMAGE_DECODE_COMPLETE",
+      "ms": 2787.8
+    },
+    {
+      "event": "GPU_TEXTURE_UPLOAD",
+      "ms": 2814.6,
+      "duration": 26.7
+    },
+    {
+      "event": "PHASER_TEXTURE_REGISTERED",
+      "ms": 2815
+    },
+    {
+      "event": "PHASER_FILE_COMPLETE",
+      "ms": 2815
+    },
+    {
+      "event": "PHASER_FILE_COMPLETE",
+      "ms": 2815
+    },
+    {
+      "event": "PHASER_FILE_COMPLETE",
+      "ms": 2815
+    },
+    {
+      "event": "IMAGE_DECODE_COMPLETE",
+      "ms": 2815.1
+    },
+    {
+      "event": "GPU_TEXTURE_UPLOAD",
+      "ms": 2853.9,
+      "duration": 38.7
+    },
+    {
+      "event": "PHASER_TEXTURE_REGISTERED",
+      "ms": 2854.1
+    },
+    {
+      "event": "PHASER_FILE_COMPLETE",
+      "ms": 2854.1
+    },
+    {
+      "event": "PHASER_FILE_COMPLETE",
+      "ms": 2854.1
+    },
+    {
+      "event": "PHASER_FILE_COMPLETE",
+      "ms": 2854.1
+    },
+    {
+      "event": "IMAGE_DECODE_COMPLETE",
+      "ms": 2854.3
+    },
+    {
+      "event": "GPU_TEXTURE_UPLOAD",
+      "ms": 2879.2,
+      "duration": 24.9
+    },
+    {
+      "event": "PHASER_TEXTURE_REGISTERED",
+      "ms": 2879.4
+    },
+    {
+      "event": "PHASER_FILE_COMPLETE",
+      "ms": 2879.4
+    },
+    {
+      "event": "PHASER_FILE_COMPLETE",
+      "ms": 2879.4
+    },
+    {
+      "event": "PHASER_FILE_COMPLETE",
+      "ms": 2879.4
+    },
+    {
+      "event": "IMAGE_DECODE_COMPLETE",
+      "ms": 2879.5
+    },
+    {
+      "event": "GPU_TEXTURE_UPLOAD",
+      "ms": 2904.4,
+      "duration": 24.9
+    },
+    {
+      "event": "PHASER_TEXTURE_REGISTERED",
+      "ms": 2904.6
+    },
+    {
+      "event": "PHASER_FILE_COMPLETE",
+      "ms": 2904.6
+    },
+    {
+      "event": "PHASER_FILE_COMPLETE",
+      "ms": 2904.6
+    },
+    {
+      "event": "PHASER_FILE_COMPLETE",
+      "ms": 2904.6
+    },
+    {
+      "event": "PHASER_LOAD_COMPLETE",
+      "ms": 2904.7
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 2904.9,
+      "delta": 126.69999998807907,
+      "accumulator": 0,
+      "ticks": 0
+    },
+    {
+      "event": "CLOCK_INTERRUPTED",
+      "ms": 2904.9,
+      "ticks": 0
+    },
+    {
+      "event": "PAUSE_POLICY",
+      "ms": 2904.9,
+      "active": true,
+      "phase": "playing",
+      "finished": false
+    },
+    {
+      "event": "PAUSE_ACCEPTED",
+      "ms": 2904.9
+    },
+    {
+      "event": "V004_READY",
+      "ms": 2905.4
+    },
+    {
+      "event": "MASCOT_VISIBILITY",
+      "ms": 2905.7,
+      "ready": true,
+      "legacy": false
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 2906,
+      "frame": 2,
+      "legacy": false,
+      "v004": true,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 2911.1,
+      "frame": 3,
+      "legacy": false,
+      "v004": true,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 2915.3,
+      "frame": 4,
+      "legacy": false,
+      "v004": true,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 2927.8,
+      "frame": 5,
+      "legacy": false,
+      "v004": true,
+      "ticks": 0
+    },
+    {
+      "event": "DOM_PHASE",
+      "ms": 2933.3,
+      "phase": "paused"
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 2944.1,
+      "frame": 6,
+      "legacy": false,
+      "v004": true,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 2959.3,
+      "frame": 7,
+      "legacy": false,
+      "v004": true,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 2976,
+      "frame": 8,
+      "legacy": false,
+      "v004": true,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 2992.6,
+      "frame": 9,
+      "legacy": false,
+      "v004": true,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 3009.5,
+      "frame": 10,
+      "legacy": false,
+      "v004": true,
+      "ticks": 0
+    }
+  ]
+}

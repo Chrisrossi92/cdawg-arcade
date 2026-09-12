@@ -1,3 +1,4 @@
+import {mountManagedGame} from './managedGame';
 import { useEffect, useRef } from 'react';
 import type { MutableRefObject } from 'react';
 import Phaser from 'phaser';
@@ -6,31 +7,37 @@ import { BalanceScene } from './BalanceScene';
 import type { BalanceConfig, BalanceState } from './simulation';
 
 interface BalanceGameCanvasProps {
-  clock: SimulationClock;
+  clockRef: MutableRefObject<SimulationClock>;
+  active: () => boolean;
+  onReady: () => void;
+  onError: () => void;
   onPause: () => void;
   configRef: MutableRefObject<BalanceConfig>;
   onTick: (state: BalanceState, scoreSeconds: number) => void;
   onGameOver: (scoreSeconds: number, finalState: BalanceState) => void;
 }
 
-export function BalanceGameCanvas({ configRef, onTick, onGameOver, clock, onPause }: BalanceGameCanvasProps) {
+export function BalanceGameCanvas({ configRef, onTick, onGameOver, clockRef, active, onReady, onError, onPause }: BalanceGameCanvasProps) {
   const hostRef = useRef<HTMLDivElement | null>(null);
-  const callbacksRef = useRef({ onTick, onGameOver, onPause });
+  const callbacksRef = useRef({ onTick, onGameOver, onPause, active, onReady, onError });
 
   useEffect(() => {
-    callbacksRef.current = { onTick, onGameOver, onPause };
-  }, [onGameOver, onTick, onPause]);
+    callbacksRef.current = { onTick, onGameOver, onPause, active, onReady, onError };
+  }, [onGameOver, onTick, onPause, active, onReady, onError]);
 
   useEffect(() => {
     if (!hostRef.current) return;
     const scene = new BalanceScene({
-      clock,
+      clock: () => clockRef.current,
+      active: () => callbacksRef.current.active(),
+      onReady: () => callbacksRef.current.onReady(),
+      onError: () => callbacksRef.current.onError(),
       onPause: () => callbacksRef.current.onPause(),
       configRef,
       onTick: (state, score) => callbacksRef.current.onTick(state, score),
       onGameOver: (score, state) => callbacksRef.current.onGameOver(score, state),
     });
-    const game = new Phaser.Game({
+    return mountManagedGame(Phaser, {
       type: Phaser.AUTO,
       parent: hostRef.current,
       backgroundColor: '#090a12',
@@ -41,12 +48,8 @@ export function BalanceGameCanvas({ configRef, onTick, onGameOver, clock, onPaus
       },
       scene,
       physics: { default: 'arcade' },
-    });
-
-    return () => {
-      game.destroy(true);
-    };
-  }, [configRef, clock]);
+    }, () => callbacksRef.current.onError());
+  }, [configRef, clockRef]);
 
   return <div className="game-canvas" ref={hostRef} />;
 }
