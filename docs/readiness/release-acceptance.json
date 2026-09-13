@@ -1,0 +1,526 @@
+{
+  "release": "f98e1c39183709347824f1f1e9fcedbf39cf7baf",
+  "deploy": "dep-dajei2m7bikc73bp7c9g",
+  "canary": "passed",
+  "canaryChecks": [
+    "no_legacy_flash",
+    "no_immediate_pause",
+    "normal_controls_and_v004_animation"
+  ],
+  "predeploymentOrigins": [
+    {
+      "round": 1,
+      "host": "arcade.cdawgbot.xyz",
+      "path": "/api/health",
+      "body": {
+        "status": "alive",
+        "releaseSha": "b8f04949721f41fe1c87d50e9037581a2aa16197",
+        "version": "b8f04949721f41fe1c87d50e9037581a2aa16197"
+      },
+      "timings": "200 0 0.039327 0.078361"
+    },
+    {
+      "round": 1,
+      "host": "arcade.cdawgbot.xyz",
+      "path": "/api/ready",
+      "body": {
+        "status": "ready",
+        "releaseSha": "b8f04949721f41fe1c87d50e9037581a2aa16197",
+        "version": "b8f04949721f41fe1c87d50e9037581a2aa16197"
+      },
+      "timings": "200 0 0.029614 0.073802"
+    },
+    {
+      "round": 1,
+      "host": "arcade.cdawgbot.xyz",
+      "path": "/api/persistence/ready",
+      "body": {
+        "status": "available",
+        "schema": "compatible",
+        "releaseSha": "b8f04949721f41fe1c87d50e9037581a2aa16197",
+        "version": "b8f04949721f41fe1c87d50e9037581a2aa16197"
+      },
+      "timings": "200 0 0.033703 0.064452"
+    },
+    {
+      "round": 1,
+      "host": "cdawg-arcade-production.onrender.com",
+      "path": "/api/health",
+      "body": {
+        "status": "alive",
+        "releaseSha": "b8f04949721f41fe1c87d50e9037581a2aa16197",
+        "version": "b8f04949721f41fe1c87d50e9037581a2aa16197"
+      },
+      "timings": "200 0 0.033793 0.067106"
+    },
+    {
+      "round": 1,
+      "host": "cdawg-arcade-production.onrender.com",
+      "path": "/api/ready",
+      "body": {
+        "status": "ready",
+        "releaseSha": "b8f04949721f41fe1c87d50e9037581a2aa16197",
+        "version": "b8f04949721f41fe1c87d50e9037581a2aa16197"
+      },
+      "timings": "200 0 0.032792 0.068258"
+    },
+    {
+      "round": 1,
+      "host": "cdawg-arcade-production.onrender.com",
+      "path": "/api/persistence/ready",
+      "body": {
+        "status": "available",
+        "schema": "compatible",
+        "releaseSha": "b8f04949721f41fe1c87d50e9037581a2aa16197",
+        "version": "b8f04949721f41fe1c87d50e9037581a2aa16197"
+      },
+      "timings": "200 0 0.042708 0.091677"
+    },
+    {
+      "round": 2,
+      "host": "arcade.cdawgbot.xyz",
+      "path": "/api/health",
+      "body": {
+        "status": "alive",
+        "releaseSha": "b8f04949721f41fe1c87d50e9037581a2aa16197",
+        "version": "b8f04949721f41fe1c87d50e9037581a2aa16197"
+      },
+      "timings": "200 0 0.093648 0.166183"
+    },
+    {
+      "round": 2,
+      "host": "arcade.cdawgbot.xyz",
+      "path": "/api/ready",
+      "body": {
+        "status": "ready",
+        "releaseSha": "b8f04949721f41fe1c87d50e9037581a2aa16197",
+        "version": "b8f04949721f41fe1c87d50e9037581a2aa16197"
+      },
+      "timings": "200 0 0.047948 0.122416"
+    },
+    {
+      "round": 2,
+      "host": "arcade.cdawgbot.xyz",
+      "path": "/api/persistence/ready",
+      "body": {
+        "status": "available",
+        "schema": "compatible",
+        "releaseSha": "b8f04949721f41fe1c87d50e9037581a2aa16197",
+        "version": "b8f04949721f41fe1c87d50e9037581a2aa16197"
+      },
+      "timings": "200 0 0.061475 0.131612"
+    },
+    {
+      "round": 2,
+      "host": "cdawg-arcade-production.onrender.com",
+      "path": "/api/health",
+      "body": {
+        "status": "alive",
+        "releaseSha": "b8f04949721f41fe1c87d50e9037581a2aa16197",
+        "version": "b8f04949721f41fe1c87d50e9037581a2aa16197"
+      },
+      "timings": "200 0 0.060808 0.159352"
+    },
+    {
+      "round": 2,
+      "host": "cdawg-arcade-production.onrender.com",
+      "path": "/api/ready",
+      "body": {
+        "status": "ready",
+        "releaseSha": "b8f04949721f41fe1c87d50e9037581a2aa16197",
+        "version": "b8f04949721f41fe1c87d50e9037581a2aa16197"
+      },
+      "timings": "200 0 0.064589 0.103954"
+    },
+    {
+      "round": 2,
+      "host": "cdawg-arcade-production.onrender.com",
+      "path": "/api/persistence/ready",
+      "body": {
+        "status": "available",
+        "schema": "compatible",
+        "releaseSha": "b8f04949721f41fe1c87d50e9037581a2aa16197",
+        "version": "b8f04949721f41fe1c87d50e9037581a2aa16197"
+      },
+      "timings": "200 0 0.047622 0.090086"
+    },
+    {
+      "round": 3,
+      "host": "arcade.cdawgbot.xyz",
+      "path": "/api/health",
+      "body": {
+        "status": "alive",
+        "releaseSha": "b8f04949721f41fe1c87d50e9037581a2aa16197",
+        "version": "b8f04949721f41fe1c87d50e9037581a2aa16197"
+      },
+      "timings": "200 0 0.030293 0.071635"
+    },
+    {
+      "round": 3,
+      "host": "arcade.cdawgbot.xyz",
+      "path": "/api/ready",
+      "body": {
+        "status": "ready",
+        "releaseSha": "b8f04949721f41fe1c87d50e9037581a2aa16197",
+        "version": "b8f04949721f41fe1c87d50e9037581a2aa16197"
+      },
+      "timings": "200 0 0.032267 0.069482"
+    },
+    {
+      "round": 3,
+      "host": "arcade.cdawgbot.xyz",
+      "path": "/api/persistence/ready",
+      "body": {
+        "status": "available",
+        "schema": "compatible",
+        "releaseSha": "b8f04949721f41fe1c87d50e9037581a2aa16197",
+        "version": "b8f04949721f41fe1c87d50e9037581a2aa16197"
+      },
+      "timings": "200 0 0.024978 0.058614"
+    },
+    {
+      "round": 3,
+      "host": "cdawg-arcade-production.onrender.com",
+      "path": "/api/health",
+      "body": {
+        "status": "alive",
+        "releaseSha": "b8f04949721f41fe1c87d50e9037581a2aa16197",
+        "version": "b8f04949721f41fe1c87d50e9037581a2aa16197"
+      },
+      "timings": "200 0 0.032130 0.065356"
+    },
+    {
+      "round": 3,
+      "host": "cdawg-arcade-production.onrender.com",
+      "path": "/api/ready",
+      "body": {
+        "status": "ready",
+        "releaseSha": "b8f04949721f41fe1c87d50e9037581a2aa16197",
+        "version": "b8f04949721f41fe1c87d50e9037581a2aa16197"
+      },
+      "timings": "200 0 0.031608 0.065352"
+    },
+    {
+      "round": 3,
+      "host": "cdawg-arcade-production.onrender.com",
+      "path": "/api/persistence/ready",
+      "body": {
+        "status": "available",
+        "schema": "compatible",
+        "releaseSha": "b8f04949721f41fe1c87d50e9037581a2aa16197",
+        "version": "b8f04949721f41fe1c87d50e9037581a2aa16197"
+      },
+      "timings": "200 0 0.035740 0.083599"
+    }
+  ],
+  "postCanaryProbes": {
+    "release": "f98e1c39183709347824f1f1e9fcedbf39cf7baf",
+    "checks": 36,
+    "results": [
+      {
+        "path": "/api/health",
+        "method": "GET",
+        "status": 200,
+        "bytes": 127,
+        "elapsedMs": 265.1
+      },
+      {
+        "path": "/api/ready",
+        "method": "GET",
+        "status": 200,
+        "bytes": 127,
+        "elapsedMs": 173.4
+      },
+      {
+        "path": "/api/persistence/ready",
+        "method": "GET",
+        "status": 200,
+        "bytes": 153,
+        "elapsedMs": 220.3
+      },
+      {
+        "path": "/",
+        "method": "GET",
+        "status": 200,
+        "bytes": 415,
+        "elapsedMs": 171.4
+      },
+      {
+        "path": "/assets/index-BnSJtCXt.js",
+        "method": "GET",
+        "status": 200,
+        "bytes": 2179590,
+        "elapsedMs": 401.4
+      },
+      {
+        "path": "/assets/index-DsHVGshA.css",
+        "method": "GET",
+        "status": 200,
+        "bytes": 13928,
+        "elapsedMs": 156.6
+      },
+      {
+        "path": "/assets/cdawg-mascot-reactions0-v004-BcYTbBqx.webp",
+        "method": "GET",
+        "status": 200,
+        "bytes": 516782,
+        "elapsedMs": 303.8
+      },
+      {
+        "path": "/assets/cdawg-mascot-reactions1-v004-BtVb-jPy.webp",
+        "method": "GET",
+        "status": 200,
+        "bytes": 333182,
+        "elapsedMs": 357.9
+      },
+      {
+        "path": "/assets/cdawg-mascot-balance0-v004-BDwc5MnW.webp",
+        "method": "GET",
+        "status": 200,
+        "bytes": 375832,
+        "elapsedMs": 267.7
+      },
+      {
+        "path": "/assets/cdawg-mascot-balance1-v004-RnhYpwi9.webp",
+        "method": "GET",
+        "status": 200,
+        "bytes": 376956,
+        "elapsedMs": 518.5
+      },
+      {
+        "path": "/api/me",
+        "method": "GET",
+        "status": 401,
+        "bytes": 19,
+        "elapsedMs": 223.1
+      },
+      {
+        "path": "/api/me/balance/stats",
+        "method": "GET",
+        "status": 401,
+        "bytes": 27,
+        "elapsedMs": 192.4
+      },
+      {
+        "path": "/api/me/balance/attempts",
+        "method": "GET",
+        "status": 401,
+        "bytes": 27,
+        "elapsedMs": 224.4
+      },
+      {
+        "path": "/api/guild/balance/leaderboard",
+        "method": "GET",
+        "status": 401,
+        "bytes": 27,
+        "elapsedMs": 213.5
+      },
+      {
+        "path": "/api/balance/attempts",
+        "method": "POST",
+        "status": 401,
+        "bytes": 27,
+        "elapsedMs": 237.3
+      },
+      {
+        "path": "/api/balance/attempts/submit",
+        "method": "POST",
+        "status": 401,
+        "bytes": 27,
+        "elapsedMs": 231.7
+      },
+      {
+        "path": "/api/me",
+        "method": "OPTIONS",
+        "status": 204,
+        "bytes": 0,
+        "elapsedMs": 197.7
+      },
+      {
+        "path": "/api/me",
+        "method": "OPTIONS",
+        "status": 403,
+        "bytes": 26,
+        "elapsedMs": 163.1
+      },
+      {
+        "path": "/api/balance/attempts",
+        "method": "OPTIONS",
+        "status": 204,
+        "bytes": 0,
+        "elapsedMs": 187.4
+      },
+      {
+        "path": "/api/balance/attempts",
+        "method": "OPTIONS",
+        "status": 403,
+        "bytes": 26,
+        "elapsedMs": 174.6
+      },
+      {
+        "path": "/api/guild/balance/leaderboard",
+        "method": "OPTIONS",
+        "status": 204,
+        "bytes": 0,
+        "elapsedMs": 148.8
+      },
+      {
+        "path": "/api/guild/balance/leaderboard",
+        "method": "OPTIONS",
+        "status": 403,
+        "bytes": 26,
+        "elapsedMs": 182.5
+      },
+      {
+        "path": "/api/token",
+        "method": "OPTIONS",
+        "status": 204,
+        "bytes": 0,
+        "elapsedMs": 176.0
+      },
+      {
+        "path": "/api/token",
+        "method": "OPTIONS",
+        "status": 400,
+        "bytes": 27,
+        "elapsedMs": 161.8
+      },
+      {
+        "path": "/api/token",
+        "method": "POST",
+        "status": 400,
+        "bytes": 38,
+        "elapsedMs": 172.8
+      },
+      {
+        "path": "/assets/missing.webp",
+        "method": "GET",
+        "status": 404,
+        "bytes": 21,
+        "elapsedMs": 172.9
+      },
+      {
+        "path": "/api/not-a-route",
+        "method": "GET",
+        "status": 404,
+        "bytes": 21,
+        "elapsedMs": 197.4
+      },
+      {
+        "path": "/scripts/mascot/preview/integrated.html",
+        "method": "GET",
+        "status": 404,
+        "bytes": 21,
+        "elapsedMs": 213.7
+      },
+      {
+        "path": "/docs/brand/MASCOT_PREMERGE.md",
+        "method": "GET",
+        "status": 404,
+        "bytes": 21,
+        "elapsedMs": 157.1
+      },
+      {
+        "path": "/build/release.json",
+        "method": "GET",
+        "status": 404,
+        "bytes": 21,
+        "elapsedMs": 158.3
+      },
+      {
+        "path": "/.env",
+        "method": "GET",
+        "status": 404,
+        "bytes": 21,
+        "elapsedMs": 164.9
+      },
+      {
+        "path": "/scripts/brand/preview/index.html",
+        "method": "GET",
+        "status": 404,
+        "bytes": 21,
+        "elapsedMs": 205.7
+      },
+      {
+        "path": "/scripts/brand/preview/balance.html",
+        "method": "GET",
+        "status": 404,
+        "bytes": 21,
+        "elapsedMs": 181.1
+      },
+      {
+        "path": "/assets/brand/arcade/runtime/cdawg-host-v002.png",
+        "method": "GET",
+        "status": 404,
+        "bytes": 21,
+        "elapsedMs": 152.0
+      },
+      {
+        "path": "/assets/brand/arcade/tokens.css",
+        "method": "GET",
+        "status": 404,
+        "bytes": 21,
+        "elapsedMs": 170.4
+      },
+      {
+        "path": "/balance.html",
+        "method": "GET",
+        "status": 404,
+        "bytes": 21,
+        "elapsedMs": 160.1
+      }
+    ]
+  },
+  "atlases": [
+    {
+      "file": "cdawg-mascot-reactions0-v004-BcYTbBqx.webp",
+      "bytes": 516782,
+      "sha256": "7e701c7426d7eb270ccd49cf3554946ba2800d368929054071ba3be2e6aa6c31",
+      "immutable": true
+    },
+    {
+      "file": "cdawg-mascot-reactions1-v004-BtVb-jPy.webp",
+      "bytes": 333182,
+      "sha256": "c49f4097c678e50ca7f780c2ca93fa288bc3ec48155d8525d7105fdeb9a809be",
+      "immutable": true
+    },
+    {
+      "file": "cdawg-mascot-balance0-v004-BDwc5MnW.webp",
+      "bytes": 375832,
+      "sha256": "42da55184ed19413cadc1c549a2a047ea2ac640d42d987a703dac93275cd8c12",
+      "immutable": true
+    },
+    {
+      "file": "cdawg-mascot-balance1-v004-RnhYpwi9.webp",
+      "bytes": 376956,
+      "sha256": "1c8bd805a87019d7ab0c43525aa62063346f29d5679e3f9983bb8ff36ded3569",
+      "immutable": true
+    }
+  ],
+  "countedAssertions": 1521,
+  "browserScenarios": 15,
+  "productionWrites": false,
+  "rollback": {
+    "release": "b8f04949721f41fe1c87d50e9037581a2aa16197",
+    "artifact": "dep-dahv5euk1f9s73feiat0",
+    "configurationChanges": false,
+    "executed": false
+  },
+  "postCanaryDatabase": {
+    "schema": "compatible",
+    "personal": {
+      "expectedGroups": 1,
+      "storedGroups": 1,
+      "mismatches": 0
+    },
+    "guild": {
+      "entries": 1,
+      "records": 1,
+      "events": 1,
+      "boardMismatches": 0,
+      "recordMismatches": 0,
+      "eventMismatches": 0
+    },
+    "readOnly": true
+  }
+}
