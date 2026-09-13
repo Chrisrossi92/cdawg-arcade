@@ -1,6 +1,6 @@
 # Lobby two-step release and rollback plan
 
-Status: preparation only. No deployment, enablement, or feature-to-main merge is authorized in this slice. The release gate remains `false` in `config/lobby-release.ts`. No environment or dashboard setting enables the lobby.
+Status: Release A deployed and accepted with the gate false; see [Release A acceptance](RELEASE_A_ACCEPTANCE.md). Release B remains uncreated and requires separate authorization. The release gate remains `false` in `config/lobby-release.ts`. No environment or dashboard setting enables the lobby.
 
 ## Accepted baseline and reconciliation
 
