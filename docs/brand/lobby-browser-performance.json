@@ -1,0 +1,97 @@
+{
+  "frame": {
+    "count": 600,
+    "p50": 16.699999999999818,
+    "p95": 18.30000000000109,
+    "max": 18.700000000000728
+  },
+  "initialResources": [
+    {
+      "name": "index-BnPem6pS.js",
+      "bytes": 3177,
+      "duration": 51.5
+    },
+    {
+      "name": "preload-helper-WEAdrSkN.js",
+      "bytes": 1038,
+      "duration": 44.30000001192093
+    },
+    {
+      "name": "modulepreload-polyfill-B5Qt9EMX.js",
+      "bytes": 711,
+      "duration": 48.5
+    },
+    {
+      "name": "client-DvGg6Ke8.js",
+      "bytes": 58030,
+      "duration": 26.30000001192093
+    },
+    {
+      "name": "index-D_NuPfjr.js",
+      "bytes": 3039,
+      "duration": 26.19999998807907
+    },
+    {
+      "name": "ArcadeApp-BZIs0I9Y.js",
+      "bytes": 5204,
+      "duration": 28.599999994039536
+    },
+    {
+      "name": "runtime-PZGFblDa.js",
+      "bytes": 1246,
+      "duration": 28.80000001192093
+    },
+    {
+      "name": "controller-zP39x9GW.js",
+      "bytes": 1441,
+      "duration": 33.5
+    },
+    {
+      "name": "client-CPWOo4SV.js",
+      "bytes": 1088,
+      "duration": 34.20000001788139
+    },
+    {
+      "name": "ArcadeApp-CIkLrhLY.css",
+      "bytes": 4561,
+      "duration": 32.29999998211861
+    },
+    {
+      "name": "hostAdapter-DisXnur6.js",
+      "bytes": 332,
+      "duration": 34
+    },
+    {
+      "name": "scoreRepository-1MsJ2y5I.js",
+      "bytes": 670,
+      "duration": 34.19999998807907
+    },
+    {
+      "name": "cdawg-horizontal-dark-v001-CocDCRX-.svg",
+      "bytes": 0,
+      "duration": 14.400000005960464
+    },
+    {
+      "name": "cdawg-host-mischief-v004-BH8_sl9C.webp",
+      "bytes": 0,
+      "duration": 15.199999988079071
+    },
+    {
+      "name": "cdawg-host-default-v004-Dy6_NmHH.webp",
+      "bytes": 0,
+      "duration": 15.599999994039536
+    },
+    {
+      "name": "cdawg-ui-latin-v001-CfIt6cLC.woff2",
+      "bytes": 0,
+      "duration": 14.300000011920929
+    },
+    {
+      "name": "cdawg-display-latin-v001-CeyYqTKY.woff2",
+      "bytes": 0,
+      "duration": 14.400000005960464
+    }
+  ],
+  "reduced": "false",
+  "scope": "Local browser harness, final aligned host assets, motion enabled; resource cache hits may report zero transfer bytes. Payload sizes come from the build manifest."
+}

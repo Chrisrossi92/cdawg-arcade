@@ -14,6 +14,8 @@ export class WebAudioManager implements AudioManager {
   musicEnabled = false;
   sfxEnabled = true;
   private context: AudioContext | null = null;
+  private delayed = new Set<number>();
+  private disposed = false;
   private musicTimer: number | null = null;
 
   setMusicEnabled(enabled: boolean): void {
@@ -45,7 +47,8 @@ export class WebAudioManager implements AudioManager {
     if (!this.musicEnabled || this.musicTimer !== null) return;
     this.musicTimer = window.setInterval(() => {
       this.playTone(110, 0.07, 'triangle', 0.025);
-      window.setTimeout(() => this.playTone(165, 0.05, 'triangle', 0.02), 180);
+      const timer=window.setTimeout(() => {this.delayed.delete(timer);this.playTone(165,0.05,'triangle',0.02);},180);
+      this.delayed.add(timer);
     }, 720);
   }
 
@@ -56,12 +59,19 @@ export class WebAudioManager implements AudioManager {
     }
   }
 
+  dispose(): void {
+    this.disposed=true;this.stopMusic();
+    this.delayed.forEach(t=>window.clearTimeout(t));this.delayed.clear();
+    void this.context?.close().catch(()=>{});this.context=null;
+  }
+
   private getContext(): AudioContext {
     this.context ??= new AudioContext();
     return this.context;
   }
 
   private playTone(frequency: number, duration: number, type: OscillatorType, volume = 0.045): void {
+    if(this.disposed)return;
     const context = this.getContext();
     const oscillator = context.createOscillator();
     const gain = context.createGain();

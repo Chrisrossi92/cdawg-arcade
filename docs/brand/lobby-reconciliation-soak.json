@@ -1,0 +1,4701 @@
+{
+  "status": "passed",
+  "scenario": "official",
+  "route": "lobby",
+  "phase": "home",
+  "official": "accepted",
+  "current": {
+    "timers": 0,
+    "intervals": 0,
+    "frames": 0,
+    "listeners": 17,
+    "audioOpen": 0,
+    "canvases": 0,
+    "hostListeners": 1,
+    "auth": 1,
+    "attempts": 24,
+    "submissions": 4,
+    "cancels": 20,
+    "reads": 137,
+    "accepted": 4,
+    "practiceResults": 0,
+    "resumes": 0,
+    "heap": 19830683
+  },
+  "samples": [
+    {
+      "stage": "initial",
+      "timers": 0,
+      "intervals": 0,
+      "frames": 0,
+      "listeners": 17,
+      "audioOpen": 0,
+      "canvases": 0,
+      "hostListeners": 1,
+      "auth": 1,
+      "attempts": 0,
+      "submissions": 0,
+      "cancels": 0,
+      "reads": 3,
+      "accepted": 0,
+      "practiceResults": 0,
+      "resumes": 0,
+      "heap": 21609536
+    },
+    {
+      "stage": "cancel-1",
+      "timers": 0,
+      "intervals": 0,
+      "frames": 0,
+      "listeners": 17,
+      "audioOpen": 0,
+      "canvases": 0,
+      "hostListeners": 1,
+      "auth": 1,
+      "attempts": 1,
+      "submissions": 0,
+      "cancels": 1,
+      "reads": 6,
+      "accepted": 0,
+      "practiceResults": 0,
+      "resumes": 0,
+      "heap": 24936812
+    },
+    {
+      "stage": "cancel-10",
+      "timers": 0,
+      "intervals": 0,
+      "frames": 0,
+      "listeners": 17,
+      "audioOpen": 0,
+      "canvases": 0,
+      "hostListeners": 1,
+      "auth": 1,
+      "attempts": 10,
+      "submissions": 0,
+      "cancels": 10,
+      "reads": 33,
+      "accepted": 0,
+      "practiceResults": 0,
+      "resumes": 0,
+      "heap": 31512268
+    },
+    {
+      "stage": "cancel-20",
+      "timers": 0,
+      "intervals": 0,
+      "frames": 0,
+      "listeners": 17,
+      "audioOpen": 0,
+      "canvases": 0,
+      "hostListeners": 1,
+      "auth": 1,
+      "attempts": 20,
+      "submissions": 0,
+      "cancels": 20,
+      "reads": 63,
+      "accepted": 0,
+      "practiceResults": 0,
+      "resumes": 0,
+      "heap": 32278441
+    },
+    {
+      "stage": "completed-1",
+      "timers": 0,
+      "intervals": 0,
+      "frames": 0,
+      "listeners": 17,
+      "audioOpen": 0,
+      "canvases": 0,
+      "hostListeners": 1,
+      "auth": 1,
+      "attempts": 22,
+      "submissions": 2,
+      "cancels": 20,
+      "reads": 69,
+      "accepted": 2,
+      "practiceResults": 0,
+      "resumes": 0,
+      "heap": 27925605
+    },
+    {
+      "stage": "completed-2",
+      "timers": 0,
+      "intervals": 0,
+      "frames": 0,
+      "listeners": 17,
+      "audioOpen": 0,
+      "canvases": 0,
+      "hostListeners": 1,
+      "auth": 1,
+      "attempts": 23,
+      "submissions": 3,
+      "cancels": 20,
+      "reads": 73,
+      "accepted": 3,
+      "practiceResults": 0,
+      "resumes": 0,
+      "heap": 19900877
+    },
+    {
+      "stage": "completed-3",
+      "timers": 0,
+      "intervals": 0,
+      "frames": 0,
+      "listeners": 17,
+      "audioOpen": 0,
+      "canvases": 0,
+      "hostListeners": 1,
+      "auth": 1,
+      "attempts": 24,
+      "submissions": 4,
+      "cancels": 20,
+      "reads": 77,
+      "accepted": 4,
+      "practiceResults": 0,
+      "resumes": 0,
+      "heap": 20095309
+    },
+    {
+      "stage": "final",
+      "timers": 0,
+      "intervals": 0,
+      "frames": 0,
+      "listeners": 17,
+      "audioOpen": 0,
+      "canvases": 0,
+      "hostListeners": 1,
+      "auth": 1,
+      "attempts": 24,
+      "submissions": 4,
+      "cancels": 20,
+      "reads": 137,
+      "accepted": 4,
+      "practiceResults": 0,
+      "resumes": 0,
+      "heap": 20300073
+    }
+  ],
+  "reconciliation": [],
+  "transitionEvents": [
+    {
+      "event": "START_ACTIVATE",
+      "ms": 9693.8
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 9693.9
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 9889.1
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 9910.7
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 9912.4
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 9918.2
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 9918.5
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 9963.9
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 9995
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 10024
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 10069.4
+    },
+    {
+      "event": "PHASER_LOAD_COMPLETE",
+      "ms": 10069.4
+    },
+    {
+      "event": "SCENE_CREATE",
+      "ms": 10069.4
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 10073.5
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 10077
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 10082.1,
+      "frame": 1,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 10083.1,
+      "frame": 2,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 10089.2,
+      "frame": 3,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "RENDERER_READY",
+      "ms": 10089.2
+    },
+    {
+      "event": "ATTEMPT_ISSUED",
+      "ms": 10089.4
+    },
+    {
+      "event": "COUNTDOWN_START",
+      "ms": 10092
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 10132.2,
+      "frame": 4,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 10134.8,
+      "frame": 5,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 10139.7,
+      "frame": 6,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 10427.9
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 10427.9
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 10501
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 10515.5
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 10516.1
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 10516.4
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 10517.2
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 10546.4
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 10575.7
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 10624.9
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 10652
+    },
+    {
+      "event": "PHASER_LOAD_COMPLETE",
+      "ms": 10652
+    },
+    {
+      "event": "SCENE_CREATE",
+      "ms": 10652
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 10653.1
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 10653.8
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 10656,
+      "frame": 1,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 10656.8,
+      "frame": 2,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 10672.7,
+      "frame": 3,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "RENDERER_READY",
+      "ms": 10672.7
+    },
+    {
+      "event": "ATTEMPT_ISSUED",
+      "ms": 10672.9
+    },
+    {
+      "event": "COUNTDOWN_START",
+      "ms": 10678.6
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 10690.4,
+      "frame": 4,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 10705.7,
+      "frame": 5,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 10722.4,
+      "frame": 6,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 10998.1
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 10998.1
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 11072.7
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 11086.6
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 11087.1
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 11087.4
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 11087.8
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 11122
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 11156.9
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 11207.8
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 11236.3
+    },
+    {
+      "event": "PHASER_LOAD_COMPLETE",
+      "ms": 11236.3
+    },
+    {
+      "event": "SCENE_CREATE",
+      "ms": 11236.3
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 11237.3
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 11239.3
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 11241.6,
+      "frame": 1,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 11243.6,
+      "frame": 2,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 11256.1,
+      "frame": 3,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "RENDERER_READY",
+      "ms": 11256.1
+    },
+    {
+      "event": "ATTEMPT_ISSUED",
+      "ms": 11256.2
+    },
+    {
+      "event": "COUNTDOWN_START",
+      "ms": 11260.8
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 11279.8,
+      "frame": 4,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 11288.9,
+      "frame": 5,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 11305.9,
+      "frame": 6,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 11581.7
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 11581.7
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 11666.9
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 11702.2
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 11703.1
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 11703.4
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 11703.6
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 11731.9
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 11755.7
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 11795
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 11825.2
+    },
+    {
+      "event": "PHASER_LOAD_COMPLETE",
+      "ms": 11825.2
+    },
+    {
+      "event": "SCENE_CREATE",
+      "ms": 11825.2
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 11825.8
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 11826.5
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 11827.3,
+      "frame": 1,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 11828.4,
+      "frame": 2,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 11838.6,
+      "frame": 3,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "RENDERER_READY",
+      "ms": 11838.6
+    },
+    {
+      "event": "ATTEMPT_ISSUED",
+      "ms": 11838.6
+    },
+    {
+      "event": "COUNTDOWN_START",
+      "ms": 11842.7
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 11857.3,
+      "frame": 4,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 11872.4,
+      "frame": 5,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 11889.1,
+      "frame": 6,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 12167.9
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 12167.9
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 12249.4
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 12256.9
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 12261.4
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 12261.8
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 12262.9
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 12295.1
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 12325.4
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 12354.7
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 12408.4
+    },
+    {
+      "event": "PHASER_LOAD_COMPLETE",
+      "ms": 12408.5
+    },
+    {
+      "event": "SCENE_CREATE",
+      "ms": 12408.5
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 12409.2
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 12410.3
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 12411.4,
+      "frame": 1,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 12412.4,
+      "frame": 2,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 12422.4,
+      "frame": 3,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "RENDERER_READY",
+      "ms": 12422.4
+    },
+    {
+      "event": "ATTEMPT_ISSUED",
+      "ms": 12422.6
+    },
+    {
+      "event": "COUNTDOWN_START",
+      "ms": 12426.4
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 12440.5,
+      "frame": 4,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 12455.4,
+      "frame": 5,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 12472.8,
+      "frame": 6,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 12752.5
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 12752.5
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 12847
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 12862.5
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 12863.5
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 12896.5
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 12896.8
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 12929.8
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 12931.6
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 12983.6
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 13013.7
+    },
+    {
+      "event": "PHASER_LOAD_COMPLETE",
+      "ms": 13013.8
+    },
+    {
+      "event": "SCENE_CREATE",
+      "ms": 13013.8
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 13014.5
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 13015.5
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 13016.4,
+      "frame": 1,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 13016.7,
+      "frame": 2,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 13029.4,
+      "frame": 3,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "RENDERER_READY",
+      "ms": 13029.4
+    },
+    {
+      "event": "ATTEMPT_ISSUED",
+      "ms": 13029.6
+    },
+    {
+      "event": "COUNTDOWN_START",
+      "ms": 13033.2
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 13046.4,
+      "frame": 4,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 13056,
+      "frame": 5,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 13072.5,
+      "frame": 6,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 13321.4
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 13321.4
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 13403.6
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 13416.1
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 13416.6
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 13417
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 13417.3
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 13451.6
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 13493.4
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 13532.5
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 13561
+    },
+    {
+      "event": "PHASER_LOAD_COMPLETE",
+      "ms": 13561.1
+    },
+    {
+      "event": "SCENE_CREATE",
+      "ms": 13561.1
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 13561.7
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 13562.8
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 13563.8,
+      "frame": 1,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 13564.4,
+      "frame": 2,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 13572.4,
+      "frame": 3,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "RENDERER_READY",
+      "ms": 13572.4
+    },
+    {
+      "event": "ATTEMPT_ISSUED",
+      "ms": 13572.6
+    },
+    {
+      "event": "COUNTDOWN_START",
+      "ms": 13579.8
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 13592.7,
+      "frame": 4,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 13606,
+      "frame": 5,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 13622.3,
+      "frame": 6,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 13902.2
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 13902.2
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 13975.6
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 13982.8
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 13983.4
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 13983.7
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 13985.2
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 14016.2
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 14045.8
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 14074.6
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 14123.5
+    },
+    {
+      "event": "PHASER_LOAD_COMPLETE",
+      "ms": 14123.6
+    },
+    {
+      "event": "SCENE_CREATE",
+      "ms": 14123.6
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 14131.8
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 14138.2
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 14139.1,
+      "frame": 1,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 14139.6,
+      "frame": 2,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 14155.2,
+      "frame": 3,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "RENDERER_READY",
+      "ms": 14155.2
+    },
+    {
+      "event": "ATTEMPT_ISSUED",
+      "ms": 14155.3
+    },
+    {
+      "event": "COUNTDOWN_START",
+      "ms": 14159.5
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 14179.2,
+      "frame": 4,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 14189.4,
+      "frame": 5,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 14205.7,
+      "frame": 6,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 14483.1
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 14483.1
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 14543.7
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 14549.3
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 14549.6
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 14549.8
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 14550.3
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 14576.7
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 14606.1
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 14634.4
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 14677.1
+    },
+    {
+      "event": "PHASER_LOAD_COMPLETE",
+      "ms": 14677.1
+    },
+    {
+      "event": "SCENE_CREATE",
+      "ms": 14677.1
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 14677.6
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 14678.4
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 14679.6,
+      "frame": 1,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 14680.5,
+      "frame": 2,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 14689.6,
+      "frame": 3,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "RENDERER_READY",
+      "ms": 14689.6
+    },
+    {
+      "event": "ATTEMPT_ISSUED",
+      "ms": 14689.7
+    },
+    {
+      "event": "COUNTDOWN_START",
+      "ms": 14693.3
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 14707.6,
+      "frame": 4,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 14722.4,
+      "frame": 5,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 14739.2,
+      "frame": 6,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 15016.1
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 15016.2
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 15082.9
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 15092.6
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 15093.9
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 15094.2
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 15096.5
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 15124.3
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 15154.1
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 15206.3
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 15232.8
+    },
+    {
+      "event": "PHASER_LOAD_COMPLETE",
+      "ms": 15232.8
+    },
+    {
+      "event": "SCENE_CREATE",
+      "ms": 15232.8
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 15233.2
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 15234
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 15234.8,
+      "frame": 1,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 15235.7,
+      "frame": 2,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 15243.4,
+      "frame": 3,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "RENDERER_READY",
+      "ms": 15243.4
+    },
+    {
+      "event": "ATTEMPT_ISSUED",
+      "ms": 15243.5
+    },
+    {
+      "event": "COUNTDOWN_START",
+      "ms": 15246.4
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 15257.1,
+      "frame": 4,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 15276.5,
+      "frame": 5,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 15288.8,
+      "frame": 6,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 15572
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 15572
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 15625.1
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 15637.8
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 15638.3
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 15638.5
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 15638.9
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 15666.1
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 15693.3
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 15722.6
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 15764.9
+    },
+    {
+      "event": "PHASER_LOAD_COMPLETE",
+      "ms": 15764.9
+    },
+    {
+      "event": "SCENE_CREATE",
+      "ms": 15764.9
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 15766.6
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 15769.2
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 15772.3,
+      "frame": 1,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 15779.5,
+      "frame": 2,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 15789,
+      "frame": 3,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "RENDERER_READY",
+      "ms": 15789
+    },
+    {
+      "event": "ATTEMPT_ISSUED",
+      "ms": 15789.1
+    },
+    {
+      "event": "COUNTDOWN_START",
+      "ms": 15793
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 15807,
+      "frame": 4,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 15822.3,
+      "frame": 5,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 15839,
+      "frame": 6,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 16114.2
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 16114.2
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 16192.1
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 16218
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 16219.7
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 16220.5
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 16221.9
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 16255.9
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 16285.9
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 16334.9
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 16361.7
+    },
+    {
+      "event": "PHASER_LOAD_COMPLETE",
+      "ms": 16361.8
+    },
+    {
+      "event": "SCENE_CREATE",
+      "ms": 16361.8
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 16362.4
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 16363.1
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 16363.8,
+      "frame": 1,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 16370.6,
+      "frame": 2,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 16376.7,
+      "frame": 3,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "RENDERER_READY",
+      "ms": 16376.7
+    },
+    {
+      "event": "ATTEMPT_ISSUED",
+      "ms": 16376.8
+    },
+    {
+      "event": "COUNTDOWN_START",
+      "ms": 16379.6
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 16404.4,
+      "frame": 4,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 16407.6,
+      "frame": 5,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 16422.3,
+      "frame": 6,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 16703.9
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 16703.9
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 16845.2
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 17023.4
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 17026.2
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 17026.7
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 17028.1
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 17067.1
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 17103.4
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 17139.2
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 17196.7
+    },
+    {
+      "event": "PHASER_LOAD_COMPLETE",
+      "ms": 17196.7
+    },
+    {
+      "event": "SCENE_CREATE",
+      "ms": 17196.7
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 17197.9
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 17198.9
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 17200.2,
+      "frame": 1,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 17202.3,
+      "frame": 2,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 17217.4,
+      "frame": 3,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "RENDERER_READY",
+      "ms": 17217.4
+    },
+    {
+      "event": "ATTEMPT_ISSUED",
+      "ms": 17218.3
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 17227.2,
+      "frame": 4,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "COUNTDOWN_START",
+      "ms": 17230.9
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 17242.9,
+      "frame": 5,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 17255.6,
+      "frame": 6,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 17539.8
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 17539.8
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 17603.3
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 17613.2
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 17617
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 17617.5
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 17646.2
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 17677.6
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 17725.3
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 17736.6
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 17764.7
+    },
+    {
+      "event": "PHASER_LOAD_COMPLETE",
+      "ms": 17764.7
+    },
+    {
+      "event": "SCENE_CREATE",
+      "ms": 17764.7
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 17765.2
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 17772.1
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 17773,
+      "frame": 1,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 17774.1,
+      "frame": 2,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 17789,
+      "frame": 3,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "RENDERER_READY",
+      "ms": 17789
+    },
+    {
+      "event": "ATTEMPT_ISSUED",
+      "ms": 17789
+    },
+    {
+      "event": "COUNTDOWN_START",
+      "ms": 17792.4
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 17806.7,
+      "frame": 4,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 17822.3,
+      "frame": 5,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 17839.2,
+      "frame": 6,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 18117.9
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 18117.9
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 18192
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 18205.3
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 18206.2
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 18206.7
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 18207.7
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 18255
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 18287.9
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 18330.3
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 18362.6
+    },
+    {
+      "event": "PHASER_LOAD_COMPLETE",
+      "ms": 18362.7
+    },
+    {
+      "event": "SCENE_CREATE",
+      "ms": 18362.7
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 18364.7
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 18366.9
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 18371,
+      "frame": 1,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 18374,
+      "frame": 2,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 18390.5,
+      "frame": 3,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "RENDERER_READY",
+      "ms": 18390.5
+    },
+    {
+      "event": "ATTEMPT_ISSUED",
+      "ms": 18390.6
+    },
+    {
+      "event": "COUNTDOWN_START",
+      "ms": 18394.5
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 18412.8,
+      "frame": 4,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 18422.4,
+      "frame": 5,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 18438.7,
+      "frame": 6,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 18717.2
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 18717.2
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 18822.2
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 18830.5
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 18831.7
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 18832.8
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 18833.7
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 18871.4
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 18902
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 18936.7
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 18977.1
+    },
+    {
+      "event": "PHASER_LOAD_COMPLETE",
+      "ms": 18977.1
+    },
+    {
+      "event": "SCENE_CREATE",
+      "ms": 18977.1
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 18978.2
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 18979.8
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 18981,
+      "frame": 1,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 18981.8,
+      "frame": 2,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 18989.1,
+      "frame": 3,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "RENDERER_READY",
+      "ms": 18989.1
+    },
+    {
+      "event": "ATTEMPT_ISSUED",
+      "ms": 18989.2
+    },
+    {
+      "event": "COUNTDOWN_START",
+      "ms": 18992.7
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 19007.1,
+      "frame": 4,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 19022.4,
+      "frame": 5,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 19039.3,
+      "frame": 6,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 19333.5
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 19333.5
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 19443.4
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 19454.1
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 19457.2
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 19457.8
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 19458.6
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 19492.8
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 19521.5
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 19548.2
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 19603.4
+    },
+    {
+      "event": "PHASER_LOAD_COMPLETE",
+      "ms": 19603.4
+    },
+    {
+      "event": "SCENE_CREATE",
+      "ms": 19603.4
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 19604.5
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 19606.2
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 19608,
+      "frame": 1,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 19608.9,
+      "frame": 2,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 19622.4,
+      "frame": 3,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "RENDERER_READY",
+      "ms": 19622.4
+    },
+    {
+      "event": "ATTEMPT_ISSUED",
+      "ms": 19622.6
+    },
+    {
+      "event": "COUNTDOWN_START",
+      "ms": 19629
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 19652.5,
+      "frame": 4,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 19659.4,
+      "frame": 5,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 19672.9,
+      "frame": 6,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 19949.8
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 19949.8
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 20076.7
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 20084.7
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 20086.1
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 20086.9
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 20088.4
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 20122.4
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 20157.2
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 20208
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 20237.4
+    },
+    {
+      "event": "PHASER_LOAD_COMPLETE",
+      "ms": 20237.4
+    },
+    {
+      "event": "SCENE_CREATE",
+      "ms": 20237.4
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 20238.1
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 20243.8
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 20245.2,
+      "frame": 1,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 20263.1,
+      "frame": 2,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 20273.1,
+      "frame": 3,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "RENDERER_READY",
+      "ms": 20273.1
+    },
+    {
+      "event": "ATTEMPT_ISSUED",
+      "ms": 20273.9
+    },
+    {
+      "event": "COUNTDOWN_START",
+      "ms": 20284
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 20310.3,
+      "frame": 4,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 20315.4,
+      "frame": 5,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 20323.1,
+      "frame": 6,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 20602.9
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 20603.3
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 20700
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 20720.4
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 20725.8
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 20726.4
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 20727.1
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 20760.9
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 20794.3
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 20841.7
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 20868.6
+    },
+    {
+      "event": "PHASER_LOAD_COMPLETE",
+      "ms": 20868.7
+    },
+    {
+      "event": "SCENE_CREATE",
+      "ms": 20868.7
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 20869.5
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 20870.3
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 20871.3,
+      "frame": 1,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 20874.3,
+      "frame": 2,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 20888.5,
+      "frame": 3,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "RENDERER_READY",
+      "ms": 20888.5
+    },
+    {
+      "event": "ATTEMPT_ISSUED",
+      "ms": 20888.7
+    },
+    {
+      "event": "COUNTDOWN_START",
+      "ms": 20894.7
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 20918.9,
+      "frame": 4,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 20927.2,
+      "frame": 5,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 20938.2,
+      "frame": 6,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 21214.9
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 21214.9
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 21401.4
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 21417.9
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 21419.9
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 21420.1
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 21420.5
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 21453.4
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 21482.9
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 21529.7
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 21559.4
+    },
+    {
+      "event": "PHASER_LOAD_COMPLETE",
+      "ms": 21559.5
+    },
+    {
+      "event": "SCENE_CREATE",
+      "ms": 21559.5
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 21560.2
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 21561
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 21562.1,
+      "frame": 1,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 21567.8,
+      "frame": 2,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 21572.4,
+      "frame": 3,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "RENDERER_READY",
+      "ms": 21572.4
+    },
+    {
+      "event": "ATTEMPT_ISSUED",
+      "ms": 21572.6
+    },
+    {
+      "event": "COUNTDOWN_START",
+      "ms": 21577.3
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 21590.7,
+      "frame": 4,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 21605.9,
+      "frame": 5,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 21622.4,
+      "frame": 6,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 21898.2
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 21898.2
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 21986.7
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 22023.7
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 22024.5
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 22024.9
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 22025.4
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 22059
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 22087.7
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 22114.6
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 22158.2
+    },
+    {
+      "event": "PHASER_LOAD_COMPLETE",
+      "ms": 22158.3
+    },
+    {
+      "event": "SCENE_CREATE",
+      "ms": 22158.3
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 22162.9
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 22163.6
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 22164.2,
+      "frame": 1,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 22164.5,
+      "frame": 2,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 22171.6,
+      "frame": 3,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "RENDERER_READY",
+      "ms": 22171.6
+    },
+    {
+      "event": "ATTEMPT_ISSUED",
+      "ms": 22171.7
+    },
+    {
+      "event": "COUNTDOWN_START",
+      "ms": 22176
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 22198,
+      "frame": 4,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 22205.6,
+      "frame": 5,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 22227,
+      "frame": 6,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "COUNTDOWN_COMPLETE",
+      "ms": 24588.9
+    },
+    {
+      "event": "CLOCK_FIRST",
+      "ms": 24605.4,
+      "ticks": 0,
+      "accumulator": 0
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 24622.2,
+      "delta": 16.69999998807907,
+      "ticks": 0,
+      "accumulator": 0
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 24638.8,
+      "delta": 16.5,
+      "ticks": 1,
+      "accumulator": 0.033333321412403194
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 24655.4,
+      "delta": 16.80000001192093,
+      "ticks": 1,
+      "accumulator": 16.533333321412403
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 24672.1,
+      "delta": 16.69999998807907,
+      "ticks": 3,
+      "accumulator": 0
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 24703.1,
+      "delta": 31,
+      "ticks": 4,
+      "accumulator": 0.033333321412403194
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 24706.3,
+      "delta": 3.200000047683716,
+      "ticks": 5,
+      "accumulator": 14.366666654745735
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 24722,
+      "delta": 15.699999988079071,
+      "ticks": 6,
+      "accumulator": 0.9000000357627833
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 24738.7,
+      "delta": 16.599999964237213,
+      "ticks": 6,
+      "accumulator": 16.600000023841854
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 24755.3,
+      "delta": 16.700000047683716,
+      "ticks": 7,
+      "accumulator": 16.533333321412403
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 24771.9,
+      "delta": 16.599999964237213,
+      "ticks": 8,
+      "accumulator": 16.566666702429448
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 24788.6,
+      "delta": 16.69999998807907,
+      "ticks": 9,
+      "accumulator": 16.49999999999999
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 24805.4,
+      "delta": 16.80000001192093,
+      "ticks": 10,
+      "accumulator": 16.53333332141239
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 24822.1,
+      "delta": 16.69999998807907,
+      "ticks": 12,
+      "accumulator": 0
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 24838.7,
+      "delta": 16.600000023841858,
+      "ticks": 13,
+      "accumulator": 0.033333321412403194
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 24855.3,
+      "delta": 16.600000023841858,
+      "ticks": 13,
+      "accumulator": 16.63333334525426
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 24872,
+      "delta": 16.69999998807907,
+      "ticks": 14,
+      "accumulator": 16.566666702429448
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 24888.7,
+      "delta": 16.69999998807907,
+      "ticks": 15,
+      "accumulator": 16.600000023841847
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 24905.4,
+      "delta": 16.69999998807907,
+      "ticks": 16,
+      "accumulator": 16.633333345254247
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 24921.2,
+      "delta": 15.800000011920929,
+      "ticks": 18,
+      "accumulator": 0
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 24938.7,
+      "delta": 17.5,
+      "ticks": 18,
+      "accumulator": 15.800000011920929
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 24954.8,
+      "delta": 16.100000023841858,
+      "ticks": 19,
+      "accumulator": 16.63333334525426
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 24972.1,
+      "delta": 17.19999998807907,
+      "ticks": 20,
+      "accumulator": 16.066666702429448
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 24987.9,
+      "delta": 15.899999976158142,
+      "ticks": 21,
+      "accumulator": 16.600000023841847
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 25005.4,
+      "delta": 17.5,
+      "ticks": 22,
+      "accumulator": 15.833333333333318
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 25021.7,
+      "delta": 16.30000001192093,
+      "ticks": 24,
+      "accumulator": 0
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 25038.7,
+      "delta": 17,
+      "ticks": 24,
+      "accumulator": 16.30000001192093
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 25055.3,
+      "delta": 16.600000023841858,
+      "ticks": 25,
+      "accumulator": 16.63333334525426
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 25072,
+      "delta": 16.69999998807907,
+      "ticks": 26,
+      "accumulator": 16.566666702429448
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 25088.6,
+      "delta": 16.599999964237213,
+      "ticks": 27,
+      "accumulator": 16.600000023841847
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 25104.6,
+      "delta": 16,
+      "ticks": 28,
+      "accumulator": 16.53333332141239
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 25121.3,
+      "delta": 16.700000047683716,
+      "ticks": 29,
+      "accumulator": 15.866666654745718
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 25138.7,
+      "delta": 17.399999976158142,
+      "ticks": 30,
+      "accumulator": 15.900000035762762
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 25155.4,
+      "delta": 16.69999998807907,
+      "ticks": 31,
+      "accumulator": 16.633333345254233
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 25172,
+      "delta": 16.600000023841858,
+      "ticks": 33,
+      "accumulator": 0
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 25188.7,
+      "delta": 16.69999998807907,
+      "ticks": 33,
+      "accumulator": 16.600000023841858
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 25204.9,
+      "delta": 16.19999998807907,
+      "ticks": 34,
+      "accumulator": 16.63333334525426
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 25222,
+      "delta": 17.100000023841858,
+      "ticks": 35,
+      "accumulator": 16.16666666666666
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 25238.7,
+      "delta": 16.69999998807907,
+      "ticks": 36,
+      "accumulator": 16.600000023841847
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 25255.3,
+      "delta": 16.600000023841858,
+      "ticks": 37,
+      "accumulator": 16.633333345254247
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 25271.9,
+      "delta": 16.599999964237213,
+      "ticks": 38,
+      "accumulator": 16.566666702429433
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 25288.7,
+      "delta": 16.69999998807907,
+      "ticks": 39,
+      "accumulator": 16.499999999999975
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 25305,
+      "delta": 16.400000035762787,
+      "ticks": 40,
+      "accumulator": 16.533333321412375
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 25321.9,
+      "delta": 16.899999976158142,
+      "ticks": 41,
+      "accumulator": 16.26666669050849
+    },
+    {
+      "event": "SUBMIT",
+      "ms": 25707,
+      "ticks": 42,
+      "interruptions": 0
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 25795.7
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 25795.7
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 25889
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 25903.1
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 25903.6
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 25903.9
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 25906.1
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 25935.4
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 25963.1
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 25989.9
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 26040.9
+    },
+    {
+      "event": "PHASER_LOAD_COMPLETE",
+      "ms": 26041
+    },
+    {
+      "event": "SCENE_CREATE",
+      "ms": 26041
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 26042.2
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 26046.8
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 26048.5,
+      "frame": 1,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 26049.4,
+      "frame": 2,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 26055.6,
+      "frame": 3,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "RENDERER_READY",
+      "ms": 26055.6
+    },
+    {
+      "event": "ATTEMPT_ISSUED",
+      "ms": 26055.8
+    },
+    {
+      "event": "COUNTDOWN_START",
+      "ms": 26059.5
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 26073.3,
+      "frame": 4,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 26088.8,
+      "frame": 5,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 26105.2,
+      "frame": 6,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "COUNTDOWN_COMPLETE",
+      "ms": 28472.6
+    },
+    {
+      "event": "CLOCK_FIRST",
+      "ms": 28489.1,
+      "ticks": 0,
+      "accumulator": 0
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 28504.7,
+      "delta": 15.699999988079071,
+      "ticks": 0,
+      "accumulator": 0
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 28522.3,
+      "delta": 17.5,
+      "ticks": 0,
+      "accumulator": 15.699999988079071
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 28539.5,
+      "delta": 17.30000001192093,
+      "ticks": 1,
+      "accumulator": 16.533333321412403
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 28555.3,
+      "delta": 15.699999988079071,
+      "ticks": 3,
+      "accumulator": 0.4999999999999929
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 28572.1,
+      "delta": 16.899999976158142,
+      "ticks": 3,
+      "accumulator": 16.199999988079064
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 28589.7,
+      "delta": 17.600000023841858,
+      "ticks": 4,
+      "accumulator": 16.433333297570538
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 28604.9,
+      "delta": 15.199999988079071,
+      "ticks": 6,
+      "accumulator": 0.6999999880790639
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 28621,
+      "delta": 16.100000023841858,
+      "ticks": 6,
+      "accumulator": 15.899999976158135
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 28638.9,
+      "delta": 17.899999976158142,
+      "ticks": 7,
+      "accumulator": 15.333333333333325
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 28655.3,
+      "delta": 16.30000001192093,
+      "ticks": 8,
+      "accumulator": 16.566666642824803
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 28671.9,
+      "delta": 16.69999998807907,
+      "ticks": 9,
+      "accumulator": 16.19999998807906
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 28697.6,
+      "delta": 25.69999998807907,
+      "ticks": 10,
+      "accumulator": 16.23333330949146
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 28704.8,
+      "delta": 7.200000047683716,
+      "ticks": 12,
+      "accumulator": 8.599999964237192
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 28722.1,
+      "delta": 17.299999952316284,
+      "ticks": 12,
+      "accumulator": 15.800000011920908
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 28738.4,
+      "delta": 16.30000001192093,
+      "ticks": 13,
+      "accumulator": 16.433333297570524
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 28754.9,
+      "delta": 16.400000035762787,
+      "ticks": 14,
+      "accumulator": 16.06666664282479
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 28772.1,
+      "delta": 17.299999952316284,
+      "ticks": 15,
+      "accumulator": 15.800000011920904
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 28788.8,
+      "delta": 16.700000047683716,
+      "ticks": 16,
+      "accumulator": 16.433333297570517
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 28804.8,
+      "delta": 16,
+      "ticks": 17,
+      "accumulator": 16.46666667858756
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 28822.1,
+      "delta": 17.299999952316284,
+      "ticks": 18,
+      "accumulator": 15.80000001192089
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 28838.9,
+      "delta": 16.80000001192093,
+      "ticks": 19,
+      "accumulator": 16.433333297570503
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 28854.6,
+      "delta": 15.699999988079071,
+      "ticks": 20,
+      "accumulator": 16.56666664282476
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 28872.1,
+      "delta": 17.5,
+      "ticks": 21,
+      "accumulator": 15.59999996423716
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 28888.1,
+      "delta": 16,
+      "ticks": 22,
+      "accumulator": 16.43333329757049
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 28904.8,
+      "delta": 16.700000047683716,
+      "ticks": 23,
+      "accumulator": 15.766666630903817
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 28921.9,
+      "delta": 17.099999964237213,
+      "ticks": 24,
+      "accumulator": 15.800000011920861
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 28937.7,
+      "delta": 15.800000011920929,
+      "ticks": 25,
+      "accumulator": 16.233333309491403
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 28955.5,
+      "delta": 17.80000001192093,
+      "ticks": 26,
+      "accumulator": 15.36666665474566
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 28971.9,
+      "delta": 16.399999976158142,
+      "ticks": 27,
+      "accumulator": 16.49999999999992
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 28988.6,
+      "delta": 16.69999998807907,
+      "ticks": 28,
+      "accumulator": 16.23333330949139
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 29005.2,
+      "delta": 16.600000023841858,
+      "ticks": 29,
+      "accumulator": 16.26666663090379
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 29022,
+      "delta": 16.80000001192093,
+      "ticks": 30,
+      "accumulator": 16.199999988078975
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 29038.7,
+      "delta": 16.69999998807907,
+      "ticks": 31,
+      "accumulator": 16.333333333333233
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 29055.4,
+      "delta": 16.69999998807907,
+      "ticks": 32,
+      "accumulator": 16.366666654745632
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 29072.1,
+      "delta": 16.69999998807907,
+      "ticks": 33,
+      "accumulator": 16.399999976158032
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 29088.8,
+      "delta": 16.700000047683716,
+      "ticks": 34,
+      "accumulator": 16.43333329757043
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 29105.7,
+      "delta": 16.899999976158142,
+      "ticks": 35,
+      "accumulator": 16.466666678587476
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 29121.4,
+      "delta": 15.699999988079071,
+      "ticks": 37,
+      "accumulator": 0.03333332141227885
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 29138.6,
+      "delta": 17.19999998807907,
+      "ticks": 37,
+      "accumulator": 15.73333330949135
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 29155.3,
+      "delta": 16.700000047683716,
+      "ticks": 38,
+      "accumulator": 16.266666630903753
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 29177.5,
+      "delta": 22.19999998807907,
+      "ticks": 39,
+      "accumulator": 16.300000011920805
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 29189.8,
+      "delta": 12.300000011920929,
+      "ticks": 41,
+      "accumulator": 5.166666666666536
+    },
+    {
+      "event": "SUBMIT",
+      "ms": 29572,
+      "ticks": 42,
+      "interruptions": 0
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 38303.2
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 38303.3
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 38448.2
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 38469.1
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 38481.1
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 38483.7
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 38484.3
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 38515.9
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 38562.5
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 38598.4
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 38628.6
+    },
+    {
+      "event": "PHASER_LOAD_COMPLETE",
+      "ms": 38628.6
+    },
+    {
+      "event": "SCENE_CREATE",
+      "ms": 38628.6
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 38629.4
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 38632.3
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 38633.5,
+      "frame": 1,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 38634.1,
+      "frame": 2,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 38640.7,
+      "frame": 3,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "RENDERER_READY",
+      "ms": 38640.7
+    },
+    {
+      "event": "ATTEMPT_ISSUED",
+      "ms": 38641.6
+    },
+    {
+      "event": "COUNTDOWN_START",
+      "ms": 38648.9
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 38661.9,
+      "frame": 4,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 38706.2,
+      "frame": 5,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 38711.7,
+      "frame": 6,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "COUNTDOWN_COMPLETE",
+      "ms": 41055.7
+    },
+    {
+      "event": "CLOCK_FIRST",
+      "ms": 41071.7,
+      "ticks": 0,
+      "accumulator": 0
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41088.8,
+      "delta": 17.100000023841858,
+      "ticks": 0,
+      "accumulator": 0
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41105.1,
+      "delta": 16.399999976158142,
+      "ticks": 1,
+      "accumulator": 0.43333335717519006
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41121.7,
+      "delta": 16.600000023841858,
+      "ticks": 2,
+      "accumulator": 0.1666666666666643
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41140.9,
+      "delta": 19.19999998807907,
+      "ticks": 3,
+      "accumulator": 0.10000002384185436
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41155.3,
+      "delta": 14.400000035762787,
+      "ticks": 4,
+      "accumulator": 2.6333333452542576
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41171.4,
+      "delta": 16.099999964237213,
+      "ticks": 5,
+      "accumulator": 0.36666671435037657
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41187.7,
+      "delta": 16.30000001192093,
+      "ticks": 5,
+      "accumulator": 16.46666667858759
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41205.8,
+      "delta": 18.100000023841858,
+      "ticks": 6,
+      "accumulator": 16.100000023841847
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41221.6,
+      "delta": 15.799999952316284,
+      "ticks": 8,
+      "accumulator": 0.8666667143503659
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41238.2,
+      "delta": 16.600000023841858,
+      "ticks": 9,
+      "accumulator": 0
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41255.4,
+      "delta": 17.19999998807907,
+      "ticks": 9,
+      "accumulator": 16.600000023841858
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41271,
+      "delta": 15.600000023841858,
+      "ticks": 11,
+      "accumulator": 0.46666667858759325
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41287.7,
+      "delta": 16.69999998807907,
+      "ticks": 11,
+      "accumulator": 16.06666670242945
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41304.9,
+      "delta": 17.19999998807907,
+      "ticks": 12,
+      "accumulator": 16.100000023841854
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41321.8,
+      "delta": 16.900000035762787,
+      "ticks": 13,
+      "accumulator": 16.63333334525426
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41338.7,
+      "delta": 16.899999976158142,
+      "ticks": 15,
+      "accumulator": 0.20000004768370871
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41354.3,
+      "delta": 15.600000023841858,
+      "ticks": 16,
+      "accumulator": 0.43333335717518295
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41371.3,
+      "delta": 17,
+      "ticks": 16,
+      "accumulator": 16.03333338101704
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41387.9,
+      "delta": 16.599999964237213,
+      "ticks": 17,
+      "accumulator": 16.366666714350377
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41405.1,
+      "delta": 17.19999998807907,
+      "ticks": 18,
+      "accumulator": 16.30000001192092
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41421.2,
+      "delta": 16.100000023841858,
+      "ticks": 20,
+      "accumulator": 0.1666666666666501
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41440.4,
+      "delta": 19.19999998807907,
+      "ticks": 20,
+      "accumulator": 16.266666690508508
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41455.3,
+      "delta": 14.900000035762787,
+      "ticks": 22,
+      "accumulator": 2.1333333452542433
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41471.8,
+      "delta": 16.5,
+      "ticks": 23,
+      "accumulator": 0.36666671435036235
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41487.8,
+      "delta": 16,
+      "ticks": 24,
+      "accumulator": 0.2000000476836945
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41505.2,
+      "delta": 17.399999976158142,
+      "ticks": 24,
+      "accumulator": 16.200000047683695
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41521.8,
+      "delta": 16.600000023841858,
+      "ticks": 26,
+      "accumulator": 0.2666666905085009
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41538.8,
+      "delta": 17,
+      "ticks": 27,
+      "accumulator": 0.20000004768369095
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41555.5,
+      "delta": 16.69999998807907,
+      "ticks": 28,
+      "accumulator": 0.5333333810170231
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41572.2,
+      "delta": 16.69999998807907,
+      "ticks": 29,
+      "accumulator": 0.5666667024294263
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41589.2,
+      "delta": 17,
+      "ticks": 30,
+      "accumulator": 0.6000000238418295
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41604.9,
+      "delta": 15.699999988079071,
+      "ticks": 31,
+      "accumulator": 0.9333333571751616
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41622.2,
+      "delta": 17.30000001192093,
+      "ticks": 31,
+      "accumulator": 16.633333345254233
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41639.3,
+      "delta": 17.100000023841858,
+      "ticks": 33,
+      "accumulator": 0.6000000238418224
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41654.4,
+      "delta": 15.099999964237213,
+      "ticks": 34,
+      "accumulator": 1.0333333810170124
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41671.2,
+      "delta": 16.80000001192093,
+      "ticks": 34,
+      "accumulator": 16.133333345254226
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41688,
+      "delta": 16.69999998807907,
+      "ticks": 35,
+      "accumulator": 16.26666669050849
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41709.3,
+      "delta": 21.400000035762787,
+      "ticks": 36,
+      "accumulator": 16.30000001192089
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41722,
+      "delta": 12.699999988079071,
+      "ticks": 38,
+      "accumulator": 4.3666667143503375
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41738,
+      "delta": 16,
+      "ticks": 39,
+      "accumulator": 0.4000000357627407
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41755.4,
+      "delta": 17.399999976158142,
+      "ticks": 39,
+      "accumulator": 16.40000003576274
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 41772,
+      "delta": 16.600000023841858,
+      "ticks": 41,
+      "accumulator": 0.4666666785875506
+    },
+    {
+      "event": "SUBMIT",
+      "ms": 42156.3,
+      "ticks": 42,
+      "interruptions": 0
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 50871.2
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 50871.4
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 50964.1
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 50968.8
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 50969.2
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 50969.8
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 50997.4
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 50997.9
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 51032.5
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 51077.2
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 51125.4
+    },
+    {
+      "event": "PHASER_LOAD_COMPLETE",
+      "ms": 51125.5
+    },
+    {
+      "event": "SCENE_CREATE",
+      "ms": 51125.5
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 51126.5
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 51127.5
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 51128.6,
+      "frame": 1,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 51129.2,
+      "frame": 2,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 51138.9,
+      "frame": 3,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "RENDERER_READY",
+      "ms": 51138.9
+    },
+    {
+      "event": "ATTEMPT_ISSUED",
+      "ms": 51139.1
+    },
+    {
+      "event": "COUNTDOWN_START",
+      "ms": 51144
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 51156.7,
+      "frame": 4,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 51172,
+      "frame": 5,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 51188.6,
+      "frame": 6,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "COUNTDOWN_COMPLETE",
+      "ms": 53556
+    },
+    {
+      "event": "CLOCK_FIRST",
+      "ms": 53571.2,
+      "ticks": 0,
+      "accumulator": 0
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 53588.9,
+      "delta": 17.69999998807907,
+      "ticks": 0,
+      "accumulator": 0
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 53605.6,
+      "delta": 16.69999998807907,
+      "ticks": 1,
+      "accumulator": 1.0333333214124032
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 53622.2,
+      "delta": 16.600000023841858,
+      "ticks": 2,
+      "accumulator": 1.0666666428248064
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 53638.9,
+      "delta": 16.69999998807907,
+      "ticks": 3,
+      "accumulator": 0.9999999999999964
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 53655.4,
+      "delta": 16.5,
+      "ticks": 4,
+      "accumulator": 1.0333333214123996
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 53672,
+      "delta": 16.600000023841858,
+      "ticks": 5,
+      "accumulator": 0.8666666547457318
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 53688.9,
+      "delta": 16.899999976158142,
+      "ticks": 6,
+      "accumulator": 0.8000000119209218
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 53705.4,
+      "delta": 16.5,
+      "ticks": 7,
+      "accumulator": 1.033333321412396
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 53722,
+      "delta": 16.600000023841858,
+      "ticks": 8,
+      "accumulator": 0.8666666547457282
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 53738.9,
+      "delta": 16.899999976158142,
+      "ticks": 9,
+      "accumulator": 0.8000000119209183
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 53754.8,
+      "delta": 15.900000035762787,
+      "ticks": 10,
+      "accumulator": 1.0333333214123925
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 53771.1,
+      "delta": 16.19999998807907,
+      "ticks": 11,
+      "accumulator": 0.26666669050851155
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 53788.9,
+      "delta": 17.899999976158142,
+      "ticks": 11,
+      "accumulator": 16.466666678587583
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 53804.6,
+      "delta": 15.699999988079071,
+      "ticks": 13,
+      "accumulator": 1.0333333214123925
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 53822.2,
+      "delta": 17.600000023841858,
+      "ticks": 14,
+      "accumulator": 0.06666664282479573
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 53839.1,
+      "delta": 16.899999976158142,
+      "ticks": 15,
+      "accumulator": 0.9999999999999858
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 53855.1,
+      "delta": 16,
+      "ticks": 16,
+      "accumulator": 1.23333330949146
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 53872.2,
+      "delta": 17.100000023841858,
+      "ticks": 17,
+      "accumulator": 0.5666666428247922
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 53888.2,
+      "delta": 16,
+      "ticks": 18,
+      "accumulator": 0.9999999999999822
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 53905.5,
+      "delta": 17.30000001192093,
+      "ticks": 19,
+      "accumulator": 0.3333333333333144
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 53922,
+      "delta": 16.5,
+      "ticks": 20,
+      "accumulator": 0.9666666785875755
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 53939.1,
+      "delta": 17.099999964237213,
+      "ticks": 21,
+      "accumulator": 0.8000000119209076
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 53955.5,
+      "delta": 16.400000035762787,
+      "ticks": 22,
+      "accumulator": 1.233333309491453
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 53972,
+      "delta": 16.5,
+      "ticks": 23,
+      "accumulator": 0.9666666785875719
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 53988.6,
+      "delta": 16.599999964237213,
+      "ticks": 24,
+      "accumulator": 0.8000000119209041
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 54008.1,
+      "delta": 19.5,
+      "ticks": 25,
+      "accumulator": 0.7333333094914494
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 54022,
+      "delta": 13.900000035762787,
+      "ticks": 26,
+      "accumulator": 3.5666666428247815
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 54038.7,
+      "delta": 16.69999998807907,
+      "ticks": 27,
+      "accumulator": 0.8000000119209005
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 54063.9,
+      "delta": 25.19999998807907,
+      "ticks": 28,
+      "accumulator": 0.8333333333333037
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 54074.2,
+      "delta": 10.300000011920929,
+      "ticks": 29,
+      "accumulator": 9.366666654745707
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 54089.2,
+      "delta": 15,
+      "ticks": 30,
+      "accumulator": 2.999999999999968
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 54107.8,
+      "delta": 18.5,
+      "ticks": 31,
+      "accumulator": 1.3333333333333002
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 54123.5,
+      "delta": 15.800000011920929,
+      "ticks": 32,
+      "accumulator": 3.1666666666666323
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 54138.5,
+      "delta": 15,
+      "ticks": 33,
+      "accumulator": 2.3000000119208934
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 54155.3,
+      "delta": 16.80000001192093,
+      "ticks": 34,
+      "accumulator": 0.6333333452542256
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 54186,
+      "delta": 30.69999998807907,
+      "ticks": 35,
+      "accumulator": 0.7666666905084867
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 54190.3,
+      "delta": 4.300000011920929,
+      "ticks": 36,
+      "accumulator": 14.80000001192089
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 54211.5,
+      "delta": 21.19999998807907,
+      "ticks": 37,
+      "accumulator": 2.433333357175151
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 54224.7,
+      "delta": 13.199999988079071,
+      "ticks": 38,
+      "accumulator": 6.966666678587554
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 54238.1,
+      "delta": 13.300000011920929,
+      "ticks": 39,
+      "accumulator": 3.4999999999999574
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 54255.3,
+      "delta": 17.30000001192093,
+      "ticks": 40,
+      "accumulator": 0.13333334525421847
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 54273.4,
+      "delta": 18.099999964237213,
+      "ticks": 41,
+      "accumulator": 0.7666666905084796
+    },
+    {
+      "event": "SUBMIT",
+      "ms": 54668.1,
+      "ticks": 42,
+      "interruptions": 0
+    }
+  ],
+  "errors": [],
+  "frame": {
+    "count": 600,
+    "p50": 16.699999999999818,
+    "p95": 17.699999999999818,
+    "max": 133.1999999999989
+  },
+  "initialResources": [
+    {
+      "name": "index-CUDQY9fH.js",
+      "bytes": 0,
+      "duration": 114.5
+    },
+    {
+      "name": "modulepreload-polyfill-B5Qt9EMX.js",
+      "bytes": 0,
+      "duration": 117
+    },
+    {
+      "name": "preload-helper-WEAdrSkN.js",
+      "bytes": 0,
+      "duration": 117.5
+    },
+    {
+      "name": "phaser-x7vEch61.js",
+      "bytes": 0,
+      "duration": 7.900000035762787
+    },
+    {
+      "name": "_commonjsHelpers-CqkleIqs.js",
+      "bytes": 0,
+      "duration": 7.5
+    },
+    {
+      "name": "index-D_NuPfjr.js",
+      "bytes": 0,
+      "duration": 28.600000023841858
+    },
+    {
+      "name": "client-DjCM7ok3.js",
+      "bytes": 0,
+      "duration": 29.100000023841858
+    },
+    {
+      "name": "ArcadeApp-BWBUp6M8.js",
+      "bytes": 0,
+      "duration": 29.69999998807907
+    },
+    {
+      "name": "runtime-PZGFblDa.js",
+      "bytes": 0,
+      "duration": 30.5
+    },
+    {
+      "name": "controller-zP39x9GW.js",
+      "bytes": 0,
+      "duration": 30.700000047683716
+    },
+    {
+      "name": "client-CPWOo4SV.js",
+      "bytes": 0,
+      "duration": 32.10000002384186
+    },
+    {
+      "name": "ArcadeApp-CtdgdnBV.css",
+      "bytes": 0,
+      "duration": 32.89999997615814
+    },
+    {
+      "name": "hostAdapter-DisXnur6.js",
+      "bytes": 0,
+      "duration": 34.09999996423721
+    },
+    {
+      "name": "scoreRepository-1MsJ2y5I.js",
+      "bytes": 0,
+      "duration": 34.299999952316284
+    },
+    {
+      "name": "cdawg-display-latin-v001-CeyYqTKY.woff2",
+      "bytes": 15380,
+      "duration": 0
+    },
+    {
+      "name": "cdawg-ui-latin-v001-CfIt6cLC.woff2",
+      "bytes": 15432,
+      "duration": 0
+    },
+    {
+      "name": "cdawg-horizontal-dark-v001-CocDCRX-.svg",
+      "bytes": 0,
+      "duration": 11.100000023841858
+    },
+    {
+      "name": "cdawg-host-default-v004-Dy6_NmHH.webp",
+      "bytes": 0,
+      "duration": 7.300000011920929
+    },
+    {
+      "name": "cdawg-host-mischief-v004-BH8_sl9C.webp",
+      "bytes": 0,
+      "duration": 8.899999976158142
+    }
+  ]
+}

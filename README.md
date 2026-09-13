@@ -1,5 +1,7 @@
 # Cdawg Arcade
 
+Current optional frontend work: [Arcade lobby integration](docs/brand/ARCADE_LOBBY_INTEGRATION.md) is behind a disabled source gate. Ordinary production still opens Cdawg Balance directly. See the [validation report](docs/brand/ARCADE_LOBBY_VALIDATION.md) for the isolated candidate and evidence.
+
 Cdawg Arcade is a local browser prototype for short, mobile-friendly arcade games that can later launch as Discord Activities. The current active experience opens directly into one playable game: Cdawg Balance.
 
 ## Run Locally
@@ -120,3 +122,5 @@ bulldog references and a local-only rigged feasibility prototype. See the
 The approved mascot is deployed and accepted; see the [release record](docs/brand/MASCOT_RELEASE_ACCEPTANCE.md).
 
 Smooth gameplay mascot: [Phase 3 validation and local preview](docs/brand/MASCOT_PHASE_3_COMPLETION.md). Review tooling and source art are excluded from production.
+
+Lobby reconciliation and disabled-gate release preparation: [validation](docs/brand/LOBBY_RECONCILIATION.md) and [two-step rollout](docs/brand/LOBBY_TWO_STEP_ROLLOUT.md). The lobby remains disabled in ordinary production.

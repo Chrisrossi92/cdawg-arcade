@@ -203,6 +203,18 @@
       "bytes": 2138,
       "sha256": "a445e643bfbd793ff5023c40b5da4fd7cd7356e1c8fbe54ddb7c27af0388e935"
     },
+    "runtime/cdawg-host-default-v004.webp": {
+      "bytes": 20932,
+      "sha256": "22d76bf8191718d897bd5aab92465d44c029c735902154881d0b68583844d946"
+    },
+    "runtime/cdawg-host-delighted-v004.webp": {
+      "bytes": 20390,
+      "sha256": "503e66befa300e6363ca8cdfd87bd63d8cc64e80a4d73c11603b9db4afd46fc1"
+    },
+    "runtime/cdawg-host-mischief-v004.webp": {
+      "bytes": 20992,
+      "sha256": "89a06f502e8e6293909ac329b9bdc833eddac5fbc0171c7c87c3aff97ed4a552"
+    },
     "runtime/cdawg-host-v001.png": {
       "bytes": 140117,
       "sha256": "a2515aaf928590f4b89414ae49f8745bb607f1fd0c9804defc3d77a1006292da"
@@ -217,5 +229,5 @@
     }
   },
   "vectorBytes": 117434,
-  "runtimeBytes": 585491
+  "runtimeBytes": 647805
 }

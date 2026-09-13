@@ -25,7 +25,9 @@
     "db:activate-canary": "node build/server/database/cli.js activate-canary",
     "db:grant-results": "node build/server/database/cli.js grant-results",
     "db:verify-personal": "node build/server/database/cli.js verify-personal",
-    "test:database": "node scripts/test-database.mjs"
+    "test:database": "node scripts/test-database.mjs",
+    "build:lobby": "npm run typecheck && node scripts/lobby/build.mjs",
+    "preview:lobby": "vite preview --mode lobby-integration --outDir tmp/lobby-integration/dist --host 127.0.0.1 --port 5195"
   },
   "dependencies": {
     "@discord/embedded-app-sdk": "^2.5.0",

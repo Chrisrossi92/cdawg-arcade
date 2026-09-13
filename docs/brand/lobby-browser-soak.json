@@ -1,0 +1,273 @@
+{
+  "status": "passed",
+  "scenario": "official",
+  "route": "lobby",
+  "phase": "home",
+  "official": "accepted",
+  "current": {
+    "timers": 0,
+    "intervals": 0,
+    "frames": 0,
+    "listeners": 17,
+    "audioOpen": 0,
+    "canvases": 0,
+    "hostListeners": 1,
+    "auth": 1,
+    "attempts": 24,
+    "submissions": 4,
+    "cancels": 20,
+    "reads": 131,
+    "accepted": 3,
+    "practiceResults": 1,
+    "resumes": 1,
+    "heap": 34799747
+  },
+  "samples": [
+    {
+      "stage": "initial",
+      "timers": 0,
+      "intervals": 0,
+      "frames": 0,
+      "listeners": 17,
+      "audioOpen": 0,
+      "canvases": 0,
+      "hostListeners": 1,
+      "auth": 1,
+      "attempts": 0,
+      "submissions": 0,
+      "cancels": 0,
+      "reads": 3,
+      "accepted": 0,
+      "practiceResults": 0,
+      "resumes": 0,
+      "heap": 28038850
+    },
+    {
+      "stage": "cancel-1",
+      "timers": 2,
+      "intervals": 0,
+      "frames": 0,
+      "listeners": 17,
+      "audioOpen": 0,
+      "canvases": 0,
+      "hostListeners": 1,
+      "auth": 1,
+      "attempts": 1,
+      "submissions": 0,
+      "cancels": 1,
+      "reads": 6,
+      "accepted": 0,
+      "practiceResults": 0,
+      "resumes": 0,
+      "heap": 35511930
+    },
+    {
+      "stage": "cancel-10",
+      "timers": 2,
+      "intervals": 0,
+      "frames": 0,
+      "listeners": 17,
+      "audioOpen": 0,
+      "canvases": 0,
+      "hostListeners": 1,
+      "auth": 1,
+      "attempts": 10,
+      "submissions": 0,
+      "cancels": 10,
+      "reads": 33,
+      "accepted": 0,
+      "practiceResults": 0,
+      "resumes": 0,
+      "heap": 35819760
+    },
+    {
+      "stage": "cancel-20",
+      "timers": 2,
+      "intervals": 0,
+      "frames": 0,
+      "listeners": 17,
+      "audioOpen": 0,
+      "canvases": 0,
+      "hostListeners": 1,
+      "auth": 1,
+      "attempts": 20,
+      "submissions": 0,
+      "cancels": 20,
+      "reads": 63,
+      "accepted": 0,
+      "practiceResults": 0,
+      "resumes": 0,
+      "heap": 35830024
+    },
+    {
+      "stage": "completed-1",
+      "timers": 0,
+      "intervals": 0,
+      "frames": 0,
+      "listeners": 17,
+      "audioOpen": 0,
+      "canvases": 0,
+      "hostListeners": 1,
+      "auth": 1,
+      "attempts": 22,
+      "submissions": 2,
+      "cancels": 20,
+      "reads": 65,
+      "accepted": 1,
+      "practiceResults": 1,
+      "resumes": 1,
+      "heap": 46916858
+    },
+    {
+      "stage": "completed-2",
+      "timers": 0,
+      "intervals": 0,
+      "frames": 0,
+      "listeners": 17,
+      "audioOpen": 0,
+      "canvases": 0,
+      "hostListeners": 1,
+      "auth": 1,
+      "attempts": 23,
+      "submissions": 3,
+      "cancels": 20,
+      "reads": 67,
+      "accepted": 2,
+      "practiceResults": 1,
+      "resumes": 1,
+      "heap": 48357873
+    },
+    {
+      "stage": "completed-3",
+      "timers": 0,
+      "intervals": 0,
+      "frames": 0,
+      "listeners": 17,
+      "audioOpen": 0,
+      "canvases": 0,
+      "hostListeners": 1,
+      "auth": 1,
+      "attempts": 24,
+      "submissions": 4,
+      "cancels": 20,
+      "reads": 71,
+      "accepted": 3,
+      "practiceResults": 1,
+      "resumes": 1,
+      "heap": 44690151
+    },
+    {
+      "stage": "final",
+      "timers": 0,
+      "intervals": 0,
+      "frames": 0,
+      "listeners": 17,
+      "audioOpen": 0,
+      "canvases": 0,
+      "hostListeners": 1,
+      "auth": 1,
+      "attempts": 24,
+      "submissions": 4,
+      "cancels": 20,
+      "reads": 131,
+      "accepted": 3,
+      "practiceResults": 1,
+      "resumes": 1,
+      "heap": 36643861
+    }
+  ],
+  "errors": [],
+  "frame": {
+    "count": 600,
+    "p50": 16.699999999999818,
+    "p95": 17.699999999999818,
+    "max": 200
+  },
+  "initialResources": [
+    {
+      "name": "index-CVZ_hVXB.js",
+      "bytes": 3465,
+      "duration": 100.09999999403954
+    },
+    {
+      "name": "jsx-runtime-DWDKWqIC.js",
+      "bytes": 1041,
+      "duration": 99.40000000596046
+    },
+    {
+      "name": "client-Cm7Qo4L-.js",
+      "bytes": 58026,
+      "duration": 51.80000001192093
+    },
+    {
+      "name": "index-D_NuPfjr.js",
+      "bytes": 3039,
+      "duration": 25
+    },
+    {
+      "name": "_commonjsHelpers-CqkleIqs.js",
+      "bytes": 116,
+      "duration": 37
+    },
+    {
+      "name": "ArcadeApp-BWcHw5tc.js",
+      "bytes": 5201,
+      "duration": 13.899999976158142
+    },
+    {
+      "name": "controller-gwpte1TG.js",
+      "bytes": 1440,
+      "duration": 27.099999994039536
+    },
+    {
+      "name": "runtime-BFJE7pE-.js",
+      "bytes": 1239,
+      "duration": 45.79999998211861
+    },
+    {
+      "name": "ArcadeApp-DeiXNiul.css",
+      "bytes": 4460,
+      "duration": 20.099999994039536
+    },
+    {
+      "name": "client-Crhob2It.js",
+      "bytes": 1013,
+      "duration": 48.29999998211861
+    },
+    {
+      "name": "hostAdapter-DisXnur6.js",
+      "bytes": 332,
+      "duration": 44.80000001192093
+    },
+    {
+      "name": "scoreRepository-1MsJ2y5I.js",
+      "bytes": 670,
+      "duration": 52.89999997615814
+    },
+    {
+      "name": "cdawg-horizontal-dark-v001-CocDCRX-.svg",
+      "bytes": 2903,
+      "duration": 8.199999988079071
+    },
+    {
+      "name": "cdawg-host-v002-DkXDOlU8.png",
+      "bytes": 136730,
+      "duration": 7.5
+    },
+    {
+      "name": "cdawg-host-mischief-v004-P3uq4db5.webp",
+      "bytes": 13116,
+      "duration": 4.800000011920929
+    },
+    {
+      "name": "cdawg-ui-latin-v001-CfIt6cLC.woff2",
+      "bytes": 15432,
+      "duration": 9.100000023841858
+    },
+    {
+      "name": "cdawg-display-latin-v001-CeyYqTKY.woff2",
+      "bytes": 15380,
+      "duration": 10
+    }
+  ]
+}
