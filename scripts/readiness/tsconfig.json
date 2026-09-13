@@ -1,0 +1,1 @@
+{"extends":"../../tsconfig.app.json","compilerOptions":{"tsBuildInfoFile":"../../tmp/readiness/harness.tsbuildinfo"},"include":["harness.tsx","../../src/vite-env.d.ts"]}

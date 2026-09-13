@@ -122,3 +122,5 @@ bulldog references and a local-only rigged feasibility prototype. See the
 The approved mascot is deployed and accepted; see the [release record](docs/brand/MASCOT_RELEASE_ACCEPTANCE.md).
 
 Smooth gameplay mascot: [Phase 3 validation and local preview](docs/brand/MASCOT_PHASE_3_COMPLETION.md). Review tooling and source art are excluded from production.
+
+Lobby reconciliation and disabled-gate release preparation: [validation](docs/brand/LOBBY_RECONCILIATION.md) and [two-step rollout](docs/brand/LOBBY_TWO_STEP_ROLLOUT.md). The lobby remains disabled in ordinary production.

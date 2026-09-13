@@ -1,0 +1,466 @@
+{
+  "status": "rapid cancellation passed",
+  "scenario": "official",
+  "route": "lobby",
+  "phase": "home",
+  "official": "eligible",
+  "current": {
+    "timers": 0,
+    "intervals": 0,
+    "frames": 0,
+    "listeners": 17,
+    "audioOpen": 0,
+    "canvases": 0,
+    "hostListeners": 1,
+    "auth": 1,
+    "attempts": 0,
+    "submissions": 0,
+    "cancels": 0,
+    "reads": 46,
+    "accepted": 0,
+    "practiceResults": 0,
+    "resumes": 0,
+    "heap": 14432783
+  },
+  "samples": [
+    {
+      "stage": "rapid-baseline",
+      "timers": 0,
+      "intervals": 0,
+      "frames": 0,
+      "listeners": 17,
+      "audioOpen": 0,
+      "canvases": 0,
+      "hostListeners": 1,
+      "auth": 1,
+      "attempts": 0,
+      "submissions": 0,
+      "cancels": 0,
+      "reads": 3,
+      "accepted": 0,
+      "practiceResults": 0,
+      "resumes": 0,
+      "heap": 13516878
+    },
+    {
+      "stage": "rapid-final",
+      "timers": 0,
+      "intervals": 0,
+      "frames": 0,
+      "listeners": 17,
+      "audioOpen": 0,
+      "canvases": 0,
+      "hostListeners": 1,
+      "auth": 1,
+      "attempts": 0,
+      "submissions": 0,
+      "cancels": 0,
+      "reads": 23,
+      "accepted": 0,
+      "practiceResults": 0,
+      "resumes": 0,
+      "heap": 31707726
+    },
+    {
+      "stage": "rapid-baseline",
+      "timers": 0,
+      "intervals": 0,
+      "frames": 0,
+      "listeners": 17,
+      "audioOpen": 0,
+      "canvases": 0,
+      "hostListeners": 1,
+      "auth": 1,
+      "attempts": 0,
+      "submissions": 0,
+      "cancels": 0,
+      "reads": 26,
+      "accepted": 0,
+      "practiceResults": 0,
+      "resumes": 0,
+      "heap": 13689827
+    },
+    {
+      "stage": "rapid-final",
+      "timers": 0,
+      "intervals": 0,
+      "frames": 0,
+      "listeners": 17,
+      "audioOpen": 0,
+      "canvases": 0,
+      "hostListeners": 1,
+      "auth": 1,
+      "attempts": 0,
+      "submissions": 0,
+      "cancels": 0,
+      "reads": 46,
+      "accepted": 0,
+      "practiceResults": 0,
+      "resumes": 0,
+      "heap": 33165582
+    }
+  ],
+  "reconciliation": [],
+  "transitionEvents": [
+    {
+      "event": "START_ACTIVATE",
+      "ms": 10268.7
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 10268.9
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 10768.6
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 10885.1
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 10885.3
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 10965.8
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 11089.4
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 11089.5
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 11179.1
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 11289
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 11289
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 11365.3
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 11471.8
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 11471.8
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 11609.5
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 11721.9
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 11722
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 11843.4
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 11953.4
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 11953.4
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 12051.3
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 12156.2
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 12156.3
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 12262.6
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 12369
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 12369
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 12471
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 12574.8
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 12574.8
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 12653.6
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 60923.1
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 60923.2
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 61260.7
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 61385.7
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 61385.7
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 61488.2
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 61601.6
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 61601.8
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 61720.2
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 61827.7
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 61827.8
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 61903.8
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 62011.4
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 62011.4
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 62079.5
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 62090.1
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 62090.5
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 62090.5
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 62090.7
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 62189.2
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 62189.2
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 62307.7
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 62422.1
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 62422.2
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 62490.7
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 62604.9
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 62604.9
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 62722.6
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 62837.9
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 62837.9
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 62957.6
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 63068.8
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 63068.9
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 63204.2
+    }
+  ],
+  "errors": [],
+  "frame": {
+    "count": 600,
+    "p50": 16.699999999999818,
+    "p95": 17.600000000000364,
+    "max": 315.7999999999993
+  },
+  "initialResources": [
+    {
+      "name": "index-Dcmwnn6j.js",
+      "bytes": 14679,
+      "duration": 107.69999998807907
+    },
+    {
+      "name": "modulepreload-polyfill-B5Qt9EMX.js",
+      "bytes": 711,
+      "duration": 109
+    },
+    {
+      "name": "preload-helper-WEAdrSkN.js",
+      "bytes": 1826,
+      "duration": 108.19999998807907
+    },
+    {
+      "name": "_commonjsHelpers-CqkleIqs.js",
+      "bytes": 116,
+      "duration": 7.699999988079071
+    },
+    {
+      "name": "phaser-x7vEch61.js",
+      "bytes": 1482149,
+      "duration": 48.5
+    },
+    {
+      "name": "index-D_NuPfjr.js",
+      "bytes": 7831,
+      "duration": 37.19999998807907
+    },
+    {
+      "name": "client-DjCM7ok3.js",
+      "bytes": 185369,
+      "duration": 33.19999998807907
+    },
+    {
+      "name": "runtime-PZGFblDa.js",
+      "bytes": 3147,
+      "duration": 32.10000002384186
+    },
+    {
+      "name": "ArcadeApp-BWBUp6M8.js",
+      "bytes": 15106,
+      "duration": 36
+    },
+    {
+      "name": "controller-zP39x9GW.js",
+      "bytes": 4033,
+      "duration": 44.700000047683716
+    },
+    {
+      "name": "ArcadeApp-CtdgdnBV.css",
+      "bytes": 21166,
+      "duration": 43.89999997615814
+    },
+    {
+      "name": "client-CPWOo4SV.js",
+      "bytes": 2227,
+      "duration": 44.69999998807907
+    },
+    {
+      "name": "hostAdapter-DisXnur6.js",
+      "bytes": 332,
+      "duration": 42.10000002384186
+    },
+    {
+      "name": "scoreRepository-1MsJ2y5I.js",
+      "bytes": 2224,
+      "duration": 42.30000001192093
+    },
+    {
+      "name": "cdawg-horizontal-dark-v001-CocDCRX-.svg",
+      "bytes": 9760,
+      "duration": 8.199999988079071
+    },
+    {
+      "name": "cdawg-host-mischief-v004-BH8_sl9C.webp",
+      "bytes": 20992,
+      "duration": 8.699999988079071
+    },
+    {
+      "name": "cdawg-host-default-v004-Dy6_NmHH.webp",
+      "bytes": 20932,
+      "duration": 9
+    },
+    {
+      "name": "cdawg-ui-latin-v001-CfIt6cLC.woff2",
+      "bytes": 15432,
+      "duration": 131.60000002384186
+    },
+    {
+      "name": "cdawg-display-latin-v001-CeyYqTKY.woff2",
+      "bytes": 15380,
+      "duration": 129.5999999642372
+    }
+  ]
+}

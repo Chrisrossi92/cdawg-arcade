@@ -1,11 +1,11 @@
 {
-  "baseline": "758c926e9a733f0c83a904515c4654b2227e7728",
+  "baseline": "0f44cb134e7650cffe6dc961e272c16679e71141",
   "gate": false,
   "disabled": {
     "index.html": {
       "bytes": 415,
-      "gzip": 277,
-      "sha256": "b4f5f9546b948361ce0fad9ef46190252220805ff7d0080d0dc1b8b3150feb19"
+      "gzip": 278,
+      "sha256": "8dac7a7f135a2078f803e82036272064ede3afb117a2592ef8ca4155b7c1829f"
     },
     "assets/cdawg-mascot-balance0-v004-BDwc5MnW.webp": {
       "bytes": 375832,
@@ -27,37 +27,37 @@
       "gzip": 332584,
       "sha256": "c49f4097c678e50ca7f780c2ca93fa288bc3ec48155d8525d7105fdeb9a809be"
     },
-    "assets/index-ClDNmLcJ.css": {
-      "bytes": 13558,
-      "gzip": 3689,
-      "sha256": "380c6ea2e55b5094dcb7b49156a81a9984d03a3a4b2aa7a65c2ffa0f9aa93f9d"
+    "assets/index-B4zvczJ_.js": {
+      "bytes": 2180100,
+      "gzip": 608385,
+      "sha256": "21931dbc267c7158344df5840a146b0d9e5d619621c44e39273a8b0a6e56a4e5"
+    },
+    "assets/index-DsHVGshA.css": {
+      "bytes": 13928,
+      "gzip": 3740,
+      "sha256": "25308ca4c973d1b95dc7839c09b2bbc2af25a524035e79115313fb72cbdb6c6a"
     },
     "assets/index-PgqIN0K2.js": {
       "bytes": 159736,
       "gzip": 48353,
       "sha256": "5badfe6c0e4a626f076a1d3eb34bba50eb03069acd2b9bacc8893418fb20a110"
-    },
-    "assets/index-xnU_t0jt.js": {
-      "bytes": 2180054,
-      "gzip": 608390,
-      "sha256": "7272e8bf59a29e9aeccef1156c383b26750d623ce9c366a144fa38b6423ae206"
     }
   },
   "enabled": {
     "index.html": {
       "bytes": 415,
-      "gzip": 278,
-      "sha256": "ad286a2bdf4aa3fabe4f43e45ce5154ae25f6cc3c3c7ad491d83b6a4fe6e4ea6"
+      "gzip": 277,
+      "sha256": "d9e486e07c10c5e052ae9d0585eb5c893f54207a70d7fa96a4b7df1284799d90"
     },
-    "assets/GameEntry-4Vf8zsRm.js": {
-      "bytes": 1959788,
-      "gzip": 538730,
-      "sha256": "1b2231bd80cd8db1d204a66f382646249212c07bbc454a6970294f818089706c"
+    "assets/GameEntry-Cc1h8sdq.js": {
+      "bytes": 1958840,
+      "gzip": 538672,
+      "sha256": "f65f2ef5e1c35b9062aa57baaf461a6ec9c63fc812fca447584ceb851fa94e09"
     },
-    "assets/GameEntry-ClDNmLcJ.css": {
-      "bytes": 13558,
-      "gzip": 3689,
-      "sha256": "380c6ea2e55b5094dcb7b49156a81a9984d03a3a4b2aa7a65c2ffa0f9aa93f9d"
+    "assets/GameEntry-DsHVGshA.css": {
+      "bytes": 13928,
+      "gzip": 3740,
+      "sha256": "25308ca4c973d1b95dc7839c09b2bbc2af25a524035e79115313fb72cbdb6c6a"
     },
     "assets/cdawg-display-latin-v001-CeyYqTKY.woff2": {
       "bytes": 15380,
@@ -114,10 +114,10 @@
       "gzip": 4641,
       "sha256": "23779db18fdb5369f9186d2703afd8a1902bb7f30523a942252a61a879c88d76"
     },
-    "assets/index-D0uphbUP.js": {
+    "assets/index-DboTsFUj.js": {
       "bytes": 235323,
-      "gzip": 73069,
-      "sha256": "878647b76975354fa899c5165c08ff923bffa33ae59e508c6476fbffd60d6563"
+      "gzip": 73067,
+      "sha256": "e584e05732d8af229c9f9aadf9bbdb61dcec375efb0afe6eadb151b321480d11"
     },
     "assets/index-PgqIN0K2.js": {
       "bytes": 159736,
@@ -125,12 +125,20 @@
       "sha256": "5badfe6c0e4a626f076a1d3eb34bba50eb03069acd2b9bacc8893418fb20a110"
     }
   },
-  "baselineFrontendBytes": 3955937,
-  "disabledBytes": 3956515,
-  "enabledBytes": 4095646,
-  "disabledDelta": 578,
+  "baselineFrontendBytes": 3956420,
+  "disabledBytes": 3956931,
+  "enabledBytes": 4095068,
+  "disabledDelta": 511,
+  "changedBaselineFiles": [
+    "dist/index.html",
+    "dist/assets/index-C9c_dHO3.js",
+    "build/release.json"
+  ],
+  "addedProductionFiles": [
+    "dist/assets/index-B4zvczJ_.js"
+  ],
   "unchangedBaselineFiles": [
-    "dist/assets/index-ClDNmLcJ.css",
+    "dist/assets/index-DsHVGshA.css",
     "dist/assets/cdawg-mascot-reactions0-v004-BcYTbBqx.webp",
     "dist/assets/cdawg-mascot-reactions1-v004-BtVb-jPy.webp",
     "dist/assets/cdawg-mascot-balance0-v004-BDwc5MnW.webp",
@@ -209,13 +217,13 @@
       "gzip": 4641,
       "sha256": "23779db18fdb5369f9186d2703afd8a1902bb7f30523a942252a61a879c88d76"
     },
-    "assets/index-D0uphbUP.js": {
+    "assets/index-DboTsFUj.js": {
       "bytes": 235323,
-      "gzip": 73069,
-      "sha256": "878647b76975354fa899c5165c08ff923bffa33ae59e508c6476fbffd60d6563"
+      "gzip": 73067,
+      "sha256": "e584e05732d8af229c9f9aadf9bbdb61dcec375efb0afe6eadb151b321480d11"
     }
   },
   "initialBytes": 359397,
-  "gameChunkBytes": 1959788,
+  "gameChunkBytes": 1958840,
   "checks": 59
 }

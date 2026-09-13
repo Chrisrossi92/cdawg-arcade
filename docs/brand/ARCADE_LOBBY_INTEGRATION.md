@@ -1,5 +1,7 @@
 # Arcade lobby integration — disabled release candidate
 
+Reconciled with accepted readiness main: see [final reconciliation](LOBBY_RECONCILIATION.md) and [two-step rollout](LOBBY_TWO_STEP_ROLLOUT.md). The original Phase 1 checkpoint below is historical.
+
 ## Scope and starting point
 
 Phase 1 connects the approved lobby to the existing Activity architecture. Starting main was clean and synchronized at `758c926e9a733f0c83a904515c4654b2227e7728`. Work stays on `codex/arcade-lobby-integration`; no merge, PR, deployment, production database inspection/write, environment change or service configuration change is part of this phase. The accepted deployed V004 application remains `b8f04949721f41fe1c87d50e9037581a2aa16197`.

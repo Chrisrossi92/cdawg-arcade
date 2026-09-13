@@ -8,9 +8,11 @@ const sha=data=>createHash('sha256').update(data).digest('hex');
 const files=root=>Object.fromEntries(fs.readdirSync(root,{recursive:true}).filter(p=>fs.statSync(`${root}/${p}`).isFile()&&!p.startsWith('.vite')).map(p=>{const data=fs.readFileSync(`${root}/${p}`);return [p,{bytes:data.length,gzip:gzipSync(data).length,sha256:sha(data)}];}));
 const baseline=JSON.parse(fs.readFileSync('docs/brand/lobby-baseline.json'));
 const disabled=files('dist'),enabled=files('tmp/lobby-integration/dist');
-const report={baseline:'758c926e9a733f0c83a904515c4654b2227e7728',gate:false,disabled,enabled};
+const report={baseline:'0f44cb134e7650cffe6dc961e272c16679e71141',gate:false,disabled,enabled};
 const total=map=>Object.values(map).reduce((n,f)=>n+f.bytes,0);
 report.baselineFrontendBytes=total(Object.fromEntries(Object.entries(baseline).filter(([p])=>p.startsWith('dist/'))));report.disabledBytes=total(disabled);report.enabledBytes=total(enabled);report.disabledDelta=report.disabledBytes-report.baselineFrontendBytes;
+report.changedBaselineFiles=Object.keys(baseline).filter(p=>!fs.existsSync(p)||sha(fs.readFileSync(p))!==baseline[p].sha256);
+report.addedProductionFiles=[...Object.keys(disabled).map(p=>'dist/'+p),...Object.keys(files('build')).map(p=>'build/'+p)].filter(p=>!baseline[p]);
 report.unchangedBaselineFiles=Object.keys(baseline).filter(p=>fs.existsSync(p)&&sha(fs.readFileSync(p))===baseline[p].sha256);
 for(const [p,f] of Object.entries(baseline).filter(([p])=>p.startsWith('build/server/')||p.endsWith('.webp')||p.endsWith('.css')))ok(fs.existsSync(p)&&sha(fs.readFileSync(p))===f.sha256,`protected artifact ${p}`);
 for(const [p] of Object.entries(disabled)){ok(!/host-|tag-|cdawg-horizontal|woff|GameEntry/.test(p),'lobby asset in disabled output');if(p.endsWith('.js')||p.endsWith('.html'))ok(!/A little dog|arcade\/balance|arcade-lobby|Fixture Player|TEST FIXTURES|Run lifecycle soak|DUMMY_ONLY|\/Users\//.test(fs.readFileSync('dist/'+p,'utf8')),'lobby/source/fixture data in disabled output');}

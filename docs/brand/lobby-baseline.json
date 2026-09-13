@@ -1,11 +1,15 @@
 {
   "dist/index.html": {
     "bytes": 415,
-    "sha256": "e21e9056b273d6854437aea9322465b38cfc1120da1a76d65d0b7deec034c2e1"
+    "sha256": "c08d246c61702c7ca9cbff0cdf4b14671cfe0a551a23d7271bcdfde5c5a26e39"
   },
-  "dist/assets/index-ClDNmLcJ.css": {
-    "bytes": 13558,
-    "sha256": "380c6ea2e55b5094dcb7b49156a81a9984d03a3a4b2aa7a65c2ffa0f9aa93f9d"
+  "dist/assets/index-C9c_dHO3.js": {
+    "bytes": 2179589,
+    "sha256": "817c90d01fb3ff53c7e145e127d3f6afb408a0612bd186e9b3cf58e503fc0b46"
+  },
+  "dist/assets/index-DsHVGshA.css": {
+    "bytes": 13928,
+    "sha256": "25308ca4c973d1b95dc7839c09b2bbc2af25a524035e79115313fb72cbdb6c6a"
   },
   "dist/assets/cdawg-mascot-reactions0-v004-BcYTbBqx.webp": {
     "bytes": 516782,
@@ -14,10 +18,6 @@
   "dist/assets/cdawg-mascot-reactions1-v004-BtVb-jPy.webp": {
     "bytes": 333182,
     "sha256": "c49f4097c678e50ca7f780c2ca93fa288bc3ec48155d8525d7105fdeb9a809be"
-  },
-  "dist/assets/index-jqw9nLDW.js": {
-    "bytes": 2179476,
-    "sha256": "b88dc19684228f6dfc0b96240b7f1d0bbb94b7db7aeabf961f7a3ac9915ce94c"
   },
   "dist/assets/cdawg-mascot-balance0-v004-BDwc5MnW.webp": {
     "bytes": 375832,
@@ -33,7 +33,7 @@
   },
   "build/release.json": {
     "bytes": 1035,
-    "sha256": "53659560da32acf9370a8075b571c620aaa5b8e1e5261dfe6f3a6b18ad694be3"
+    "sha256": "f69d74c22d600a6cd18ecaab7394da55e7b08c77a704fad6433db8049cdab957"
   },
   "build/server/canary.js": {
     "bytes": 1089,

@@ -1,5 +1,7 @@
 # Lobby integration Phase 1 validation
 
+Reconciled with accepted readiness main: see [final reconciliation](LOBBY_RECONCILIATION.md) and [two-step rollout](LOBBY_TWO_STEP_ROLLOUT.md). The original Phase 1 checkpoint below is historical.
+
 **PASS WITH LIMITATIONS — disabled local candidate, no release.**
 
 ## Git and production isolation

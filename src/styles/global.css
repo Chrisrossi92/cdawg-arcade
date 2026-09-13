@@ -882,3 +882,9 @@ h1 {
 /* Decorative sprite reaction never captures gameplay or result controls. */
 .mascot-result { width:256px; height:160px; max-width:100%; margin:0 auto; pointer-events:none; }
 .mascot-result canvas { display:block; max-width:100%; }
+
+/* Renderer preparation shares the final canvas dimensions; no animated placeholder. */
+.renderer-preparation { position:absolute;inset:0;z-index:4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:16px;background:#090a12;text-align:center; }
+.renderer-preparation strong { color:#ffc266;font-size:1.4rem; }
+.renderer-preparation p { margin:0;max-width:28rem; }
+.renderer-preparation button { min-height:44px; }

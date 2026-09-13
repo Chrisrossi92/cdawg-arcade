@@ -1,3 +1,4 @@
+import {RendererReadiness, PREPARATION_TIMEOUT_MS, MAX_PREPARATION_TRIES} from './rendererReadiness';
 import {OfficialController} from '../../official/controller';
 import {OfficialResultPanel,OfficialLeaderboard} from '../../official/OfficialPanels';
 import { CountdownClock, SimulationClock } from './simulationClock';
@@ -12,7 +13,7 @@ import type { ScoreRepository } from '../../services/scoreRepository';
 import type { GamePhase, LeaderboardEntry, RunResult } from '../../types/game';
 import { BalanceGameCanvas } from './BalanceGameCanvas';
 import { ResultMascot } from './mascot/ResultMascot';
-import {warmMascot} from './mascot/assets';
+
 import { getCompactDockedLayoutClasses, getInitialBalancePhase, getPhaseAfterRunResult } from './balanceV1Flow';
 import { balanceConfig } from './config';
 import {
@@ -44,7 +45,7 @@ interface DebugSnapshot {
 }
 
 export function BalanceExperience({ integration, officialController, hostContext, scoreRepository, onExit, onRetryConnection, onContinuePractice }: BalanceExperienceProps) {
-  useEffect(() => { warmMascot(); }, []);
+
   const official=useMemo(()=>officialController??new OfficialController(),[officialController]);
   const [officialView,setOfficialView]=useState(official.view);
   const [serverBoard,setServerBoard]=useState(false);
@@ -52,7 +53,7 @@ export function BalanceExperience({ integration, officialController, hostContext
   useEffect(()=>official.subscribe(()=>setOfficialView(official.view)),[official]);
   const uiPolicy = useMemo(() => createV1ProductUiPolicy(), []);
   const [phase, setPhase] = useState<GamePhase>(() => getInitialBalancePhase());
-  useEffect(() => {if (phase === 'countdown') warmMascot(true);}, [phase]);
+
   const [countdown, setCountdown] = useState(3);
   const [input, setInput] = useState<BalanceInputDirection>('none');
   const [score, setScore] = useState(0);
@@ -67,15 +68,27 @@ export function BalanceExperience({ integration, officialController, hostContext
   const configRef = useRef<BalanceConfig>(tuning);
   const controls = useRef(new HeldControls());
   const clockRef = useRef(new SimulationClock(balanceConfig));
+  const rendererClockRef = useRef(clockRef.current);
   const pausedRef = useRef(false);
   const [paused, setPaused] = useState(false);
   const phaseRef = useRef<GamePhase>(getInitialBalancePhase());
   const previousScoreRef = useRef(0);
   const audio = useMemo(() => new WebAudioManager(), []);
+  const readiness = useRef(new RendererReadiness());
+  const [preparation, setPreparation] = useState<'idle' | 'preparing' | 'ready' | 'error'>('idle');
+  const [rendererId, setRendererId] = useState(0);
+  const preparationTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const practiceRequested = useRef(false);
+  const clearPreparationTimer = () => { clearTimeout(preparationTimer.current); preparationTimer.current = undefined; };
+  const cancelPreparation = () => {
+    readiness.current.cancel(); clearPreparationTimer(); setPreparation('idle');
+    if (official.view.phase === 'preparing') official.practice();
+  };
+  useEffect(() => () => { readiness.current.cancel(); clearPreparationTimer(); }, []);
 
-  const mounted=useRef(true);
+
   const milestoneTimer=useRef<number | undefined>(undefined);
-  useEffect(()=>{mounted.current=true;return()=>{mounted.current=false;if(lobbyIntegration){clearTimeout(milestoneTimer.current);audio.dispose();}};},[audio]);
+  useEffect(()=>{return()=>{if(lobbyIntegration){clearTimeout(milestoneTimer.current);audio.dispose();}};},[audio]);
   useEffect(()=>{if(lobbyIntegration)integration?.onPhase(phase);},[phase,integration?.onPhase]);
   useEffect(()=>{if(lobbyIntegration)try{localStorage.setItem('cdawg.arcade.music.v1',String(musicEnabled));localStorage.setItem('cdawg.arcade.sfx.v1',String(sfxEnabled));}catch{/* Optional audio preferences. */}},[musicEnabled,sfxEnabled]);
 
@@ -161,9 +174,12 @@ export function BalanceExperience({ integration, officialController, hostContext
     };
   }, [audio]);
 
+  const connectedOnce = useRef(false);
   useEffect(()=>{
     if(lobbyIntegration&&integration)return;
     if(isGameplayInputActive(phaseRef.current))pauseRun();
+    if (connectedOnce.current) cancelPreparation();
+    connectedOnce.current = true;
     setServerBoard(false);
     if(hostContext.environment==='discord'&&hostContext.arcadeSessionState==='verified'&&hostContext.authenticated&&hostContext.guildId){void official.connect(hostContext.currentUser.id,hostContext.guildId);}else official.reset();
     return ()=>official.reset();
@@ -172,15 +188,42 @@ export function BalanceExperience({ integration, officialController, hostContext
   const beginGameplay = (isOfficial:boolean) => {
     clearInput();
     clockRef.current = new SimulationClock(configRef.current,isOfficial?official.trace:undefined);
+    rendererClockRef.current = clockRef.current;
     pausedRef.current = false; setPaused(false);
     setMilestone(null);
     setScore(0);
     setRunResult(null);
     phaseRef.current='countdown';setPhase('countdown');
   };
-  const starting=useRef(false);
-  const startRun=async()=>{if(starting.current)return;starting.current=true;try{const result=await official.start();if((!lobbyIntegration||mounted.current)&&(result==='official'||result==='practice'))beginGameplay(result==='official');}finally{starting.current=false;}};
-  const playPractice=()=>{official.practice();beginGameplay(false);};
+  const startRun = (practice = false) => {
+    if (['checking', 'preparing', 'running'].includes(official.view.phase)) return;
+    const id = readiness.current.begin(performance.now());
+    if (id === null) return;
+    practiceRequested.current = practice;
+    clearInput(); pausedRef.current = false; setPaused(false);
+    // Prepare independently of the previous result; no new authorization or active time.
+    rendererClockRef.current = new SimulationClock(configRef.current);
+    setRendererId(id); setPreparation('preparing');
+    clearPreparationTimer();
+    preparationTimer.current = setTimeout(() => failPreparation(id), PREPARATION_TIMEOUT_MS);
+  };
+  const failPreparation = (id: number) => {
+    if (!readiness.current.fail(id)) return;
+    clearPreparationTimer(); setPreparation('error');
+  };
+  const rendererReady = async (id: number) => {
+    if (!readiness.current.ready(id, performance.now())) {
+      if (readiness.current.status === 'error') { clearPreparationTimer(); setPreparation('error'); }
+      return;
+    }
+    clearPreparationTimer(); setPreparation('ready');
+    if (practiceRequested.current) official.practice();
+    const result = await official.start();
+    if (!readiness.current.current(id)) return;
+    if (result === 'official' || result === 'practice') beginGameplay(result === 'official');
+    else { readiness.current.cancel(); setPreparation('idle'); }
+  };
+  const playPractice = () => startRun(true);
 
   const pointerDown = (event: React.PointerEvent<HTMLButtonElement>, direction: 'left' | 'right') => {
     if (pausedRef.current || !isGameplayInputActive(phase)) return;
@@ -219,6 +262,7 @@ export function BalanceExperience({ integration, officialController, hostContext
         failurePhase: finalState.tuningPhase,
       });
       void official.finish(clockRef.current.ticks);
+      readiness.current.cancel(); clearPreparationTimer(); setPreparation('idle');
       setRunResult(result);
       setPhase(getPhaseAfterRunResult(result));
       clearInput();
@@ -227,14 +271,15 @@ export function BalanceExperience({ integration, officialController, hostContext
     [audio, scoreRepository],
   );
 
+  const preparing = preparation !== 'idle' && !isGameplayInputActive(phase);
   return (
-    <main className={`${getCompactDockedLayoutClasses(phase, uiPolicy.showDevelopmentUi)} ${milestone ? 'milestone-active' : ''}`}>
+    <main className={`${getCompactDockedLayoutClasses(preparing ? 'countdown' : phase, uiPolicy.showDevelopmentUi)} ${milestone ? 'milestone-active' : ''}`}>
       <header className="balance-v1-header">
         {uiPolicy.showDevelopmentUi && onExit && <button className="ghost-button" onClick={onExit} type="button">Back</button>}
         <div className="balance-brand">
           <span className="prototype-pill">Cdawg Balance</span>
           <h1>Cdawg Balance</h1>
-          {!isGameplayInputActive(phase)&&<ConnectionStatus context={hostContext} onRetry={onRetryConnection} onPractice={onContinuePractice} />}
+          {!preparing&&!isGameplayInputActive(phase)&&<ConnectionStatus context={hostContext} onRetry={onRetryConnection} onPractice={onContinuePractice} />}
         </div>
         <div className="audio-controls" aria-label="Audio settings">
           <label><input checked={musicEnabled} onChange={(event) => setMusicEnabled(event.target.checked)} type="checkbox" /> Music</label>
@@ -256,14 +301,14 @@ export function BalanceExperience({ integration, officialController, hostContext
         </section>
       )}
 
-      {!isGameplayInputActive(phase)&&<div className="official-context" role="status">
+      {!preparing&&!isGameplayInputActive(phase)&&<div className="official-context" role="status">
         {officialView.phase==='accepted'?'Official score saved':officialView.phase==='checking'?'Checking your run…':officialView.phase==='unconfirmed'?'Submission not confirmed · Retry':officialView.phase==='preparing'?'Preparing official run…':officialView.phase==='other-server'?'Official scoring not available in this server':officialView.phase==='unavailable'?'Shared scores unavailable · Practice only':officialView.phase==='eligible'?'New verified runs available in this server':'Practice · Saved in this browser'}
       </div>}
-      {officialView.phase==='eligible'&&!historyExplained&&<aside className="official-intro"><p>Server records start with new verified runs. Your existing scores stay in this browser as practice history.</p><button className="secondary-button" onClick={()=>{setHistoryExplained(true);try{localStorage.setItem('arcade.official-history-explained.v1','yes');}catch{/* optional local acknowledgment */}}}>Got it</button></aside>}
+      {!preparing&&officialView.phase==='eligible'&&!historyExplained&&<aside className="official-intro"><p>Server records start with new verified runs. Your existing scores stay in this browser as practice history.</p><button className="secondary-button" onClick={()=>{setHistoryExplained(true);try{localStorage.setItem('arcade.official-history-explained.v1','yes');}catch{/* optional local acknowledgment */}}}>Got it</button></aside>}
       <section className="cabinet balance-stage" data-viewport-mode={getViewportLayoutMode(phase)}>
-        {phase === 'playing' && <BalanceGameCanvas clock={clockRef.current} onPause={pauseRun} configRef={configRef} onGameOver={handleGameOver} onTick={handleTick} />}
+        {(preparation === 'preparing' || preparation === 'ready') && <BalanceGameCanvas key={rendererId} clockRef={rendererClockRef} active={() => phaseRef.current === 'playing'} onReady={() => void rendererReady(rendererId)} onError={() => failPreparation(rendererId)} onPause={pauseRun} configRef={configRef} onGameOver={handleGameOver} onTick={handleTick} />}
 
-        {phase === 'home' && (
+        {phase === 'home' && !preparing && (
           <div className="start-panel balance-start-panel">
             <p>One attempt. Hold the line. Keep Cdawg standing.</p>
             <button className="primary-button" disabled={officialView.phase==='preparing'} onClick={()=>void startRun()} type="button">{officialView.phase==='accepted'&&!lobbyIntegration?'Official score saved':officialView.phase==='checking'?'Checking your run…':officialView.phase==='unconfirmed'?'Submission not confirmed · Retry':officialView.phase==='preparing'?'Preparing official run…':'Start Game'}</button>
@@ -271,6 +316,14 @@ export function BalanceExperience({ integration, officialController, hostContext
             {['eligible','accepted'].includes(officialView.phase)&&<button className="secondary-button" onClick={()=>{setServerBoard(true);setPhase('leaderboard');}}>View Leaderboard</button>}
           </div>
         )}
+
+        {preparing && <div className="renderer-preparation" role="status" aria-live="polite">
+          <strong>Cdawg Balance</strong>
+          <p>{preparation === 'error' ? 'Cdawg could not get ready. Please try again.' : 'Getting Cdawg ready…'}</p>
+          {preparation === 'error' && readiness.current.tries < MAX_PREPARATION_TRIES && <button className="primary-button" onClick={() => startRun(practiceRequested.current)} type="button">Retry</button>}
+          {preparation === 'error' && readiness.current.tries >= MAX_PREPARATION_TRIES && <p>Please return and try again later.</p>}
+          <button className="secondary-button" onClick={cancelPreparation} type="button">Back</button>
+        </div>}
 
         {isGameplayInputActive(phase)&&officialView.phase==='running'&&!officialView.interrupted&&<span className="official-run-label">Official run · This server</span>}
         {phase === 'countdown' && !paused && <div className="countdown">{countdown}</div>}
@@ -280,7 +333,7 @@ export function BalanceExperience({ integration, officialController, hostContext
           <button className="primary-button" onClick={resumeRun} type="button">Resume</button>
         </div>}
 
-        {phase === 'results' && runResult && (
+        {phase === 'results' && !preparing && runResult && (
           <div className="result-panel">
             <ResultMascot side={clockRef.current.state.tilt < 0 ? -1 : 1} failed={clockRef.current.state.failed} />
             <OfficialResultPanel view={officialView} controller={official} /><p className="result-label">Local result · Saved in this browser</p>

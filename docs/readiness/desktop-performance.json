@@ -1,0 +1,555 @@
+{
+  "phase": "results",
+  "events": [
+    {
+      "event": "DOCUMENT_START",
+      "ms": 6.4,
+      "focused": true,
+      "hidden": false
+    },
+    {
+      "event": "CONTEXT_READY",
+      "ms": 256.1,
+      "activity": false
+    },
+    {
+      "event": "DOM_PHASE",
+      "ms": 258.6,
+      "phase": "home"
+    },
+    {
+      "event": "LONG_TASK",
+      "ms": 344.9,
+      "duration": 288,
+      "start": 45.1
+    },
+    {
+      "event": "CAPTURE_PAGESHOW",
+      "ms": 467.3,
+      "windowTarget": false,
+      "focused": true,
+      "hidden": false
+    },
+    {
+      "event": "CAPTURE_POINTERDOWN",
+      "ms": 610.6,
+      "windowTarget": false,
+      "focused": true,
+      "hidden": false
+    },
+    {
+      "event": "CAPTURE_FOCUS",
+      "ms": 611.2,
+      "windowTarget": false,
+      "focused": true,
+      "hidden": false
+    },
+    {
+      "event": "CAPTURE_POINTERUP",
+      "ms": 615.6,
+      "windowTarget": false,
+      "focused": true,
+      "hidden": false
+    },
+    {
+      "event": "START_ACTIVATE",
+      "ms": 616.5
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 616.6
+    },
+    {
+      "event": "CAPTURE_BLUR",
+      "ms": 617.4,
+      "windowTarget": false,
+      "focused": true,
+      "hidden": false
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 795.8
+    },
+    {
+      "event": "DOM_PHASE",
+      "ms": 803.6,
+      "phase": "preparing"
+    },
+    {
+      "event": "DOM_CANVAS",
+      "ms": 803.6,
+      "count": 1
+    },
+    {
+      "event": "LONG_TASK",
+      "ms": 804,
+      "duration": 130,
+      "start": 667.7
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 814.2
+    },
+    {
+      "event": "ATLAS_RESOURCE",
+      "ms": 815.8,
+      "duration": 14.2,
+      "transfer": 0,
+      "decodedBytes": 375832,
+      "end": 811.4
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 816
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 816.5
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 817
+    },
+    {
+      "event": "ATLAS_RESOURCE",
+      "ms": 822.4,
+      "duration": 14.1,
+      "transfer": 0,
+      "decodedBytes": 376956,
+      "end": 811.5
+    },
+    {
+      "event": "ATLAS_RESOURCE",
+      "ms": 822.4,
+      "duration": 14.4,
+      "transfer": 0,
+      "decodedBytes": 333182,
+      "end": 811.8
+    },
+    {
+      "event": "ATLAS_RESOURCE",
+      "ms": 822.4,
+      "duration": 14.7,
+      "transfer": 0,
+      "decodedBytes": 516782,
+      "end": 812.1
+    },
+    {
+      "event": "IMAGE_DECODE_COMPLETE",
+      "ms": 823.8
+    },
+    {
+      "event": "GPU_TEXTURE_UPLOAD",
+      "ms": 859.8,
+      "duration": 35.8
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 860.3
+    },
+    {
+      "event": "IMAGE_DECODE_COMPLETE",
+      "ms": 860.5
+    },
+    {
+      "event": "GPU_TEXTURE_UPLOAD",
+      "ms": 894.6,
+      "duration": 34.1
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 895.2
+    },
+    {
+      "event": "IMAGE_DECODE_COMPLETE",
+      "ms": 895.3
+    },
+    {
+      "event": "GPU_TEXTURE_UPLOAD",
+      "ms": 925.4,
+      "duration": 30.1
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 925.7
+    },
+    {
+      "event": "IMAGE_DECODE_COMPLETE",
+      "ms": 926.3
+    },
+    {
+      "event": "GPU_TEXTURE_UPLOAD",
+      "ms": 973.3,
+      "duration": 47
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 973.5
+    },
+    {
+      "event": "PHASER_LOAD_COMPLETE",
+      "ms": 973.7
+    },
+    {
+      "event": "SCENE_CREATE",
+      "ms": 973.8
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 988.5
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 991.2
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 1000.8,
+      "frame": 1,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "LONG_TASK",
+      "ms": 1003.9,
+      "duration": 66,
+      "start": 926.2
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 1026.5,
+      "frame": 2,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 1028.7,
+      "frame": 3,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "RENDERER_READY",
+      "ms": 1028.7
+    },
+    {
+      "event": "COUNTDOWN_START",
+      "ms": 1036
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 1107.5,
+      "frame": 4,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "LONG_TASK",
+      "ms": 1109,
+      "duration": 71,
+      "start": 1035.8
+    },
+    {
+      "event": "DOM_PHASE",
+      "ms": 1109.1,
+      "phase": "countdown"
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 1115.4,
+      "frame": 5,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 1150,
+      "frame": 6,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "COUNTDOWN_COMPLETE",
+      "ms": 3449.7
+    },
+    {
+      "event": "DOM_PHASE",
+      "ms": 3460.5,
+      "phase": "playing"
+    },
+    {
+      "event": "CLOCK_FIRST",
+      "ms": 3484.1,
+      "ticks": 0,
+      "accumulator": 0
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 3516.2,
+      "delta": 32.20000001788139,
+      "ticks": 0,
+      "accumulator": 0
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 3549.2,
+      "delta": 33.099999994039536,
+      "ticks": 1,
+      "accumulator": 15.533333351214726
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 3582.6,
+      "delta": 33.30000001192093,
+      "ticks": 3,
+      "accumulator": 15.300000011920922
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 3616,
+      "delta": 33.5,
+      "ticks": 5,
+      "accumulator": 15.266666690508515
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 3649.3,
+      "delta": 33.29999998211861,
+      "ticks": 7,
+      "accumulator": 15.433333357175176
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 3682.5,
+      "delta": 33.20000001788139,
+      "ticks": 9,
+      "accumulator": 15.40000000596044
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 3715.1,
+      "delta": 32.599999994039536,
+      "ticks": 11,
+      "accumulator": 15.266666690508494
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 3749.3,
+      "delta": 34.19999998807907,
+      "ticks": 13,
+      "accumulator": 14.533333351214694
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 3782.6,
+      "delta": 33.20000001788139,
+      "ticks": 15,
+      "accumulator": 15.400000005960425
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 3816.1,
+      "delta": 33.599999994039536,
+      "ticks": 17,
+      "accumulator": 15.26666669050848
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 3848.7,
+      "delta": 32.599999994039536,
+      "ticks": 19,
+      "accumulator": 15.533333351214683
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 3884.4,
+      "delta": 35.69999998807907,
+      "ticks": 21,
+      "accumulator": 14.80000001192088
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 3916,
+      "delta": 31.600000023841858,
+      "ticks": 24,
+      "accumulator": 0.49999999999995026
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 3949.3,
+      "delta": 33.19999998807907,
+      "ticks": 25,
+      "accumulator": 15.43333335717514
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 3982.5,
+      "delta": 33.30000001192093,
+      "ticks": 27,
+      "accumulator": 15.30000001192088
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 4016,
+      "delta": 33.5,
+      "ticks": 29,
+      "accumulator": 15.266666690508472
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 4049.3,
+      "delta": 33.29999998211861,
+      "ticks": 31,
+      "accumulator": 15.433333357175133
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 4082.5,
+      "delta": 33.20000001788139,
+      "ticks": 33,
+      "accumulator": 15.400000005960397
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 4115.9,
+      "delta": 33.39999997615814,
+      "ticks": 35,
+      "accumulator": 15.266666690508451
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 4149.3,
+      "delta": 33.400000005960464,
+      "ticks": 37,
+      "accumulator": 15.333333333333258
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 4182.6,
+      "delta": 33.30000001192093,
+      "ticks": 39,
+      "accumulator": 15.400000005960383
+    },
+    {
+      "event": "CLOCK_FRAME",
+      "ms": 4215.9,
+      "delta": 33.29999998211861,
+      "ticks": 41,
+      "accumulator": 15.366666684547969
+    },
+    {
+      "event": "LONG_TASK",
+      "ms": 5098.2,
+      "duration": 68,
+      "start": 5029.3
+    },
+    {
+      "event": "DOM_PHASE",
+      "ms": 5098.2,
+      "phase": "results"
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 5109.1
+    },
+    {
+      "event": "ATLAS_RESOURCE",
+      "ms": 5109.7,
+      "duration": 9.5,
+      "transfer": 0,
+      "decodedBytes": 375832,
+      "end": 5107
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 5109.9
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 5110.9
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 5111
+    },
+    {
+      "event": "ATLAS_RESOURCE",
+      "ms": 5112.1,
+      "duration": 10,
+      "transfer": 0,
+      "decodedBytes": 376956,
+      "end": 5107.5
+    },
+    {
+      "event": "ATLAS_RESOURCE",
+      "ms": 5112.1,
+      "duration": 10,
+      "transfer": 0,
+      "decodedBytes": 333182,
+      "end": 5107.6
+    },
+    {
+      "event": "ATLAS_RESOURCE",
+      "ms": 5112.1,
+      "duration": 10.5,
+      "transfer": 0,
+      "decodedBytes": 516782,
+      "end": 5108.1
+    },
+    {
+      "event": "IMAGE_DECODE_COMPLETE",
+      "ms": 5112.2
+    },
+    {
+      "event": "GPU_TEXTURE_UPLOAD",
+      "ms": 5141.8,
+      "duration": 29.5
+    },
+    {
+      "event": "IMAGE_DECODE_COMPLETE",
+      "ms": 5142.2
+    },
+    {
+      "event": "GPU_TEXTURE_UPLOAD",
+      "ms": 5168.7,
+      "duration": 26.5
+    },
+    {
+      "event": "IMAGE_DECODE_COMPLETE",
+      "ms": 5168.9
+    },
+    {
+      "event": "GPU_TEXTURE_UPLOAD",
+      "ms": 5192.2,
+      "duration": 23.3
+    },
+    {
+      "event": "IMAGE_DECODE_COMPLETE",
+      "ms": 5192.4
+    },
+    {
+      "event": "GPU_TEXTURE_UPLOAD",
+      "ms": 5238.9,
+      "duration": 46.4
+    }
+  ]
+}

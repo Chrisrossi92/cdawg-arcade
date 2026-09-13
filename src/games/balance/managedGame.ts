@@ -3,7 +3,7 @@ import type Phaser from 'phaser';
  * Capture only that synchronous installation, then own its lifetime. Restore
  * property handlers immediately so overlapping destroy/start cannot retain an
  * older Game. The upstream loop, visibility events and timing run unchanged.
- * Used only by the compile-time-enabled Arcade integration.
+ * Used by the Balance renderer so canceled preparation/retry releases listeners.
  */
 export function ownVisibility(start:()=>void,onDestroy:(cleanup:()=>void)=>void){
   const add=document.addEventListener;
@@ -27,4 +27,14 @@ export function createManagedGame(phaser:typeof Phaser,config:Phaser.Types.Core.
     protected start(){ownVisibility(()=>super.start(),cleanup=>this.events.once(phaser.Core.Events.DESTROY,cleanup));}
   }
   return new ManagedGame({...config,audio:{noAudio:true}});
+}
+
+import {RendererLease} from './rendererLease';
+const renderers = new RendererLease();
+export function mountManagedGame(phaser:typeof Phaser, config:Phaser.Types.Core.GameConfig, failed:()=>void):()=>void {
+  return renderers.mount(released => {
+    const game = createManagedGame(phaser, config);
+    game.events.once(phaser.Core.Events.DESTROY, released);
+    return {destroy: () => game.destroy(true)};
+  }, failed);
 }
