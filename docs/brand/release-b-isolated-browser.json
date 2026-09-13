@@ -1,0 +1,275 @@
+{
+  "status": "failed: bounded wait expired",
+  "scenario": "official",
+  "route": "balance",
+  "phase": "countdown",
+  "official": "running",
+  "current": {
+    "timers": 1,
+    "intervals": 0,
+    "frames": 1,
+    "listeners": 41,
+    "audioOpen": 1,
+    "canvases": 1,
+    "hostListeners": 1,
+    "auth": 1,
+    "attempts": 1,
+    "submissions": 0,
+    "cancels": 0,
+    "reads": 3,
+    "accepted": 0,
+    "practiceResults": 0,
+    "resumes": 0,
+    "heap": 28320862
+  },
+  "samples": [],
+  "reconciliation": [],
+  "transitionEvents": [
+    {
+      "event": "START_ACTIVATE",
+      "ms": 10530.5
+    },
+    {
+      "event": "PREPARATION_START",
+      "ms": 10530.6
+    },
+    {
+      "event": "PAUSE_POLICY",
+      "ms": 10530.6,
+      "ticks": 0
+    },
+    {
+      "event": "PHASER_PRELOAD",
+      "ms": 11241.6
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 11283.8
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 11283.9
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 11284
+    },
+    {
+      "event": "IMAGE_PROCESS_START",
+      "ms": 11284
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 11841.2
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 11869.7
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 11897.3
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 11946
+    },
+    {
+      "event": "PHASER_LOAD_COMPLETE",
+      "ms": 11946.1
+    },
+    {
+      "event": "SCENE_CREATE",
+      "ms": 11946.1
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 11957.3
+    },
+    {
+      "event": "TEXTURE_REGISTERED",
+      "ms": 12040
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 12047.5,
+      "frame": 1,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 12050.6,
+      "frame": 2,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 12067.2,
+      "frame": 3,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "RENDERER_READY",
+      "ms": 12067.2
+    },
+    {
+      "event": "ATTEMPT_ISSUED",
+      "ms": 12067.4
+    },
+    {
+      "event": "COUNTDOWN_START",
+      "ms": 12070.3
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 12342.4,
+      "frame": 4,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 12349,
+      "frame": 5,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    },
+    {
+      "event": "PAUSE_POLICY",
+      "ms": 12349,
+      "ticks": 0
+    },
+    {
+      "event": "FRAME_RENDERED",
+      "ms": 12353.5,
+      "frame": 6,
+      "width": 974,
+      "height": 343.59375,
+      "v004": true,
+      "legacy": false,
+      "ticks": 0
+    }
+  ],
+  "errors": [],
+  "frame": {
+    "count": 600,
+    "p50": 33.30000000000109,
+    "p95": 34.29999999999927,
+    "max": 500
+  },
+  "initialResources": [
+    {
+      "name": "index-DzFJAsyX.js",
+      "bytes": 0,
+      "duration": 385.80000001192093
+    },
+    {
+      "name": "modulepreload-polyfill-B5Qt9EMX.js",
+      "bytes": 0,
+      "duration": 391.0999999642372
+    },
+    {
+      "name": "preload-helper-WEAdrSkN.js",
+      "bytes": 0,
+      "duration": 388.69999998807907
+    },
+    {
+      "name": "phaser-x7vEch61.js",
+      "bytes": 0,
+      "duration": 5.800000011920929
+    },
+    {
+      "name": "_commonjsHelpers-CqkleIqs.js",
+      "bytes": 0,
+      "duration": 6.899999976158142
+    },
+    {
+      "name": "ArcadeApp-CciHJdFC.js",
+      "bytes": 0,
+      "duration": 15.800000011920929
+    },
+    {
+      "name": "client-DjCM7ok3.js",
+      "bytes": 0,
+      "duration": 16.400000035762787
+    },
+    {
+      "name": "index-D_NuPfjr.js",
+      "bytes": 0,
+      "duration": 16.700000047683716
+    },
+    {
+      "name": "runtime-PZGFblDa.js",
+      "bytes": 0,
+      "duration": 19.80000001192093
+    },
+    {
+      "name": "controller-zP39x9GW.js",
+      "bytes": 0,
+      "duration": 21.19999998807907
+    },
+    {
+      "name": "client-CPWOo4SV.js",
+      "bytes": 0,
+      "duration": 22.100000023841858
+    },
+    {
+      "name": "ArcadeApp-CtdgdnBV.css",
+      "bytes": 0,
+      "duration": 20.099999964237213
+    },
+    {
+      "name": "scoreRepository-1MsJ2y5I.js",
+      "bytes": 0,
+      "duration": 22.900000035762787
+    },
+    {
+      "name": "hostAdapter-DisXnur6.js",
+      "bytes": 0,
+      "duration": 23.600000023841858
+    },
+    {
+      "name": "cdawg-display-latin-v001-CeyYqTKY.woff2",
+      "bytes": 15380,
+      "duration": 0
+    },
+    {
+      "name": "cdawg-ui-latin-v001-CfIt6cLC.woff2",
+      "bytes": 15432,
+      "duration": 0
+    },
+    {
+      "name": "cdawg-horizontal-dark-v001-CocDCRX-.svg",
+      "bytes": 9760,
+      "duration": 24.600000023841858
+    },
+    {
+      "name": "cdawg-host-default-v004-Dy6_NmHH.webp",
+      "bytes": 20932,
+      "duration": 23.799999952316284
+    },
+    {
+      "name": "cdawg-host-mischief-v004-BH8_sl9C.webp",
+      "bytes": 20992,
+      "duration": 36
+    }
+  ]
+}

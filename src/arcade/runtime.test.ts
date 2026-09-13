@@ -34,8 +34,8 @@ const cleanups:(()=>void)[]=[];
 function fixture(...args:Parameters<typeof setup>){const f=setup(...args);cleanups.push(()=>f.runtime.dispose());return f;}
 afterEach(()=>{cleanups.splice(0).forEach(f=>f());vi.useRealTimers();});
 describe('lobby gate and data boundary',()=>{
- it.each(['production','development','test','preview','lobby','false','true'])('keeps %s disabled',mode=>{expect(lobbyReleased).toBe(false);expect(lobbyEnabled(mode)).toBe(false);});
- it('enables only explicit integration mode',()=>expect(lobbyEnabled('lobby-integration')).toBe(true));
+ it.each(['production','development','test','preview','lobby','false','true'])('enables %s through the source release gate',mode=>{expect(lobbyReleased).toBe(true);expect(lobbyEnabled(mode)).toBe(true);});
+ it('retains explicit integration mode',()=>expect(lobbyEnabled('lobby-integration')).toBe(true));
  it('makes no official request and no SDK auth in local practice',async()=>{const f=fixture();await f.runtime.refresh();expect(f.fetcher).not.toHaveBeenCalled();expect(f.host.requestAuthentication).not.toHaveBeenCalled();});
  it('connects once, requests existing read-only endpoints with no-store credentials',async()=>{const f=fixture(trusted);await settle();f.runtime.start();expect(f.host.requestAuthentication).toHaveBeenCalledTimes(1);expect(f.fetcher.mock.calls.map(c=>c[0])).toEqual(['/api/me','/api/me/balance/stats','/api/guild/balance/leaderboard']);for(const [,o] of f.fetcher.mock.calls){expect(o?.method).toBe('GET');expect(o?.cache).toBe('no-store');expect(o?.credentials).toBe('same-origin');}});
  it('honors other-server availability without fetching private summaries',async()=>{const f=fixture(trusted,'other-server');await settle();await f.runtime.refresh();expect(f.fetcher).toHaveBeenCalledTimes(1);expect(lobbyModel(trusted,f.official.view,false,12).official).toBe(false);});
