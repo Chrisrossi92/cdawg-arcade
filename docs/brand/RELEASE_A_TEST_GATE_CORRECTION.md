@@ -1,0 +1,13 @@
+# Release A browser gate correction
+
+Base: normal Release A merge `063eb9de9ff64838d6a264acef3c7955144d7cae`. Scope is test-only; no production source, asset, configuration or lobby gate changes.
+
+The old enabled-harness assertion required every `CLOCK_FIRST` to contain zero ticks. That event also occurs after Resume. Accepted ticks must survive Resume; only the interruption interval and fractional accumulator are discarded. The corrected assertion checks zero at each new preparation/run, the captured pause tick count after Resume, and a zero accumulator for both. The unchanged submission check requires 42 ticks and the expected interruption count. A test-only pause trace now includes ticks, and both harnesses support selecting one named case without changing full-matrix defaults.
+
+The original active-blur evidence had initial ticks 0, pause/resume at ticks 2, and final ticks 42. Four focused checks against the actual assertion accept this case and reject initial countdown ticks, lost progress and carried interruption time. The isolated browser Resume gate passed.
+
+The prior direct-launch failure involved a second real >100ms frame gap after an intentional 250ms stall and Resume. In the isolated rerun, renderer readiness at 827.3ms preceded issuance at 827.6ms and countdown at 831.9ms; initial clock at 3259.9ms had zero ticks/accumulator. The injected stall produced a 251.4ms delta and one expected interruption. Resume at 3548.1ms completed normally; no second pause. The original failure is retained, not discarded as flakiness. Full serial direct-launch matrix passed all 15 cases afterward.
+
+Validation after correction: enabled reconciliation 26 scenario/checkpoint records; direct matrix 15 cases; lifecycle soak passed; ten rapid preparation cancellations passed; all four desktop/pop-out/narrow layouts passed. All 2,036 suite assertions passed again (422 unit/integration, 192 disabled smoke, 216 enabled smoke, 681 disposable PostgreSQL, 265 atlas, 104 brand/font, 56 raster, 25 host packing, 16 GLB, 59 build gates). Type checks, security scan and protected-source reconciliation passed. Both builds reproduce. With identical public dummy metadata, all 45 production and 17 enabled outputs equal those from the original merge in the same worktree. The only future production metadata change is its exact release revision.
+
+Source gate remains false; Release B has not been created. Before deploying the resulting normal merge, repeat both-origin TLS/health gates and verify the retained f98e1c3 artifact. This document records local validation, not deployment acceptance. Safe detailed local evidence is under tmp/release-a; production acceptance is recorded separately after deployment checks.
