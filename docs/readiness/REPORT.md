@@ -1,6 +1,6 @@
 # V004 renderer-readiness correction
 
-**PASS WITH LIMITATIONS. Ready for review of a future release; not merged or deployed.**
+**Production release accepted.** See [release acceptance](RELEASE_ACCEPTANCE.md) for deployment and canary evidence. The preparation checkpoint below is historical.
 
 ## Scope and starting point
 
