@@ -1,0 +1,936 @@
+{
+  "status": "PASS",
+  "release": "8931dab8e1282f61baed8c2dd170019d5180c32e",
+  "deploy": "dep-dajgkgdg1s2s73amhggg",
+  "testBranch": "codex/release-a-test-gate-correction",
+  "testCommit": "c1b4d6372e09794bee784721fb7fd0f611cb439d",
+  "gate": false,
+  "releaseBCreated": false,
+  "counts": {
+    "suiteAssertions": 2036,
+    "assertionRegressionChecks": 4,
+    "directMatrix": 15,
+    "enabledRecords": 26,
+    "layouts": 4,
+    "rapidCancellations": 10,
+    "productionProbesPerOrigin": 61,
+    "consecutiveHealthChecksBefore": 18,
+    "consecutiveHealthChecksAfter": 18
+  },
+  "artifactComparison": {
+    "productionOutputsIdentical": 45,
+    "enabledOutputsIdentical": 17,
+    "baseline": "063eb9de9ff64838d6a264acef3c7955144d7cae",
+    "publicInputs": "same dummy build metadata"
+  },
+  "database": {
+    "rows": {
+      "players": "1",
+      "guilds": "1",
+      "guild_participations": "1",
+      "game_versions": "2",
+      "application_sessions": "4",
+      "auth_challenges": "0",
+      "attempt_authorizations": "19",
+      "game_attempts": "19",
+      "attempt_traces": "17",
+      "personal_game_stats": "1",
+      "guild_leaderboard_entries": "1",
+      "guild_game_records": "1",
+      "guild_record_events": "1",
+      "security_events": "1"
+    },
+    "rowsUnchangedFromPreReleaseBaseline": true,
+    "audit-before": [
+      "9ef003808c27f6128115096c91f0960e18ee3802c1ee59818679bbc11204afe7",
+      "f0e3beb88f9164ec1cdb07ab7c232312f96ad447b2108764c755f5b021c09ac2"
+    ],
+    "audit-after": [
+      "9ef003808c27f6128115096c91f0960e18ee3802c1ee59818679bbc11204afe7",
+      "f0e3beb88f9164ec1cdb07ab7c232312f96ad447b2108764c755f5b021c09ac2"
+    ]
+  },
+  "replay": {
+    "retainedTraces": 17,
+    "mismatches": 0
+  },
+  "projections": {
+    "personalMismatches": 0,
+    "guildBoardMismatches": 0,
+    "recordMismatches": 0,
+    "eventMismatches": 0
+  },
+  "rollback": {
+    "release": "f98e1c39183709347824f1f1e9fcedbf39cf7baf",
+    "artifact": "dep-dajei2m7bikc73bp7c9g",
+    "configurationCompatible": true
+  },
+  "production": {
+    "permanent": {
+      "release": "8931dab8e1282f61baed8c2dd170019d5180c32e",
+      "checks": 61,
+      "results": [
+        {
+          "path": "/api/health",
+          "method": "GET",
+          "status": 200,
+          "bytes": 127,
+          "elapsedMs": 188.5
+        },
+        {
+          "path": "/api/ready",
+          "method": "GET",
+          "status": 200,
+          "bytes": 127,
+          "elapsedMs": 174.0
+        },
+        {
+          "path": "/api/persistence/ready",
+          "method": "GET",
+          "status": 200,
+          "bytes": 153,
+          "elapsedMs": 153.1
+        },
+        {
+          "path": "/",
+          "method": "GET",
+          "status": 200,
+          "bytes": 415,
+          "elapsedMs": 150.5
+        },
+        {
+          "path": "/assets/index-DaDfq-eR.js",
+          "method": "GET",
+          "status": 200,
+          "bytes": 2180101,
+          "elapsedMs": 342.3
+        },
+        {
+          "path": "/assets/index-DsHVGshA.css",
+          "method": "GET",
+          "status": 200,
+          "bytes": 13928,
+          "elapsedMs": 263.3
+        },
+        {
+          "path": "/assets/cdawg-mascot-reactions0-v004-BcYTbBqx.webp",
+          "method": "GET",
+          "status": 200,
+          "bytes": 516782,
+          "elapsedMs": 293.7
+        },
+        {
+          "path": "/assets/cdawg-mascot-reactions1-v004-BtVb-jPy.webp",
+          "method": "GET",
+          "status": 200,
+          "bytes": 333182,
+          "elapsedMs": 197.3
+        },
+        {
+          "path": "/assets/cdawg-mascot-balance0-v004-BDwc5MnW.webp",
+          "method": "GET",
+          "status": 200,
+          "bytes": 375832,
+          "elapsedMs": 194.0
+        },
+        {
+          "path": "/assets/cdawg-mascot-balance1-v004-RnhYpwi9.webp",
+          "method": "GET",
+          "status": 200,
+          "bytes": 376956,
+          "elapsedMs": 307.9
+        },
+        {
+          "path": "/api/me",
+          "method": "GET",
+          "status": 401,
+          "bytes": 19,
+          "elapsedMs": 1224.6
+        },
+        {
+          "path": "/api/me/balance/stats",
+          "method": "GET",
+          "status": 401,
+          "bytes": 27,
+          "elapsedMs": 194.2
+        },
+        {
+          "path": "/api/me/balance/attempts",
+          "method": "GET",
+          "status": 401,
+          "bytes": 27,
+          "elapsedMs": 237.8
+        },
+        {
+          "path": "/api/guild/balance/leaderboard",
+          "method": "GET",
+          "status": 401,
+          "bytes": 27,
+          "elapsedMs": 242.8
+        },
+        {
+          "path": "/api/balance/attempts",
+          "method": "POST",
+          "status": 401,
+          "bytes": 27,
+          "elapsedMs": 241.7
+        },
+        {
+          "path": "/api/balance/attempts/submit",
+          "method": "POST",
+          "status": 401,
+          "bytes": 27,
+          "elapsedMs": 226.1
+        },
+        {
+          "path": "/api/me",
+          "method": "OPTIONS",
+          "status": 204,
+          "bytes": 0,
+          "elapsedMs": 197.8
+        },
+        {
+          "path": "/api/me",
+          "method": "OPTIONS",
+          "status": 403,
+          "bytes": 26,
+          "elapsedMs": 208.9
+        },
+        {
+          "path": "/api/balance/attempts",
+          "method": "OPTIONS",
+          "status": 204,
+          "bytes": 0,
+          "elapsedMs": 165.4
+        },
+        {
+          "path": "/api/balance/attempts",
+          "method": "OPTIONS",
+          "status": 403,
+          "bytes": 26,
+          "elapsedMs": 157.3
+        },
+        {
+          "path": "/api/guild/balance/leaderboard",
+          "method": "OPTIONS",
+          "status": 204,
+          "bytes": 0,
+          "elapsedMs": 186.9
+        },
+        {
+          "path": "/api/guild/balance/leaderboard",
+          "method": "OPTIONS",
+          "status": 403,
+          "bytes": 26,
+          "elapsedMs": 185.5
+        },
+        {
+          "path": "/api/token",
+          "method": "OPTIONS",
+          "status": 204,
+          "bytes": 0,
+          "elapsedMs": 170.2
+        },
+        {
+          "path": "/api/token",
+          "method": "OPTIONS",
+          "status": 400,
+          "bytes": 27,
+          "elapsedMs": 173.5
+        },
+        {
+          "path": "/api/token",
+          "method": "POST",
+          "status": 400,
+          "bytes": 38,
+          "elapsedMs": 143.7
+        },
+        {
+          "path": "/assets/missing.webp",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 145.9
+        },
+        {
+          "path": "/api/not-a-route",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 147.1
+        },
+        {
+          "path": "/scripts/mascot/preview/integrated.html",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 156.8
+        },
+        {
+          "path": "/docs/brand/MASCOT_PREMERGE.md",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 177.7
+        },
+        {
+          "path": "/build/release.json",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 184.2
+        },
+        {
+          "path": "/.env",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 273.9
+        },
+        {
+          "path": "/scripts/brand/preview/index.html",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 250.0
+        },
+        {
+          "path": "/scripts/brand/preview/balance.html",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 256.7
+        },
+        {
+          "path": "/assets/brand/arcade/runtime/cdawg-host-v002.png",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 195.5
+        },
+        {
+          "path": "/assets/brand/arcade/tokens.css",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 193.3
+        },
+        {
+          "path": "/balance.html",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 182.7
+        },
+        {
+          "path": "/assets/cdawg-mascot-balance0-v004-BDwc5MnW.webp",
+          "method": "GET",
+          "status": 200,
+          "bytes": 375832,
+          "elapsedMs": 357.3
+        },
+        {
+          "path": "/assets/cdawg-mascot-balance1-v004-RnhYpwi9.webp",
+          "method": "GET",
+          "status": 200,
+          "bytes": 376956,
+          "elapsedMs": 203.8
+        },
+        {
+          "path": "/assets/cdawg-mascot-reactions0-v004-BcYTbBqx.webp",
+          "method": "GET",
+          "status": 200,
+          "bytes": 516782,
+          "elapsedMs": 275.9
+        },
+        {
+          "path": "/assets/cdawg-mascot-reactions1-v004-BtVb-jPy.webp",
+          "method": "GET",
+          "status": 200,
+          "bytes": 333182,
+          "elapsedMs": 221.6
+        },
+        {
+          "path": "/assets/index-DaDfq-eR.js",
+          "method": "GET",
+          "status": 200,
+          "bytes": 2180101,
+          "elapsedMs": 312.1
+        },
+        {
+          "path": "/assets/index-DsHVGshA.css",
+          "method": "GET",
+          "status": 200,
+          "bytes": 13928,
+          "elapsedMs": 168.9
+        },
+        {
+          "path": "/assets/index-PgqIN0K2.js",
+          "method": "GET",
+          "status": 200,
+          "bytes": 159736,
+          "elapsedMs": 174.6
+        },
+        {
+          "path": "/index.html",
+          "method": "GET",
+          "status": 200,
+          "bytes": 415,
+          "elapsedMs": 150.5
+        },
+        {
+          "path": "/scripts/lobby/harness/index.html",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 143.8
+        },
+        {
+          "path": "/scripts/lobby/harness/candidate.html",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 151.4
+        },
+        {
+          "path": "/scripts/lobby/harness/responsive.html",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 122.9
+        },
+        {
+          "path": "/arcade.html",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 163.2
+        },
+        {
+          "path": "/config/lobby-release.ts",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 169.8
+        },
+        {
+          "path": "/assets/cdawg-horizontal-dark-v001-CocDCRX-.svg",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 161.7
+        },
+        {
+          "path": "/assets/cdawg-host-mischief-v004-BH8_sl9C.webp",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 137.5
+        },
+        {
+          "path": "/assets/index-DboTsFUj.js",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 132.1
+        },
+        {
+          "path": "/assets/index-COBSz9hO.css",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 168.8
+        },
+        {
+          "path": "/assets/GameEntry-DsHVGshA.css",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 168.6
+        },
+        {
+          "path": "/assets/cdawg-ui-latin-v001-CfIt6cLC.woff2",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 136.7
+        },
+        {
+          "path": "/assets/GameEntry-Cc1h8sdq.js",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 204.3
+        },
+        {
+          "path": "/assets/cdawg-display-latin-v001-CeyYqTKY.woff2",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 190.1
+        },
+        {
+          "path": "/assets/cdawg-host-delighted-v004-DCuxxOiu.webp",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 182.0
+        },
+        {
+          "path": "/assets/cdawg-host-default-v004-Dy6_NmHH.webp",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 178.1
+        },
+        {
+          "path": "/arcade",
+          "method": "GET",
+          "status": 200,
+          "bytes": 415,
+          "elapsedMs": 160.5
+        },
+        {
+          "path": "/",
+          "method": "GET",
+          "status": 200,
+          "bytes": 415,
+          "elapsedMs": 201.0
+        }
+      ]
+    },
+    "provider": {
+      "release": "8931dab8e1282f61baed8c2dd170019d5180c32e",
+      "checks": 61,
+      "results": [
+        {
+          "path": "/api/health",
+          "method": "GET",
+          "status": 200,
+          "bytes": 127,
+          "elapsedMs": 172.3
+        },
+        {
+          "path": "/api/ready",
+          "method": "GET",
+          "status": 200,
+          "bytes": 127,
+          "elapsedMs": 213.1
+        },
+        {
+          "path": "/api/persistence/ready",
+          "method": "GET",
+          "status": 200,
+          "bytes": 153,
+          "elapsedMs": 160.5
+        },
+        {
+          "path": "/",
+          "method": "GET",
+          "status": 200,
+          "bytes": 415,
+          "elapsedMs": 189.3
+        },
+        {
+          "path": "/assets/index-DaDfq-eR.js",
+          "method": "GET",
+          "status": 200,
+          "bytes": 2180101,
+          "elapsedMs": 337.8
+        },
+        {
+          "path": "/assets/index-DsHVGshA.css",
+          "method": "GET",
+          "status": 200,
+          "bytes": 13928,
+          "elapsedMs": 155.8
+        },
+        {
+          "path": "/assets/cdawg-mascot-reactions0-v004-BcYTbBqx.webp",
+          "method": "GET",
+          "status": 200,
+          "bytes": 516782,
+          "elapsedMs": 285.6
+        },
+        {
+          "path": "/assets/cdawg-mascot-reactions1-v004-BtVb-jPy.webp",
+          "method": "GET",
+          "status": 200,
+          "bytes": 333182,
+          "elapsedMs": 260.9
+        },
+        {
+          "path": "/assets/cdawg-mascot-balance0-v004-BDwc5MnW.webp",
+          "method": "GET",
+          "status": 200,
+          "bytes": 375832,
+          "elapsedMs": 840.5
+        },
+        {
+          "path": "/assets/cdawg-mascot-balance1-v004-RnhYpwi9.webp",
+          "method": "GET",
+          "status": 200,
+          "bytes": 376956,
+          "elapsedMs": 248.6
+        },
+        {
+          "path": "/api/me",
+          "method": "GET",
+          "status": 401,
+          "bytes": 19,
+          "elapsedMs": 161.6
+        },
+        {
+          "path": "/api/me/balance/stats",
+          "method": "GET",
+          "status": 401,
+          "bytes": 27,
+          "elapsedMs": 143.9
+        },
+        {
+          "path": "/api/me/balance/attempts",
+          "method": "GET",
+          "status": 401,
+          "bytes": 27,
+          "elapsedMs": 171.0
+        },
+        {
+          "path": "/api/guild/balance/leaderboard",
+          "method": "GET",
+          "status": 401,
+          "bytes": 27,
+          "elapsedMs": 161.6
+        },
+        {
+          "path": "/api/balance/attempts",
+          "method": "POST",
+          "status": 401,
+          "bytes": 27,
+          "elapsedMs": 123.2
+        },
+        {
+          "path": "/api/balance/attempts/submit",
+          "method": "POST",
+          "status": 401,
+          "bytes": 27,
+          "elapsedMs": 220.1
+        },
+        {
+          "path": "/api/me",
+          "method": "OPTIONS",
+          "status": 204,
+          "bytes": 0,
+          "elapsedMs": 140.2
+        },
+        {
+          "path": "/api/me",
+          "method": "OPTIONS",
+          "status": 403,
+          "bytes": 26,
+          "elapsedMs": 128.8
+        },
+        {
+          "path": "/api/balance/attempts",
+          "method": "OPTIONS",
+          "status": 204,
+          "bytes": 0,
+          "elapsedMs": 143.3
+        },
+        {
+          "path": "/api/balance/attempts",
+          "method": "OPTIONS",
+          "status": 403,
+          "bytes": 26,
+          "elapsedMs": 159.6
+        },
+        {
+          "path": "/api/guild/balance/leaderboard",
+          "method": "OPTIONS",
+          "status": 204,
+          "bytes": 0,
+          "elapsedMs": 158.0
+        },
+        {
+          "path": "/api/guild/balance/leaderboard",
+          "method": "OPTIONS",
+          "status": 403,
+          "bytes": 26,
+          "elapsedMs": 170.5
+        },
+        {
+          "path": "/api/token",
+          "method": "OPTIONS",
+          "status": 204,
+          "bytes": 0,
+          "elapsedMs": 151.7
+        },
+        {
+          "path": "/api/token",
+          "method": "OPTIONS",
+          "status": 400,
+          "bytes": 27,
+          "elapsedMs": 315.4
+        },
+        {
+          "path": "/api/token",
+          "method": "POST",
+          "status": 400,
+          "bytes": 27,
+          "elapsedMs": 138.2
+        },
+        {
+          "path": "/assets/missing.webp",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 149.4
+        },
+        {
+          "path": "/api/not-a-route",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 483.3
+        },
+        {
+          "path": "/scripts/mascot/preview/integrated.html",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 266.0
+        },
+        {
+          "path": "/docs/brand/MASCOT_PREMERGE.md",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 252.6
+        },
+        {
+          "path": "/build/release.json",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 164.3
+        },
+        {
+          "path": "/.env",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 202.7
+        },
+        {
+          "path": "/scripts/brand/preview/index.html",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 190.9
+        },
+        {
+          "path": "/scripts/brand/preview/balance.html",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 152.4
+        },
+        {
+          "path": "/assets/brand/arcade/runtime/cdawg-host-v002.png",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 161.2
+        },
+        {
+          "path": "/assets/brand/arcade/tokens.css",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 170.9
+        },
+        {
+          "path": "/balance.html",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 151.3
+        },
+        {
+          "path": "/assets/cdawg-mascot-balance0-v004-BDwc5MnW.webp",
+          "method": "GET",
+          "status": 200,
+          "bytes": 375832,
+          "elapsedMs": 307.6
+        },
+        {
+          "path": "/assets/cdawg-mascot-balance1-v004-RnhYpwi9.webp",
+          "method": "GET",
+          "status": 200,
+          "bytes": 376956,
+          "elapsedMs": 247.7
+        },
+        {
+          "path": "/assets/cdawg-mascot-reactions0-v004-BcYTbBqx.webp",
+          "method": "GET",
+          "status": 200,
+          "bytes": 516782,
+          "elapsedMs": 295.3
+        },
+        {
+          "path": "/assets/cdawg-mascot-reactions1-v004-BtVb-jPy.webp",
+          "method": "GET",
+          "status": 200,
+          "bytes": 333182,
+          "elapsedMs": 268.1
+        },
+        {
+          "path": "/assets/index-DaDfq-eR.js",
+          "method": "GET",
+          "status": 200,
+          "bytes": 2180101,
+          "elapsedMs": 405.8
+        },
+        {
+          "path": "/assets/index-DsHVGshA.css",
+          "method": "GET",
+          "status": 200,
+          "bytes": 13928,
+          "elapsedMs": 135.5
+        },
+        {
+          "path": "/assets/index-PgqIN0K2.js",
+          "method": "GET",
+          "status": 200,
+          "bytes": 159736,
+          "elapsedMs": 213.3
+        },
+        {
+          "path": "/index.html",
+          "method": "GET",
+          "status": 200,
+          "bytes": 415,
+          "elapsedMs": 154.5
+        },
+        {
+          "path": "/scripts/lobby/harness/index.html",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 165.3
+        },
+        {
+          "path": "/scripts/lobby/harness/candidate.html",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 164.3
+        },
+        {
+          "path": "/scripts/lobby/harness/responsive.html",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 128.4
+        },
+        {
+          "path": "/arcade.html",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 149.2
+        },
+        {
+          "path": "/config/lobby-release.ts",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 126.1
+        },
+        {
+          "path": "/assets/cdawg-horizontal-dark-v001-CocDCRX-.svg",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 126.4
+        },
+        {
+          "path": "/assets/cdawg-host-mischief-v004-BH8_sl9C.webp",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 129.5
+        },
+        {
+          "path": "/assets/index-DboTsFUj.js",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 160.4
+        },
+        {
+          "path": "/assets/index-COBSz9hO.css",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 174.9
+        },
+        {
+          "path": "/assets/GameEntry-DsHVGshA.css",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 156.6
+        },
+        {
+          "path": "/assets/cdawg-ui-latin-v001-CfIt6cLC.woff2",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 158.3
+        },
+        {
+          "path": "/assets/GameEntry-Cc1h8sdq.js",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 178.7
+        },
+        {
+          "path": "/assets/cdawg-display-latin-v001-CeyYqTKY.woff2",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 164.3
+        },
+        {
+          "path": "/assets/cdawg-host-delighted-v004-DCuxxOiu.webp",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 212.3
+        },
+        {
+          "path": "/assets/cdawg-host-default-v004-Dy6_NmHH.webp",
+          "method": "GET",
+          "status": 404,
+          "bytes": 21,
+          "elapsedMs": 252.5
+        },
+        {
+          "path": "/arcade",
+          "method": "GET",
+          "status": 200,
+          "bytes": 415,
+          "elapsedMs": 167.9
+        },
+        {
+          "path": "/",
+          "method": "GET",
+          "status": 200,
+          "bytes": 415,
+          "elapsedMs": 188.6
+        }
+      ]
+    }
+  }
+}
