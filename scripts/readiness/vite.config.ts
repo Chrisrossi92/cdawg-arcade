@@ -15,7 +15,7 @@ export default defineConfig({root:'scripts/readiness',envDir:false,publicDir:fal
  replace('const startRun = (practice = false) => {',"const startRun = (practice = false) => {trace('START_ACTIVATE');");
  replace('const countdownClock = new CountdownClock();',"trace('COUNTDOWN_START');const countdownClock = new CountdownClock();");
  replace("if (result === 'ready') {","if (result === 'ready') {trace('COUNTDOWN_COMPLETE');");
- replace('const pauseRun = () => {',"const pauseRun = () => {trace('PAUSE_POLICY');");
+ replace('const pauseRun = () => {',"const pauseRun = () => {trace('PAUSE_POLICY',{ticks:clockRef.current.ticks});");
  replace('const cancelPreparation = () => {',"const cancelPreparation = () => {trace('PREPARATION_CANCEL');");
  replace("setRendererId(id); setPreparation('preparing');", "trace('PREPARATION_START');setRendererId(id); setPreparation('preparing');");
  }else return;

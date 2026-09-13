@@ -55,6 +55,7 @@ document.getElementById('soak')!.addEventListener('click',async()=>{if(status===
 
 const reconciliation:any[]=[];
 const profileOnly=location.search.includes('profile=1');
+const isolatedCase=new URLSearchParams(location.search).get('case');
 document.getElementById('reconcile')!.addEventListener('click',async()=>{
  if(status==='running')return;status='running';
  const check=(ok:unknown,message:string)=>{if(!ok)throw Error(message);};
@@ -65,7 +66,7 @@ document.getElementById('reconcile')!.addEventListener('click',async()=>{
  try{
  choose('official');await until(()=>runtime.official.view.phase==='eligible');await sleep(8500);
  const baseline=snapshot();hidden();check(runtime.destination==='lobby','hidden lobby navigation');
- for(const spec of [{name:'cold'},{name:'warm'},{name:'decode-5000',decode:5000},...[100,250,1000,5000].map(warmup=>({name:'warmup-'+warmup,warmup})),{name:'preparation-blur',decode:500},{name:'preparation-hidden',decode:500},{name:'countdown-hidden'},{name:'active-hidden'},{name:'countdown-blur'},{name:'active-stall',active:250},{name:'active-blur'},{name:'reduced-motion'},{name:'play-again'}].filter(s=>!profileOnly||['cold','warm'].includes(s.name))){
+ for(const spec of [{name:'cold'},{name:'warm'},{name:'decode-5000',decode:5000},...[100,250,1000,5000].map(warmup=>({name:'warmup-'+warmup,warmup})),{name:'preparation-blur',decode:500},{name:'preparation-hidden',decode:500},{name:'countdown-hidden'},{name:'active-hidden'},{name:'countdown-blur'},{name:'active-stall',active:250},{name:'active-blur'},{name:'reduced-motion'},{name:'play-again'}].filter(s=>isolatedCase?s.name===isolatedCase:!profileOnly||['cold','warm'].includes(s.name))){
  resetFault();Object.assign(fault,spec);transitionEvents.length=0;const issued=attempts,sent=submissions;
  if(spec.name==='reduced-motion')(document.querySelector('.arcade-settings input') as HTMLInputElement).click();
  await enter();button('Start Game')!.click();
@@ -86,12 +87,21 @@ document.getElementById('reconcile')!.addEventListener('click',async()=>{
  const e=[...transitionEvents],ready=e.findIndex(x=>x.event==='RENDERER_READY'),issue=e.findIndex(x=>x.event==='ATTEMPT_ISSUED'),countdown=e.findIndex(x=>x.event==='COUNTDOWN_START');
  check(ready>=0&&issue>ready&&countdown>issue,'readiness ordering');
  check(e.filter(x=>x.event==='FRAME_RENDERED').every(x=>x.v004&&!x.legacy),'non-V004 frame');
- check(e.filter(x=>x.event==='CLOCK_FIRST').every(x=>x.ticks===0&&x.accumulator===0),'clock baseline');
+ // Initial gameplay excludes preparation/countdown; Resume preserves accepted ticks.
+ let expectedTicks:unknown=0;
+ for(const event of e){
+  if(event.event==='PREPARATION_START')expectedTicks=0;
+  if(event.event==='PAUSE_POLICY')expectedTicks=event.ticks;
+  if(event.event==='CLOCK_FIRST'){
+   check(typeof expectedTicks==='number'&&event.ticks===expectedTicks&&event.accumulator===0,'clock baseline/resume preservation');
+   expectedTicks=null;
+  }
+ }
  check(e.filter(x=>x.event==='SUBMIT').every(x=>x.ticks===42&&x.interruptions===(interrupted?1:0)),'replay fixture');
  check(attempts-issued===(spec.name==='play-again'?2:1)&&submissions-sent===attempts-issued,'duplicate action');
  await leave();const deltas=e.filter(x=>x.event==='CLOCK_FRAME').map(x=>Number(x.delta)).sort((a,b)=>a-b);reconciliation.push({name:spec.name,frameTiming:{count:deltas.length,p50:deltas[Math.floor(deltas.length*.5)],p95:deltas[Math.floor(deltas.length*.95)],max:deltas.at(-1)},events:e.filter(x=>x.event!=='CLOCK_FRAME'),resources:snapshot()});
  }
- for(const mode of ['failure','timeout','cancel','rapid-back','identity-loss'].filter(()=>!profileOnly)){
+ for(const mode of ['failure','timeout','cancel','rapid-back','identity-loss'].filter(()=>!profileOnly&&!isolatedCase)){
  resetFault();choose('official');await until(()=>runtime.official.view.phase==='eligible');const issued=attempts;
  Object.assign(fault,mode==='failure'?{fail:true}:mode==='timeout'?{timeout:true}:{decode:1500});
  await enter();transitionEvents.length=0;button('Start Game')!.click();
@@ -103,7 +113,7 @@ document.getElementById('reconcile')!.addEventListener('click',async()=>{
  else{await leave();await sleep(1800);check(attempts===issued,'stale canceled issuance');if(mode==='rapid-back'){resetFault();await enter();await leave();}}
  resetFault();reconciliation.push({name:mode,events:[...transitionEvents].filter(x=>x.event!=='CLOCK_FRAME'),resources:snapshot()});
  }
- for(const mode of ['stats-error','board-error','expired','practice'].filter(()=>!profileOnly)){choose(mode);await sleep(200);await runtime.refresh();if(mode==='practice')check(!runtime.official.view.stats&&!runtime.official.view.board,'private practice data');reconciliation.push({name:mode,phase:runtime.official.view.phase,resources:snapshot()});}
+ for(const mode of ['stats-error','board-error','expired','practice'].filter(()=>!profileOnly&&!isolatedCase)){choose(mode);await sleep(200);await runtime.refresh();if(mode==='practice')check(!runtime.official.view.stats&&!runtime.official.view.board,'private practice data');reconciliation.push({name:mode,phase:runtime.official.view.phase,resources:snapshot()});}
  choose('official');await sleep(8500);const final=snapshot();
  check(final.listeners===baseline.listeners&&!final.timers&&!final.intervals&&!final.frames&&!final.audioOpen&&!final.canvases&&final.hostListeners===1&&final.auth===1,'final resource growth');
  check(!errors.length,'page errors');reconciliation.push({name:'settled',baseline,final});status='reconciliation passed';
