@@ -9,7 +9,7 @@ vi.mock('../games/balance/BalanceGameCanvas', () => ({ BalanceGameCanvas: () => 
 
 describe('production connection and score wording', () => {
   it('labels ordinary browser practice', () => {
-    expect(renderToStaticMarkup(<ConnectionStatus context={makeDefaultLocalContext()} />)).toContain('Local practice');
+    expect(renderToStaticMarkup(<ConnectionStatus context={makeDefaultLocalContext()} />)).toContain('Practice');
   });
   it('has a compact successful Discord status without a practice identity or recovery banner', () => {
     const html = renderToStaticMarkup(<ConnectionStatus context={{ ...makeDefaultLocalContext(), environment: 'discord', authenticated: true, connectionState: 'discord-authenticated' }} />);
@@ -18,17 +18,17 @@ describe('production connection and score wording', () => {
     expect(html).not.toContain('role="alert"');
   });
   it('invalid context requests relaunch, not an ineffective retry', () => {
-    const html = renderToStaticMarkup(<ConnectionStatus context={{ ...makeDefaultLocalContext(), connectionState: 'discord-error', connectionError: 'invalid-context', initializationStatus: 'Relaunch from Discord' }} />);
-    expect(html).toContain('Relaunch from Discord');
+    const html = renderToStaticMarkup(<ConnectionStatus onPractice={()=>{}} context={{ ...makeDefaultLocalContext(), connectionState: 'discord-error', connectionError: 'invalid-context', initializationStatus: 'Relaunch from Discord' }} />);
+    expect(html).toContain('Reopen the Arcade from Discord');
     expect(html).toContain('Continue in practice');
-    expect(html).not.toContain('Retry Discord connection');
+    expect(html).not.toContain('Reconnect');
   });
   it('failure leaves Start Game available with local score labels', () => {
     const context = { ...makeDefaultLocalContext(), environment: 'discord' as const, connectionState: 'discord-error' as const, connectionError: 'sdk' as const, initializationStatus: 'Retry or continue in practice.' };
-    const html = renderToStaticMarkup(<BalanceExperience hostContext={context} scoreRepository={new MemoryScoreRepository()} />);
+    const html = renderToStaticMarkup(<BalanceExperience onRetryConnection={()=>{}} hostContext={context} scoreRepository={new MemoryScoreRepository()} />);
     expect(html).toContain('Start Game');
-    expect(html).toContain('Historical Local Best');
-    expect(html).toContain('Retry Discord connection');
+    expect(html).toContain('Practice best');
+    expect(html).toContain('Reconnect');
     expect(html).toContain('Local Player');
   });
 });
