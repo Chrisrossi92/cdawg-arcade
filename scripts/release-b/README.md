@@ -1,0 +1,10 @@
+# Release B reconciliation validation
+
+Local-only validation against accepted source cdc0d46e8c5366ef1bf1a22439e80d0502bfb277. No production, provider or credential access. Use the repository Node 24 runtime.
+
+1. Run `node scripts/release-b/artifacts.mjs`. It archives accepted main and the committed reconciliation merge, restores the accepted false gate only in an isolated candidate archive, compares both disabled outputs byte-for-byte, and repeats the enabled production/integration builds. All builds use identical public dummy metadata. It does not edit the checked-out gate or main.
+2. Run `node scripts/release-b/full-validation.mjs`. This runs the established unit, ephemeral Postgres, type, build/smoke, asset and security suites with the current Release B graph audit, rather than historical disabled-only scope expectations.
+3. Build both countdown fixtures and serve `scripts/countdown/serve.py` on loopback port 5231. Run the complete countdown matrix, preserve its output as matrix.json, then run `scripts/countdown/validation-browser.mjs`. Run a third standard-fixture lifecycle soak to exceed 50 complete navigation/cancellation cycles. Audit fresh reconciliation with `scripts/lobby/validate-reconciliation.mjs` and focused results with `scripts/countdown/reports.mjs`.
+4. Serve `scripts/lobby/serve-release-b-review.py 5247` on loopback port 5247. After the standard lobby wrapper has built, run `scripts/release-b/compiled-browser.mjs` against untouched production bytes for cold/warm payload observations, basic semantic/keyboard accessibility and all four supported viewport layouts. These bounded checks are not a comprehensive accessibility or physical-device certification.
+
+Never reuse historical JSON as fresh acceptance. Preserve failed evidence. An unexpected pause requires phase and interruption evidence before classification: a correctly handled active frame gap is protection, while a countdown-only pause, leak, duplicate issuance, replay or projection mismatch fails. No policy threshold is changed.

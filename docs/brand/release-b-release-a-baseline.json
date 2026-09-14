@@ -1,0 +1,114 @@
+[
+  {
+    "host": "arcade.cdawgbot.xyz",
+    "path": "assets/cdawg-mascot-balance0-v004-BDwc5MnW.webp",
+    "bytes": 375832,
+    "sha256": "42da55184ed19413cadc1c549a2a047ea2ac640d42d987a703dac93275cd8c12",
+    "cache": "public, max-age=31536000, immutable"
+  },
+  {
+    "host": "arcade.cdawgbot.xyz",
+    "path": "assets/cdawg-mascot-balance1-v004-RnhYpwi9.webp",
+    "bytes": 376956,
+    "sha256": "1c8bd805a87019d7ab0c43525aa62063346f29d5679e3f9983bb8ff36ded3569",
+    "cache": "public, max-age=31536000, immutable"
+  },
+  {
+    "host": "arcade.cdawgbot.xyz",
+    "path": "assets/cdawg-mascot-reactions0-v004-BcYTbBqx.webp",
+    "bytes": 516782,
+    "sha256": "7e701c7426d7eb270ccd49cf3554946ba2800d368929054071ba3be2e6aa6c31",
+    "cache": "public, max-age=31536000, immutable"
+  },
+  {
+    "host": "arcade.cdawgbot.xyz",
+    "path": "assets/cdawg-mascot-reactions1-v004-BtVb-jPy.webp",
+    "bytes": 333182,
+    "sha256": "c49f4097c678e50ca7f780c2ca93fa288bc3ec48155d8525d7105fdeb9a809be",
+    "cache": "public, max-age=31536000, immutable"
+  },
+  {
+    "host": "arcade.cdawgbot.xyz",
+    "path": "assets/index-DaDfq-eR.js",
+    "bytes": 2180101,
+    "sha256": "057f9095a9f6a717acf69d6f01bbc49364b195ae89011e4d551e3af522ef046e",
+    "cache": "public, max-age=31536000, immutable"
+  },
+  {
+    "host": "arcade.cdawgbot.xyz",
+    "path": "assets/index-DsHVGshA.css",
+    "bytes": 13928,
+    "sha256": "25308ca4c973d1b95dc7839c09b2bbc2af25a524035e79115313fb72cbdb6c6a",
+    "cache": "public, max-age=31536000, immutable"
+  },
+  {
+    "host": "arcade.cdawgbot.xyz",
+    "path": "assets/index-PgqIN0K2.js",
+    "bytes": 159736,
+    "sha256": "5badfe6c0e4a626f076a1d3eb34bba50eb03069acd2b9bacc8893418fb20a110",
+    "cache": "public, max-age=31536000, immutable"
+  },
+  {
+    "host": "arcade.cdawgbot.xyz",
+    "path": "index.html",
+    "bytes": 415,
+    "sha256": "d97bccd8292b4be2d32210105239b6e61b67d2872097a350b0b0ee44ed470e29",
+    "cache": "no-cache"
+  },
+  {
+    "host": "cdawg-arcade-production.onrender.com",
+    "path": "assets/cdawg-mascot-balance0-v004-BDwc5MnW.webp",
+    "bytes": 375832,
+    "sha256": "42da55184ed19413cadc1c549a2a047ea2ac640d42d987a703dac93275cd8c12",
+    "cache": "public, max-age=31536000, immutable"
+  },
+  {
+    "host": "cdawg-arcade-production.onrender.com",
+    "path": "assets/cdawg-mascot-balance1-v004-RnhYpwi9.webp",
+    "bytes": 376956,
+    "sha256": "1c8bd805a87019d7ab0c43525aa62063346f29d5679e3f9983bb8ff36ded3569",
+    "cache": "public, max-age=31536000, immutable"
+  },
+  {
+    "host": "cdawg-arcade-production.onrender.com",
+    "path": "assets/cdawg-mascot-reactions0-v004-BcYTbBqx.webp",
+    "bytes": 516782,
+    "sha256": "7e701c7426d7eb270ccd49cf3554946ba2800d368929054071ba3be2e6aa6c31",
+    "cache": "public, max-age=31536000, immutable"
+  },
+  {
+    "host": "cdawg-arcade-production.onrender.com",
+    "path": "assets/cdawg-mascot-reactions1-v004-BtVb-jPy.webp",
+    "bytes": 333182,
+    "sha256": "c49f4097c678e50ca7f780c2ca93fa288bc3ec48155d8525d7105fdeb9a809be",
+    "cache": "public, max-age=31536000, immutable"
+  },
+  {
+    "host": "cdawg-arcade-production.onrender.com",
+    "path": "assets/index-DaDfq-eR.js",
+    "bytes": 2180101,
+    "sha256": "057f9095a9f6a717acf69d6f01bbc49364b195ae89011e4d551e3af522ef046e",
+    "cache": "public, max-age=31536000, immutable"
+  },
+  {
+    "host": "cdawg-arcade-production.onrender.com",
+    "path": "assets/index-DsHVGshA.css",
+    "bytes": 13928,
+    "sha256": "25308ca4c973d1b95dc7839c09b2bbc2af25a524035e79115313fb72cbdb6c6a",
+    "cache": "public, max-age=31536000, immutable"
+  },
+  {
+    "host": "cdawg-arcade-production.onrender.com",
+    "path": "assets/index-PgqIN0K2.js",
+    "bytes": 159736,
+    "sha256": "5badfe6c0e4a626f076a1d3eb34bba50eb03069acd2b9bacc8893418fb20a110",
+    "cache": "public, max-age=31536000, immutable"
+  },
+  {
+    "host": "cdawg-arcade-production.onrender.com",
+    "path": "index.html",
+    "bytes": 415,
+    "sha256": "d97bccd8292b4be2d32210105239b6e61b67d2872097a350b0b0ee44ed470e29",
+    "cache": "no-cache"
+  }
+]
