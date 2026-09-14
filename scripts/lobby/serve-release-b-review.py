@@ -9,6 +9,7 @@ class Handler(BaseHTTPRequestHandler):
   path=self.path.split('?')[0].lstrip('/')
   if path in ('','candidate.html'):file=root/'dist/index.html'
   elif path=='review.html':file=root/'tmp/lobby-integration/harness/responsive.html'
+  elif re.fullmatch(r'lobby/assets/[A-Za-z0-9_-]+\.(?:js|css|webp|svg|woff2)',path):file=root/'tmp/lobby-integration/harness'/path.removeprefix('lobby/')
   elif re.fullmatch(r'assets/[A-Za-z0-9_-]+\.(?:js|css|webp|svg|woff2)',path):
    file=root/'dist'/path
    if not file.is_file():file=root/'tmp/lobby-integration/harness'/path

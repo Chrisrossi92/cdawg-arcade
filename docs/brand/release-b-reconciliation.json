@@ -1,0 +1,744 @@
+{
+  "runs": 128,
+  "cleanTransitions": 104,
+  "discarded": 80,
+  "realCountdownStalls": 24,
+  "activeStalls": 24,
+  "lifecycleControls": 16,
+  "audioScenarios": 32,
+  "rendererScenarios": 17,
+  "reconciliationCheckpoints": 26,
+  "soaks": [
+    {
+      "scenes": 0,
+      "peakScenes": 1,
+      "timers": 0,
+      "intervals": 0,
+      "frames": 0,
+      "listeners": 4,
+      "audioOpen": 0,
+      "canvases": 0,
+      "hostListeners": 1,
+      "auth": 1,
+      "attempts": 24,
+      "submissions": 4,
+      "cancels": 20,
+      "reads": 137,
+      "accepted": 4,
+      "practiceResults": 0,
+      "resumes": 0,
+      "heap": 11981877
+    },
+    {
+      "scenes": 0,
+      "peakScenes": 1,
+      "timers": 0,
+      "intervals": 0,
+      "frames": 0,
+      "listeners": 4,
+      "audioOpen": 0,
+      "canvases": 0,
+      "hostListeners": 1,
+      "auth": 1,
+      "attempts": 24,
+      "submissions": 4,
+      "cancels": 20,
+      "reads": 137,
+      "accepted": 4,
+      "practiceResults": 0,
+      "resumes": 0,
+      "heap": 13045968
+    },
+    {
+      "scenes": 0,
+      "peakScenes": 1,
+      "timers": 0,
+      "intervals": 0,
+      "frames": 0,
+      "listeners": 4,
+      "audioOpen": 0,
+      "canvases": 0,
+      "hostListeners": 1,
+      "auth": 1,
+      "attempts": 24,
+      "submissions": 4,
+      "cancels": 20,
+      "reads": 137,
+      "accepted": 4,
+      "practiceResults": 0,
+      "resumes": 0,
+      "heap": 11251898
+    }
+  ],
+  "lifecycleCycles": 72,
+  "compiled": {
+    "status": "passed",
+    "rows": [
+      {
+        "cache": "cold",
+        "entryMs": 579,
+        "initial": [
+          {
+            "name": "/assets/index-BwQhqt3E.js",
+            "encoded": 235323,
+            "transfer": 235623,
+            "duration": 19.900000035762787
+          },
+          {
+            "name": "/assets/index-COBSz9hO.css",
+            "encoded": 21188,
+            "transfer": 21488,
+            "duration": 16.299999952316284
+          },
+          {
+            "name": "/assets/cdawg-horizontal-dark-v001-CocDCRX-.svg",
+            "encoded": 9760,
+            "transfer": 10060,
+            "duration": 3.600000023841858
+          },
+          {
+            "name": "/assets/cdawg-host-default-v004-Dy6_NmHH.webp",
+            "encoded": 20932,
+            "transfer": 21232,
+            "duration": 3.599999964237213
+          },
+          {
+            "name": "/assets/cdawg-host-mischief-v004-BH8_sl9C.webp",
+            "encoded": 20992,
+            "transfer": 21292,
+            "duration": 3.400000035762787
+          },
+          {
+            "name": "/assets/cdawg-ui-latin-v001-CfIt6cLC.woff2",
+            "encoded": 15432,
+            "transfer": 15732,
+            "duration": 254.30000001192093
+          },
+          {
+            "name": "/assets/cdawg-display-latin-v001-CeyYqTKY.woff2",
+            "encoded": 15380,
+            "transfer": 15680,
+            "duration": 252.39999997615814
+          },
+          {
+            "name": "/favicon.ico",
+            "encoded": 455,
+            "transfer": 755,
+            "duration": 3.300000011920929
+          },
+          {
+            "name": "/favicon.ico",
+            "encoded": 455,
+            "transfer": 755,
+            "duration": 5.399999976158142
+          }
+        ],
+        "resources": [
+          {
+            "name": "/assets/index-BwQhqt3E.js",
+            "encoded": 235323,
+            "transfer": 235623,
+            "duration": 19.900000035762787
+          },
+          {
+            "name": "/assets/index-COBSz9hO.css",
+            "encoded": 21188,
+            "transfer": 21488,
+            "duration": 16.299999952316284
+          },
+          {
+            "name": "/assets/cdawg-horizontal-dark-v001-CocDCRX-.svg",
+            "encoded": 9760,
+            "transfer": 10060,
+            "duration": 3.600000023841858
+          },
+          {
+            "name": "/assets/cdawg-host-default-v004-Dy6_NmHH.webp",
+            "encoded": 20932,
+            "transfer": 21232,
+            "duration": 3.599999964237213
+          },
+          {
+            "name": "/assets/cdawg-host-mischief-v004-BH8_sl9C.webp",
+            "encoded": 20992,
+            "transfer": 21292,
+            "duration": 3.400000035762787
+          },
+          {
+            "name": "/assets/cdawg-ui-latin-v001-CfIt6cLC.woff2",
+            "encoded": 15432,
+            "transfer": 15732,
+            "duration": 254.30000001192093
+          },
+          {
+            "name": "/assets/cdawg-display-latin-v001-CeyYqTKY.woff2",
+            "encoded": 15380,
+            "transfer": 15680,
+            "duration": 252.39999997615814
+          },
+          {
+            "name": "/favicon.ico",
+            "encoded": 455,
+            "transfer": 755,
+            "duration": 3.300000011920929
+          },
+          {
+            "name": "/favicon.ico",
+            "encoded": 455,
+            "transfer": 755,
+            "duration": 5.399999976158142
+          },
+          {
+            "name": "/assets/GameEntry-BhjSGAlU.js",
+            "encoded": 1962749,
+            "transfer": 1963049,
+            "duration": 46.59999996423721
+          },
+          {
+            "name": "/assets/GameEntry-DsHVGshA.css",
+            "encoded": 13928,
+            "transfer": 14228,
+            "duration": 2.300000011920929
+          },
+          {
+            "name": "/assets/cdawg-mascot-balance0-v004-BDwc5MnW.webp",
+            "encoded": 375832,
+            "transfer": 376132,
+            "duration": 17.5
+          },
+          {
+            "name": "/assets/cdawg-mascot-reactions0-v004-BcYTbBqx.webp",
+            "encoded": 516782,
+            "transfer": 517082,
+            "duration": 19.400000035762787
+          },
+          {
+            "name": "/assets/cdawg-mascot-balance1-v004-RnhYpwi9.webp",
+            "encoded": 376956,
+            "transfer": 377256,
+            "duration": 17.200000047683716
+          },
+          {
+            "name": "/assets/cdawg-mascot-reactions1-v004-BtVb-jPy.webp",
+            "encoded": 333182,
+            "transfer": 333482,
+            "duration": 19
+          },
+          {
+            "name": "/favicon.ico",
+            "encoded": 455,
+            "transfer": 755,
+            "duration": 2.5
+          },
+          {
+            "name": "/assets/cdawg-mascot-balance0-v004-BDwc5MnW.webp",
+            "encoded": 375832,
+            "transfer": 0,
+            "duration": 5.099999964237213
+          },
+          {
+            "name": "/assets/cdawg-mascot-balance1-v004-RnhYpwi9.webp",
+            "encoded": 376956,
+            "transfer": 0,
+            "duration": 5.400000035762787
+          },
+          {
+            "name": "/assets/cdawg-mascot-reactions0-v004-BcYTbBqx.webp",
+            "encoded": 516782,
+            "transfer": 0,
+            "duration": 6.800000011920929
+          },
+          {
+            "name": "/assets/cdawg-mascot-reactions1-v004-BtVb-jPy.webp",
+            "encoded": 333182,
+            "transfer": 0,
+            "duration": 6.5
+          },
+          {
+            "name": "/assets/cdawg-mascot-balance0-v004-BDwc5MnW.webp",
+            "encoded": 375832,
+            "transfer": 0,
+            "duration": 2.099999964237213
+          },
+          {
+            "name": "/assets/cdawg-mascot-balance1-v004-RnhYpwi9.webp",
+            "encoded": 376956,
+            "transfer": 0,
+            "duration": 2.200000047683716
+          },
+          {
+            "name": "/assets/cdawg-mascot-reactions0-v004-BcYTbBqx.webp",
+            "encoded": 516782,
+            "transfer": 0,
+            "duration": 3.300000011920929
+          },
+          {
+            "name": "/assets/cdawg-mascot-reactions1-v004-BtVb-jPy.webp",
+            "encoded": 333182,
+            "transfer": 0,
+            "duration": 3.600000023841858
+          },
+          {
+            "name": "/assets/cdawg-mascot-balance0-v004-BDwc5MnW.webp",
+            "encoded": 375832,
+            "transfer": 0,
+            "duration": 1.399999976158142
+          },
+          {
+            "name": "/assets/cdawg-mascot-balance1-v004-RnhYpwi9.webp",
+            "encoded": 376956,
+            "transfer": 0,
+            "duration": 1.5
+          },
+          {
+            "name": "/assets/cdawg-mascot-reactions0-v004-BcYTbBqx.webp",
+            "encoded": 516782,
+            "transfer": 0,
+            "duration": 1.9000000357627869
+          },
+          {
+            "name": "/assets/cdawg-mascot-reactions1-v004-BtVb-jPy.webp",
+            "encoded": 333182,
+            "transfer": 0,
+            "duration": 2.700000047683716
+          }
+        ],
+        "accessibility": {
+          "unnamed": 0,
+          "images": true,
+          "headings": 1
+        },
+        "keyboardFocus": "BUTTON"
+      },
+      {
+        "cache": "warm",
+        "entryMs": 350,
+        "initial": [
+          {
+            "name": "/assets/index-BwQhqt3E.js",
+            "encoded": 235323,
+            "transfer": 0,
+            "duration": 0
+          },
+          {
+            "name": "/assets/index-COBSz9hO.css",
+            "encoded": 21188,
+            "transfer": 0,
+            "duration": 0
+          },
+          {
+            "name": "/assets/cdawg-display-latin-v001-CeyYqTKY.woff2",
+            "encoded": 15380,
+            "transfer": 0,
+            "duration": 0
+          },
+          {
+            "name": "/assets/cdawg-ui-latin-v001-CfIt6cLC.woff2",
+            "encoded": 15432,
+            "transfer": 0,
+            "duration": 0
+          },
+          {
+            "name": "/assets/cdawg-horizontal-dark-v001-CocDCRX-.svg",
+            "encoded": 9760,
+            "transfer": 0,
+            "duration": 0
+          },
+          {
+            "name": "/assets/cdawg-host-default-v004-Dy6_NmHH.webp",
+            "encoded": 20932,
+            "transfer": 0,
+            "duration": 0
+          },
+          {
+            "name": "/assets/cdawg-host-mischief-v004-BH8_sl9C.webp",
+            "encoded": 20992,
+            "transfer": 0,
+            "duration": 0
+          }
+        ],
+        "resources": [
+          {
+            "name": "/assets/index-BwQhqt3E.js",
+            "encoded": 235323,
+            "transfer": 0,
+            "duration": 0
+          },
+          {
+            "name": "/assets/index-COBSz9hO.css",
+            "encoded": 21188,
+            "transfer": 0,
+            "duration": 0
+          },
+          {
+            "name": "/assets/cdawg-display-latin-v001-CeyYqTKY.woff2",
+            "encoded": 15380,
+            "transfer": 0,
+            "duration": 0
+          },
+          {
+            "name": "/assets/cdawg-ui-latin-v001-CfIt6cLC.woff2",
+            "encoded": 15432,
+            "transfer": 0,
+            "duration": 0
+          },
+          {
+            "name": "/assets/cdawg-horizontal-dark-v001-CocDCRX-.svg",
+            "encoded": 9760,
+            "transfer": 0,
+            "duration": 0
+          },
+          {
+            "name": "/assets/cdawg-host-default-v004-Dy6_NmHH.webp",
+            "encoded": 20932,
+            "transfer": 0,
+            "duration": 0
+          },
+          {
+            "name": "/assets/cdawg-host-mischief-v004-BH8_sl9C.webp",
+            "encoded": 20992,
+            "transfer": 0,
+            "duration": 0
+          },
+          {
+            "name": "/assets/GameEntry-BhjSGAlU.js",
+            "encoded": 1962749,
+            "transfer": 0,
+            "duration": 0
+          },
+          {
+            "name": "/assets/GameEntry-DsHVGshA.css",
+            "encoded": 13928,
+            "transfer": 0,
+            "duration": 0
+          },
+          {
+            "name": "/assets/cdawg-mascot-balance0-v004-BDwc5MnW.webp",
+            "encoded": 375832,
+            "transfer": 0,
+            "duration": 2.699999988079071
+          },
+          {
+            "name": "/assets/cdawg-mascot-balance1-v004-RnhYpwi9.webp",
+            "encoded": 376956,
+            "transfer": 0,
+            "duration": 2.5
+          },
+          {
+            "name": "/assets/cdawg-mascot-reactions0-v004-BcYTbBqx.webp",
+            "encoded": 516782,
+            "transfer": 0,
+            "duration": 3
+          },
+          {
+            "name": "/assets/cdawg-mascot-reactions1-v004-BtVb-jPy.webp",
+            "encoded": 333182,
+            "transfer": 0,
+            "duration": 3.100000023841858
+          },
+          {
+            "name": "/favicon.ico",
+            "encoded": 455,
+            "transfer": 755,
+            "duration": 5.300000011920929
+          },
+          {
+            "name": "/assets/cdawg-mascot-balance0-v004-BDwc5MnW.webp",
+            "encoded": 375832,
+            "transfer": 0,
+            "duration": 6
+          },
+          {
+            "name": "/assets/cdawg-mascot-balance1-v004-RnhYpwi9.webp",
+            "encoded": 376956,
+            "transfer": 0,
+            "duration": 6
+          },
+          {
+            "name": "/assets/cdawg-mascot-reactions0-v004-BcYTbBqx.webp",
+            "encoded": 516782,
+            "transfer": 0,
+            "duration": 6.600000023841858
+          },
+          {
+            "name": "/assets/cdawg-mascot-reactions1-v004-BtVb-jPy.webp",
+            "encoded": 333182,
+            "transfer": 0,
+            "duration": 6
+          },
+          {
+            "name": "/assets/cdawg-mascot-balance0-v004-BDwc5MnW.webp",
+            "encoded": 375832,
+            "transfer": 0,
+            "duration": 2.100000023841858
+          },
+          {
+            "name": "/assets/cdawg-mascot-balance1-v004-RnhYpwi9.webp",
+            "encoded": 376956,
+            "transfer": 0,
+            "duration": 2
+          },
+          {
+            "name": "/assets/cdawg-mascot-reactions0-v004-BcYTbBqx.webp",
+            "encoded": 516782,
+            "transfer": 0,
+            "duration": 2.400000035762787
+          },
+          {
+            "name": "/assets/cdawg-mascot-reactions1-v004-BtVb-jPy.webp",
+            "encoded": 333182,
+            "transfer": 0,
+            "duration": 2.399999976158142
+          },
+          {
+            "name": "/assets/cdawg-mascot-balance0-v004-BDwc5MnW.webp",
+            "encoded": 375832,
+            "transfer": 0,
+            "duration": 2.5
+          },
+          {
+            "name": "/assets/cdawg-mascot-balance1-v004-RnhYpwi9.webp",
+            "encoded": 376956,
+            "transfer": 0,
+            "duration": 2.5
+          },
+          {
+            "name": "/assets/cdawg-mascot-reactions1-v004-BtVb-jPy.webp",
+            "encoded": 333182,
+            "transfer": 0,
+            "duration": 2.599999964237213
+          },
+          {
+            "name": "/assets/cdawg-mascot-reactions0-v004-BcYTbBqx.webp",
+            "encoded": 516782,
+            "transfer": 0,
+            "duration": 2.699999988079071
+          },
+          {
+            "name": "/assets/cdawg-horizontal-dark-v001-CocDCRX-.svg",
+            "encoded": 9760,
+            "transfer": 0,
+            "duration": 2.699999988079071
+          },
+          {
+            "name": "/assets/cdawg-host-default-v004-Dy6_NmHH.webp",
+            "encoded": 20932,
+            "transfer": 0,
+            "duration": 2.599999964237213
+          },
+          {
+            "name": "/assets/cdawg-host-mischief-v004-BH8_sl9C.webp",
+            "encoded": 20992,
+            "transfer": 0,
+            "duration": 2.699999988079071
+          }
+        ],
+        "accessibility": {
+          "unnamed": 0,
+          "images": true,
+          "headings": 1
+        },
+        "keyboardFocus": "BUTTON"
+      }
+    ],
+    "viewport": {
+      "status": "passed",
+      "matrix": [
+        {
+          "width": 1280,
+          "height": 900,
+          "lobby": {
+            "width": 1280,
+            "scroll": 1280
+          },
+          "controls": {
+            "x": 152,
+            "y": 821,
+            "width": 976,
+            "height": 47,
+            "top": 821,
+            "right": 1128,
+            "bottom": 868,
+            "left": 152
+          },
+          "targets": [
+            {
+              "height": 47,
+              "width": 424
+            },
+            {
+              "height": 47,
+              "width": 424
+            }
+          ],
+          "focusOrder": [
+            "Less motion",
+            "Skip to games",
+            "CDAWG ARCADE home",
+            "Games",
+            "Your results",
+            "Play practice\u2192",
+            "Back to games \u2191"
+          ],
+          "reduced": "true",
+          "keyboard": true,
+          "syntheticTouch": true
+        },
+        {
+          "width": 800,
+          "height": 600,
+          "lobby": {
+            "width": 800,
+            "scroll": 800
+          },
+          "controls": {
+            "x": 24,
+            "y": 541,
+            "width": 752,
+            "height": 47,
+            "top": 541,
+            "right": 776,
+            "bottom": 588,
+            "left": 24
+          },
+          "targets": [
+            {
+              "height": 47,
+              "width": 312
+            },
+            {
+              "height": 47,
+              "width": 312
+            }
+          ],
+          "focusOrder": [
+            "Less motion",
+            "Skip to games",
+            "CDAWG ARCADE home",
+            "Games",
+            "Your results",
+            "Play practice\u2192",
+            "Back to games \u2191"
+          ],
+          "reduced": "false",
+          "keyboard": true,
+          "syntheticTouch": true
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "lobby": {
+            "width": 390,
+            "scroll": 390
+          },
+          "controls": {
+            "x": 12,
+            "y": 788,
+            "width": 366,
+            "height": 44,
+            "top": 788,
+            "right": 378,
+            "bottom": 832,
+            "left": 12
+          },
+          "targets": [
+            {
+              "height": 44,
+              "width": 119
+            },
+            {
+              "height": 44,
+              "width": 119
+            }
+          ],
+          "focusOrder": [
+            "Less motion",
+            "Skip to games",
+            "CDAWG ARCADE home",
+            "Games",
+            "Your results",
+            "Play practice\u2192",
+            "Back to games \u2191"
+          ],
+          "reduced": "true",
+          "keyboard": true,
+          "syntheticTouch": true
+        },
+        {
+          "width": 375,
+          "height": 667,
+          "lobby": {
+            "width": 375,
+            "scroll": 375
+          },
+          "controls": {
+            "x": 8,
+            "y": 615,
+            "width": 359,
+            "height": 44,
+            "top": 615,
+            "right": 367,
+            "bottom": 659,
+            "left": 8
+          },
+          "targets": [
+            {
+              "height": 44,
+              "width": 153.5
+            },
+            {
+              "height": 44,
+              "width": 153.5
+            }
+          ],
+          "focusOrder": [
+            "Less motion",
+            "Skip to games",
+            "CDAWG ARCADE home",
+            "Games",
+            "Your results",
+            "Play practice\u2192",
+            "Back to games \u2191"
+          ],
+          "reduced": "false",
+          "keyboard": true,
+          "syntheticTouch": true
+        }
+      ]
+    }
+  },
+  "payload": {
+    "accepted": {
+      "bytes": 3960886,
+      "gzip": 2262947,
+      "brotli": 2156187
+    },
+    "enabled": {
+      "bytes": 4098977,
+      "gzip": 2367169,
+      "brotli": 2261090
+    },
+    "initial": {
+      "bytes": 359812,
+      "gzip": 174135,
+      "brotli": 163042
+    },
+    "deferred": {
+      "bytes": 3579429,
+      "gzip": 2144681,
+      "brotli": 2056494
+    },
+    "acceptedInitial": {
+      "bytes": 2198398,
+      "gzip": 613471,
+      "brotli": 511861
+    },
+    "acceptedDeferred": {
+      "bytes": 1602752,
+      "gzip": 1601123,
+      "brotli": 1602772
+    }
+  },
+  "baseline": "cdc0d46e8c5366ef1bf1a22439e80d0502bfb277",
+  "merge": "41bd66a13926d89f3d82e1f1e4dd4433f0cee0c3"
+}

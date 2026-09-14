@@ -1,28 +1,10 @@
-# Release B rollout and rollback — plan only
+# Release B controlled two-step rollout — recommendation only
 
-Release B preparation is currently BLOCKED; see RELEASE_B_PREPARATION.md. No rollout is authorized or executed by this document.
+No merge into main, deployment or production access is authorized by this preparation report. The candidate is locally validated against accepted main cdc0d46e8c5366ef1bf1a22439e80d0502bfb277. Obtain approval naming the exact final reconciliation commit.
 
-## Preconditions for future release
+1. **Review and normal merge, without deployment.** Verify clean/synchronized refs and the reviewed commit, inspect the gate-only runtime difference and preserved readiness/integrity paths, then normally merge the approved branch into main without squash, rebase, force push or branch deletion. Keep automatic deployment off. Run complete post-merge automated, database/replay, browser, build/reproducibility, asset, accessibility/performance and security gates on that resulting exact SHA. Retain the disabled-build equivalence evidence. Stop on an actual application/integrity regression; correctly handled active-frame protection is not a failure.
+2. **Separately authorize controlled exact-SHA deployment.** At deployment time, re-establish current accepted production and rollback compatibility, then use the existing Render specific-commit process without configuration changes. Verify both origins, release metadata, TLS, readiness, static hashes, authentication/CORS, lobby-first entry, Start/Again/return, readiness ordering, resource cleanup, sanitized logs and read-only projection/replay consistency. Avoid synthetic production score writes. Request a single native Discord canary only for a remaining condition automation cannot establish.
 
-Resolve the browser stall gate without relaxing the 100ms interruption policy. Complete all readiness, authentication, failure/retry, navigation, cold/warm, >=50-cycle lifecycle, responsive/accessibility and exact-artifact gates. Keep the final candidate clean/synchronized. Obtain explicit owner authorization naming its exact final commit.
+Expected immediate rollback target, from accepted release evidence supplied before this task: source cdc0d46e8c5366ef1bf1a22439e80d0502bfb277, Render artifact dep-dak0ahgae00c73blf7t0. This task did not access production to re-verify it; re-verify availability immediately before any future deployment. This accepted artifact is newer than the old 8931dab Release A rollback listed in historical Release B preparation.
 
-Use the accepted Release A baseline `8931dab8e1282f61baed8c2dd170019d5180c32e`, retained Render artifact `dep-dajgkgdg1s2s73amhggg`, as Release B's immediate rollback. `f98e1c3` is the older retained Release A rollback, not the default B rollback.
-
-## Future release steps
-
-1. Fetch, verify approved feature SHA, clean/synchronized main and feature, source gate true, minimal reviewed diff and conflict-free merge.
-2. Merge normally with --no-ff, preserve feature branch, push main. No squash/rebase/force push.
-3. Run the complete suite against that exact merged tree; build with unchanged provider public metadata. Record all hashes.
-4. Require repeated valid TLS/health/readiness checks from permanent and provider origins. Verify Release A still live and its artifact retained/configuration-compatible.
-5. In the existing Render service use Manual Deploy → Deploy a specific commit → exact merge SHA. Automatic deployment stays Off. Change no settings, environment, permissions, DNS or Discord mappings.
-6. Verify exact deployed artifact/source; root lobby and game navigation; V004 readiness before attempt/countdown; no legacy frame/startup pause; genuine interruptions; bounded authentication; correct identity; official/practice separation; replay/projections; results/return/Play Again; layouts; static hashes/cache/CORS/protected routes; sanitized logs and unchanged configuration.
-7. Only after automated production checks pass, request one consolidated Discord canary: identity in lobby, Balance entry/readiness, one official run, saved/personal/guild summaries, Back to Arcade and re-entry. No incremental creative review.
-8. After acceptance, perform authorized read-only consistency checks and normally merge documentation without redeploying if documentation-only.
-
-## Rollback triggers and exact target
-
-Stop rollout for authentication/identity errors, wrong score data, navigation failure, duplicate attempt/submission, V004 readiness regression, official replay/projection mismatch, guild authorization regression, serious layout/performance failure, unhealthy endpoints, wrong deployed hash, or any unexpected configuration requirement.
-
-Use Render's existing rollback link for `dep-dajgkgdg1s2s73amhggg`. Confirm its source is `8931dab8e1282f61baed8c2dd170019d5180c32e` and confirmation reports no incompatible configuration changes. Execute only the authorized rollback; do not change environment, Discord or data. Verify both origins report that SHA, exact Release A frontend hashes, direct-to-Balance root, no lobby assets/routes, health/readiness and approved consistency checks. Retain legitimate data; no schema restore/migration/repair.
-
-If configuration compatibility is not established, stop and request one consolidated necessary decision. Do not improvise provider edits. Source restoration is a separate reviewed normal revert of the verified B merge using its first parent; never force-reset published main or delete preserved branches.
+Compatibility: no server, schema, migration, dependency, permission or scoring/replay change. A failed rollout should use the retained accepted disabled-lobby artifact, with no database restore, score alteration or environment change. Verify exact source, direct-to-Balance entry, lobby-code exclusion, both origins, health/readiness and read-only consistency after rollback. Roll back for wrong source/assets, unhealthy endpoints, authentication/identity failure, unexpected countdown pauses, legacy frames, duplicate issuance/actions, navigation leaks, replay divergence or projection mismatch. Never relax the active 100 ms protection to obtain a pass.

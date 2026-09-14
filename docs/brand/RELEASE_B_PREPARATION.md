@@ -1,57 +1,36 @@
-# Release B preparation — BLOCKED
+# Release B reconciliation — locally validated, not merged or deployed
 
-Base/main: `b2264466101956fd081e6326ccaa2935fc658650`. Branch: `codex/arcade-lobby-release-b`. This is an unmerged, undeployed candidate, not release acceptance. Production remains Release A `8931dab8e1282f61baed8c2dd170019d5180c32e`, artifact `dep-dajgkgdg1s2s73amhggg`, with automatic deployment Off.
+Accepted main baseline: `cdc0d46e8c5366ef1bf1a22439e80d0502bfb277`. Original Release B candidate: `fc57961b098d5132a56a20d36aa135c233e84527`. Dedicated branch: `codex/reconcile-release-b-readiness`. Normal merge of accepted main into the original candidate: `41bd66a13926d89f3d82e1f1e4dd4433f0cee0c3`. No conflicts occurred. Main and the original candidate branch remain unchanged.
 
-## Minimal change and scope
+Only the existing `config/lobby-release.ts` source gate differs in runtime behavior from accepted main. It enables the already-reviewed Arcade entry. Application implementations, styles, V004 assets, composite audio/renderer readiness, removal of legacy fallback, countdown-gap discarding, zero-tick/empty-accumulator starts, 100 ms active policy, lifecycle handling, deadlines, physics, scoring, replay, sessions and database code are byte-identical to accepted main. The runtime test expects the enabled gate. No new runtime flag or configuration mechanism was added.
 
-The only functional production change is `config/lobby-release.ts:2`, `lobbyReleased = false` → `true`. Its comment is updated. No new runtime/environment flag exists. No implementation, styling, mascot, dependency, physics, replay, session, database, guild, or interruption-policy change.
+Tooling reconciliation updates the old Release B validators to the accepted baseline and fresh evidence, strengthens composite readiness ordering and exact gate scope, adds isolated disabled/enabled artifact comparison, compiled candidate checks, and fixes the local review server's `/lobby/assets/` wrapper route. The initial wrapper run timed out because that route was missing; failed evidence is retained under `tmp/release-b-reconciliation/compiled-wrapper-failure.*`. No application assertion was weakened. Earlier `release-b-browser.json` and `release-b-isolated-browser.json` are retained historical failures, not current passes.
 
-Required support: gate expectations in `src/arcade/runtime.test.ts`; Release B artifact/graph audit; reconciliation validator uses this baseline and fresh Release B evidence, preserving the corrected Resume tick rule; test viewport resource reporting and a loopback-only server for the untouched compiled candidate. Documentation contains this blocked report, the rollout/rollback plan, output inventory and failed timelines. The historical disabled-build validator remains historical; use `validate-release-b.mjs` for this candidate.
+## Fresh validation
 
-The approved appearance and interaction have not drifted: production UI/runtime/assets are identical to accepted main. The gate selects the already-reviewed entry. Existing history uses `#arcade/balance` after in-Activity navigation; fresh launch deliberately normalizes to the lobby. No new direct/deep-link bypass was added.
+All 16 automated/build groups passed: 462 tests in 36 files; type checks; 681 owned ephemeral PostgreSQL checks; 216 ordinary enabled-production and 216 explicit enabled-mode smoke assertions; 265 atlas, 104 brand, 56 raster, 25 host and 16 GLB checks; 86 current graph/artifact assertions, immutable ruleset verification and security scan. Two isolated disabled builds each pass 192 smoke assertions. The disabled graph exclusion validator also passed. Asset and server runtime hashes are unchanged.
 
-## Preflight and production isolation
+Browser coverage passed: 128 focused countdown captures, 104 clean zero-tick transitions, 80 discarded intervals, 24 real countdown stalls without interruption, 24 active-stall controls with correct interruption; 16 freeze/cancellation/identity-loss controls; 32 audio scenarios; 17 renderer scenarios including all deadline recovery choices; 26 reconciliation checkpoints; 10 rapid cancellations; four fixture viewports; suspended headed/headless and quiet headed coverage (20 runs). Three independent lifecycle soaks cover 72 cycles: 60 cancellations and 12 accepted completions, no practice results or Resume actions. Every soak returns scenes, timers, intervals, frames, open audio and canvases to zero; listeners return to four, host subscriptions to one, peak scenes one. No unexpected countdown pause, legacy frame, duplicate issuance/action, replay divergence, projection mismatch or lifecycle leak was observed.
 
-Main and upstream were clean and synchronized before branch creation; no Release B branch existed. Both production origins reported accepted 8931dab through public health only, and all eight public frontend hashes matched the locally retained Release A artifact. Render Settings showed exact accepted artifact and automatic deployment/previews Off. The Release A acceptance/two-step plan was read; root AGENTS.md is the only applicable repository policy file found.
+The untouched compiled enabled candidate additionally passed four cold/warm Start/Play Again runs and four viewport cases (1280×900, 800×600, 390×844, 375×667). Lobby loads first and does not fetch GameEntry/V004 game assets before entry. Keyboard focus, accessible control naming, image alternatives, one primary heading, fixture focus traversal, reduced motion, touch controls and viewport bounds pass. These are bounded accessibility checks, not comprehensive WCAG certification or a physical-device audit.
 
-No production database, shell, private configuration or credentials were accessed in this slice. No production requests that issue attempts or scores were made. All real PostgreSQL validation used an owned disposable cluster. Only the expressly authorized feature push is an external write.
+## Payload and performance
 
-## Blocking browser evidence
+Identical public dummy metadata was used to compare source trees, avoiding release-string hash differences. Disabled candidate dist/build are byte-identical to accepted main. Enabled ordinary and explicit integration outputs repeat byte-for-byte. Thirty-six server runtime files are identical (release.json changes only to describe the frontend). V004 atlas total remains 1,602,752 bytes.
 
-The exact ordinary enabled production bundle passed the complete practice viewport matrix at 1280×900, 800×600, 390×844 and 375×667: lobby → Balance → practice → results → lobby, keyboard traversal, synthetic touch, reduced motion, 44px-or-larger controls and no horizontal overflow. Local Player/practice labeling and Coming Soon controls were inspected.
+| Artifact group | Accepted main bytes | Enabled candidate bytes |
+| --- | ---: | ---: |
+| Initial HTML/entry/CSS plus lobby assets where applicable | 2,198,398 | 359,812 |
+| Deferred game/assets | 1,602,752 | 3,579,429 |
+| Conditional Discord SDK | 159,736 | 159,736 |
+| Total | 3,960,886 | 4,098,977 |
 
-The authenticated-fixture readiness matrix passed eight scenarios, then stopped in `preparation-hidden` on an unexpected active-game stall:
+Total increase: 138,091 bytes. Candidate initial group: 174,135 gzip / 163,042 Brotli bytes; accepted initial: 613,471 gzip / 511,861 Brotli. Candidate deferred group: 2,144,681 gzip / 2,056,494 Brotli bytes. Compressed values are local per-file estimates, not network transfer promises.
 
-- Ready 56180ms; attempt issued 56181.5ms; countdown start 56192.2ms.
-- Countdown complete 58647.3ms; first gameplay clock 58677.6ms, ticks=0, accumulator=0.
-- At tick 40, frame delta 637ms; interruption at 59982ms; pause policy at 60014.3ms.
+Untouched compiled lobby-to-Balance entry: 579 ms cold, 350 ms warm in this bounded local sample. Instrumented composite preparation: 348.0 ms cold, 232.3 ms warm. Cold timeline: preparation 9616.3 → composite ready 9964.3 → issuance 9964.7 → countdown 9967.9 → first active clock 12396.7 ms. Warm: 13781.9 → 14014.2 → 14014.3 → 14016.7 → 16463.2 ms. First active clocks have zero ticks and empty accumulator. Gameplay frame p95 17.3 ms both; maximum 17.4 ms cold / 21.0 ms warm, 42 sampled frames each. These are local samples, not broad device, network or load certification.
 
-The isolated rerun also failed, this time during countdown:
+## Security, limitations and isolation
 
-- Ready 12067.2ms; issuance 12067.4ms; countdown 12070.3ms.
-- Pause at 12349ms, ticks=0. Countdown never completed and bounded wait expired.
-- Observed page pacing: median 33.3ms, p95 34.3ms, maximum 500ms.
+Fresh source/artifact pattern scan passed 576 files. Logged CDP sessions ended with zero pending requests and successful browser exits; no owned disposable Chromium processes remained. Both owned fixture servers were stopped. Host swap was 7405.31 MB before browser validation, 7389.75 MB during renderer checks, and 6886.50 MB afterward; final load was 10.25/7.51/6.62. Host pressure is recorded without attributing historical stalls to it. Read-only npm audit retains seven inherited advisories (two moderate, five high); dependencies and lockfile are unchanged and no automatic fix ran. Large Phaser chunk warnings remain. Historical unexplained pauses, the 637 ms stall and CDP Runtime.evaluate timeout remain unresolved history. A correctly handled active-gameplay gap is valid protection; the historical 107.9 ms event is not a failure of this candidate. This run did not need to waive or suppress any unexpected pause.
 
-[First failure](release-b-browser.json) and [isolated rerun](release-b-isolated-browser.json) remain recorded. Neither pause was suppressed or automatically resumed. The 100ms policy remains unchanged. `validate-reconciliation.mjs` correctly fails on this evidence, preventing a false release-ready result.
-
-The preparation-hidden failure is not evidence of a changed readiness implementation: BalanceExperience, BalanceScene, simulationClock, the readiness trace plugin and the matrix implementation exactly match accepted main. A read-only host load snapshot was 10.02/9.73/9.03; this alone does not establish the scheduling cause. The second failure occurred at a different phase. We cannot attribute either to harmless flakiness or conclude whether repeated normal rendering work is responsible without further bounded diagnosis. No production fix was attempted.
-
-## Completed automated validation
-
-2,086 independent assertions passed: 422 unit/integration; 216 ordinary enabled-production smoke; 216 explicit integration-mode smoke; 681 disposable PostgreSQL; 265 atlas; 104 brand/font/provenance; 56 raster; 25 host packing; 16 GLB (zero Khronos errors/warnings); 85 Release B graph/artifact gates. Typecheck and browser-harness compile passed. Build repeated byte-for-byte. Security pattern scan passed; final staged scan follows documentation review.
-
-The backend suites cover real adapter selection/identity boundaries, authentication timeout/cancellation/retry, stale sessions, issuance/submission, uncertain network retry, immutable clock/replay fixtures, personal/guild projection consistency and guild authorization. Runtime tests cover 300 navigation cycles, one subscription/authentication, idempotent entry, navigation locks and stale completion. These passes do not replace the failed full browser gate.
-
-Pending because of the repeated browser failure: completion of all readiness/failure scenarios; fresh 50+ browser lifecycle soak and rapid cancellation; full authenticated flow acceptance; final cold/warm performance acceptance. Prior Release A soak is historical and is not counted as a new Release B pass. Exact production practice layout coverage is current, but it cannot certify all authenticated paths.
-
-## Artifact inventory and limitations
-
-See `release-b-artifacts.json` for all output sizes, SHA-256, gzip and Brotli measurements, plus `release-b-release-a-baseline.json` for actual public Release A hashes/cache policy. Candidate metadata in this committed inventory is `development-release-b-preparation`; an exact branch-commit build is produced locally after committing and reported separately, avoiding a self-referential commit hash. No provider or environment setting is changed to build it.
-
-Measured preparation build: Release A 3,956,932 bytes; Release B 4,095,069 bytes, a 138,137-byte increase. The initial lobby group is about 359.8KB, about 174.1KB gzip; Balance JS/CSS plus four atlases are deferred (about 3.576MB). Discord SDK is a separate conditional chunk (159,736 bytes) and ordinary practice does not initialize it. Hosts total 62,314 bytes, fonts 30,812 bytes, external logo SVG 9,760 bytes; tag/card artwork is existing inline SVG/CSS. Four V004 atlases remain 1,602,752 bytes with unchanged hashes. No Blender/GLB/reference-board/debug/fixture asset ships. Hashed assets are served immutable; index is no-cache. Cache assertions use the real compiled server smoke; the review wrapper is local test tooling only.
-
-Exact enabled production and approved local lobby share the same source and assets. Release metadata changes chunk names; there is no creative change and no new creative review is requested. Preparation is BLOCKED despite the passing independent suites and clean pushed branch. Nothing is merged or deployed.
-
-## Next authorization
-
-Authorize focused local diagnosis of the repeated browser frame stalls, including comparison against the accepted source and safe timing attribution. Keep production unchanged and the 100ms rule authoritative. Any resulting application correction needs separate review/authorization. Release B merge/deployment must not be approved until the complete browser gates and lifecycle/performance checks pass.
+All database checks use real owned disposable Postgres with synthetic identities. No fresh production health, production database audit, Render access or native Discord certification is claimed. No production settings, secrets, DNS, permissions, costs, Discord mappings or data were accessed or changed. Production's lobby remains disabled. No merge into main or deployment occurred. See [rollout plan](RELEASE_B_ROLLOUT_AND_ROLLBACK.md) and [compact fresh evidence](release-b-reconciliation.json). Detailed local evidence is retained under `tmp/release-b-reconciliation/`.

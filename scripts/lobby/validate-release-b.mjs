@@ -5,20 +5,23 @@ import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {gzipSync,brotliCompressSync} from 'node:zlib';
 import {build} from 'vite';
-const baseline='b2264466101956fd081e6326ccaa2935fc658650';
+const baseline='cdc0d46e8c5366ef1bf1a22439e80d0502bfb277';
 let checks=0;const ok=(value,message)=>{assert.ok(value,message);checks++;};
 const sha=b=>createHash('sha256').update(b).digest('hex');
 const inventory=root=>Object.fromEntries(fs.readdirSync(root,{recursive:true}).filter(p=>fs.statSync(`${root}/${p}`).isFile()&&!p.startsWith('.vite/')).sort().map(p=>{const b=fs.readFileSync(`${root}/${p}`);return[p,{bytes:b.length,gzip:gzipSync(b).length,brotli:brotliCompressSync(b).length,sha256:sha(b)}];}));
-const protectedPaths=['src','server','shared','assets','vite.config.ts','package-lock.json','render.yaml'];
+const protectedPaths=['src','server','shared','assets','vite.config.ts','package.json','package-lock.json','render.yaml'];
 const changes=execFileSync('git',['diff',baseline,'--name-only','--',...protectedPaths],{encoding:'utf8'}).trim().split('\n').filter(Boolean);
 ok(changes.every(p=>p.endsWith('.test.ts')||p.endsWith('.test.tsx')),'production implementation changed');
 ok(/export const lobbyReleased = true;/.test(fs.readFileSync('config/lobby-release.ts','utf8')),'source gate not enabled');
+const expectedGate=execFileSync('git',['show',baseline+':config/lobby-release.ts'],{encoding:'utf8'}).replace('/** Public source gate. Ordinary production remains direct-to-Balance. */','/** Public source gate. Release B makes the Arcade lobby the production entry. */').replace('lobbyReleased = false','lobbyReleased = true');
+ok(fs.readFileSync('config/lobby-release.ts','utf8')===expectedGate,'gate exceeds approved entry switch');
 const production=inventory('dist'),local=inventory('tmp/lobby-integration/dist'),backend=inventory('build');
-const accepted=JSON.parse(fs.readFileSync('docs/brand/lobby-repeatability.json'));
+const fresh=JSON.parse(fs.readFileSync('tmp/release-b-reconciliation/artifacts.json'));
+const accepted={hashes:Object.fromEntries(['dist','build'].map(k=>[k,Object.fromEntries(Object.entries(fresh.accepted[k]).map(([p,v])=>[p,v.sha256]))]))};
 for(const [p,h] of Object.entries(accepted.hashes.build).filter(([p])=>p!=='release.json'))ok(backend[p]?.sha256===h,`backend unchanged ${p}`);
 for(const [p,f]of Object.entries(production)){
  ok(!/\.(?:blend|glb|psd|map)$|turnaround|expressions|movement|board|SKILL|AGENTS|fixture|preview|harness/i.test(p),'source/test artifact shipped');
- if(/\.(?:js|html|css)$/.test(p))ok(!/Fixture Player|fixture-player|TEST FIXTURES|Run lifecycle soak|__diag|DUMMY_ONLY|\/Users\//.test(fs.readFileSync('dist/'+p,'utf8')),'diagnostic/private data shipped');
+ if(/\.(?:js|html|css)$/.test(p))ok(!/Fixture Player|fixture-player|TEST FIXTURES|Run lifecycle soak|__diag|__audio|__countdown|COUNTDOWN_FRAME|OFFICIAL_INTERRUPT|COMPOSITE_READY|clockSnapshot|DUMMY_ONLY|\/Users\//.test(fs.readFileSync('dist/'+p,'utf8')),'diagnostic/private data shipped');
 }
 for(const [p,f] of Object.entries(production).filter(([p])=>/v004.*webp$/.test(p)&&p.includes('mascot-')))ok(accepted.hashes.dist[p]===f.sha256,'V004 atlas changed');
 let graph;await build({mode:'production',logLevel:'silent',build:{write:false},plugins:[{name:'release-b-graph',generateBundle(_options,bundle){graph=Object.values(bundle).filter(x=>x.type==='chunk').map(x=>({file:x.fileName,entry:x.isEntry,dynamic:x.isDynamicEntry,imports:x.imports,dynamicImports:x.dynamicImports,modules:Object.keys(x.modules)}));}}]});
