@@ -7,7 +7,7 @@ import { ConnectionStatus } from '../../app/ConnectionStatus';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { createV1ProductUiPolicy, getProductionIdentityLabel } from '../../app/v1ProductPolicy';
 import type { HostContext } from '../../contracts/events';
-import { WebAudioManager } from '../../services/audioManager';
+import { WebAudioManager, type AudioReadiness } from '../../services/audioManager';
 import { calculatePlaytestStats } from '../../services/playtestStats';
 import type { ScoreRepository } from '../../services/scoreRepository';
 import type { GamePhase, LeaderboardEntry, RunResult } from '../../types/game';
@@ -74,21 +74,32 @@ export function BalanceExperience({ integration, officialController, hostContext
   const phaseRef = useRef<GamePhase>(getInitialBalancePhase());
   const previousScoreRef = useRef(0);
   const audio = useMemo(() => new WebAudioManager(), []);
+  const audioPreparation = useRef<Promise<AudioReadiness>>(Promise.resolve('cancelled'));
+  const [audioDegraded, setAudioDegraded] = useState(false);
   const readiness = useRef(new RendererReadiness());
-  const [preparation, setPreparation] = useState<'idle' | 'preparing' | 'ready' | 'error'>('idle');
+  const [preparation, setPreparation] = useState<'idle' | 'preparing' | 'ready' | 'audio-error' | 'error'>('idle');
   const [rendererId, setRendererId] = useState(0);
   const preparationTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const practiceRequested = useRef(false);
+  const startedPreparation = useRef<number | null>(null);
   const clearPreparationTimer = () => { clearTimeout(preparationTimer.current); preparationTimer.current = undefined; };
   const cancelPreparation = () => {
-    readiness.current.cancel(); clearPreparationTimer(); setPreparation('idle');
+    readiness.current.cancel(); audio.cancelPreparation(); clearPreparationTimer(); setPreparation('idle');
     if (official.view.phase === 'preparing') official.practice();
   };
-  useEffect(() => () => { readiness.current.cancel(); clearPreparationTimer(); }, []);
+  useEffect(() => () => { readiness.current.cancel(); audio.cancelPreparation(); clearPreparationTimer(); }, [audio]);
 
 
   const milestoneTimer=useRef<number | undefined>(undefined);
-  useEffect(()=>{return()=>{if(lobbyIntegration){clearTimeout(milestoneTimer.current);audio.dispose();}};},[audio]);
+  const audioLifetime = useRef(0);
+  useEffect(() => {
+    const lifetime = ++audioLifetime.current;
+    return () => {
+      clearTimeout(milestoneTimer.current);
+      // React Strict Mode immediately reattaches the same owner.
+      queueMicrotask(() => { if (audioLifetime.current === lifetime) audio.dispose(); });
+    };
+  }, [audio]);
   useEffect(()=>{if(lobbyIntegration)integration?.onPhase(phase);},[phase,integration?.onPhase]);
   useEffect(()=>{if(lobbyIntegration)try{localStorage.setItem('cdawg.arcade.music.v1',String(musicEnabled));localStorage.setItem('cdawg.arcade.sfx.v1',String(sfxEnabled));}catch{/* Optional audio preferences. */}},[musicEnabled,sfxEnabled]);
 
@@ -193,12 +204,16 @@ export function BalanceExperience({ integration, officialController, hostContext
     setMilestone(null);
     setScore(0);
     setRunResult(null);
+    audio.startMusic();
     phaseRef.current='countdown';setPhase('countdown');
   };
   const startRun = (practice = false) => {
     if (['checking', 'preparing', 'running'].includes(official.view.phase)) return;
     const id = readiness.current.begin(performance.now());
     if (id === null) return;
+    audio.setMusicEnabled(musicEnabled); audio.setSfxEnabled(sfxEnabled);
+    audioPreparation.current = audio.prepare();
+    setAudioDegraded(false);
     practiceRequested.current = practice;
     clearInput(); pausedRef.current = false; setPaused(false);
     // Prepare independently of the previous result; no new authorization or active time.
@@ -209,14 +224,26 @@ export function BalanceExperience({ integration, officialController, hostContext
   };
   const failPreparation = (id: number) => {
     if (!readiness.current.fail(id)) return;
+    audio.cancelPreparation();
     clearPreparationTimer(); setPreparation('error');
   };
   const rendererReady = async (id: number) => {
+    let audioResult = await audioPreparation.current;
+    if (!readiness.current.current(id) || audioResult === 'cancelled') return;
+    if (audioResult === 'ready' && !audio.readyForAttempt) { audio.cancelPreparation(); audioResult = 'degraded'; }
+    setAudioDegraded(audioResult === 'degraded');
     if (!readiness.current.ready(id, performance.now())) {
       if (readiness.current.status === 'error') { clearPreparationTimer(); setPreparation('error'); }
       return;
     }
-    clearPreparationTimer(); setPreparation('ready');
+    clearPreparationTimer();
+    if (audioResult === 'degraded') { setPreparation('audio-error'); return; }
+    await completePreparation(id);
+  };
+  const completePreparation = async (id: number) => {
+    if (!readiness.current.current(id) || readiness.current.status !== 'ready' || startedPreparation.current === id) return;
+    startedPreparation.current = id;
+    setPreparation('ready');
     if (practiceRequested.current) official.practice();
     const result = await official.start();
     if (!readiness.current.current(id)) return;
@@ -282,8 +309,8 @@ export function BalanceExperience({ integration, officialController, hostContext
           {!preparing&&!isGameplayInputActive(phase)&&<ConnectionStatus context={hostContext} onRetry={onRetryConnection} onPractice={onContinuePractice} />}
         </div>
         <div className="audio-controls" aria-label="Audio settings">
-          <label><input checked={musicEnabled} onChange={(event) => setMusicEnabled(event.target.checked)} type="checkbox" /> Music</label>
-          <label><input checked={sfxEnabled} onChange={(event) => setSfxEnabled(event.target.checked)} type="checkbox" /> SFX</label>
+          <label><input disabled={preparing || isGameplayInputActive(phase)} checked={musicEnabled} onChange={(event) => setMusicEnabled(event.target.checked)} type="checkbox" /> Music</label>
+          <label><input disabled={preparing || isGameplayInputActive(phase)} checked={sfxEnabled} onChange={(event) => setSfxEnabled(event.target.checked)} type="checkbox" /> SFX</label>
         </div>
       </header>
 
@@ -305,8 +332,9 @@ export function BalanceExperience({ integration, officialController, hostContext
         {officialView.phase==='accepted'?'Official score saved':officialView.phase==='checking'?'Checking your run…':officialView.phase==='unconfirmed'?'Submission not confirmed · Retry':officialView.phase==='preparing'?'Preparing official run…':officialView.phase==='other-server'?'Official scoring not available in this server':officialView.phase==='unavailable'?'Shared scores unavailable · Practice only':officialView.phase==='eligible'?'New verified runs available in this server':'Practice · Saved in this browser'}
       </div>}
       {!preparing&&officialView.phase==='eligible'&&!historyExplained&&<aside className="official-intro"><p>Server records start with new verified runs. Your existing scores stay in this browser as practice history.</p><button className="secondary-button" onClick={()=>{setHistoryExplained(true);try{localStorage.setItem('arcade.official-history-explained.v1','yes');}catch{/* optional local acknowledgment */}}}>Got it</button></aside>}
+      {audioDegraded && <p role="status">Sound unavailable for this run. You can try again on your next Start.</p>}
       <section className="cabinet balance-stage" data-viewport-mode={getViewportLayoutMode(phase)}>
-        {(preparation === 'preparing' || preparation === 'ready') && <BalanceGameCanvas key={rendererId} clockRef={rendererClockRef} active={() => phaseRef.current === 'playing'} onReady={() => void rendererReady(rendererId)} onError={() => failPreparation(rendererId)} onPause={pauseRun} configRef={configRef} onGameOver={handleGameOver} onTick={handleTick} />}
+        {(preparation === 'preparing' || preparation === 'ready' || preparation === 'audio-error') && <BalanceGameCanvas key={rendererId} clockRef={rendererClockRef} active={() => phaseRef.current === 'playing'} onReady={() => void rendererReady(rendererId)} onError={() => failPreparation(rendererId)} onPause={pauseRun} configRef={configRef} onGameOver={handleGameOver} onTick={handleTick} />}
 
         {phase === 'home' && !preparing && (
           <div className="start-panel balance-start-panel">
@@ -319,7 +347,8 @@ export function BalanceExperience({ integration, officialController, hostContext
 
         {preparing && <div className="renderer-preparation" role="status" aria-live="polite">
           <strong>Cdawg Balance</strong>
-          <p>{preparation === 'error' ? 'Cdawg could not get ready. Please try again.' : 'Getting Cdawg ready…'}</p>
+          <p>{preparation === 'audio-error' ? 'Sound could not get ready. Retry or play this run without sound.' : preparation === 'error' ? 'Cdawg could not get ready. Please try again.' : 'Getting Cdawg ready…'}</p>
+          {preparation === 'audio-error' && <><button className="primary-button" onClick={() => void completePreparation(rendererId)} type="button">Play without sound</button>{readiness.current.tries < MAX_PREPARATION_TRIES && <button className="secondary-button" onClick={() => { readiness.current.fail(rendererId); startRun(practiceRequested.current); }} type="button">Retry sound</button>}</>}
           {preparation === 'error' && readiness.current.tries < MAX_PREPARATION_TRIES && <button className="primary-button" onClick={() => startRun(practiceRequested.current)} type="button">Retry</button>}
           {preparation === 'error' && readiness.current.tries >= MAX_PREPARATION_TRIES && <p>Please return and try again later.</p>}
           <button className="secondary-button" onClick={cancelPreparation} type="button">Back</button>
