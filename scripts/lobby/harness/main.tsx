@@ -7,9 +7,11 @@ window.clearTimeout=id=>{if(typeof id==='number')timers.delete(id);ct(id);};wind
 window.clearInterval=id=>{if(typeof id==='number')intervals.delete(id);ci(id);};window.requestAnimationFrame=fn=>{const id=r(now=>{frames.delete(id);fn(now);});frames.add(id);return id;};window.cancelAnimationFrame=id=>{frames.delete(id);cr(id);};
 const listeners=new Map<string,Set<EventListenerOrEventListenerObject>>();for(const [label,target] of [['window',window],['document',document]] as const){const add=target.addEventListener.bind(target),remove=target.removeEventListener.bind(target);target.addEventListener=((type:string,fn:EventListenerOrEventListenerObject,options?:any)=>{const key=label+type+Boolean(typeof options==='boolean'?options:options?.capture);if(!listeners.has(key))listeners.set(key,new Set());listeners.get(key)!.add(fn);add(type,fn,options);}) as typeof target.addEventListener;target.removeEventListener=((type:string,fn:EventListenerOrEventListenerObject,options?:any)=>{listeners.get(label+type+Boolean(typeof options==='boolean'?options:options?.capture))?.delete(fn);remove(type,fn,options);}) as typeof target.removeEventListener;}
 let audioOpen=0;const Audio=window.AudioContext;window.AudioContext=class extends Audio {constructor(...args:ConstructorParameters<typeof Audio>){super(...args);audioOpen++;}async close(){if(this.state!=='closed'){await super.close();audioOpen--;}}};
+let scenes=0,peakScenes=0;
 const transitionEvents:{event:string;ms:number;[key:string]:unknown}[]=[];
 const fault={decode:0,fail:false,timeout:false,warmup:0,active:0};
 (window as any).__diag={emit:(event:string,values:Record<string,unknown>={})=>{
+ if(event==='SCENE_CREATE'){scenes++;peakScenes=Math.max(peakScenes,scenes);}else if(event==='SCENE_DESTROY')scenes--;
  transitionEvents.push({event,ms:Math.round(performance.now()*10)/10,...values});
  if(transitionEvents.length>6000)transitionEvents.shift();
  const stall=event==='SCENE_CREATE'?fault.warmup:event==='CLOCK_FIRST'?fault.active:0;
@@ -42,15 +44,15 @@ const sleep=(ms:number)=>new Promise<void>(resolve=>nativeTimeout(resolve,ms));
 const button=(name:string)=>Array.from(document.querySelectorAll<HTMLButtonElement>('#root button')).find(b=>b.textContent?.replace('→','').trim()===name&&!b.disabled);
 async function until(test:()=>boolean,ms=20000){const end=performance.now()+ms;while(!test()){if(performance.now()>end)throw Error('bounded wait expired');await sleep(50);}}
 const samples:any[]=[];let initialResources:any[]=[];let frameTimes:number[]=[];let last=0;const frame=(now:number)=>{if(last)frameTimes.push(now-last);last=now;if(frameTimes.length<600)nativeRAF(frame);};nativeRAF(frame);
-const snapshot=()=>({timers:timers.size,intervals:intervals.size,frames:frames.size,listeners:Array.from(listeners.values()).reduce((n,s)=>n+s.size,0),audioOpen,canvases:document.querySelectorAll('canvas').length,hostListeners:hostListeners.size,auth,attempts,submissions,cancels,reads,accepted,practiceResults,resumes,heap:(performance as any).memory?.usedJSHeapSize??null});
+const snapshot=()=>({scenes,peakScenes,timers:timers.size,intervals:intervals.size,frames:frames.size,listeners:Array.from(listeners.values()).reduce((n,s)=>n+s.size,0),audioOpen,canvases:document.querySelectorAll('canvas').length,hostListeners:hostListeners.size,auth,attempts,submissions,cancels,reads,accepted,practiceResults,resumes,heap:(performance as any).memory?.usedJSHeapSize??null});
 nativeTimeout(()=>{initialResources=performance.getEntriesByType('resource').map((e:any)=>({name:e.name.split('/').pop(),bytes:e.encodedBodySize,duration:e.duration}));},3000);
-nativeInterval(()=>{const sorted=[...frameTimes].sort((a,b)=>a-b);document.getElementById('metrics')!.textContent=JSON.stringify({status,scenario,route:runtime.destination,phase:runtime.phase,official:runtime.official.view.phase,current:snapshot(),samples,reconciliation,transitionEvents,errors,frame:{count:sorted.length,p50:sorted[Math.floor(sorted.length*.5)],p95:sorted[Math.floor(sorted.length*.95)],max:sorted.at(-1)},initialResources},null,2);},500);
+nativeInterval(()=>{if(location.search.includes('buffered=1'))return;const sorted=[...frameTimes].sort((a,b)=>a-b);document.getElementById('metrics')!.textContent=JSON.stringify({status,scenario,route:runtime.destination,phase:runtime.phase,official:runtime.official.view.phase,current:snapshot(),samples,reconciliation,transitionEvents,errors,frame:{count:sorted.length,p50:sorted[Math.floor(sorted.length*.5)],p95:sorted[Math.floor(sorted.length*.95)],max:sorted.at(-1)},initialResources},null,2);},500);
 document.getElementById('soak')!.addEventListener('click',async()=>{if(status==='running')return;status='running';try{choose('official');await until(()=>!!button('Play Balance'));await sleep(8500);samples.push({stage:'initial',...snapshot()});
  for(let cycle=0;cycle<20;cycle++){button('Play Balance')!.click();await until(()=>!!button('Start Game'));button('Start Game')!.click();await until(()=>runtime.phase==='countdown');await sleep(100);button('Leave run · Back to Arcade')!.click();await until(()=>!!button('Play Balance'));await sleep(80);if([0,9,19].includes(cycle))samples.push({stage:`cancel-${cycle+1}`,...snapshot()});}
- async function completeRun(){await until(()=>{const resume=button('Resume');if(resume){resumes++;resume.click();}return runtime.phase==='results';},40000);await until(()=>['accepted','nonqualifying'].includes(runtime.official.view.phase));}
+ async function completeRun(){await until(()=>{const resume=button('Resume');if(resume){resumes++;throw Error('unexpected lifecycle interruption');}return runtime.phase==='results';},40000);await until(()=>['accepted','nonqualifying'].includes(runtime.official.view.phase));}
  for(let cycle=0;cycle<3;cycle++){button('Play Balance')!.click();await until(()=>!!button('Start Game'));button('Start Game')!.click();await completeRun();if(cycle===0){button('Play Again')!.click();await until(()=>runtime.phase!=='results');await completeRun();}button('Back to Arcade')!.click();await until(()=>!!button('Play Balance'));await sleep(8500);samples.push({stage:`completed-${cycle+1}`,...snapshot()});}
  for(let cycle=0;cycle<30;cycle++){button('Play Balance')!.click();await until(()=>!!button('Start Game'));button('Back to Arcade')!.click();await until(()=>!!button('Play Balance'));}
- await sleep(8500);samples.push({stage:'final',...snapshot()});if(snapshot().listeners!==samples[0].listeners||timers.size||intervals.size||frames.size)throw Error('resource cleanup mismatch');if(errors.length||audioOpen||document.querySelectorAll('canvas').length||hostListeners.size!==1||auth!==1||attempts!==24||submissions!==4||cancels!==20||accepted<1)throw Error('lifecycle count mismatch');status='passed';
+ await sleep(8500);samples.push({stage:'final',...snapshot()});if(snapshot().listeners!==samples[0].listeners||timers.size||intervals.size||frames.size)throw Error('resource cleanup mismatch');if(scenes||peakScenes>1||errors.length||audioOpen||document.querySelectorAll('canvas').length||hostListeners.size!==1||auth!==1||attempts!==24||submissions!==4||cancels!==20||accepted!==4||practiceResults||resumes)throw Error('lifecycle count mismatch');status='passed';
  }catch(e){status='failed: '+(e instanceof Error?e.message:'test error');}});
 
 const reconciliation:any[]=[];
@@ -72,7 +74,13 @@ document.getElementById('reconcile')!.addEventListener('click',async()=>{
  await enter();button('Start Game')!.click();
  if(spec.name==='preparation-hidden')hidden();
  if(spec.name==='preparation-blur'){window.dispatchEvent(new Event('blur'));document.dispatchEvent(new Event('visibilitychange'));}
- await until(()=>runtime.phase==='countdown');
+ await until(()=>runtime.phase==='countdown'||!!button('Play without sound'));
+ if(button('Play without sound')){
+  check(spec.name==='warmup-5000'||spec.name==='decode-5000','unexpected audio degradation');
+  check(attempts===issued&&submissions===sent,'issuance before degraded-audio choice');
+  trace('DEGRADED_AUDIO_CONFIRMED');button('Play without sound')!.click();
+  await until(()=>runtime.phase==='countdown');
+ }
  if(spec.name==='countdown-hidden'){hidden();await until(()=>!!button('Resume'));button('Resume')!.click();}
  if(spec.name==='countdown-blur'){window.dispatchEvent(new Event('blur'));await until(()=>!!button('Resume'));button('Resume')!.click();}
  await until(()=>runtime.phase==='playing'||runtime.phase==='results');
@@ -85,7 +93,8 @@ document.getElementById('reconcile')!.addEventListener('click',async()=>{
  await until(()=>runtime.phase==='results');await until(()=>['accepted','nonqualifying'].includes(runtime.official.view.phase));
  if(spec.name==='play-again'){button('Play Again')!.click();await until(()=>runtime.phase!=='results');await until(()=>runtime.phase==='results');await until(()=>runtime.official.view.phase==='accepted');}
  const e=[...transitionEvents],ready=e.findIndex(x=>x.event==='RENDERER_READY'),issue=e.findIndex(x=>x.event==='ATTEMPT_ISSUED'),countdown=e.findIndex(x=>x.event==='COUNTDOWN_START');
- check(ready>=0&&issue>ready&&countdown>issue,'readiness ordering');
+ const composite=e.findIndex(x=>x.event==='COMPOSITE_READY');
+ check(ready>=0&&composite>ready&&issue>composite&&countdown>issue,'composite readiness ordering');
  check(e.filter(x=>x.event==='FRAME_RENDERED').every(x=>x.v004&&!x.legacy),'non-V004 frame');
  // Initial gameplay excludes preparation/countdown; Resume preserves accepted ticks.
  let expectedTicks:unknown=0;

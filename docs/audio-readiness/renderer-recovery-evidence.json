@@ -1,0 +1,2055 @@
+{
+  "status": "CORRECTION_PASSED_RELEASE_STOPPED",
+  "base": "432cba05fbd0c8842524143b04f0bef53ad54f53",
+  "branch": "codex/fix-renderer-audio-recovery-test",
+  "focused": {
+    "muted": {
+      "spec": {
+        "name": "warmup-5000",
+        "warmup": 5000,
+        "activity": true,
+        "recovery": "muted"
+      },
+      "phase": "results",
+      "events": [
+        {
+          "event": "DOCUMENT_START",
+          "ms": 5,
+          "focused": false,
+          "hidden": false
+        },
+        {
+          "event": "CONTEXT_READY",
+          "ms": 155.6,
+          "activity": true
+        },
+        {
+          "event": "DOM_PHASE",
+          "ms": 156.2,
+          "phase": "home"
+        },
+        {
+          "event": "CAPTURE_PAGESHOW",
+          "ms": 166,
+          "windowTarget": false,
+          "focused": false,
+          "hidden": false
+        },
+        {
+          "event": "CAPTURE_FOCUS",
+          "ms": 416,
+          "windowTarget": true,
+          "focused": true,
+          "hidden": false
+        },
+        {
+          "event": "START_ACTIVATE",
+          "ms": 418.1
+        },
+        {
+          "event": "AUDIO_PREPARE",
+          "ms": 418.5
+        },
+        {
+          "event": "AUDIO_RESUME_START",
+          "ms": 593.6
+        },
+        {
+          "event": "PREPARATION_START",
+          "ms": 593.8
+        },
+        {
+          "event": "START_ACTIVATE",
+          "ms": 594
+        },
+        {
+          "event": "AUDIO_RESUMED",
+          "ms": 594.2
+        },
+        {
+          "event": "AUDIO_NODE_CREATED",
+          "ms": 595.7
+        },
+        {
+          "event": "AUDIO_NODE_CREATED",
+          "ms": 602.4
+        },
+        {
+          "event": "PHASER_PRELOAD",
+          "ms": 705
+        },
+        {
+          "event": "DOM_PHASE",
+          "ms": 707.1,
+          "phase": "preparing"
+        },
+        {
+          "event": "DOM_CANVAS",
+          "ms": 707.1,
+          "count": 1
+        },
+        {
+          "event": "IMAGE_PROCESS_START",
+          "ms": 714.1
+        },
+        {
+          "event": "ATLAS_RESOURCE",
+          "ms": 715.1,
+          "duration": 5.5,
+          "transfer": 377256,
+          "decodedBytes": 376956,
+          "end": 711.9
+        },
+        {
+          "event": "IMAGE_PROCESS_START",
+          "ms": 717.7
+        },
+        {
+          "event": "IMAGE_PROCESS_START",
+          "ms": 717.9
+        },
+        {
+          "event": "IMAGE_PROCESS_START",
+          "ms": 718.1
+        },
+        {
+          "event": "IMAGE_DECODE_COMPLETE",
+          "ms": 719
+        },
+        {
+          "event": "GPU_TEXTURE_UPLOAD",
+          "ms": 749.7,
+          "duration": 30.5
+        },
+        {
+          "event": "TEXTURE_REGISTERED",
+          "ms": 750.1
+        },
+        {
+          "event": "ATLAS_RESOURCE",
+          "ms": 750.4,
+          "duration": 6.8,
+          "transfer": 376132,
+          "decodedBytes": 375832,
+          "end": 713.1
+        },
+        {
+          "event": "ATLAS_RESOURCE",
+          "ms": 750.4,
+          "duration": 7.2,
+          "transfer": 517082,
+          "decodedBytes": 516782,
+          "end": 713.7
+        },
+        {
+          "event": "ATLAS_RESOURCE",
+          "ms": 750.4,
+          "duration": 5.6,
+          "transfer": 333482,
+          "decodedBytes": 333182,
+          "end": 712.2
+        },
+        {
+          "event": "IMAGE_DECODE_COMPLETE",
+          "ms": 750.5
+        },
+        {
+          "event": "GPU_TEXTURE_UPLOAD",
+          "ms": 775.7,
+          "duration": 25.2
+        },
+        {
+          "event": "TEXTURE_REGISTERED",
+          "ms": 775.9
+        },
+        {
+          "event": "IMAGE_DECODE_COMPLETE",
+          "ms": 775.9
+        },
+        {
+          "event": "GPU_TEXTURE_UPLOAD",
+          "ms": 804.7,
+          "duration": 28.5
+        },
+        {
+          "event": "TEXTURE_REGISTERED",
+          "ms": 804.8
+        },
+        {
+          "event": "IMAGE_DECODE_COMPLETE",
+          "ms": 806.2
+        },
+        {
+          "event": "GPU_TEXTURE_UPLOAD",
+          "ms": 844.1,
+          "duration": 37.8
+        },
+        {
+          "event": "TEXTURE_REGISTERED",
+          "ms": 844.3
+        },
+        {
+          "event": "PHASER_LOAD_COMPLETE",
+          "ms": 844.4
+        },
+        {
+          "event": "SCENE_CREATE",
+          "ms": 844.5
+        },
+        {
+          "event": "TEXTURE_REGISTERED",
+          "ms": 5863.8
+        },
+        {
+          "event": "TEXTURE_REGISTERED",
+          "ms": 5870.2
+        },
+        {
+          "event": "FRAME_RENDERED",
+          "ms": 5880.1,
+          "frame": 1,
+          "width": 974,
+          "height": 343.59375,
+          "v004": true,
+          "legacy": false,
+          "ticks": 0,
+          "accumulator": 0
+        },
+        {
+          "event": "FRAME_RENDERED",
+          "ms": 5883,
+          "frame": 2,
+          "width": 974,
+          "height": 343.59375,
+          "v004": true,
+          "legacy": false,
+          "ticks": 0,
+          "accumulator": 0
+        },
+        {
+          "event": "AUDIO_SETTLED",
+          "ms": 5887.5,
+          "result": "degraded"
+        },
+        {
+          "event": "FRAME_RENDERED",
+          "ms": 5896,
+          "frame": 3,
+          "width": 974,
+          "height": 343.59375,
+          "v004": true,
+          "legacy": false,
+          "ticks": 0,
+          "accumulator": 0
+        },
+        {
+          "event": "RENDERER_READY",
+          "ms": 5896
+        },
+        {
+          "event": "COMPOSITE_READY",
+          "ms": 5896.4,
+          "audio": "degraded"
+        },
+        {
+          "event": "FRAME_RENDERED",
+          "ms": 5907.1,
+          "frame": 4,
+          "width": 974,
+          "height": 343.59375,
+          "v004": true,
+          "legacy": false,
+          "ticks": 0,
+          "accumulator": 0
+        },
+        {
+          "event": "FRAME_RENDERED",
+          "ms": 5924.2,
+          "frame": 5,
+          "width": 974,
+          "height": 343.59375,
+          "v004": true,
+          "legacy": false,
+          "ticks": 0,
+          "accumulator": 0
+        },
+        {
+          "event": "FRAME_RENDERED",
+          "ms": 5940.8,
+          "frame": 6,
+          "width": 974,
+          "height": 343.59375,
+          "v004": true,
+          "legacy": false,
+          "ticks": 0,
+          "accumulator": 0
+        },
+        {
+          "event": "DOM_PHASE",
+          "ms": 5957,
+          "phase": "error"
+        },
+        {
+          "event": "OLD_EXPECTATION_REJECTED",
+          "ms": 6215.7
+        },
+        {
+          "event": "RECOVERY_CHOICE",
+          "ms": 6215.7,
+          "choice": "muted"
+        },
+        {
+          "event": "ATTEMPT_ISSUED",
+          "ms": 6216.8
+        },
+        {
+          "event": "COUNTDOWN_START",
+          "ms": 6222
+        },
+        {
+          "event": "AUDIO_CUE",
+          "ms": 6222.2,
+          "playable": false
+        },
+        {
+          "event": "DOM_PHASE",
+          "ms": 6257.6,
+          "phase": "countdown"
+        },
+        {
+          "event": "AUDIO_CUE",
+          "ms": 7024.7,
+          "playable": false
+        },
+        {
+          "event": "AUDIO_CUE",
+          "ms": 7840.4,
+          "playable": false
+        },
+        {
+          "event": "COUNTDOWN_COMPLETE",
+          "ms": 8640.6
+        },
+        {
+          "event": "CLOCK_FIRST",
+          "ms": 8657.4,
+          "ticks": 0,
+          "accumulator": 0
+        },
+        {
+          "event": "DOM_PHASE",
+          "ms": 8660,
+          "phase": "playing"
+        },
+        {
+          "event": "AUDIO_CUE",
+          "ms": 9207,
+          "playable": false
+        },
+        {
+          "event": "AUDIO_CUE",
+          "ms": 9224.6,
+          "playable": false
+        },
+        {
+          "event": "AUDIO_CUE",
+          "ms": 9256.9,
+          "playable": false
+        },
+        {
+          "event": "AUDIO_CUE",
+          "ms": 9278,
+          "playable": false
+        },
+        {
+          "event": "AUDIO_CUE",
+          "ms": 9307.2,
+          "playable": false
+        },
+        {
+          "event": "AUDIO_CUE",
+          "ms": 9323.8,
+          "playable": false
+        },
+        {
+          "event": "AUDIO_CUE",
+          "ms": 9339.8,
+          "playable": false
+        },
+        {
+          "event": "AUDIO_CUE",
+          "ms": 9356.9,
+          "playable": false
+        },
+        {
+          "event": "AUDIO_CUE",
+          "ms": 9377.4,
+          "playable": false
+        },
+        {
+          "event": "SUBMIT",
+          "ms": 9758.1,
+          "ticks": 42,
+          "interruptions": 0
+        },
+        {
+          "event": "AUDIO_CUE",
+          "ms": 9758.3,
+          "playable": false
+        },
+        {
+          "event": "DOM_PHASE",
+          "ms": 9761.8,
+          "phase": "results"
+        },
+        {
+          "event": "DOM_CANVAS",
+          "ms": 9761.9,
+          "count": 0
+        }
+      ]
+    },
+    "retry": {
+      "spec": {
+        "name": "warmup-5000-retry",
+        "warmup": 5000,
+        "activity": true,
+        "recovery": "retry"
+      },
+      "phase": "results",
+      "events": [
+        {
+          "event": "DOCUMENT_START",
+          "ms": 5,
+          "focused": false,
+          "hidden": false
+        },
+        {
+          "event": "CONTEXT_READY",
+          "ms": 167.5,
+          "activity": true
+        },
+        {
+          "event": "DOM_PHASE",
+          "ms": 168,
+          "phase": "home"
+        },
+        {
+          "event": "CAPTURE_PAGESHOW",
+          "ms": 178.7,
+          "windowTarget": false,
+          "focused": false,
+          "hidden": false
+        },
+        {
+          "event": "CAPTURE_FOCUS",
+          "ms": 427.5,
+          "windowTarget": true,
+          "focused": true,
+          "hidden": false
+        },
+        {
+          "event": "START_ACTIVATE",
+          "ms": 428.5
+        },
+        {
+          "event": "AUDIO_PREPARE",
+          "ms": 428.6
+        },
+        {
+          "event": "AUDIO_RESUME_START",
+          "ms": 617.5
+        },
+        {
+          "event": "PREPARATION_START",
+          "ms": 617.7
+        },
+        {
+          "event": "START_ACTIVATE",
+          "ms": 617.9
+        },
+        {
+          "event": "AUDIO_RESUMED",
+          "ms": 618.1
+        },
+        {
+          "event": "AUDIO_NODE_CREATED",
+          "ms": 619.8
+        },
+        {
+          "event": "AUDIO_NODE_CREATED",
+          "ms": 636.2
+        },
+        {
+          "event": "PHASER_PRELOAD",
+          "ms": 771.4
+        },
+        {
+          "event": "DOM_PHASE",
+          "ms": 776.1,
+          "phase": "preparing"
+        },
+        {
+          "event": "DOM_CANVAS",
+          "ms": 776.1,
+          "count": 1
+        },
+        {
+          "event": "IMAGE_PROCESS_START",
+          "ms": 796.5
+        },
+        {
+          "event": "ATLAS_RESOURCE",
+          "ms": 796.9,
+          "duration": 22,
+          "transfer": 376132,
+          "decodedBytes": 375832,
+          "end": 795.4
+        },
+        {
+          "event": "IMAGE_PROCESS_START",
+          "ms": 797
+        },
+        {
+          "event": "IMAGE_PROCESS_START",
+          "ms": 797.3
+        },
+        {
+          "event": "IMAGE_PROCESS_START",
+          "ms": 797.4
+        },
+        {
+          "event": "ATLAS_RESOURCE",
+          "ms": 800.2,
+          "duration": 22.1,
+          "transfer": 377256,
+          "decodedBytes": 376956,
+          "end": 795.7
+        },
+        {
+          "event": "ATLAS_RESOURCE",
+          "ms": 800.2,
+          "duration": 22.6,
+          "transfer": 517082,
+          "decodedBytes": 516782,
+          "end": 796.3
+        },
+        {
+          "event": "ATLAS_RESOURCE",
+          "ms": 800.2,
+          "duration": 22.1,
+          "transfer": 333482,
+          "decodedBytes": 333182,
+          "end": 795.9
+        },
+        {
+          "event": "IMAGE_DECODE_COMPLETE",
+          "ms": 801
+        },
+        {
+          "event": "GPU_TEXTURE_UPLOAD",
+          "ms": 835.3,
+          "duration": 34.2
+        },
+        {
+          "event": "TEXTURE_REGISTERED",
+          "ms": 835.9
+        },
+        {
+          "event": "IMAGE_DECODE_COMPLETE",
+          "ms": 836
+        },
+        {
+          "event": "GPU_TEXTURE_UPLOAD",
+          "ms": 866.4,
+          "duration": 30.4
+        },
+        {
+          "event": "TEXTURE_REGISTERED",
+          "ms": 866.6
+        },
+        {
+          "event": "IMAGE_DECODE_COMPLETE",
+          "ms": 866.8
+        },
+        {
+          "event": "GPU_TEXTURE_UPLOAD",
+          "ms": 895.5,
+          "duration": 28.5
+        },
+        {
+          "event": "TEXTURE_REGISTERED",
+          "ms": 895.6
+        },
+        {
+          "event": "IMAGE_DECODE_COMPLETE",
+          "ms": 896
+        },
+        {
+          "event": "GPU_TEXTURE_UPLOAD",
+          "ms": 936.7,
+          "duration": 40.5
+        },
+        {
+          "event": "TEXTURE_REGISTERED",
+          "ms": 936.9
+        },
+        {
+          "event": "PHASER_LOAD_COMPLETE",
+          "ms": 937
+        },
+        {
+          "event": "SCENE_CREATE",
+          "ms": 937.1
+        },
+        {
+          "event": "TEXTURE_REGISTERED",
+          "ms": 5957.5
+        },
+        {
+          "event": "TEXTURE_REGISTERED",
+          "ms": 5961.3
+        },
+        {
+          "event": "FRAME_RENDERED",
+          "ms": 5972.2,
+          "frame": 1,
+          "width": 974,
+          "height": 343.59375,
+          "v004": true,
+          "legacy": false,
+          "ticks": 0,
+          "accumulator": 0
+        },
+        {
+          "event": "FRAME_RENDERED",
+          "ms": 5979.3,
+          "frame": 2,
+          "width": 974,
+          "height": 343.59375,
+          "v004": true,
+          "legacy": false,
+          "ticks": 0,
+          "accumulator": 0
+        },
+        {
+          "event": "AUDIO_SETTLED",
+          "ms": 5982.1,
+          "result": "degraded"
+        },
+        {
+          "event": "FRAME_RENDERED",
+          "ms": 5989.9,
+          "frame": 3,
+          "width": 974,
+          "height": 343.59375,
+          "v004": true,
+          "legacy": false,
+          "ticks": 0,
+          "accumulator": 0
+        },
+        {
+          "event": "RENDERER_READY",
+          "ms": 5990
+        },
+        {
+          "event": "COMPOSITE_READY",
+          "ms": 5990.8,
+          "audio": "degraded"
+        },
+        {
+          "event": "FRAME_RENDERED",
+          "ms": 5997.2,
+          "frame": 4,
+          "width": 974,
+          "height": 343.59375,
+          "v004": true,
+          "legacy": false,
+          "ticks": 0,
+          "accumulator": 0
+        },
+        {
+          "event": "FRAME_RENDERED",
+          "ms": 6012.8,
+          "frame": 5,
+          "width": 974,
+          "height": 343.59375,
+          "v004": true,
+          "legacy": false,
+          "ticks": 0,
+          "accumulator": 0
+        },
+        {
+          "event": "FRAME_RENDERED",
+          "ms": 6029.3,
+          "frame": 6,
+          "width": 974,
+          "height": 343.59375,
+          "v004": true,
+          "legacy": false,
+          "ticks": 0,
+          "accumulator": 0
+        },
+        {
+          "event": "DOM_PHASE",
+          "ms": 6069.1,
+          "phase": "error"
+        },
+        {
+          "event": "OLD_EXPECTATION_REJECTED",
+          "ms": 6309.7
+        },
+        {
+          "event": "RECOVERY_CHOICE",
+          "ms": 6309.8,
+          "choice": "retry"
+        },
+        {
+          "event": "START_ACTIVATE",
+          "ms": 6310.2
+        },
+        {
+          "event": "AUDIO_PREPARE",
+          "ms": 6310.2
+        },
+        {
+          "event": "AUDIO_RESUME_START",
+          "ms": 6310.2
+        },
+        {
+          "event": "PREPARATION_START",
+          "ms": 6310.6
+        },
+        {
+          "event": "AUDIO_RESUMED",
+          "ms": 6310.8
+        },
+        {
+          "event": "PHASER_PRELOAD",
+          "ms": 6392.3
+        },
+        {
+          "event": "DOM_PHASE",
+          "ms": 6395.5,
+          "phase": "preparing"
+        },
+        {
+          "event": "AUDIO_WARMED",
+          "ms": 6395.6
+        },
+        {
+          "event": "AUDIO_SETTLED",
+          "ms": 6395.6,
+          "result": "ready"
+        },
+        {
+          "event": "IMAGE_PROCESS_START",
+          "ms": 6402.4
+        },
+        {
+          "event": "ATLAS_RESOURCE",
+          "ms": 6402.8,
+          "duration": 9.2,
+          "transfer": 0,
+          "decodedBytes": 375832,
+          "end": 6401.9
+        },
+        {
+          "event": "IMAGE_PROCESS_START",
+          "ms": 6402.9
+        },
+        {
+          "event": "IMAGE_PROCESS_START",
+          "ms": 6403.4
+        },
+        {
+          "event": "ATLAS_RESOURCE",
+          "ms": 6403.9,
+          "duration": 9.6,
+          "transfer": 0,
+          "decodedBytes": 376956,
+          "end": 6402.3
+        },
+        {
+          "event": "ATLAS_RESOURCE",
+          "ms": 6403.9,
+          "duration": 9.4,
+          "transfer": 0,
+          "decodedBytes": 333182,
+          "end": 6402.2
+        },
+        {
+          "event": "IMAGE_PROCESS_START",
+          "ms": 6404
+        },
+        {
+          "event": "IMAGE_DECODE_COMPLETE",
+          "ms": 6405.2
+        },
+        {
+          "event": "GPU_TEXTURE_UPLOAD",
+          "ms": 6433.3,
+          "duration": 28
+        },
+        {
+          "event": "TEXTURE_REGISTERED",
+          "ms": 6433.4
+        },
+        {
+          "event": "IMAGE_DECODE_COMPLETE",
+          "ms": 6433.7
+        },
+        {
+          "event": "GPU_TEXTURE_UPLOAD",
+          "ms": 6457.9,
+          "duration": 24.1
+        },
+        {
+          "event": "TEXTURE_REGISTERED",
+          "ms": 6458.2
+        },
+        {
+          "event": "IMAGE_DECODE_COMPLETE",
+          "ms": 6458.3
+        },
+        {
+          "event": "GPU_TEXTURE_UPLOAD",
+          "ms": 6485.3,
+          "duration": 27
+        },
+        {
+          "event": "TEXTURE_REGISTERED",
+          "ms": 6485.5
+        },
+        {
+          "event": "ATLAS_RESOURCE",
+          "ms": 6485.5,
+          "duration": 10.2,
+          "transfer": 0,
+          "decodedBytes": 516782,
+          "end": 6403
+        },
+        {
+          "event": "IMAGE_DECODE_COMPLETE",
+          "ms": 6487.5
+        },
+        {
+          "event": "GPU_TEXTURE_UPLOAD",
+          "ms": 6530.5,
+          "duration": 42.9
+        },
+        {
+          "event": "TEXTURE_REGISTERED",
+          "ms": 6530.7
+        },
+        {
+          "event": "PHASER_LOAD_COMPLETE",
+          "ms": 6530.7
+        },
+        {
+          "event": "SCENE_CREATE",
+          "ms": 6530.7
+        },
+        {
+          "event": "TEXTURE_REGISTERED",
+          "ms": 6531.3
+        },
+        {
+          "event": "TEXTURE_REGISTERED",
+          "ms": 6532
+        },
+        {
+          "event": "FRAME_RENDERED",
+          "ms": 6534.9,
+          "frame": 1,
+          "width": 974,
+          "height": 343.59375,
+          "v004": true,
+          "legacy": false,
+          "ticks": 0,
+          "accumulator": 0
+        },
+        {
+          "event": "FRAME_RENDERED",
+          "ms": 6538.1,
+          "frame": 2,
+          "width": 974,
+          "height": 343.59375,
+          "v004": true,
+          "legacy": false,
+          "ticks": 0,
+          "accumulator": 0
+        },
+        {
+          "event": "FRAME_RENDERED",
+          "ms": 6548.2,
+          "frame": 3,
+          "width": 974,
+          "height": 343.59375,
+          "v004": true,
+          "legacy": false,
+          "ticks": 0,
+          "accumulator": 0
+        },
+        {
+          "event": "RENDERER_READY",
+          "ms": 6548.3
+        },
+        {
+          "event": "COMPOSITE_READY",
+          "ms": 6548.4,
+          "audio": "ready"
+        },
+        {
+          "event": "ATTEMPT_ISSUED",
+          "ms": 6549.1
+        },
+        {
+          "event": "COUNTDOWN_START",
+          "ms": 6554.2
+        },
+        {
+          "event": "AUDIO_CUE",
+          "ms": 6554.3,
+          "playable": true
+        },
+        {
+          "event": "AUDIO_NODE_CREATED",
+          "ms": 6554.3
+        },
+        {
+          "event": "FRAME_RENDERED",
+          "ms": 6562,
+          "frame": 4,
+          "width": 974,
+          "height": 343.59375,
+          "v004": true,
+          "legacy": false,
+          "ticks": 0,
+          "accumulator": 0
+        },
+        {
+          "event": "DOM_PHASE",
+          "ms": 6569,
+          "phase": "countdown"
+        },
+        {
+          "event": "FRAME_RENDERED",
+          "ms": 6581.9,
+          "frame": 5,
+          "width": 974,
+          "height": 343.59375,
+          "v004": true,
+          "legacy": false,
+          "ticks": 0,
+          "accumulator": 0
+        },
+        {
+          "event": "FRAME_RENDERED",
+          "ms": 6595.1,
+          "frame": 6,
+          "width": 974,
+          "height": 343.59375,
+          "v004": true,
+          "legacy": false,
+          "ticks": 0,
+          "accumulator": 0
+        },
+        {
+          "event": "AUDIO_CUE",
+          "ms": 7362.4,
+          "playable": true
+        },
+        {
+          "event": "AUDIO_NODE_CREATED",
+          "ms": 7362.4
+        },
+        {
+          "event": "AUDIO_CUE",
+          "ms": 8162,
+          "playable": true
+        },
+        {
+          "event": "AUDIO_NODE_CREATED",
+          "ms": 8162
+        },
+        {
+          "event": "COUNTDOWN_COMPLETE",
+          "ms": 8983.7
+        },
+        {
+          "event": "CLOCK_FIRST",
+          "ms": 8995.9,
+          "ticks": 0,
+          "accumulator": 0
+        },
+        {
+          "event": "DOM_PHASE",
+          "ms": 9071.8,
+          "phase": "playing"
+        },
+        {
+          "event": "AUDIO_CUE",
+          "ms": 9544.8,
+          "playable": true
+        },
+        {
+          "event": "AUDIO_NODE_CREATED",
+          "ms": 9544.8
+        },
+        {
+          "event": "AUDIO_CUE",
+          "ms": 9562.1,
+          "playable": true
+        },
+        {
+          "event": "AUDIO_NODE_CREATED",
+          "ms": 9562.1
+        },
+        {
+          "event": "AUDIO_CUE",
+          "ms": 9583,
+          "playable": true
+        },
+        {
+          "event": "AUDIO_NODE_CREATED",
+          "ms": 9583
+        },
+        {
+          "event": "AUDIO_CUE",
+          "ms": 9611.8,
+          "playable": true
+        },
+        {
+          "event": "AUDIO_NODE_CREATED",
+          "ms": 9611.8
+        },
+        {
+          "event": "AUDIO_CUE",
+          "ms": 9628.6,
+          "playable": true
+        },
+        {
+          "event": "AUDIO_NODE_CREATED",
+          "ms": 9628.6
+        },
+        {
+          "event": "AUDIO_CUE",
+          "ms": 9645.4,
+          "playable": true
+        },
+        {
+          "event": "AUDIO_NODE_CREATED",
+          "ms": 9645.4
+        },
+        {
+          "event": "AUDIO_CUE",
+          "ms": 9662.3,
+          "playable": true
+        },
+        {
+          "event": "AUDIO_NODE_CREATED",
+          "ms": 9662.3
+        },
+        {
+          "event": "AUDIO_CUE",
+          "ms": 9681.1,
+          "playable": true
+        },
+        {
+          "event": "AUDIO_NODE_CREATED",
+          "ms": 9681.1
+        },
+        {
+          "event": "AUDIO_CUE",
+          "ms": 9711.2,
+          "playable": true
+        },
+        {
+          "event": "AUDIO_NODE_CREATED",
+          "ms": 9711.2
+        },
+        {
+          "event": "SUBMIT",
+          "ms": 10095.6,
+          "ticks": 42,
+          "interruptions": 0
+        },
+        {
+          "event": "AUDIO_CUE",
+          "ms": 10095.7,
+          "playable": true
+        },
+        {
+          "event": "AUDIO_NODE_CREATED",
+          "ms": 10095.7
+        },
+        {
+          "event": "DOM_PHASE",
+          "ms": 10170,
+          "phase": "results"
+        }
+      ]
+    },
+    "cancel": {
+      "spec": {
+        "name": "warmup-5000-cancel",
+        "warmup": 5000,
+        "activity": true,
+        "recovery": "cancel"
+      },
+      "phase": "results",
+      "events": [
+        {
+          "event": "DOCUMENT_START",
+          "ms": 3.1,
+          "focused": false,
+          "hidden": false
+        },
+        {
+          "event": "CONTEXT_READY",
+          "ms": 147.5,
+          "activity": true
+        },
+        {
+          "event": "DOM_PHASE",
+          "ms": 148.1,
+          "phase": "home"
+        },
+        {
+          "event": "CAPTURE_PAGESHOW",
+          "ms": 157.6,
+          "windowTarget": false,
+          "focused": false,
+          "hidden": false
+        },
+        {
+          "event": "CAPTURE_FOCUS",
+          "ms": 406.8,
+          "windowTarget": true,
+          "focused": true,
+          "hidden": false
+        },
+        {
+          "event": "START_ACTIVATE",
+          "ms": 409.1
+        },
+        {
+          "event": "AUDIO_PREPARE",
+          "ms": 409.4
+        },
+        {
+          "event": "AUDIO_RESUME_START",
+          "ms": 582.4
+        },
+        {
+          "event": "PREPARATION_START",
+          "ms": 583
+        },
+        {
+          "event": "START_ACTIVATE",
+          "ms": 583.6
+        },
+        {
+          "event": "AUDIO_RESUMED",
+          "ms": 583.8
+        },
+        {
+          "event": "AUDIO_NODE_CREATED",
+          "ms": 584
+        },
+        {
+          "event": "AUDIO_NODE_CREATED",
+          "ms": 591.5
+        },
+        {
+          "event": "PHASER_PRELOAD",
+          "ms": 687.4
+        },
+        {
+          "event": "DOM_PHASE",
+          "ms": 689.2,
+          "phase": "preparing"
+        },
+        {
+          "event": "DOM_CANVAS",
+          "ms": 689.2,
+          "count": 1
+        },
+        {
+          "event": "IMAGE_PROCESS_START",
+          "ms": 699.1
+        },
+        {
+          "event": "ATLAS_RESOURCE",
+          "ms": 700,
+          "duration": 8.7,
+          "transfer": 376132,
+          "decodedBytes": 375832,
+          "end": 696.8
+        },
+        {
+          "event": "IMAGE_PROCESS_START",
+          "ms": 700.1
+        },
+        {
+          "event": "IMAGE_PROCESS_START",
+          "ms": 700.3
+        },
+        {
+          "event": "IMAGE_PROCESS_START",
+          "ms": 700.5
+        },
+        {
+          "event": "ATLAS_RESOURCE",
+          "ms": 702.2,
+          "duration": 9,
+          "transfer": 377256,
+          "decodedBytes": 376956,
+          "end": 697.5
+        },
+        {
+          "event": "ATLAS_RESOURCE",
+          "ms": 702.2,
+          "duration": 9.6,
+          "transfer": 517082,
+          "decodedBytes": 516782,
+          "end": 698.2
+        },
+        {
+          "event": "ATLAS_RESOURCE",
+          "ms": 702.2,
+          "duration": 9.6,
+          "transfer": 333482,
+          "decodedBytes": 333182,
+          "end": 698.2
+        },
+        {
+          "event": "IMAGE_DECODE_COMPLETE",
+          "ms": 702.5
+        },
+        {
+          "event": "GPU_TEXTURE_UPLOAD",
+          "ms": 730.4,
+          "duration": 27.8
+        },
+        {
+          "event": "TEXTURE_REGISTERED",
+          "ms": 730.9
+        },
+        {
+          "event": "IMAGE_DECODE_COMPLETE",
+          "ms": 731.1
+        },
+        {
+          "event": "GPU_TEXTURE_UPLOAD",
+          "ms": 757.1,
+          "duration": 26
+        },
+        {
+          "event": "TEXTURE_REGISTERED",
+          "ms": 757.3
+        },
+        {
+          "event": "IMAGE_DECODE_COMPLETE",
+          "ms": 757.4
+        },
+        {
+          "event": "GPU_TEXTURE_UPLOAD",
+          "ms": 798.4,
+          "duration": 40.9
+        },
+        {
+          "event": "TEXTURE_REGISTERED",
+          "ms": 798.5
+        },
+        {
+          "event": "IMAGE_DECODE_COMPLETE",
+          "ms": 800
+        },
+        {
+          "event": "GPU_TEXTURE_UPLOAD",
+          "ms": 825,
+          "duration": 24.9
+        },
+        {
+          "event": "TEXTURE_REGISTERED",
+          "ms": 825.1
+        },
+        {
+          "event": "PHASER_LOAD_COMPLETE",
+          "ms": 825.2
+        },
+        {
+          "event": "SCENE_CREATE",
+          "ms": 825.3
+        },
+        {
+          "event": "TEXTURE_REGISTERED",
+          "ms": 5843
+        },
+        {
+          "event": "TEXTURE_REGISTERED",
+          "ms": 5845.7
+        },
+        {
+          "event": "FRAME_RENDERED",
+          "ms": 5852.3,
+          "frame": 1,
+          "width": 974,
+          "height": 343.59375,
+          "v004": true,
+          "legacy": false,
+          "ticks": 0,
+          "accumulator": 0
+        },
+        {
+          "event": "FRAME_RENDERED",
+          "ms": 5858.1,
+          "frame": 2,
+          "width": 974,
+          "height": 343.59375,
+          "v004": true,
+          "legacy": false,
+          "ticks": 0,
+          "accumulator": 0
+        },
+        {
+          "event": "AUDIO_SETTLED",
+          "ms": 5863.1,
+          "result": "degraded"
+        },
+        {
+          "event": "FRAME_RENDERED",
+          "ms": 5873.1,
+          "frame": 3,
+          "width": 974,
+          "height": 343.59375,
+          "v004": true,
+          "legacy": false,
+          "ticks": 0,
+          "accumulator": 0
+        },
+        {
+          "event": "RENDERER_READY",
+          "ms": 5873.1
+        },
+        {
+          "event": "COMPOSITE_READY",
+          "ms": 5873.5,
+          "audio": "degraded"
+        },
+        {
+          "event": "FRAME_RENDERED",
+          "ms": 5878.9,
+          "frame": 4,
+          "width": 974,
+          "height": 343.59375,
+          "v004": true,
+          "legacy": false,
+          "ticks": 0,
+          "accumulator": 0
+        },
+        {
+          "event": "FRAME_RENDERED",
+          "ms": 5895,
+          "frame": 5,
+          "width": 974,
+          "height": 343.59375,
+          "v004": true,
+          "legacy": false,
+          "ticks": 0,
+          "accumulator": 0
+        },
+        {
+          "event": "FRAME_RENDERED",
+          "ms": 5912.4,
+          "frame": 6,
+          "width": 974,
+          "height": 343.59375,
+          "v004": true,
+          "legacy": false,
+          "ticks": 0,
+          "accumulator": 0
+        },
+        {
+          "event": "DOM_PHASE",
+          "ms": 5949.1,
+          "phase": "error"
+        },
+        {
+          "event": "OLD_EXPECTATION_REJECTED",
+          "ms": 6187.4
+        },
+        {
+          "event": "PREPARATION_CANCEL",
+          "ms": 6187.7
+        },
+        {
+          "event": "DOM_PHASE",
+          "ms": 6250,
+          "phase": "home"
+        },
+        {
+          "event": "DOM_CANVAS",
+          "ms": 6250,
+          "count": 0
+        },
+        {
+          "event": "START_ACTIVATE",
+          "ms": 6583.2
+        },
+        {
+          "event": "AUDIO_PREPARE",
+          "ms": 6583.2
+        },
+        {
+          "event": "AUDIO_RESUME_START",
+          "ms": 6583.3
+        },
+        {
+          "event": "PREPARATION_START",
+          "ms": 6583.5
+        },
+        {
+          "event": "PHASER_PRELOAD",
+          "ms": 6668.7
+        },
+        {
+          "event": "PREPARATION_CANCEL",
+          "ms": 6670.2
+        },
+        {
+          "event": "AUDIO_SETTLED",
+          "ms": 6670.2,
+          "result": "cancelled"
+        },
+        {
+          "event": "START_ACTIVATE",
+          "ms": 6670.6
+        },
+        {
+          "event": "AUDIO_PREPARE",
+          "ms": 6670.6
+        },
+        {
+          "event": "AUDIO_RESUME_START",
+          "ms": 6670.6
+        },
+        {
+          "event": "PREPARATION_START",
+          "ms": 6670.7
+        },
+        {
+          "event": "AUDIO_RESUMED",
+          "ms": 6671.2
+        },
+        {
+          "event": "DOM_PHASE",
+          "ms": 6671.3,
+          "phase": "preparing"
+        },
+        {
+          "event": "IMAGE_PROCESS_START",
+          "ms": 6677.8
+        },
+        {
+          "event": "ATLAS_RESOURCE",
+          "ms": 6679.1,
+          "duration": 7.3,
+          "transfer": 0,
+          "decodedBytes": 376956,
+          "end": 6676.3
+        },
+        {
+          "event": "PHASER_PRELOAD",
+          "ms": 6739
+        },
+        {
+          "event": "IMAGE_DECODE_COMPLETE",
+          "ms": 6740.4
+        },
+        {
+          "event": "ATLAS_RESOURCE",
+          "ms": 6740.5,
+          "duration": 7.6,
+          "transfer": 0,
+          "decodedBytes": 375832,
+          "end": 6676.5
+        },
+        {
+          "event": "ATLAS_RESOURCE",
+          "ms": 6740.5,
+          "duration": 7.4,
+          "transfer": 0,
+          "decodedBytes": 333182,
+          "end": 6676.5
+        },
+        {
+          "event": "ATLAS_RESOURCE",
+          "ms": 6740.5,
+          "duration": 7.6,
+          "transfer": 0,
+          "decodedBytes": 516782,
+          "end": 6676.7
+        },
+        {
+          "event": "AUDIO_WARMED",
+          "ms": 6740.6
+        },
+        {
+          "event": "AUDIO_SETTLED",
+          "ms": 6740.6,
+          "result": "ready"
+        },
+        {
+          "event": "IMAGE_PROCESS_START",
+          "ms": 6743.2
+        },
+        {
+          "event": "ATLAS_RESOURCE",
+          "ms": 6744.8,
+          "duration": 1.6,
+          "transfer": 0,
+          "decodedBytes": 375832,
+          "end": 6740.9
+        },
+        {
+          "event": "IMAGE_PROCESS_START",
+          "ms": 6744.8
+        },
+        {
+          "event": "IMAGE_PROCESS_START",
+          "ms": 6745.1
+        },
+        {
+          "event": "IMAGE_PROCESS_START",
+          "ms": 6745.3
+        },
+        {
+          "event": "ATLAS_RESOURCE",
+          "ms": 6746.3,
+          "duration": 1.8,
+          "transfer": 0,
+          "decodedBytes": 376956,
+          "end": 6741.3
+        },
+        {
+          "event": "ATLAS_RESOURCE",
+          "ms": 6746.3,
+          "duration": 2.2,
+          "transfer": 0,
+          "decodedBytes": 516782,
+          "end": 6741.7
+        },
+        {
+          "event": "ATLAS_RESOURCE",
+          "ms": 6746.3,
+          "duration": 2.4,
+          "transfer": 0,
+          "decodedBytes": 333182,
+          "end": 6741.9
+        },
+        {
+          "event": "IMAGE_DECODE_COMPLETE",
+          "ms": 6746.4
+        },
+        {
+          "event": "GPU_TEXTURE_UPLOAD",
+          "ms": 6774.7,
+          "duration": 28.3
+        },
+        {
+          "event": "TEXTURE_REGISTERED",
+          "ms": 6774.9
+        },
+        {
+          "event": "IMAGE_DECODE_COMPLETE",
+          "ms": 6775
+        },
+        {
+          "event": "GPU_TEXTURE_UPLOAD",
+          "ms": 6800.5,
+          "duration": 25.5
+        },
+        {
+          "event": "TEXTURE_REGISTERED",
+          "ms": 6800.7
+        },
+        {
+          "event": "IMAGE_DECODE_COMPLETE",
+          "ms": 6800.8
+        },
+        {
+          "event": "GPU_TEXTURE_UPLOAD",
+          "ms": 6838.3,
+          "duration": 37.5
+        },
+        {
+          "event": "TEXTURE_REGISTERED",
+          "ms": 6838.5
+        },
+        {
+          "event": "IMAGE_DECODE_COMPLETE",
+          "ms": 6838.6
+        },
+        {
+          "event": "GPU_TEXTURE_UPLOAD",
+          "ms": 6862.7,
+          "duration": 24.1
+        },
+        {
+          "event": "TEXTURE_REGISTERED",
+          "ms": 6862.9
+        },
+        {
+          "event": "PHASER_LOAD_COMPLETE",
+          "ms": 6862.9
+        },
+        {
+          "event": "SCENE_CREATE",
+          "ms": 6862.9
+        },
+        {
+          "event": "TEXTURE_REGISTERED",
+          "ms": 6863.7
+        },
+        {
+          "event": "TEXTURE_REGISTERED",
+          "ms": 6864.9
+        },
+        {
+          "event": "FRAME_RENDERED",
+          "ms": 6866.8,
+          "frame": 1,
+          "width": 974,
+          "height": 343.59375,
+          "v004": true,
+          "legacy": false,
+          "ticks": 0,
+          "accumulator": 0
+        },
+        {
+          "event": "DOM_CANVAS",
+          "ms": 6867.4,
+          "count": 1
+        },
+        {
+          "event": "FRAME_RENDERED",
+          "ms": 6868,
+          "frame": 2,
+          "width": 974,
+          "height": 343.59375,
+          "v004": true,
+          "legacy": false,
+          "ticks": 0,
+          "accumulator": 0
+        },
+        {
+          "event": "FRAME_RENDERED",
+          "ms": 6879.5,
+          "frame": 3,
+          "width": 974,
+          "height": 343.59375,
+          "v004": true,
+          "legacy": false,
+          "ticks": 0,
+          "accumulator": 0
+        },
+        {
+          "event": "RENDERER_READY",
+          "ms": 6879.5
+        },
+        {
+          "event": "COMPOSITE_READY",
+          "ms": 6879.5,
+          "audio": "ready"
+        },
+        {
+          "event": "ATTEMPT_ISSUED",
+          "ms": 6880
+        },
+        {
+          "event": "COUNTDOWN_START",
+          "ms": 6882.8
+        },
+        {
+          "event": "AUDIO_CUE",
+          "ms": 6882.9,
+          "playable": true
+        },
+        {
+          "event": "AUDIO_NODE_CREATED",
+          "ms": 6882.9
+        },
+        {
+          "event": "FRAME_RENDERED",
+          "ms": 6895.9,
+          "frame": 4,
+          "width": 974,
+          "height": 343.59375,
+          "v004": true,
+          "legacy": false,
+          "ticks": 0,
+          "accumulator": 0
+        },
+        {
+          "event": "FRAME_RENDERED",
+          "ms": 6911.3,
+          "frame": 5,
+          "width": 974,
+          "height": 343.59375,
+          "v004": true,
+          "legacy": false,
+          "ticks": 0,
+          "accumulator": 0
+        },
+        {
+          "event": "FRAME_RENDERED",
+          "ms": 6928.3,
+          "frame": 6,
+          "width": 974,
+          "height": 343.59375,
+          "v004": true,
+          "legacy": false,
+          "ticks": 0,
+          "accumulator": 0
+        },
+        {
+          "event": "DOM_PHASE",
+          "ms": 6949.4,
+          "phase": "countdown"
+        },
+        {
+          "event": "AUDIO_CUE",
+          "ms": 7694.9,
+          "playable": true
+        },
+        {
+          "event": "AUDIO_NODE_CREATED",
+          "ms": 7694.9
+        },
+        {
+          "event": "AUDIO_CUE",
+          "ms": 8495,
+          "playable": true
+        },
+        {
+          "event": "AUDIO_NODE_CREATED",
+          "ms": 8495
+        },
+        {
+          "event": "COUNTDOWN_COMPLETE",
+          "ms": 9311.6
+        },
+        {
+          "event": "CLOCK_FIRST",
+          "ms": 9328,
+          "ticks": 0,
+          "accumulator": 0
+        },
+        {
+          "event": "DOM_PHASE",
+          "ms": 9351.7,
+          "phase": "playing"
+        },
+        {
+          "event": "AUDIO_CUE",
+          "ms": 9865.5,
+          "playable": true
+        },
+        {
+          "event": "AUDIO_NODE_CREATED",
+          "ms": 9865.5
+        },
+        {
+          "event": "AUDIO_CUE",
+          "ms": 9894,
+          "playable": true
+        },
+        {
+          "event": "AUDIO_NODE_CREATED",
+          "ms": 9894
+        },
+        {
+          "event": "AUDIO_CUE",
+          "ms": 9911.3,
+          "playable": true
+        },
+        {
+          "event": "AUDIO_NODE_CREATED",
+          "ms": 9911.3
+        },
+        {
+          "event": "AUDIO_CUE",
+          "ms": 9928,
+          "playable": true
+        },
+        {
+          "event": "AUDIO_NODE_CREATED",
+          "ms": 9928
+        },
+        {
+          "event": "AUDIO_CUE",
+          "ms": 9966.4,
+          "playable": true
+        },
+        {
+          "event": "AUDIO_NODE_CREATED",
+          "ms": 9966.4
+        },
+        {
+          "event": "AUDIO_CUE",
+          "ms": 9994.4,
+          "playable": true
+        },
+        {
+          "event": "AUDIO_NODE_CREATED",
+          "ms": 9994.5
+        },
+        {
+          "event": "AUDIO_CUE",
+          "ms": 10011.2,
+          "playable": true
+        },
+        {
+          "event": "AUDIO_NODE_CREATED",
+          "ms": 10011.2
+        },
+        {
+          "event": "AUDIO_CUE",
+          "ms": 10028.8,
+          "playable": true
+        },
+        {
+          "event": "AUDIO_NODE_CREATED",
+          "ms": 10028.8
+        },
+        {
+          "event": "SUBMIT",
+          "ms": 10411.9,
+          "ticks": 42,
+          "interruptions": 0
+        },
+        {
+          "event": "AUDIO_CUE",
+          "ms": 10412.3,
+          "playable": true
+        },
+        {
+          "event": "AUDIO_NODE_CREATED",
+          "ms": 10412.3
+        },
+        {
+          "event": "DOM_PHASE",
+          "ms": 10504.3,
+          "phase": "results"
+        }
+      ]
+    },
+    "originalFailure": {
+      "failure": "bounded wait",
+      "events": [
+        {
+          "event": "DOM_PHASE",
+          "ms": 26.5,
+          "phase": "home"
+        },
+        {
+          "event": "AUDIO_PREPARE",
+          "ms": 280.5
+        },
+        {
+          "event": "DOM_PHASE",
+          "ms": 372.1,
+          "phase": "preparing"
+        },
+        {
+          "event": "FRAME_RENDERED",
+          "ms": 5525.2,
+          "frame": 1,
+          "width": 974,
+          "height": 343.59375,
+          "v004": true,
+          "legacy": false,
+          "ticks": 0
+        },
+        {
+          "event": "FRAME_RENDERED",
+          "ms": 5533.5,
+          "frame": 2,
+          "width": 974,
+          "height": 343.59375,
+          "v004": true,
+          "legacy": false,
+          "ticks": 0
+        },
+        {
+          "event": "AUDIO_SETTLED",
+          "ms": 5536.7,
+          "result": "degraded"
+        },
+        {
+          "event": "FRAME_RENDERED",
+          "ms": 5540.3,
+          "frame": 3,
+          "width": 974,
+          "height": 343.59375,
+          "v004": true,
+          "legacy": false,
+          "ticks": 0
+        },
+        {
+          "event": "RENDERER_READY",
+          "ms": 5540.4
+        },
+        {
+          "event": "COMPOSITE_READY",
+          "ms": 5540.7,
+          "audio": "degraded"
+        },
+        {
+          "event": "FRAME_RENDERED",
+          "ms": 5556,
+          "frame": 4,
+          "width": 974,
+          "height": 343.59375,
+          "v004": true,
+          "legacy": false,
+          "ticks": 0
+        },
+        {
+          "event": "FRAME_RENDERED",
+          "ms": 5572.6,
+          "frame": 5,
+          "width": 974,
+          "height": 343.59375,
+          "v004": true,
+          "legacy": false,
+          "ticks": 0
+        },
+        {
+          "event": "FRAME_RENDERED",
+          "ms": 5588,
+          "frame": 6,
+          "width": 974,
+          "height": 343.59375,
+          "v004": true,
+          "legacy": false,
+          "ticks": 0
+        },
+        {
+          "event": "DOM_PHASE",
+          "ms": 5627.3,
+          "phase": "error"
+        }
+      ]
+    }
+  },
+  "suites": [
+    {
+      "name": "unit",
+      "pass": true
+    },
+    {
+      "name": "typecheck",
+      "pass": true
+    },
+    {
+      "name": "production",
+      "pass": true
+    },
+    {
+      "name": "database",
+      "pass": true
+    },
+    {
+      "name": "enabled-build",
+      "pass": true
+    },
+    {
+      "name": "enabled-smoke",
+      "pass": true
+    },
+    {
+      "name": "readiness-typecheck",
+      "pass": true
+    },
+    {
+      "name": "lobby-typecheck",
+      "pass": true
+    },
+    {
+      "name": "atlas",
+      "pass": true
+    },
+    {
+      "name": "brand",
+      "pass": true
+    },
+    {
+      "name": "raster",
+      "pass": true
+    },
+    {
+      "name": "host",
+      "pass": true
+    },
+    {
+      "name": "glb",
+      "pass": true
+    },
+    {
+      "name": "graph",
+      "pass": true
+    },
+    {
+      "name": "boundaries",
+      "pass": true
+    },
+    {
+      "name": "security",
+      "pass": true
+    }
+  ],
+  "browserGates": [
+    {
+      "name": "renderer",
+      "pass": true
+    },
+    {
+      "name": "audio",
+      "pass": true
+    },
+    {
+      "name": "reconcile",
+      "pass": true
+    },
+    {
+      "name": "soak",
+      "pass": false
+    }
+  ],
+  "artifacts": {
+    "ordinaryFiles": 45,
+    "enabledFiles": 17,
+    "reproduce": true,
+    "matchReviewedBase": true
+  },
+  "stoppedGate": {
+    "name": "lifecycle soak",
+    "error": "CDP timeout: Runtime.evaluate",
+    "timeoutMs": 20000,
+    "progressSecondsLastReported": 60,
+    "freshCompletionEvidence": false,
+    "priorSoakArtifactExcluded": true
+  },
+  "notRun": [
+    "rapid cancellation suite",
+    "responsive suite",
+    "headed repeat suite",
+    "merge",
+    "production release gates",
+    "deployment"
+  ]
+}
