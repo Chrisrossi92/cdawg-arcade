@@ -21,7 +21,7 @@ for(const group of ['balance0','balance1','reactions0','reactions1'])for(const e
  const path=`assets/brand/mascot/runtime/cdawg-mascot-${group}-v004.${ext}`,bytes=readFileSync(path);
  ok(sha(bytes)===sha(execFileSync('git',['show',`b226446:${path}`])),`V004 ${path}`);assets.push({path,bytes:bytes.length,sha256:sha(bytes)});
 }
-const forbidden=[/-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/,/\bAKIA[0-9A-Z]{16}\b/,/\bgh[pousr]_[A-Za-z0-9]{30,}\b/,/DUMMY_ONLY_(?:ARTIFACT|DATABASE)_SENTINEL/,/__diag|__audio|fixture-player|CONTEXT_CREATED|COMPOSITE_READY|diagnostic-output/];
+const forbidden=[/-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/,/\bAKIA[0-9A-Z]{16}\b/,/\bgh[pousr]_[A-Za-z0-9]{30,}\b/,/DUMMY_ONLY_(?:ARTIFACT|DATABASE)_SENTINEL/,/__diag|__audio|fixture-player|CONTEXT_CREATED|COMPOSITE_READY|clockSnapshot|AUDIO_NODE_CREATED|RECOVERY_CHOICE|OLD_EXPECTATION_REJECTED|diagnostic-output/];
 let securityFiles=0;
 for(const dir of ['dist','build','tmp/lobby-integration/dist'])for(const p of files(dir).filter(p=>/\.(js|css|html|json)$/.test(p))){
  const text=readFileSync(`${dir}/${p}`,'utf8');for(const pattern of forbidden)ok(!pattern.test(text),`artifact boundary ${p}`);securityFiles++;

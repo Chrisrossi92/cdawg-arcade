@@ -1,10 +1,11 @@
 import {browser,sleep} from './cdp.mjs';
 import {writeFileSync} from 'node:fs';
 const mode=process.argv[2]??'direct';
+const isolated=process.argv.find(a=>a.startsWith('--case='))?.slice(7);
 const b=await browser(!process.argv.includes('--headed'));
 try{
  await b.send('Emulation.setDeviceMetricsOverride',{width:1400,height:1100,deviceScaleFactor:1,mobile:false});
- await b.send('Page.navigate',{url:'http://127.0.0.1:5231'+(mode==='direct'?'/matrix.html':mode==='responsive'?'/lobby/responsive.html':'/lobby/index.html')});
+ await b.send('Page.navigate',{url:'http://127.0.0.1:5231'+(mode==='direct'?'/matrix.html'+(isolated?'?case='+encodeURIComponent(isolated):''):mode==='responsive'?'/lobby/responsive.html':'/lobby/index.html')});
  const button=mode==='direct'?'Run readiness matrix':mode==='soak'?'Run lifecycle soak':mode==='rapid'?'Run rapid preparation cancellation':mode==='responsive'?'Run viewport matrix':'Run readiness reconciliation';
  await b.until(`[...document.querySelectorAll('button')].some(b=>b.textContent.trim()===${JSON.stringify(button)})`);await sleep(500);await b.click(button);
  const expr=mode==='direct'?"document.querySelector('#status')?.textContent":mode==='responsive'?"document.querySelector('#matrix-report')?.textContent":"document.querySelector('#metrics')?.textContent";
