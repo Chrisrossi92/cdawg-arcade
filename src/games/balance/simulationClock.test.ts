@@ -84,7 +84,7 @@ describe('render-independent simulation', () => {
     expect(replay.state.survivalMs).toBe(0); expect(replay.state.previousInput).toBe('none');
     expect(replay.state.failed).toBe(false);
   });
-  it('countdown consumes 2400 ms independently of survival and rejects stalls', () => {
+  it('countdown consumes 2400 ms independently of survival and discards stalls', () => {
     for (const hz of rates) {
       const countdown = new CountdownClock(), c = new SimulationClock(balanceConfig);
       countdown.frame(0); let result = 'counting'; let f=0;
@@ -93,7 +93,7 @@ describe('render-independent simulation', () => {
       expect(c.state.survivalMs).toBe(0);
     }
     const countdown = new CountdownClock(); countdown.frame(0);
-    expect(countdown.frame(5000)).toBe('interrupted'); expect(countdown.elapsed).toBe(0);
+    expect(countdown.frame(5000)).toBe('counting'); expect(countdown.elapsed).toBe(0);
   });
   it('preserves the calibrated 60 Hz reference outcomes', () => {
     expect(run(60).survivalMs).toBe(700);
@@ -143,5 +143,46 @@ describe('interruption and input lifecycle', () => {
       stop(); win.dispatchEvent(new Event('blur'));
     }
     expect(pauses).toBe(6);
+  });
+});
+
+
+describe('countdown gap boundary', () => {
+  it.each([99.9, 100, 100.1, 250, 5000])('handles a %s ms interval without simulation progress', gap => {
+    const countdown = new CountdownClock(), simulation = new SimulationClock(balanceConfig);
+    countdown.frame(0);
+    expect(countdown.frame(gap)).toBe('counting');
+    expect(countdown.elapsed).toBe(gap <= 100 ? gap : 0);
+    expect(simulation.ticks).toBe(0);
+    expect(simulation.state.survivalMs).toBe(0);
+    expect(countdown.frame(gap + 16)).toBe('counting');
+    expect(countdown.elapsed).toBe((gap <= 100 ? gap : 0) + 16);
+  });
+  it('discards repeated gaps, then starts cleanly and still rejects an active stall', () => {
+    const countdown = new CountdownClock(); let now = 0;
+    countdown.frame(now);
+    for (let i = 0; i < 23; i++) {
+      expect(countdown.frame(now += 250)).toBe('counting');
+      expect(countdown.elapsed).toBe(i * 100);
+      expect(countdown.frame(now += 100)).toBe('counting');
+    }
+    expect(countdown.frame(now += 5000)).toBe('counting');
+    expect(countdown.elapsed).toBe(2300);
+    expect(countdown.frame(now += 100)).toBe('ready');
+    const simulation = new SimulationClock(balanceConfig);
+    expect(simulation.frame(now, balanceConfig)).toEqual({steps:0, interrupted:false});
+    expect(simulation.ticks).toBe(0);
+    expect(simulation.frame(now + 5, balanceConfig).steps).toBe(0);
+    expect(simulation.frame(now + 106, balanceConfig)).toEqual({steps:0, interrupted:true});
+    expect(simulation.ticks).toBe(0);
+    expect(simulation.paused).toBe(true);
+    simulation.resume();
+    simulation.frame(now + 1000, balanceConfig);
+    expect(simulation.frame(now + 1012, balanceConfig).steps).toBe(0);
+  });
+  it.each([-1, NaN, Infinity])('keeps invalid or regressing time fail-closed: %s', time => {
+    const countdown = new CountdownClock(); countdown.frame(0);
+    expect(countdown.frame(time)).toBe('interrupted');
+    expect(countdown.elapsed).toBe(0);
   });
 });

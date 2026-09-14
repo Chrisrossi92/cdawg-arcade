@@ -24,6 +24,6 @@ run('raster',['scripts/brand/validate-raster.mjs'],{preserve:['docs/brand/arcade
 run('host',['scripts/lobby/validate-assets.mjs'],{preserve:['docs/brand/lobby-host-validation.json']});
 run('glb',['scripts/mascot/validate-correction-glb.mjs','assets/brand/mascot/correction-v004/source/cdawg-mascot-correction-v004.glb','tmp/audio-readiness/glb.json']);
 run('graph',['scripts/lobby/validate-build.mjs'],{preserve:['docs/brand/lobby-build-validation.json']});
-run('boundaries',['scripts/audio-readiness/validate.mjs']);
+run('boundaries',['scripts/audio-readiness/validate.mjs',...process.argv.slice(2)]);
 run('security',['scripts/scan-production.mjs']);
 if(outcomes.some(o=>!o.pass))process.exitCode=1;

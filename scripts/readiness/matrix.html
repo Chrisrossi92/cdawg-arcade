@@ -1,5 +1,5 @@
 <!doctype html><title>V004 readiness regression matrix</title><style>body{font:14px system-ui;background:#eee}iframe{display:block;border:0}pre{white-space:pre-wrap}</style><button id="run">Run readiness matrix</button><pre id="status">ready</pre><div id="frame"></div><pre id="report"></pre><script>
-let cases=[{name:'cold',activity:true},{name:'warm',activity:true},{name:'practice'},{name:'unfocused',unfocused:true,activity:true},{name:'narrow-reduced',narrow:true,reduced:true,activity:true},...[100,250,1000,5000].map(warmup=>({name:'warmup-'+warmup,warmup,activity:true})),{name:'decode-5000',decode:5000,activity:true},{name:'active-stall',stall:250,activity:true},{name:'load-failure',fail:true,activity:true},{name:'timeout',timeout:true,activity:true},{name:'cancel-stale',decode:1000,activity:true},{name:'play-again',activity:true}];
+let cases=[{name:'cold',activity:true},{name:'warm',activity:true},{name:'practice'},{name:'unfocused',unfocused:true,activity:true},{name:'narrow-reduced',narrow:true,reduced:true,activity:true},...[100,250,1000,5000].map(warmup=>({name:'warmup-'+warmup,warmup,activity:true,...(warmup===5000?{recovery:'muted'}:{})})),{name:'warmup-5000-retry',warmup:5000,activity:true,recovery:'retry'},{name:'warmup-5000-cancel',warmup:5000,activity:true,recovery:'cancel'},{name:'decode-5000',decode:5000,activity:true},{name:'active-stall',stall:250,activity:true},{name:'load-failure',fail:true,activity:true},{name:'timeout',timeout:true,activity:true},{name:'cancel-stale',decode:1000,activity:true},{name:'play-again',activity:true}];
 if(location.search.includes('cold'))cases=cases.filter(s=>['cold','warm'].includes(s.name));
 if(location.search.includes('subset'))cases=cases.filter(s=>['narrow-reduced','load-failure','cancel-stale','play-again'].includes(s.name));
 const isolatedCase=new URLSearchParams(location.search).get('case');
@@ -11,8 +11,55 @@ async function until(f,ms=22000){const end=performance.now()+ms;while(!f()){if(p
 function check(v,why){if(!v)throw Error(why);}
 async function save(){await fetch('/evidence',{method:'POST',body:JSON.stringify(results)});}
 function validate(spec,ev){const ready=ev.find(e=>e.event==='RENDERER_READY'),countdown=ev.find(e=>e.event==='COUNTDOWN_START'),first=ev.find(e=>e.event==='CLOCK_FIRST');check(ready&&countdown&&first,'ready/countdown/clock absent');check(ready.ms<=countdown.ms&&countdown.ms+2390<=first.ms,'early countdown/clock');check(ev.filter(e=>e.event==='FRAME_RENDERED').every(e=>e.v004&&!e.legacy),'non-V004 frame');check(ev.filter(e=>e.event==='ATTEMPT_ISSUED').every(e=>e.ms>=ready.ms),'early official issuance');check(!ev.some(e=>e.event==='CLOCK_INTERRUPTED')||spec.stall,'readiness-induced pause');}
-document.querySelector('#run').onclick=async()=>{try{for(const spec of cases){latest={events:[]};layout=[];frame=document.createElement('iframe');frame.width=spec.narrow?375:1280;frame.height=spec.narrow?667:720;const q=new URLSearchParams();for(const [k,v]of Object.entries(spec))if(k!=='name')q.set(k,v===true?'1':v);frame.src='/candidate.html?'+q;document.querySelector('#frame').replaceChildren(frame);await until(()=>frame.contentDocument?.querySelector('#root button'));await until(()=>button('Start Game'));await sleep(250);if(!spec.unfocused)frame.contentWindow.focus();button('Start Game').click();button('Start Game')?.click();
- if(spec.fail||spec.timeout){await until(()=>latest.phase==='error');check(!latest.events.some(e=>['COUNTDOWN_START','ATTEMPT_ISSUED','CLOCK_FIRST'].includes(e.event)),'failed load started run');if(spec.fail){for(let n=0;n<2;n++){button('Retry').click();button('Retry')?.click();await sleep(400);await until(()=>latest.phase==='error');}check(!button('Retry'),'unbounded retry');}button('Back').click();await until(()=>latest.phase==='home');}
+// Read the instrumented application clock; no fixture-owned substitute clock.
+function recoveryIdle(){
+ const ev=frame.contentWindow.__diag.events,clock=frame.contentWindow.__diag.clockSnapshot();
+ check(!ev.some(e=>['ATTEMPT_ISSUED','COUNTDOWN_START','CLOCK_FIRST','CLOCK_FRAME','SUBMIT'].includes(e.event)),'recovery issued or advanced');
+ check(clock.ticks===0&&clock.accumulator===0&&clock.phase!=='playing'&&clock.phase!=='countdown','recovery clock active');
+ check(ev.filter(e=>e.event==='FRAME_RENDERED').every(e=>e.v004&&!e.legacy&&e.ticks===0&&e.accumulator===0),'recovery frame advanced');
+ return clock;
+}
+async function recover(spec){
+ await until(()=>button('Retry sound')&&button('Play without sound'));
+ const diag=frame.contentWindow.__diag;
+ check(diag.events.some(e=>e.event==='INJECT_AUDIO_WARMUP'),'audio deadline fault not injected');
+ check(diag.events.some(e=>e.event==='AUDIO_SETTLED'&&e.result==='degraded'),'audio deadline did not fail closed');
+ recoveryIdle();await sleep(300);recoveryIdle();
+ // The old automatic-completion expectation must reject this actual recovery trace.
+ let oldRejected=false;try{validate(spec,diag.events);}catch(error){oldRejected=error.message==='ready/countdown/clock absent';}
+ check(oldRejected,'old automatic-completion assertion accepted recovery');
+ diag.emit('OLD_EXPECTATION_REJECTED');
+ if(spec.recovery==='cancel'){
+  button('Back').click();await until(()=>latest.phase==='home'&&button('Start Game'));await sleep(300);recoveryIdle();
+  // A deferred native resume resolves after cancellation and after a newer generation starts.
+  diag.opts.delete('warmup');const proto=frame.contentWindow.AudioContext.prototype,native=proto.resume;let release;
+  proto.resume=function(){const p=native.call(this);return new Promise(resolve=>{release=()=>p.then(resolve);});};
+  button('Start Game').click();await until(()=>release&&button('Back'));recoveryIdle();button('Back').click();await until(()=>latest.phase==='home'&&button('Start Game'));
+  proto.resume=native;button('Start Game').click();release();
+ }else{
+  diag.opts.delete('warmup');
+  const choice=diag.events.length;diag.emit('RECOVERY_CHOICE',{choice:spec.recovery});
+  if(spec.recovery==='retry'){
+   button('Retry sound').click();recoveryIdle();
+   await until(()=>diag.events.slice(choice).some(e=>e.event==='AUDIO_SETTLED'));
+   const fresh=diag.events.slice(choice),prepare=fresh.find(e=>e.event==='AUDIO_PREPARE'),settled=fresh.find(e=>e.event==='AUDIO_SETTLED');
+   check(fresh.filter(e=>e.event==='AUDIO_PREPARE').length===1&&prepare&&settled.result==='ready'&&settled.ms-prepare.ms<5000,'retry not fresh/bounded/ready');
+  }else button('Play without sound').click();
+ }
+ await until(()=>['paused','results'].includes(latest.phase));check(latest.phase==='results','recovery produced pause');
+ const ev=diag.events,issued=ev.filter(e=>e.event==='ATTEMPT_ISSUED');check(issued.length===1,'stale or duplicate issuance');
+ const ready=ev.filter(e=>e.event==='RENDERER_READY'&&e.ms<=issued[0].ms).at(-1),composite=ev.filter(e=>e.event==='COMPOSITE_READY'&&e.ms<=issued[0].ms).at(-1);
+ check(ready&&composite&&ready.ms<=composite.ms&&composite.ms<=issued[0].ms,'recovery readiness ordering');
+ const first=ev.find(e=>e.event==='CLOCK_FIRST');check(first.ticks===0&&first.accumulator===0,'recovery initial clock');
+ check(ev.find(e=>e.event==='SUBMIT')?.ticks===42,'recovery replay fixture');
+ if(spec.recovery==='muted'){
+  const choice=ev.findIndex(e=>e.event==='RECOVERY_CHOICE');check(!ev.slice(choice).some(e=>['AUDIO_PREPARE','AUDIO_RESUME_START','AUDIO_NODE_CREATED'].includes(e.event)),'muted audio retried');
+ }else check(ev.filter(e=>e.event==='AUDIO_SETTLED'&&e.ms<=issued[0].ms).at(-1)?.result==='ready','retry issued without ready audio');
+ validate(spec,ev);
+}
+document.querySelector('#run').onclick=async()=>{try{for(const spec of cases){latest={events:[]};layout=[];frame=document.createElement('iframe');frame.width=spec.narrow?375:1280;frame.height=spec.narrow?667:720;const q=new URLSearchParams();for(const [k,v]of Object.entries(spec))if(k!=='name')q.set(k,v===true?'1':v);if(spec.recovery)q.set('audioWarmup','5000');frame.src='/candidate.html?'+q;document.querySelector('#frame').replaceChildren(frame);await until(()=>frame.contentDocument?.querySelector('#root button'));await until(()=>button('Start Game'));await sleep(250);if(!spec.unfocused)frame.contentWindow.focus();button('Start Game').click();button('Start Game')?.click();
+ if(spec.recovery){await recover(spec);}
+ else if(spec.fail||spec.timeout){await until(()=>latest.phase==='error');check(!latest.events.some(e=>['COUNTDOWN_START','ATTEMPT_ISSUED','CLOCK_FIRST'].includes(e.event)),'failed load started run');if(spec.fail){for(let n=0;n<2;n++){button('Retry').click();button('Retry')?.click();await sleep(400);await until(()=>latest.phase==='error');}check(!button('Retry'),'unbounded retry');}button('Back').click();await until(()=>latest.phase==='home');}
  else if(spec.name==='cancel-stale'){await until(()=>latest.phase==='preparing');button('Back').click();await sleep(1600);check(!latest.events.some(e=>['ATTEMPT_ISSUED','COUNTDOWN_START'].includes(e.event)),'stale start');button('Start Game').click();await until(()=>latest.phase==='results');validate(spec,latest.events);button('Play Again').click();await until(()=>latest.phase==='preparing');button('Back').click();await until(()=>latest.phase==='results');await sleep(1200);check(latest.events.filter(e=>e.event==='ATTEMPT_ISSUED').length===1,'canceled Play Again issued attempt');}
  else {await until(()=>['paused','results'].includes(latest.phase));if(spec.stall){check(latest.phase==='paused','active stall not interrupted');button('Resume').click();await until(()=>latest.phase==='results');}validate(spec,latest.events);if(spec.name==='play-again'){for(let n=0;n<4;n++){button('Play Again').click();await until(()=>latest.phase==='preparing'||latest.phase==='countdown');await until(()=>latest.phase==='results');}check(latest.events.filter(e=>e.event==='ATTEMPT_ISSUED').length===5,'duplicate/missing attempt');check(!latest.events.some(e=>e.event==='CLOCK_INTERRUPTED'),'repeat readiness pause');}}
  const doc=frame.contentDocument;check(doc.documentElement.scrollWidth<=Number(frame.width),'horizontal overflow');results.push({spec,phase:latest.phase,events:latest.events,listeners:latest.listeners,layout,canvasCount:doc.querySelectorAll('canvas').length});await save();document.querySelector('#status').textContent='passed '+results.length+' / '+cases.length;}
