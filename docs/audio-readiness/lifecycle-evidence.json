@@ -1,0 +1,405 @@
+{
+  "soak": {
+    "status": "passed",
+    "current": {
+      "timers": 0,
+      "intervals": 0,
+      "frames": 0,
+      "listeners": 4,
+      "audioOpen": 0,
+      "canvases": 0,
+      "hostListeners": 1,
+      "auth": 1,
+      "attempts": 24,
+      "submissions": 4,
+      "cancels": 20,
+      "reads": 137,
+      "accepted": 4,
+      "practiceResults": 0,
+      "resumes": 0,
+      "heap": 12103356
+    },
+    "samples": [
+      {
+        "stage": "initial",
+        "timers": 0,
+        "intervals": 0,
+        "frames": 0,
+        "listeners": 4,
+        "audioOpen": 0,
+        "canvases": 0,
+        "hostListeners": 1,
+        "auth": 1,
+        "attempts": 0,
+        "submissions": 0,
+        "cancels": 0,
+        "reads": 3,
+        "accepted": 0,
+        "practiceResults": 0,
+        "resumes": 0,
+        "heap": 8195924
+      },
+      {
+        "stage": "cancel-1",
+        "timers": 2,
+        "intervals": 0,
+        "frames": 0,
+        "listeners": 4,
+        "audioOpen": 0,
+        "canvases": 0,
+        "hostListeners": 1,
+        "auth": 1,
+        "attempts": 1,
+        "submissions": 0,
+        "cancels": 1,
+        "reads": 6,
+        "accepted": 0,
+        "practiceResults": 0,
+        "resumes": 0,
+        "heap": 17482143
+      },
+      {
+        "stage": "cancel-10",
+        "timers": 2,
+        "intervals": 0,
+        "frames": 0,
+        "listeners": 4,
+        "audioOpen": 0,
+        "canvases": 0,
+        "hostListeners": 1,
+        "auth": 1,
+        "attempts": 10,
+        "submissions": 0,
+        "cancels": 10,
+        "reads": 33,
+        "accepted": 0,
+        "practiceResults": 0,
+        "resumes": 0,
+        "heap": 15996430
+      },
+      {
+        "stage": "cancel-20",
+        "timers": 2,
+        "intervals": 0,
+        "frames": 0,
+        "listeners": 4,
+        "audioOpen": 0,
+        "canvases": 0,
+        "hostListeners": 1,
+        "auth": 1,
+        "attempts": 20,
+        "submissions": 0,
+        "cancels": 20,
+        "reads": 63,
+        "accepted": 0,
+        "practiceResults": 0,
+        "resumes": 0,
+        "heap": 21947177
+      },
+      {
+        "stage": "completed-1",
+        "timers": 0,
+        "intervals": 0,
+        "frames": 0,
+        "listeners": 4,
+        "audioOpen": 0,
+        "canvases": 0,
+        "hostListeners": 1,
+        "auth": 1,
+        "attempts": 22,
+        "submissions": 2,
+        "cancels": 20,
+        "reads": 69,
+        "accepted": 2,
+        "practiceResults": 0,
+        "resumes": 0,
+        "heap": 11219662
+      },
+      {
+        "stage": "completed-2",
+        "timers": 0,
+        "intervals": 0,
+        "frames": 0,
+        "listeners": 4,
+        "audioOpen": 0,
+        "canvases": 0,
+        "hostListeners": 1,
+        "auth": 1,
+        "attempts": 23,
+        "submissions": 3,
+        "cancels": 20,
+        "reads": 73,
+        "accepted": 3,
+        "practiceResults": 0,
+        "resumes": 0,
+        "heap": 11549031
+      },
+      {
+        "stage": "completed-3",
+        "timers": 0,
+        "intervals": 0,
+        "frames": 0,
+        "listeners": 4,
+        "audioOpen": 0,
+        "canvases": 0,
+        "hostListeners": 1,
+        "auth": 1,
+        "attempts": 24,
+        "submissions": 4,
+        "cancels": 20,
+        "reads": 77,
+        "accepted": 4,
+        "practiceResults": 0,
+        "resumes": 0,
+        "heap": 11876727
+      },
+      {
+        "stage": "final",
+        "timers": 0,
+        "intervals": 0,
+        "frames": 0,
+        "listeners": 4,
+        "audioOpen": 0,
+        "canvases": 0,
+        "hostListeners": 1,
+        "auth": 1,
+        "attempts": 24,
+        "submissions": 4,
+        "cancels": 20,
+        "reads": 137,
+        "accepted": 4,
+        "practiceResults": 0,
+        "resumes": 0,
+        "heap": 11536772
+      }
+    ],
+    "errors": []
+  },
+  "rapid": {
+    "status": "rapid cancellation passed",
+    "current": {
+      "timers": 0,
+      "intervals": 0,
+      "frames": 0,
+      "listeners": 4,
+      "audioOpen": 0,
+      "canvases": 0,
+      "hostListeners": 1,
+      "auth": 1,
+      "attempts": 0,
+      "submissions": 0,
+      "cancels": 0,
+      "reads": 23,
+      "accepted": 0,
+      "practiceResults": 0,
+      "resumes": 0,
+      "heap": 17755535
+    },
+    "samples": [
+      {
+        "stage": "rapid-baseline",
+        "timers": 0,
+        "intervals": 0,
+        "frames": 0,
+        "listeners": 4,
+        "audioOpen": 0,
+        "canvases": 0,
+        "hostListeners": 1,
+        "auth": 1,
+        "attempts": 0,
+        "submissions": 0,
+        "cancels": 0,
+        "reads": 3,
+        "accepted": 0,
+        "practiceResults": 0,
+        "resumes": 0,
+        "heap": 8160066
+      },
+      {
+        "stage": "rapid-final",
+        "timers": 0,
+        "intervals": 0,
+        "frames": 0,
+        "listeners": 4,
+        "audioOpen": 0,
+        "canvases": 0,
+        "hostListeners": 1,
+        "auth": 1,
+        "attempts": 0,
+        "submissions": 0,
+        "cancels": 0,
+        "reads": 23,
+        "accepted": 0,
+        "practiceResults": 0,
+        "resumes": 0,
+        "heap": 17646459
+      }
+    ],
+    "errors": []
+  },
+  "responsive": {
+    "status": "passed",
+    "matrix": [
+      {
+        "width": 1280,
+        "height": 900,
+        "lobby": {
+          "width": 1280,
+          "scroll": 1280
+        },
+        "controls": {
+          "x": 152,
+          "y": 821,
+          "width": 976,
+          "height": 47,
+          "top": 821,
+          "right": 1128,
+          "bottom": 868,
+          "left": 152
+        },
+        "targets": [
+          {
+            "height": 47,
+            "width": 424
+          },
+          {
+            "height": 47,
+            "width": 424
+          }
+        ],
+        "focusOrder": [
+          "Less motion",
+          "Skip to games",
+          "CDAWG ARCADE home",
+          "Games",
+          "Your results",
+          "Play practice\u2192",
+          "Back to games \u2191"
+        ],
+        "reduced": "true",
+        "keyboard": true,
+        "syntheticTouch": true
+      },
+      {
+        "width": 800,
+        "height": 600,
+        "lobby": {
+          "width": 800,
+          "scroll": 800
+        },
+        "controls": {
+          "x": 24,
+          "y": 541,
+          "width": 752,
+          "height": 47,
+          "top": 541,
+          "right": 776,
+          "bottom": 588,
+          "left": 24
+        },
+        "targets": [
+          {
+            "height": 47,
+            "width": 312
+          },
+          {
+            "height": 47,
+            "width": 312
+          }
+        ],
+        "focusOrder": [
+          "Less motion",
+          "Skip to games",
+          "CDAWG ARCADE home",
+          "Games",
+          "Your results",
+          "Play practice\u2192",
+          "Back to games \u2191"
+        ],
+        "reduced": "false",
+        "keyboard": true,
+        "syntheticTouch": true
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "lobby": {
+          "width": 390,
+          "scroll": 390
+        },
+        "controls": {
+          "x": 12,
+          "y": 788,
+          "width": 366,
+          "height": 44,
+          "top": 788,
+          "right": 378,
+          "bottom": 832,
+          "left": 12
+        },
+        "targets": [
+          {
+            "height": 44,
+            "width": 119
+          },
+          {
+            "height": 44,
+            "width": 119
+          }
+        ],
+        "focusOrder": [
+          "Less motion",
+          "Skip to games",
+          "CDAWG ARCADE home",
+          "Games",
+          "Your results",
+          "Play practice\u2192",
+          "Back to games \u2191"
+        ],
+        "reduced": "true",
+        "keyboard": true,
+        "syntheticTouch": true
+      },
+      {
+        "width": 375,
+        "height": 667,
+        "lobby": {
+          "width": 375,
+          "scroll": 375
+        },
+        "controls": {
+          "x": 8,
+          "y": 615,
+          "width": 359,
+          "height": 44,
+          "top": 615,
+          "right": 367,
+          "bottom": 659,
+          "left": 8
+        },
+        "targets": [
+          {
+            "height": 44,
+            "width": 153.5
+          },
+          {
+            "height": 44,
+            "width": 153.5
+          }
+        ],
+        "focusOrder": [
+          "Less motion",
+          "Skip to games",
+          "CDAWG ARCADE home",
+          "Games",
+          "Your results",
+          "Play practice\u2192",
+          "Back to games \u2191"
+        ],
+        "reduced": "false",
+        "keyboard": true,
+        "syntheticTouch": true
+      }
+    ]
+  }
+}

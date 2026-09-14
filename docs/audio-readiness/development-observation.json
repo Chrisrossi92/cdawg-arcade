@@ -1,0 +1,19 @@
+{
+  "scope": "Intermediate implementation smoke, before full-envelope and stable-frame warmup; not final-source acceptance",
+  "provenance": "Summary transcribed from the captured tool output. The original temporary JSON was overwritten by the next smoke iteration; no raw trace reconstruction is claimed.",
+  "path": "direct",
+  "headed": false,
+  "events": [
+    {"event":"START_ACTIVATE","ms":3653.5},
+    {"event":"AUDIO_RESUME_START","ms":3797.2},
+    {"event":"AUDIO_RESUMED","ms":3839.3},
+    {"event":"RENDERER_READY","ms":5999.5},
+    {"event":"AUDIO_WARMED","ms":6731.8},
+    {"event":"COMPOSITE_READY","ms":6732},
+    {"event":"ATTEMPT_ISSUED","ms":6732.5},
+    {"event":"COUNTDOWN_START","ms":6742.4},
+    {"event":"FRAME_GAP","ms":7001.6,"delta":200},
+    {"event":"PAUSE_POLICY","ms":7002.1,"ticks":0}
+  ],
+  "interpretation": "The unchanged countdown guard paused at zero ticks. Cause is not established; this does not attribute or explain the historical 637 ms stall."
+}

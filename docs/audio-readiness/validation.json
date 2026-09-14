@@ -1,0 +1,141 @@
+{
+  "checks": 286,
+  "securityFiles": 47,
+  "assets": [
+    {
+      "path": "assets/brand/mascot/runtime/cdawg-mascot-balance0-v004.webp",
+      "bytes": 375832,
+      "sha256": "42da55184ed19413cadc1c549a2a047ea2ac640d42d987a703dac93275cd8c12"
+    },
+    {
+      "path": "assets/brand/mascot/runtime/cdawg-mascot-balance0-v004.json",
+      "bytes": 10259,
+      "sha256": "662a514d6780d4659eb3b69e579d4349b50609c5517cf036585ec992e55ef208"
+    },
+    {
+      "path": "assets/brand/mascot/runtime/cdawg-mascot-balance1-v004.webp",
+      "bytes": 376956,
+      "sha256": "1c8bd805a87019d7ab0c43525aa62063346f29d5679e3f9983bb8ff36ded3569"
+    },
+    {
+      "path": "assets/brand/mascot/runtime/cdawg-mascot-balance1-v004.json",
+      "bytes": 10259,
+      "sha256": "b64ba9dc28c483fcc644048ab87bb633e6695446690119962b8c5475342347f2"
+    },
+    {
+      "path": "assets/brand/mascot/runtime/cdawg-mascot-reactions0-v004.webp",
+      "bytes": 516782,
+      "sha256": "7e701c7426d7eb270ccd49cf3554946ba2800d368929054071ba3be2e6aa6c31"
+    },
+    {
+      "path": "assets/brand/mascot/runtime/cdawg-mascot-reactions0-v004.json",
+      "bytes": 15143,
+      "sha256": "014fbe063d76f169e6068c11a21317211cf27ee1118bc5bbfe77bd7136b22288"
+    },
+    {
+      "path": "assets/brand/mascot/runtime/cdawg-mascot-reactions1-v004.webp",
+      "bytes": 333182,
+      "sha256": "c49f4097c678e50ca7f780c2ca93fa288bc3ec48155d8525d7105fdeb9a809be"
+    },
+    {
+      "path": "assets/brand/mascot/runtime/cdawg-mascot-reactions1-v004.json",
+      "bytes": 10853,
+      "sha256": "63ba541976dd135cf6d4b7c711244f59f32c04b4196eb991a284c67cd29be325"
+    }
+  ],
+  "unchangedServerFiles": 36,
+  "before": {
+    "index.html": {
+      "bytes": 415,
+      "gzip": 278,
+      "sha256": "8dac7a7f135a2078f803e82036272064ede3afb117a2592ef8ca4155b7c1829f"
+    },
+    "assets/cdawg-mascot-balance0-v004-BDwc5MnW.webp": {
+      "bytes": 375832,
+      "gzip": 375568,
+      "sha256": "42da55184ed19413cadc1c549a2a047ea2ac640d42d987a703dac93275cd8c12"
+    },
+    "assets/cdawg-mascot-balance1-v004-RnhYpwi9.webp": {
+      "bytes": 376956,
+      "gzip": 376489,
+      "sha256": "1c8bd805a87019d7ab0c43525aa62063346f29d5679e3f9983bb8ff36ded3569"
+    },
+    "assets/cdawg-mascot-reactions0-v004-BcYTbBqx.webp": {
+      "bytes": 516782,
+      "gzip": 516482,
+      "sha256": "7e701c7426d7eb270ccd49cf3554946ba2800d368929054071ba3be2e6aa6c31"
+    },
+    "assets/cdawg-mascot-reactions1-v004-BtVb-jPy.webp": {
+      "bytes": 333182,
+      "gzip": 332584,
+      "sha256": "c49f4097c678e50ca7f780c2ca93fa288bc3ec48155d8525d7105fdeb9a809be"
+    },
+    "assets/index-B4zvczJ_.js": {
+      "bytes": 2180100,
+      "gzip": 608385,
+      "sha256": "21931dbc267c7158344df5840a146b0d9e5d619621c44e39273a8b0a6e56a4e5"
+    },
+    "assets/index-DsHVGshA.css": {
+      "bytes": 13928,
+      "gzip": 3740,
+      "sha256": "25308ca4c973d1b95dc7839c09b2bbc2af25a524035e79115313fb72cbdb6c6a"
+    },
+    "assets/index-PgqIN0K2.js": {
+      "bytes": 159736,
+      "gzip": 48353,
+      "sha256": "5badfe6c0e4a626f076a1d3eb34bba50eb03069acd2b9bacc8893418fb20a110"
+    }
+  },
+  "after": {
+    "index.html": {
+      "bytes": 415,
+      "gzip": 275,
+      "sha256": "476ebd461582acfea7806ff21cf5910c52f0ff9380ef9463c05c3d79566c9da5"
+    },
+    "assets/cdawg-mascot-balance0-v004-BDwc5MnW.webp": {
+      "bytes": 375832,
+      "gzip": 375568,
+      "sha256": "42da55184ed19413cadc1c549a2a047ea2ac640d42d987a703dac93275cd8c12"
+    },
+    "assets/cdawg-mascot-balance1-v004-RnhYpwi9.webp": {
+      "bytes": 376956,
+      "gzip": 376489,
+      "sha256": "1c8bd805a87019d7ab0c43525aa62063346f29d5679e3f9983bb8ff36ded3569"
+    },
+    "assets/cdawg-mascot-reactions0-v004-BcYTbBqx.webp": {
+      "bytes": 516782,
+      "gzip": 516482,
+      "sha256": "7e701c7426d7eb270ccd49cf3554946ba2800d368929054071ba3be2e6aa6c31"
+    },
+    "assets/cdawg-mascot-reactions1-v004-BtVb-jPy.webp": {
+      "bytes": 333182,
+      "gzip": 332584,
+      "sha256": "c49f4097c678e50ca7f780c2ca93fa288bc3ec48155d8525d7105fdeb9a809be"
+    },
+    "assets/index-DDw6KG-h.js": {
+      "bytes": 2184045,
+      "gzip": 609453,
+      "sha256": "ca41ceeafc57a96dccbd1cb5b07693c37d62eb4ea4052433b374f37d1e89c4ba"
+    },
+    "assets/index-DsHVGshA.css": {
+      "bytes": 13928,
+      "gzip": 3740,
+      "sha256": "25308ca4c973d1b95dc7839c09b2bbc2af25a524035e79115313fb72cbdb6c6a"
+    },
+    "assets/index-PgqIN0K2.js": {
+      "bytes": 159736,
+      "gzip": 48353,
+      "sha256": "5badfe6c0e4a626f076a1d3eb34bba50eb03069acd2b9bacc8893418fb20a110"
+    }
+  },
+  "frontend": {
+    "before": 3956931,
+    "after": 3960876,
+    "delta": 3945
+  },
+  "jsGzip": {
+    "before": 656738,
+    "after": 657806,
+    "delta": 1068
+  }
+}

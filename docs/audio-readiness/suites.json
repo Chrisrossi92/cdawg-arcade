@@ -1,0 +1,66 @@
+[
+  {
+    "name": "unit",
+    "pass": true
+  },
+  {
+    "name": "typecheck",
+    "pass": true
+  },
+  {
+    "name": "production",
+    "pass": true
+  },
+  {
+    "name": "database",
+    "pass": true
+  },
+  {
+    "name": "enabled-build",
+    "pass": true
+  },
+  {
+    "name": "enabled-smoke",
+    "pass": true
+  },
+  {
+    "name": "readiness-typecheck",
+    "pass": true
+  },
+  {
+    "name": "lobby-typecheck",
+    "pass": true
+  },
+  {
+    "name": "atlas",
+    "pass": true
+  },
+  {
+    "name": "brand",
+    "pass": true
+  },
+  {
+    "name": "raster",
+    "pass": true
+  },
+  {
+    "name": "host",
+    "pass": true
+  },
+  {
+    "name": "glb",
+    "pass": true
+  },
+  {
+    "name": "graph",
+    "pass": true
+  },
+  {
+    "name": "boundaries",
+    "pass": true
+  },
+  {
+    "name": "security",
+    "pass": true
+  }
+]
