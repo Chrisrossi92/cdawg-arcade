@@ -22,6 +22,7 @@ function recoveryIdle(){
 async function recover(spec){
  await until(()=>button('Retry sound')&&button('Play without sound'));
  const diag=frame.contentWindow.__diag;
+ check(diag.events.some(e=>e.event==='INJECT_AUDIO_WARMUP'),'audio deadline fault not injected');
  check(diag.events.some(e=>e.event==='AUDIO_SETTLED'&&e.result==='degraded'),'audio deadline did not fail closed');
  recoveryIdle();await sleep(300);recoveryIdle();
  // The old automatic-completion expectation must reject this actual recovery trace.
@@ -56,7 +57,7 @@ async function recover(spec){
  }else check(ev.filter(e=>e.event==='AUDIO_SETTLED'&&e.ms<=issued[0].ms).at(-1)?.result==='ready','retry issued without ready audio');
  validate(spec,ev);
 }
-document.querySelector('#run').onclick=async()=>{try{for(const spec of cases){latest={events:[]};layout=[];frame=document.createElement('iframe');frame.width=spec.narrow?375:1280;frame.height=spec.narrow?667:720;const q=new URLSearchParams();for(const [k,v]of Object.entries(spec))if(k!=='name')q.set(k,v===true?'1':v);frame.src='/candidate.html?'+q;document.querySelector('#frame').replaceChildren(frame);await until(()=>frame.contentDocument?.querySelector('#root button'));await until(()=>button('Start Game'));await sleep(250);if(!spec.unfocused)frame.contentWindow.focus();button('Start Game').click();button('Start Game')?.click();
+document.querySelector('#run').onclick=async()=>{try{for(const spec of cases){latest={events:[]};layout=[];frame=document.createElement('iframe');frame.width=spec.narrow?375:1280;frame.height=spec.narrow?667:720;const q=new URLSearchParams();for(const [k,v]of Object.entries(spec))if(k!=='name')q.set(k,v===true?'1':v);if(spec.recovery)q.set('audioWarmup','5000');frame.src='/candidate.html?'+q;document.querySelector('#frame').replaceChildren(frame);await until(()=>frame.contentDocument?.querySelector('#root button'));await until(()=>button('Start Game'));await sleep(250);if(!spec.unfocused)frame.contentWindow.focus();button('Start Game').click();button('Start Game')?.click();
  if(spec.recovery){await recover(spec);}
  else if(spec.fail||spec.timeout){await until(()=>latest.phase==='error');check(!latest.events.some(e=>['COUNTDOWN_START','ATTEMPT_ISSUED','CLOCK_FIRST'].includes(e.event)),'failed load started run');if(spec.fail){for(let n=0;n<2;n++){button('Retry').click();button('Retry')?.click();await sleep(400);await until(()=>latest.phase==='error');}check(!button('Retry'),'unbounded retry');}button('Back').click();await until(()=>latest.phase==='home');}
  else if(spec.name==='cancel-stale'){await until(()=>latest.phase==='preparing');button('Back').click();await sleep(1600);check(!latest.events.some(e=>['ATTEMPT_ISSUED','COUNTDOWN_START'].includes(e.event)),'stale start');button('Start Game').click();await until(()=>latest.phase==='results');validate(spec,latest.events);button('Play Again').click();await until(()=>latest.phase==='preparing');button('Back').click();await until(()=>latest.phase==='results');await sleep(1200);check(latest.events.filter(e=>e.event==='ATTEMPT_ISSUED').length===1,'canceled Play Again issued attempt');}

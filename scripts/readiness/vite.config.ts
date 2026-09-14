@@ -12,7 +12,7 @@ export default defineConfig({root:'scripts/readiness',envDir:false,publicDir:fal
  replace('if (settled) return;\n        settle(performance.now()', "if (settled) return;trace('AUDIO_WARMED');\n        settle(performance.now()");
  replace('    if (this.disposed || !this.playable) return;', "trace('AUDIO_CUE',{playable:this.playable});if (this.disposed || !this.playable) return;");
  }else if(id.endsWith('/BalanceScene.ts')){
- replace('  create(): void {',"  create(): void {trace('SCENE_CREATE');let frames=0;this.game.events.on('postrender',()=>{if(frames++<6)trace('FRAME_RENDERED',{frame:frames,width:this.scale.width,height:this.scale.height,v004:this.cdawg?.ready??false,legacy:false,ticks:this.options.clock().ticks,accumulator:this.options.clock().accumulator});});");
+ replace('  create(): void {',"  create(): void {trace('SCENE_CREATE');this.events.once('destroy',()=>trace('SCENE_DESTROY'));let frames=0;this.game.events.on('postrender',()=>{if(frames++<6)trace('FRAME_RENDERED',{frame:frames,width:this.scale.width,height:this.scale.height,v004:this.cdawg?.ready??false,legacy:false,ticks:this.options.clock().ticks,accumulator:this.options.clock().accumulator});});");
  replace('this.options.onReady();',"trace('RENDERER_READY');this.options.onReady();");
  replace('  preload(): void {',"  preload(): void {trace('PHASER_PRELOAD');this.textures.on('addtexture',()=>trace('TEXTURE_REGISTERED'));this.load.on('complete',()=>trace('PHASER_LOAD_COMPLETE'));");
  }else if(id.endsWith('/simulationClock.ts')){
@@ -20,7 +20,7 @@ export default defineConfig({root:'scripts/readiness',envDir:false,publicDir:fal
  replace('const delta = now - this.lastTime;',"const delta = now - this.lastTime;trace('CLOCK_FRAME',{delta,ticks:this.ticks,accumulator:this.accumulator});");
  replace('if (delta < 0 || delta > MAX_FRAME_MS + EPSILON) {',"if (delta < 0 || delta > MAX_FRAME_MS + EPSILON) {trace('CLOCK_INTERRUPTED');");
  }else if(id.endsWith('/BalanceExperience.tsx')){
- replace('  const previousScoreRef = useRef(0);', "(window as any).__diag.clockSnapshot=()=>({ticks:rendererClockRef.current.ticks,accumulator:rendererClockRef.current.accumulator,phase:phaseRef.current});const previousScoreRef = useRef(0);");
+ replace('  const previousScoreRef = useRef(0);', "if((window as any).__diag)(window as any).__diag.clockSnapshot=()=>({ticks:rendererClockRef.current.ticks,accumulator:rendererClockRef.current.accumulator,phase:phaseRef.current});const previousScoreRef = useRef(0);");
  replace("    clearPreparationTimer();\n    if (audioResult", "    trace('COMPOSITE_READY',{audio:audioResult});clearPreparationTimer();\n    if (audioResult");
  replace('const startRun = (practice = false) => {',"const startRun = (practice = false) => {trace('START_ACTIVATE');");
  replace('const countdownClock = new CountdownClock();',"trace('COUNTDOWN_START');const countdownClock = new CountdownClock();");
