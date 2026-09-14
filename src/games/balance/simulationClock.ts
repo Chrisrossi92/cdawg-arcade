@@ -58,14 +58,17 @@ export class SimulationClock {
   }
 }
 
-/** Countdown is presentation time, never survival time. Restarts after an interruption. */
+/** Countdown is presentation time; exceptional foreground gaps contribute no time. */
 export class CountdownClock {
   elapsed = 0;
   private last: number | null = null;
   frame(now: number): 'counting' | 'ready' | 'interrupted' {
     if (this.last === null) { this.last = now; return 'counting'; }
     const delta = now - this.last; this.last = now;
-    if (!Number.isFinite(delta) || delta < 0 || delta > MAX_FRAME_MS + EPSILON) return 'interrupted';
+    if (!Number.isFinite(delta) || delta < 0) return 'interrupted';
+    // Rebase above without crediting stalled presentation time. Lifecycle events
+    // still interrupt independently; the active simulation keeps its 100 ms guard.
+    if (delta > MAX_FRAME_MS + EPSILON) return 'counting';
     this.elapsed += delta;
     return this.elapsed + EPSILON >= 2400 ? 'ready' : 'counting';
   }
