@@ -1,4 +1,4 @@
-# CDAWG Arcade soft-launch readiness — v1 / Phase 1
+# CDAWG Arcade soft-launch readiness — v1.1 / Phase 1
 
 Base: accepted main 7fbc5f54730e719652a1f168ed815715dca00295; accepted deployment dep-dak230uq1p3s73cb18l0. The owner accepted the native Release B canary. This phase prepares a local candidate only. Current launch-checklist status is not permission to publish, change an audience or alter provider settings.
 
@@ -6,8 +6,8 @@ Base: accepted main 7fbc5f54730e719652a1f168ed815715dca00295; accepted deploymen
 
 | Item | State / evidence / next action |
 |---|---|
-| Application icon and bot avatar | Canonical v001 tag package prepared. Creative review pending; upload both in one later authorized Portal session. |
-| Activity cover/background | Editable masters and deterministic PNG derivatives prepared, including crop specimens. Review then upload later. |
+| Application icon and bot avatar | Canonical v001 tag package prepared. Creative review approved by Chris on 2026-09-14; upload both in one later authorized Portal session. |
+| Activity cover/background | Editable masters and deterministic PNG derivatives prepared, including crop specimens. Creative review approved; upload later after authorization. |
 | Player copy and first-time help | Candidate implemented; compact contextual status, settings, nonblocking help, clear official/practice results. Local validation passed; see VALIDATION.md. |
 | Lobby/game/results/Again/return | Local compiled practice/official navigation, cancellation and both soaks passed; accepted runtime preserved. |
 | Official scoring, leaderboard, replay | No controller/server/rules/database changes. Full local database and browser gates passed; final live checks only during separately approved rollout. |
@@ -19,11 +19,11 @@ Base: accepted main 7fbc5f54730e719652a1f168ed815715dca00295; accepted deploymen
 | Health/readiness | Existing endpoints unchanged. Live gates must pass at a separately authorized exact-SHA rollout. |
 | Database consistency/privacy | Ephemeral tests now; read-only production projection/replay checks at rollout. No synthetic production scores. |
 | Security | No production diagnostics, query bypass, new secret or dependency. Preserve known advisory limitations; reassess before broader exposure. |
-| Feedback route | Required owner decision: nominate an existing suitable feedback channel/contact and its audience. Do not invent a link, create a channel or enable posting. |
+| Feedback route | Approved permanent destination: #cdawg-arcade (1549149791915737129), Community. Plan a Feedback & Bugs thread attached to the pinned welcome post. Destination is documented; no post/thread exists from this work. |
 | Rollback | Phase 1 rollback is accepted Release B dep-dak230uq1p3s73cb18l0; no schema/config migration. Reverify artifact availability only at rollout. Older disabled-lobby artifact remains historical fallback, not the immediate Phase 1 target. |
-| Announcement preparation | Draft factual one-game announcement after creative approval; owner approves audience and posting separately. Nothing sent in this phase. |
+| Announcement preparation | Welcome, announcement and Feedback & Bugs starter drafted in DISCORD_DRAFTS.md. Announcement source channel/audience and publication remain unapproved. Nothing sent. |
 | External-user acceptance | One consolidated short session after authorized rollout and branding: invitation/identity, lobby, controls, one official result, leaderboard, Again, return, feedback route. No repeated routine testing now. |
-| Creative review | One consolidated review of local lobby/settings/help/copy, icon specimens, cover crops, background, and upload package. Required before merge/deployment/Portal work. |
+| Creative review | Completed: Chris approved icon family, cover/background, identity/settings, first-time help and copy on 2026-09-14. This does not authorize merge, deployment, uploads or messages. |
 
 ## Recommended shortly after launch
 
@@ -35,4 +35,4 @@ Live audience/spectator features and richer engagement indicators are deferred, 
 
 ## Acceptance boundaries
 
-This checklist is versioned with the candidate. Portal destination labels/specifications are documented in BRAND_PACKAGE.md. Local UI and source inventories are in PLAYER_SURFACE_INVENTORY.md. Exact candidate validation and payload evidence are in the phase validation report. Keep automatic deployment off. A passed local candidate still requires the single creative review before any subsequent merge or rollout authorization.
+This checklist is versioned with the candidate. Portal destination labels/specifications are documented in BRAND_PACKAGE.md. Local UI and source inventories are in PLAYER_SURFACE_INVENTORY.md. Exact candidate validation and payload evidence are in the phase validation report. Keep automatic deployment off. Creative review is complete. Subsequent merge, exact-SHA rollout, Portal saves and Discord publication still require consolidated authorization; see ROLLOUT_PLAN.md.

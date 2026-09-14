@@ -1,5 +1,7 @@
 # Canonical Discord brand package — v001
 
+Creative approval: Chris approved the icon family and Activity cover/background on 2026-09-14. Uploads remain unauthorized. Exact upload sequence: PORTAL_UPLOAD_PLAN.md.
+
 Upload directory: `assets/brand/soft-launch/v001/CDAWG-Arcade-Discord-Upload-v001/`. No file was uploaded. This directory and its manifest form the single handoff for a later consolidated Portal session.
 
 | Export | Dimensions / format | Intended destination |

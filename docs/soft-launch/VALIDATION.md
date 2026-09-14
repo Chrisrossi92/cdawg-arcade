@@ -54,4 +54,4 @@ Initial gzip delta: +2,451 bytes; total gzip delta: +2,181. Sizes sum determinis
 
 Accepted Release B `dep-dak230uq1p3s73cb18l0` is the immediate rollback reference for a future authorized Phase 1 deployment. No schema/configuration change is required. Availability must be reverified during that later rollout, not claimed from local work.
 
-Stop for one consolidated creative review of lobby/settings/help/copy, seven icon sizes, cover crops/background and the named upload directory. Choose an existing feedback destination as part of that handoff. Merge, deployment, Portal work and announcements require a subsequent authorized phase.
+Creative review completed on 2026-09-14: Chris approved the brand family, cover/background, settings/help and copy. Permanent community destination: #cdawg-arcade (1549149791915737129), Community; feedback belongs in the planned Feedback & Bugs thread under the pinned welcome post. This approval does not authorize merge, deployment, Portal work or publication. See ROLLOUT_PLAN.md for the remaining handoff.
