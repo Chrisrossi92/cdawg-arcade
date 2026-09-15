@@ -1,0 +1,837 @@
+{
+  "base": "7fbc5f54730e719652a1f168ed815715dca00295",
+  "reproducible": true,
+  "serverUnchanged": true,
+  "accepted": {
+    "dist": {
+      "assets/GameEntry-BhjSGAlU.js": {
+        "bytes": 1962749,
+        "gzip": 539818,
+        "brotli": 450485,
+        "sha256": "0fc887ca39f035e95eff212f2bba9447b55385c193efd72b9a83431d7c10d8e2"
+      },
+      "assets/GameEntry-DsHVGshA.css": {
+        "bytes": 13928,
+        "gzip": 3740,
+        "brotli": 3237,
+        "sha256": "25308ca4c973d1b95dc7839c09b2bbc2af25a524035e79115313fb72cbdb6c6a"
+      },
+      "assets/cdawg-display-latin-v001-CeyYqTKY.woff2": {
+        "bytes": 15380,
+        "gzip": 15403,
+        "brotli": 15370,
+        "sha256": "f6fbc09a44f7a52bb3ce94448545b957ae2be96899bfcbcf90c0734fdd57131c"
+      },
+      "assets/cdawg-horizontal-dark-v001-CocDCRX-.svg": {
+        "bytes": 9760,
+        "gzip": 2903,
+        "brotli": 2670,
+        "sha256": "7f749727a504bbe1bee417267910841155d3dcc9c972aad679e316dc33f9d787"
+      },
+      "assets/cdawg-host-default-v004-Dy6_NmHH.webp": {
+        "bytes": 20932,
+        "gzip": 20960,
+        "brotli": 20936,
+        "sha256": "22d76bf8191718d897bd5aab92465d44c029c735902154881d0b68583844d946"
+      },
+      "assets/cdawg-host-delighted-v004-DCuxxOiu.webp": {
+        "bytes": 20390,
+        "gzip": 20418,
+        "brotli": 20394,
+        "sha256": "503e66befa300e6363ca8cdfd87bd63d8cc64e80a4d73c11603b9db4afd46fc1"
+      },
+      "assets/cdawg-host-mischief-v004-BH8_sl9C.webp": {
+        "bytes": 20992,
+        "gzip": 21020,
+        "brotli": 20996,
+        "sha256": "89a06f502e8e6293909ac329b9bdc833eddac5fbc0171c7c87c3aff97ed4a552"
+      },
+      "assets/cdawg-mascot-balance0-v004-BDwc5MnW.webp": {
+        "bytes": 375832,
+        "gzip": 375568,
+        "brotli": 375837,
+        "sha256": "42da55184ed19413cadc1c549a2a047ea2ac640d42d987a703dac93275cd8c12"
+      },
+      "assets/cdawg-mascot-balance1-v004-RnhYpwi9.webp": {
+        "bytes": 376956,
+        "gzip": 376489,
+        "brotli": 376961,
+        "sha256": "1c8bd805a87019d7ab0c43525aa62063346f29d5679e3f9983bb8ff36ded3569"
+      },
+      "assets/cdawg-mascot-reactions0-v004-BcYTbBqx.webp": {
+        "bytes": 516782,
+        "gzip": 516482,
+        "brotli": 516787,
+        "sha256": "7e701c7426d7eb270ccd49cf3554946ba2800d368929054071ba3be2e6aa6c31"
+      },
+      "assets/cdawg-mascot-reactions1-v004-BtVb-jPy.webp": {
+        "bytes": 333182,
+        "gzip": 332584,
+        "brotli": 333187,
+        "sha256": "c49f4097c678e50ca7f780c2ca93fa288bc3ec48155d8525d7105fdeb9a809be"
+      },
+      "assets/cdawg-ui-latin-v001-CfIt6cLC.woff2": {
+        "bytes": 15432,
+        "gzip": 15455,
+        "brotli": 15434,
+        "sha256": "525717f5415ec7dd68c197effd798eb96d79e85545ec631acea21c4a265fad65"
+      },
+      "assets/index-BwQhqt3E.js": {
+        "bytes": 235323,
+        "gzip": 73056,
+        "brotli": 63063,
+        "sha256": "11395f154d9cadb2fd07ca9d4ef6a6e121a3309f1ff94beb57f336803b18f15d"
+      },
+      "assets/index-COBSz9hO.css": {
+        "bytes": 21188,
+        "gzip": 4641,
+        "brotli": 4006,
+        "sha256": "23779db18fdb5369f9186d2703afd8a1902bb7f30523a942252a61a879c88d76"
+      },
+      "assets/index-PgqIN0K2.js": {
+        "bytes": 159736,
+        "gzip": 48353,
+        "brotli": 41554,
+        "sha256": "5badfe6c0e4a626f076a1d3eb34bba50eb03069acd2b9bacc8893418fb20a110"
+      },
+      "index.html": {
+        "bytes": 415,
+        "gzip": 279,
+        "brotli": 173,
+        "sha256": "1a40ccb9e90d71caf73080832cb8a33dd4be82b10bc5a61dc948cbb5d79f6223"
+      }
+    },
+    "build": {
+      "release.json": {
+        "bytes": 1968,
+        "gzip": 1043,
+        "brotli": 922,
+        "sha256": "cd89396f7a536510c04b982475481a4afed2dcc0bbe66e25a10a4bbd7b89be3b"
+      },
+      "server/app.js": {
+        "bytes": 7291,
+        "gzip": 2410,
+        "brotli": 2069,
+        "sha256": "312beebec7a21be9a93925aee0161487b75ad6cc17cd7bf5d30ee47edf89fe1d"
+      },
+      "server/artifacts.js": {
+        "bytes": 2279,
+        "gzip": 957,
+        "brotli": 836,
+        "sha256": "17162a3ca33fced426978be1dfe5aa1c2a90ee8434985177d30d2687e08d0194"
+      },
+      "server/attempts/activation.js": {
+        "bytes": 2172,
+        "gzip": 1027,
+        "brotli": 844,
+        "sha256": "c734a19fa2cd0d870063535c055dbeecef2d87f5c3a5a4d2416c8c5efe50b5df"
+      },
+      "server/attempts/definition.js": {
+        "bytes": 548,
+        "gzip": 364,
+        "brotli": 299,
+        "sha256": "21ef32726b41b4d3c89a1b8a5bb79474aa9677343827ffeeb773a6b0fe25f4b6"
+      },
+      "server/attempts/privileges.js": {
+        "bytes": 3508,
+        "gzip": 682,
+        "brotli": 548,
+        "sha256": "cb04e850da7e59a817bdf745d79479256fee009e822ed6c8a2f7c6ef376627e5"
+      },
+      "server/attempts/replay.js": {
+        "bytes": 2716,
+        "gzip": 1051,
+        "brotli": 906,
+        "sha256": "0009b5a18d3f7b98a0c89cc32320e3db4823dce6ce2ea6179125fb4aacdf10c2"
+      },
+      "server/attempts/routes.js": {
+        "bytes": 5953,
+        "gzip": 1939,
+        "brotli": 1645,
+        "sha256": "72ca0152815ef10c2a404adbd92e5fa07e2c5ebee38162241e80532bc048ec1e"
+      },
+      "server/attempts/store.js": {
+        "bytes": 19264,
+        "gzip": 4521,
+        "brotli": 3951,
+        "sha256": "20866ad38957272e2fe5787234fdd07a1d63f17b0d3680d861676881d2ad1a51"
+      },
+      "server/canary.js": {
+        "bytes": 1089,
+        "gzip": 612,
+        "brotli": 507,
+        "sha256": "4a4ae133fbc0726ce339ece3411a307bd838adb184a5343833fd43494bae3756"
+      },
+      "server/database/cli.js": {
+        "bytes": 2792,
+        "gzip": 1049,
+        "brotli": 869,
+        "sha256": "1c7b307b08b297ee7e5e5fb0fad691b9c780b83ca8791be7d2f6ccfb1f6e04eb"
+      },
+      "server/database/config.js": {
+        "bytes": 3099,
+        "gzip": 1166,
+        "brotli": 939,
+        "sha256": "66d1750ff3a99ec120161a9e47afff72beac0c356214885ad16c239527c1dbfd"
+      },
+      "server/database/migrations.js": {
+        "bytes": 3838,
+        "gzip": 1417,
+        "brotli": 1225,
+        "sha256": "ffc088969f21da2e6e8c01bac683c62d02ec45615d5b42786794635306ac8dfa"
+      },
+      "server/database/migrations/001_foundation.sql": {
+        "bytes": 13307,
+        "gzip": 2770,
+        "brotli": 2365,
+        "sha256": "4950eea615ff8aa87e3bd3231492d2d0e5395468e088fee03c2c38b93e7c13af"
+      },
+      "server/database/pool.js": {
+        "bytes": 2142,
+        "gzip": 717,
+        "brotli": 623,
+        "sha256": "af32ff34d308fbfea0b59e07f3530e3f911ff02113949dec43be698dad9c556a"
+      },
+      "server/database/readiness.js": {
+        "bytes": 1672,
+        "gzip": 543,
+        "brotli": 461,
+        "sha256": "934fde36267a31d7838b8973e0052111ce7f4c8e0277b5d9948441fdc2c1c734"
+      },
+      "server/env.js": {
+        "bytes": 2700,
+        "gzip": 1110,
+        "brotli": 936,
+        "sha256": "3f69330cef2052a8b56938467d7eeb3824b08d2b4028ee69edfbaf3c22929066"
+      },
+      "server/guild/grants.js": {
+        "bytes": 1050,
+        "gzip": 441,
+        "brotli": 345,
+        "sha256": "22456ce961d0ebb1a774bcadabca3109383c43d2fa0ea40da48ec7f65849d898"
+      },
+      "server/guild/projections.js": {
+        "bytes": 7282,
+        "gzip": 2088,
+        "brotli": 1779,
+        "sha256": "c1eebaf59b1cf672138abfaee348740598a9b9d4162e0145922a45b7bb1ea22b"
+      },
+      "server/guild/routes.js": {
+        "bytes": 3004,
+        "gzip": 1067,
+        "brotli": 903,
+        "sha256": "9a24453c51be954196aafb573bf844d67f5f3f95c9527ac44d3813336f09994e"
+      },
+      "server/guild/store.js": {
+        "bytes": 6448,
+        "gzip": 2274,
+        "brotli": 1984,
+        "sha256": "a9d8239b6d8c3c3cdc903f2d2ded2258877351c63c3483d673279489733f3582"
+      },
+      "server/index.js": {
+        "bytes": 4366,
+        "gzip": 1545,
+        "brotli": 1327,
+        "sha256": "f2a4fb110aef33bb243139377fcd30d02b8cf462aed34b62057bd112dc1ea612"
+      },
+      "server/lifecycle.js": {
+        "bytes": 878,
+        "gzip": 360,
+        "brotli": 311,
+        "sha256": "fc2fbd56a5801f705fd406224de9752beb15a8e4fe0a787d6823d1b3f124502a"
+      },
+      "server/limiter.js": {
+        "bytes": 1306,
+        "gzip": 539,
+        "brotli": 460,
+        "sha256": "6c02af5b1dff5d2cf8c719b95965749cda8b7a4dc2aa114b45809171818b48d2"
+      },
+      "server/results/aggregates.js": {
+        "bytes": 3068,
+        "gzip": 1057,
+        "brotli": 883,
+        "sha256": "c5ee3b2b630052ae4d229a85d9c406f459784d9d3afcde977c3d7338921c0fd2"
+      },
+      "server/results/canonical.js": {
+        "bytes": 986,
+        "gzip": 485,
+        "brotli": 413,
+        "sha256": "3a1e417cff2079691add4fa271e8f6ca486d42d8bb9df6889497607f448d8381"
+      },
+      "server/results/transaction.js": {
+        "bytes": 706,
+        "gzip": 384,
+        "brotli": 306,
+        "sha256": "5b90df1b2d1e7b0e2b9b574957617fd030288db275fc7b348c2d96b934b3333d"
+      },
+      "server/sessions/crypto.js": {
+        "bytes": 1245,
+        "gzip": 580,
+        "brotli": 502,
+        "sha256": "461ee8a86bc284cedcea0fa17cb5338ab332c4426034f6338b18dfd0d5300db6"
+      },
+      "server/sessions/discord.js": {
+        "bytes": 6597,
+        "gzip": 1992,
+        "brotli": 1699,
+        "sha256": "815d3c84037b40171044797af42e5bd622bc44ebb03ed0b575d2837c40cf2b0a"
+      },
+      "server/sessions/privileges.js": {
+        "bytes": 1394,
+        "gzip": 652,
+        "brotli": 536,
+        "sha256": "60af73e7b7fda64b4cb75bfcdbd2753d76e7139282c81863871c39dab06ef265"
+      },
+      "server/sessions/routes.js": {
+        "bytes": 8432,
+        "gzip": 2571,
+        "brotli": 2217,
+        "sha256": "a1555b45e7c77fe74aba673266f726732e33e2f4319c72c22b4e6556269dafed"
+      },
+      "server/sessions/store.js": {
+        "bytes": 8557,
+        "gzip": 2460,
+        "brotli": 2158,
+        "sha256": "4a288ccc81dbea93769bad458e2e1abcb4e217dce51d1166fcde716b7a98cd9e"
+      },
+      "server/tokenExchange.js": {
+        "bytes": 1673,
+        "gzip": 667,
+        "brotli": 582,
+        "sha256": "9886c0af0e5ceb761ceb3ba705c0692728efdbc367698015f235549fc789914d"
+      },
+      "shared/balance/config.js": {
+        "bytes": 1764,
+        "gzip": 585,
+        "brotli": 474,
+        "sha256": "bb5340376a47bd086916aec9c9ce364d84ec2c231c46df471ebfa936c425e74f"
+      },
+      "shared/balance/curves.js": {
+        "bytes": 403492,
+        "gzip": 179203,
+        "brotli": 163277,
+        "sha256": "bd245fde81d63589150a1a0cde0346570ae343c02e6925b335edeab73e1f7f40"
+      },
+      "shared/balance/official.js": {
+        "bytes": 937,
+        "gzip": 528,
+        "brotli": 477,
+        "sha256": "67ff24995c51c5a199d442e450493d86ec263f5509abfc96f2808ff09e633e1f"
+      },
+      "shared/balance/simulation.js": {
+        "bytes": 5696,
+        "gzip": 1698,
+        "brotli": 1485,
+        "sha256": "6e8aeaf12865000f232d5dc7e0aa5780cef9bde3df193e23ec80aebdbd564b16"
+      }
+    }
+  },
+  "candidate": {
+    "dist": {
+      "assets/GameEntry-DWuQ8HAj.js": {
+        "bytes": 1961244,
+        "gzip": 539579,
+        "brotli": 449956,
+        "sha256": "69df234965923f3a06930c5a3a33b40d15f04f5fb24349071e47f8b5d62c65a1"
+      },
+      "assets/GameEntry-DsHVGshA.css": {
+        "bytes": 13928,
+        "gzip": 3740,
+        "brotli": 3237,
+        "sha256": "25308ca4c973d1b95dc7839c09b2bbc2af25a524035e79115313fb72cbdb6c6a"
+      },
+      "assets/cdawg-display-latin-v001-CeyYqTKY.woff2": {
+        "bytes": 15380,
+        "gzip": 15403,
+        "brotli": 15370,
+        "sha256": "f6fbc09a44f7a52bb3ce94448545b957ae2be96899bfcbcf90c0734fdd57131c"
+      },
+      "assets/cdawg-horizontal-dark-v001-CocDCRX-.svg": {
+        "bytes": 9760,
+        "gzip": 2903,
+        "brotli": 2670,
+        "sha256": "7f749727a504bbe1bee417267910841155d3dcc9c972aad679e316dc33f9d787"
+      },
+      "assets/cdawg-host-default-v004-Dy6_NmHH.webp": {
+        "bytes": 20932,
+        "gzip": 20960,
+        "brotli": 20936,
+        "sha256": "22d76bf8191718d897bd5aab92465d44c029c735902154881d0b68583844d946"
+      },
+      "assets/cdawg-host-delighted-v004-DCuxxOiu.webp": {
+        "bytes": 20390,
+        "gzip": 20418,
+        "brotli": 20394,
+        "sha256": "503e66befa300e6363ca8cdfd87bd63d8cc64e80a4d73c11603b9db4afd46fc1"
+      },
+      "assets/cdawg-host-mischief-v004-BH8_sl9C.webp": {
+        "bytes": 20992,
+        "gzip": 21020,
+        "brotli": 20996,
+        "sha256": "89a06f502e8e6293909ac329b9bdc833eddac5fbc0171c7c87c3aff97ed4a552"
+      },
+      "assets/cdawg-mascot-balance0-v004-BDwc5MnW.webp": {
+        "bytes": 375832,
+        "gzip": 375568,
+        "brotli": 375837,
+        "sha256": "42da55184ed19413cadc1c549a2a047ea2ac640d42d987a703dac93275cd8c12"
+      },
+      "assets/cdawg-mascot-balance1-v004-RnhYpwi9.webp": {
+        "bytes": 376956,
+        "gzip": 376489,
+        "brotli": 376961,
+        "sha256": "1c8bd805a87019d7ab0c43525aa62063346f29d5679e3f9983bb8ff36ded3569"
+      },
+      "assets/cdawg-mascot-reactions0-v004-BcYTbBqx.webp": {
+        "bytes": 516782,
+        "gzip": 516482,
+        "brotli": 516787,
+        "sha256": "7e701c7426d7eb270ccd49cf3554946ba2800d368929054071ba3be2e6aa6c31"
+      },
+      "assets/cdawg-mascot-reactions1-v004-BtVb-jPy.webp": {
+        "bytes": 333182,
+        "gzip": 332584,
+        "brotli": 333187,
+        "sha256": "c49f4097c678e50ca7f780c2ca93fa288bc3ec48155d8525d7105fdeb9a809be"
+      },
+      "assets/cdawg-ui-latin-v001-CfIt6cLC.woff2": {
+        "bytes": 15432,
+        "gzip": 15455,
+        "brotli": 15434,
+        "sha256": "525717f5415ec7dd68c197effd798eb96d79e85545ec631acea21c4a265fad65"
+      },
+      "assets/favicon-v001-BeXv458O.svg": {
+        "bytes": 1369,
+        "gzip": 886,
+        "brotli": 824,
+        "sha256": "e1a616f367a71ff0b508794995d7ea8b50c57e1fe3ff0581aa3ddb83c030ecdf"
+      },
+      "assets/index-CxrR1jbD.css": {
+        "bytes": 25550,
+        "gzip": 5462,
+        "brotli": 4772,
+        "sha256": "7ae652ed9e06754884e8e1425d09655334ba952ddaeae43c1e864e2f14f431b0"
+      },
+      "assets/index-DMfTuRq_.js": {
+        "bytes": 238235,
+        "gzip": 74054,
+        "brotli": 63938,
+        "sha256": "fa2a7201b525f01e6d398e062e6b05bd1cac4a75fdfb31163e927bd762602790"
+      },
+      "assets/index-PgqIN0K2.js": {
+        "bytes": 159736,
+        "gzip": 48353,
+        "brotli": 41554,
+        "sha256": "5badfe6c0e4a626f076a1d3eb34bba50eb03069acd2b9bacc8893418fb20a110"
+      },
+      "index.html": {
+        "bytes": 624,
+        "gzip": 376,
+        "brotli": 248,
+        "sha256": "580df6f2f15e951c3bff1355dd9f9487f48f2deb57d49f7115808ea292ae6914"
+      }
+    },
+    "build": {
+      "release.json": {
+        "bytes": 2076,
+        "gzip": 1092,
+        "brotli": 975,
+        "sha256": "aedc922ab03ecad3a52ce8ef0137ffbec89e63f172079923aa5a0936d37cbd2d"
+      },
+      "server/app.js": {
+        "bytes": 7291,
+        "gzip": 2410,
+        "brotli": 2069,
+        "sha256": "312beebec7a21be9a93925aee0161487b75ad6cc17cd7bf5d30ee47edf89fe1d"
+      },
+      "server/artifacts.js": {
+        "bytes": 2279,
+        "gzip": 957,
+        "brotli": 836,
+        "sha256": "17162a3ca33fced426978be1dfe5aa1c2a90ee8434985177d30d2687e08d0194"
+      },
+      "server/attempts/activation.js": {
+        "bytes": 2172,
+        "gzip": 1027,
+        "brotli": 844,
+        "sha256": "c734a19fa2cd0d870063535c055dbeecef2d87f5c3a5a4d2416c8c5efe50b5df"
+      },
+      "server/attempts/definition.js": {
+        "bytes": 548,
+        "gzip": 364,
+        "brotli": 299,
+        "sha256": "21ef32726b41b4d3c89a1b8a5bb79474aa9677343827ffeeb773a6b0fe25f4b6"
+      },
+      "server/attempts/privileges.js": {
+        "bytes": 3508,
+        "gzip": 682,
+        "brotli": 548,
+        "sha256": "cb04e850da7e59a817bdf745d79479256fee009e822ed6c8a2f7c6ef376627e5"
+      },
+      "server/attempts/replay.js": {
+        "bytes": 2716,
+        "gzip": 1051,
+        "brotli": 906,
+        "sha256": "0009b5a18d3f7b98a0c89cc32320e3db4823dce6ce2ea6179125fb4aacdf10c2"
+      },
+      "server/attempts/routes.js": {
+        "bytes": 5953,
+        "gzip": 1939,
+        "brotli": 1645,
+        "sha256": "72ca0152815ef10c2a404adbd92e5fa07e2c5ebee38162241e80532bc048ec1e"
+      },
+      "server/attempts/store.js": {
+        "bytes": 19264,
+        "gzip": 4521,
+        "brotli": 3951,
+        "sha256": "20866ad38957272e2fe5787234fdd07a1d63f17b0d3680d861676881d2ad1a51"
+      },
+      "server/canary.js": {
+        "bytes": 1089,
+        "gzip": 612,
+        "brotli": 507,
+        "sha256": "4a4ae133fbc0726ce339ece3411a307bd838adb184a5343833fd43494bae3756"
+      },
+      "server/database/cli.js": {
+        "bytes": 2792,
+        "gzip": 1049,
+        "brotli": 869,
+        "sha256": "1c7b307b08b297ee7e5e5fb0fad691b9c780b83ca8791be7d2f6ccfb1f6e04eb"
+      },
+      "server/database/config.js": {
+        "bytes": 3099,
+        "gzip": 1166,
+        "brotli": 939,
+        "sha256": "66d1750ff3a99ec120161a9e47afff72beac0c356214885ad16c239527c1dbfd"
+      },
+      "server/database/migrations.js": {
+        "bytes": 3838,
+        "gzip": 1417,
+        "brotli": 1225,
+        "sha256": "ffc088969f21da2e6e8c01bac683c62d02ec45615d5b42786794635306ac8dfa"
+      },
+      "server/database/migrations/001_foundation.sql": {
+        "bytes": 13307,
+        "gzip": 2770,
+        "brotli": 2365,
+        "sha256": "4950eea615ff8aa87e3bd3231492d2d0e5395468e088fee03c2c38b93e7c13af"
+      },
+      "server/database/pool.js": {
+        "bytes": 2142,
+        "gzip": 717,
+        "brotli": 623,
+        "sha256": "af32ff34d308fbfea0b59e07f3530e3f911ff02113949dec43be698dad9c556a"
+      },
+      "server/database/readiness.js": {
+        "bytes": 1672,
+        "gzip": 543,
+        "brotli": 461,
+        "sha256": "934fde36267a31d7838b8973e0052111ce7f4c8e0277b5d9948441fdc2c1c734"
+      },
+      "server/env.js": {
+        "bytes": 2700,
+        "gzip": 1110,
+        "brotli": 936,
+        "sha256": "3f69330cef2052a8b56938467d7eeb3824b08d2b4028ee69edfbaf3c22929066"
+      },
+      "server/guild/grants.js": {
+        "bytes": 1050,
+        "gzip": 441,
+        "brotli": 345,
+        "sha256": "22456ce961d0ebb1a774bcadabca3109383c43d2fa0ea40da48ec7f65849d898"
+      },
+      "server/guild/projections.js": {
+        "bytes": 7282,
+        "gzip": 2088,
+        "brotli": 1779,
+        "sha256": "c1eebaf59b1cf672138abfaee348740598a9b9d4162e0145922a45b7bb1ea22b"
+      },
+      "server/guild/routes.js": {
+        "bytes": 3004,
+        "gzip": 1067,
+        "brotli": 903,
+        "sha256": "9a24453c51be954196aafb573bf844d67f5f3f95c9527ac44d3813336f09994e"
+      },
+      "server/guild/store.js": {
+        "bytes": 6448,
+        "gzip": 2274,
+        "brotli": 1984,
+        "sha256": "a9d8239b6d8c3c3cdc903f2d2ded2258877351c63c3483d673279489733f3582"
+      },
+      "server/index.js": {
+        "bytes": 4366,
+        "gzip": 1545,
+        "brotli": 1327,
+        "sha256": "f2a4fb110aef33bb243139377fcd30d02b8cf462aed34b62057bd112dc1ea612"
+      },
+      "server/lifecycle.js": {
+        "bytes": 878,
+        "gzip": 360,
+        "brotli": 311,
+        "sha256": "fc2fbd56a5801f705fd406224de9752beb15a8e4fe0a787d6823d1b3f124502a"
+      },
+      "server/limiter.js": {
+        "bytes": 1306,
+        "gzip": 539,
+        "brotli": 460,
+        "sha256": "6c02af5b1dff5d2cf8c719b95965749cda8b7a4dc2aa114b45809171818b48d2"
+      },
+      "server/results/aggregates.js": {
+        "bytes": 3068,
+        "gzip": 1057,
+        "brotli": 883,
+        "sha256": "c5ee3b2b630052ae4d229a85d9c406f459784d9d3afcde977c3d7338921c0fd2"
+      },
+      "server/results/canonical.js": {
+        "bytes": 986,
+        "gzip": 485,
+        "brotli": 413,
+        "sha256": "3a1e417cff2079691add4fa271e8f6ca486d42d8bb9df6889497607f448d8381"
+      },
+      "server/results/transaction.js": {
+        "bytes": 706,
+        "gzip": 384,
+        "brotli": 306,
+        "sha256": "5b90df1b2d1e7b0e2b9b574957617fd030288db275fc7b348c2d96b934b3333d"
+      },
+      "server/sessions/crypto.js": {
+        "bytes": 1245,
+        "gzip": 580,
+        "brotli": 502,
+        "sha256": "461ee8a86bc284cedcea0fa17cb5338ab332c4426034f6338b18dfd0d5300db6"
+      },
+      "server/sessions/discord.js": {
+        "bytes": 6597,
+        "gzip": 1992,
+        "brotli": 1699,
+        "sha256": "815d3c84037b40171044797af42e5bd622bc44ebb03ed0b575d2837c40cf2b0a"
+      },
+      "server/sessions/privileges.js": {
+        "bytes": 1394,
+        "gzip": 652,
+        "brotli": 536,
+        "sha256": "60af73e7b7fda64b4cb75bfcdbd2753d76e7139282c81863871c39dab06ef265"
+      },
+      "server/sessions/routes.js": {
+        "bytes": 8432,
+        "gzip": 2571,
+        "brotli": 2217,
+        "sha256": "a1555b45e7c77fe74aba673266f726732e33e2f4319c72c22b4e6556269dafed"
+      },
+      "server/sessions/store.js": {
+        "bytes": 8557,
+        "gzip": 2460,
+        "brotli": 2158,
+        "sha256": "4a288ccc81dbea93769bad458e2e1abcb4e217dce51d1166fcde716b7a98cd9e"
+      },
+      "server/tokenExchange.js": {
+        "bytes": 1673,
+        "gzip": 667,
+        "brotli": 582,
+        "sha256": "9886c0af0e5ceb761ceb3ba705c0692728efdbc367698015f235549fc789914d"
+      },
+      "shared/balance/config.js": {
+        "bytes": 1764,
+        "gzip": 585,
+        "brotli": 474,
+        "sha256": "bb5340376a47bd086916aec9c9ce364d84ec2c231c46df471ebfa936c425e74f"
+      },
+      "shared/balance/curves.js": {
+        "bytes": 403492,
+        "gzip": 179203,
+        "brotli": 163277,
+        "sha256": "bd245fde81d63589150a1a0cde0346570ae343c02e6925b335edeab73e1f7f40"
+      },
+      "shared/balance/official.js": {
+        "bytes": 937,
+        "gzip": 528,
+        "brotli": 477,
+        "sha256": "67ff24995c51c5a199d442e450493d86ec263f5509abfc96f2808ff09e633e1f"
+      },
+      "shared/balance/simulation.js": {
+        "bytes": 5696,
+        "gzip": 1698,
+        "brotli": 1485,
+        "sha256": "6e8aeaf12865000f232d5dc7e0aa5780cef9bde3df193e23ec80aebdbd564b16"
+      }
+    },
+    "integration": {
+      ".vite/manifest.json": {
+        "bytes": 3688,
+        "gzip": 697,
+        "brotli": 605,
+        "sha256": "7faadf7f466e67ef1e0e1239566f15bf8dae158936140f9fe7ab12cf19b541e9"
+      },
+      "assets/GameEntry-DgD9vTjW.js": {
+        "bytes": 1961244,
+        "gzip": 539578,
+        "brotli": 449750,
+        "sha256": "e1c2b932d97a040c80bd0c9bad960bc91eb17197db4dc09e101fde5d76e05461"
+      },
+      "assets/GameEntry-DsHVGshA.css": {
+        "bytes": 13928,
+        "gzip": 3740,
+        "brotli": 3237,
+        "sha256": "25308ca4c973d1b95dc7839c09b2bbc2af25a524035e79115313fb72cbdb6c6a"
+      },
+      "assets/cdawg-display-latin-v001-CeyYqTKY.woff2": {
+        "bytes": 15380,
+        "gzip": 15403,
+        "brotli": 15370,
+        "sha256": "f6fbc09a44f7a52bb3ce94448545b957ae2be96899bfcbcf90c0734fdd57131c"
+      },
+      "assets/cdawg-horizontal-dark-v001-CocDCRX-.svg": {
+        "bytes": 9760,
+        "gzip": 2903,
+        "brotli": 2670,
+        "sha256": "7f749727a504bbe1bee417267910841155d3dcc9c972aad679e316dc33f9d787"
+      },
+      "assets/cdawg-host-default-v004-Dy6_NmHH.webp": {
+        "bytes": 20932,
+        "gzip": 20960,
+        "brotli": 20936,
+        "sha256": "22d76bf8191718d897bd5aab92465d44c029c735902154881d0b68583844d946"
+      },
+      "assets/cdawg-host-delighted-v004-DCuxxOiu.webp": {
+        "bytes": 20390,
+        "gzip": 20418,
+        "brotli": 20394,
+        "sha256": "503e66befa300e6363ca8cdfd87bd63d8cc64e80a4d73c11603b9db4afd46fc1"
+      },
+      "assets/cdawg-host-mischief-v004-BH8_sl9C.webp": {
+        "bytes": 20992,
+        "gzip": 21020,
+        "brotli": 20996,
+        "sha256": "89a06f502e8e6293909ac329b9bdc833eddac5fbc0171c7c87c3aff97ed4a552"
+      },
+      "assets/cdawg-mascot-balance0-v004-BDwc5MnW.webp": {
+        "bytes": 375832,
+        "gzip": 375568,
+        "brotli": 375837,
+        "sha256": "42da55184ed19413cadc1c549a2a047ea2ac640d42d987a703dac93275cd8c12"
+      },
+      "assets/cdawg-mascot-balance1-v004-RnhYpwi9.webp": {
+        "bytes": 376956,
+        "gzip": 376489,
+        "brotli": 376961,
+        "sha256": "1c8bd805a87019d7ab0c43525aa62063346f29d5679e3f9983bb8ff36ded3569"
+      },
+      "assets/cdawg-mascot-reactions0-v004-BcYTbBqx.webp": {
+        "bytes": 516782,
+        "gzip": 516482,
+        "brotli": 516787,
+        "sha256": "7e701c7426d7eb270ccd49cf3554946ba2800d368929054071ba3be2e6aa6c31"
+      },
+      "assets/cdawg-mascot-reactions1-v004-BtVb-jPy.webp": {
+        "bytes": 333182,
+        "gzip": 332584,
+        "brotli": 333187,
+        "sha256": "c49f4097c678e50ca7f780c2ca93fa288bc3ec48155d8525d7105fdeb9a809be"
+      },
+      "assets/cdawg-ui-latin-v001-CfIt6cLC.woff2": {
+        "bytes": 15432,
+        "gzip": 15455,
+        "brotli": 15434,
+        "sha256": "525717f5415ec7dd68c197effd798eb96d79e85545ec631acea21c4a265fad65"
+      },
+      "assets/favicon-v001-BeXv458O.svg": {
+        "bytes": 1369,
+        "gzip": 886,
+        "brotli": 824,
+        "sha256": "e1a616f367a71ff0b508794995d7ea8b50c57e1fe3ff0581aa3ddb83c030ecdf"
+      },
+      "assets/index-CxrR1jbD.css": {
+        "bytes": 25550,
+        "gzip": 5462,
+        "brotli": 4772,
+        "sha256": "7ae652ed9e06754884e8e1425d09655334ba952ddaeae43c1e864e2f14f431b0"
+      },
+      "assets/index-PgqIN0K2.js": {
+        "bytes": 159736,
+        "gzip": 48353,
+        "brotli": 41554,
+        "sha256": "5badfe6c0e4a626f076a1d3eb34bba50eb03069acd2b9bacc8893418fb20a110"
+      },
+      "assets/index-YRR3VioP.js": {
+        "bytes": 238235,
+        "gzip": 74066,
+        "brotli": 63964,
+        "sha256": "bbb4835561146d3e1c45821e0eebd865e045139128a0949080725eb04654e90a"
+      },
+      "index.html": {
+        "bytes": 624,
+        "gzip": 374,
+        "brotli": 247,
+        "sha256": "ffdfe28ccfae6ff3ecb3277980c443c0cbde7c8fca2f5480532d0ba017f5f037"
+      }
+    }
+  },
+  "totals": {
+    "accepted": {
+      "initial": {
+        "bytes": 359812,
+        "gzip": 174135,
+        "brotli": 163042
+      },
+      "deferred": {
+        "bytes": 3579429,
+        "gzip": 2144681,
+        "brotli": 2056494
+      },
+      "conditional": {
+        "bytes": 159736,
+        "gzip": 48353,
+        "brotli": 41554
+      },
+      "total": {
+        "bytes": 4098977,
+        "gzip": 2367169,
+        "brotli": 2261090
+      }
+    },
+    "candidate": {
+      "initial": {
+        "bytes": 368664,
+        "gzip": 176937,
+        "brotli": 165582
+      },
+      "deferred": {
+        "bytes": 3577924,
+        "gzip": 2144442,
+        "brotli": 2055965
+      },
+      "conditional": {
+        "bytes": 159736,
+        "gzip": 48353,
+        "brotli": 41554
+      },
+      "total": {
+        "bytes": 4106324,
+        "gzip": 2369732,
+        "brotli": 2263101
+      }
+    },
+    "delta": {
+      "initial": {
+        "bytes": 8852,
+        "gzip": 2802,
+        "brotli": 2540
+      },
+      "deferred": {
+        "bytes": -1505,
+        "gzip": -239,
+        "brotli": -529
+      },
+      "conditional": {
+        "bytes": 0,
+        "gzip": 0,
+        "brotli": 0
+      },
+      "total": {
+        "bytes": 7347,
+        "gzip": 2563,
+        "brotli": 2011
+      }
+    }
+  }
+}

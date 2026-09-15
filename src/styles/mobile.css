@@ -1,0 +1,31 @@
+/* Discord mobile chrome takes precedence over native browser safe areas. */
+:root {
+  --arcade-safe-top: var(--discord-safe-area-inset-top, env(safe-area-inset-top, 0px));
+  --arcade-safe-right: var(--discord-safe-area-inset-right, env(safe-area-inset-right, 0px));
+  --arcade-safe-bottom: var(--discord-safe-area-inset-bottom, env(safe-area-inset-bottom, 0px));
+  --arcade-safe-left: var(--discord-safe-area-inset-left, env(safe-area-inset-left, 0px));
+  --arcade-viewport-height: 100svh;
+  --arcade-safe-height: calc(var(--arcade-viewport-height) - var(--arcade-safe-top) - var(--arcade-safe-bottom));
+}
+@supports (height: 100dvh) { :root { --arcade-viewport-height: 100dvh; } }
+body {
+  padding: var(--arcade-safe-top) var(--arcade-safe-right) var(--arcade-safe-bottom) var(--arcade-safe-left);
+}
+#root .app-shell, #root .arcade-lobby { min-height: var(--arcade-safe-height); }
+#root .game-shell { height: var(--arcade-safe-height); max-height: var(--arcade-safe-height); }
+#root .balance-v1-shell:not(.phase-playing):not(.phase-countdown) { height: auto; max-height: none; }
+#root .arcade-game.arcade-playing, #root .arcade-game.arcade-countdown { height: var(--arcade-safe-height); }
+#root .arcade-game.arcade-playing .game-shell, #root .arcade-game.arcade-countdown .game-shell { height: 100%; max-height: 100%; min-height: 0; }
+#root .player-settings-dialog {
+  max-width: calc(100vw - var(--arcade-safe-left) - var(--arcade-safe-right) - 32px);
+  max-height: calc(var(--arcade-safe-height) - 32px);
+  inset: var(--arcade-safe-top) var(--arcade-safe-right) var(--arcade-safe-bottom) var(--arcade-safe-left);
+}
+#root .connection-recovery { top: calc(var(--arcade-safe-top) + 12px); }
+#root .arcade-lobby .connection-recovery { top: auto; }
+.control-button { -webkit-touch-callout: none; }
+
+#root .arcade-lobby .skip-link:focus { top: calc(var(--arcade-safe-top) + 12px); left: calc(var(--arcade-safe-left) + 20px); }
+
+/* Expanded first-time help must determine the home cabinet's height. */
+#root .balance-v1-shell.phase-home .balance-stage { aspect-ratio: auto; }

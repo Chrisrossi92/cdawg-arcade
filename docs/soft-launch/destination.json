@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Documentation-only soft-launch destination; not imported by the application or deployment tooling",
+  "channelName": "cdawg-arcade",
+  "channelId": "1549149791915737129",
+  "categoryName": "Community",
+  "uses": [
+    "launching the Arcade",
+    "discussing scores",
+    "community engagement"
+  ],
+  "welcome": {
+    "pinned": true,
+    "messageId": null,
+    "status": "posted and pinned; owner-attested 2026-09-15; message ID not independently verified"
+  },
+  "feedback": {
+    "threadName": "Feedback & Bugs",
+    "parent": "pinned soft-launch welcome post",
+    "threadId": null,
+    "status": "planned; creation not authorized"
+  },
+  "announcement": {
+    "destinationChannelId": null,
+    "status": "draft; source channel/audience not yet approved"
+  },
+  "configurationChangeAuthorized": false,
+  "channelStatus": "created; owner-attested 2026-09-15"
+}

@@ -1,0 +1,47 @@
+{
+  "reviewedApplicationCommit": "75a0d8d58552cda3af75ca81656a7ee06ee33507",
+  "reviewedToolingCommit": "09c545db084e07a0091c7276a82a367418e64785",
+  "acceptedMain": "7fbc5f54730e719652a1f168ed815715dca00295",
+  "creativeApproval": "Chris, 2026-09-14, in this task",
+  "followUpScope": "docs/soft-launch only; no application, config or asset changes",
+  "sourceScopeChecks": 228,
+  "uploadInputMasterHashChecks": 18,
+  "productionClientArtifactHashChecks": 17,
+  "mainAncestorOfCandidate": true,
+  "remoteRefsSynchronizedBeforeDocumentationCommit": true,
+  "destination": {
+    "schemaVersion": 1,
+    "purpose": "Documentation-only soft-launch destination; not imported by the application or deployment tooling",
+    "channelName": "cdawg-arcade",
+    "channelId": "1549149791915737129",
+    "categoryName": "Community",
+    "uses": [
+      "launching the Arcade",
+      "discussing scores",
+      "community engagement"
+    ],
+    "welcome": {
+      "pinned": true,
+      "messageId": null,
+      "status": "draft; publication not authorized"
+    },
+    "feedback": {
+      "threadName": "Feedback & Bugs",
+      "parent": "pinned soft-launch welcome post",
+      "threadId": null,
+      "status": "planned; creation not authorized"
+    },
+    "announcement": {
+      "destinationChannelId": null,
+      "status": "draft; source channel/audience not yet approved"
+    },
+    "configurationChangeAuthorized": false
+  },
+  "security": "Local pattern scan; fresh external audit not attempted, prior restriction remains",
+  "productionAccessed": false,
+  "discordContentCreated": false,
+  "portalAccessed": false,
+  "mergePerformed": false,
+  "deploymentPerformed": false,
+  "historicalValidation": "VALIDATION.md; not rerun unchanged gameplay for documentation edits"
+}

@@ -12,7 +12,7 @@ export interface ProductUiPolicy {
 
 export function createV1ProductUiPolicy(search = typeof window === 'undefined' ? '' : window.location.search): ProductUiPolicy {
   const params = new URLSearchParams(search);
-  const showDevelopmentUi = import.meta.env.DEV && (params.has('dev') || params.has('tuning'));
+  const showDevelopmentUi = import.meta.env.DEV && params.has('dev');
   return {
     showDevelopmentUi,
     showDiscordDebugState: showDevelopmentUi,
