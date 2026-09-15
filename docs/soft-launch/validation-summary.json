@@ -1,0 +1,293 @@
+{
+  "base": "7fbc5f54730e719652a1f168ed815715dca00295",
+  "localOnly": true,
+  "suiteGroups": [
+    {
+      "name": "cdp-tooling",
+      "pass": true
+    },
+    {
+      "name": "unit",
+      "pass": true
+    },
+    {
+      "name": "typecheck",
+      "pass": true
+    },
+    {
+      "name": "production",
+      "pass": true
+    },
+    {
+      "name": "database",
+      "pass": true
+    },
+    {
+      "name": "enabled-build",
+      "pass": true
+    },
+    {
+      "name": "enabled-smoke",
+      "pass": true
+    },
+    {
+      "name": "readiness-typecheck",
+      "pass": true
+    },
+    {
+      "name": "lobby-typecheck",
+      "pass": true
+    },
+    {
+      "name": "atlas",
+      "pass": true
+    },
+    {
+      "name": "brand",
+      "pass": true
+    },
+    {
+      "name": "raster",
+      "pass": true
+    },
+    {
+      "name": "host",
+      "pass": true
+    },
+    {
+      "name": "glb",
+      "pass": true
+    },
+    {
+      "name": "graph",
+      "pass": true
+    },
+    {
+      "name": "boundaries",
+      "pass": true
+    },
+    {
+      "name": "security",
+      "pass": true
+    }
+  ],
+  "unitTests": 484,
+  "unitFiles": 39,
+  "postgresChecks": 681,
+  "productionSmokePerMode": 219,
+  "scopeChecks": 228,
+  "brandDerivativeChecks": 61,
+  "assetChecks": {
+    "spriteRecords": 265,
+    "brand": 104,
+    "raster": 56,
+    "host": 25,
+    "glb": 16
+  },
+  "browserSummary": {
+    "runs": 128,
+    "cleanTransitions": 104,
+    "discarded": 80,
+    "realCountdownStalls": 24,
+    "activeStalls": 24,
+    "lifecycleControls": 16,
+    "audioScenarios": 32,
+    "rendererScenarios": 17,
+    "reconciliationCheckpoints": 26,
+    "soaks": [
+      {
+        "scenes": 0,
+        "peakScenes": 1,
+        "timers": 0,
+        "intervals": 0,
+        "frames": 0,
+        "listeners": 4,
+        "audioOpen": 0,
+        "canvases": 0,
+        "hostListeners": 1,
+        "auth": 1,
+        "attempts": 24,
+        "submissions": 4,
+        "cancels": 20,
+        "reads": 137,
+        "accepted": 4,
+        "practiceResults": 0,
+        "resumes": 0,
+        "heap": 11069453
+      },
+      {
+        "scenes": 0,
+        "peakScenes": 1,
+        "timers": 0,
+        "intervals": 0,
+        "frames": 0,
+        "listeners": 4,
+        "audioOpen": 0,
+        "canvases": 0,
+        "hostListeners": 1,
+        "auth": 1,
+        "attempts": 24,
+        "submissions": 4,
+        "cancels": 20,
+        "reads": 133,
+        "accepted": 4,
+        "practiceResults": 0,
+        "resumes": 0,
+        "heap": 11557948
+      }
+    ]
+  },
+  "playerUi": {
+    "states": 15,
+    "viewports": 5,
+    "runs": 3,
+    "focusReturns": 15,
+    "tabWrapping": true
+  },
+  "compiledRuns": 4,
+  "compiledEntryMs": {
+    "cold": 344,
+    "warm": 314
+  },
+  "headedQuietRerun": {
+    "cases": 6,
+    "runs": 12,
+    "passed": true,
+    "originalFailedBatchReportPreserved": true
+  },
+  "suspendedAudio": {
+    "headlessRuns": 4,
+    "headedRuns": 4
+  },
+  "host": {
+    "checkedAt": "2026-09-14T15:33:25-0400",
+    "ownedBrowserProcesses": 0,
+    "hostUptime": "15:33  up 9 days, 5 hrs, 1 user, load averages: 3.59 3.95 5.60",
+    "swap": "vm.swapusage: total = 7168.00M  used = 6145.12M  free = 1022.88M  (encrypted)"
+  },
+  "diagnostics": {
+    "passed": true,
+    "localReadOnly": true,
+    "productionAbsent": true,
+    "noMutationControls": true
+  },
+  "payload": {
+    "accepted": {
+      "initial": {
+        "bytes": 359812,
+        "gzip": 174135,
+        "brotli": 163042
+      },
+      "deferred": {
+        "bytes": 3579429,
+        "gzip": 2144681,
+        "brotli": 2056494
+      },
+      "conditional": {
+        "bytes": 159736,
+        "gzip": 48353,
+        "brotli": 41554
+      },
+      "total": {
+        "bytes": 4098977,
+        "gzip": 2367169,
+        "brotli": 2261090
+      }
+    },
+    "candidate": {
+      "initial": {
+        "bytes": 366869,
+        "gzip": 176586,
+        "brotli": 165194
+      },
+      "deferred": {
+        "bytes": 3577786,
+        "gzip": 2144411,
+        "brotli": 2055842
+      },
+      "conditional": {
+        "bytes": 159736,
+        "gzip": 48353,
+        "brotli": 41554
+      },
+      "total": {
+        "bytes": 4104391,
+        "gzip": 2369350,
+        "brotli": 2262590
+      }
+    },
+    "delta": {
+      "initial": {
+        "bytes": 7057,
+        "gzip": 2451,
+        "brotli": 2152
+      },
+      "deferred": {
+        "bytes": -1643,
+        "gzip": -270,
+        "brotli": -652
+      },
+      "conditional": {
+        "bytes": 0,
+        "gzip": 0,
+        "brotli": 0
+      },
+      "total": {
+        "bytes": 5414,
+        "gzip": 2181,
+        "brotli": 1500
+      }
+    }
+  },
+  "security": {
+    "dependenciesUnchanged": true,
+    "freshRegistryAudit": "rejected by automatic approval review; not run",
+    "inheritedAdvisories": {
+      "moderate": 2,
+      "high": 5,
+      "critical": 0
+    }
+  },
+  "evidence": {
+    "tmp/soft-launch/quiet-headed-final.log": {
+      "sha256": "7ef91dfc84a5d45246f197445023df1cb950bdac514122c68cc8b214bf24f243",
+      "bytes": 123
+    },
+    "tmp/audio-readiness/browser-headed-normal-repeat.json": {
+      "sha256": "dc364376441cc3e08ccc4f3312196cadbfd9fc4db163adde7e3fd3ea6701af4a",
+      "bytes": 654620
+    },
+    "tmp/soft-launch/ui-browser-final.log": {
+      "sha256": "1b360932e1e259f10dbf27d75c6b0b7c36d0296a7a6542beee20cbe2023c7ce8",
+      "bytes": 73
+    },
+    "tmp/soft-launch/compiled-browser-final.log": {
+      "sha256": "daa9c1b1e033b6fb5f25a3ba5a7636b0d594fd48beb003995a6211fda21129dc",
+      "bytes": 93
+    },
+    "tmp/soft-launch/lifecycle-startup-failure.log": {
+      "sha256": "fa8465be7e3acb409e08478a3d3fa5fbce30510cd5ee7f7e4d429373df838a56",
+      "bytes": 755
+    },
+    "tmp/soft-launch/lifecycle-page-enable-failure.log": {
+      "sha256": "cb65fcd35f7e3cbb48e12718fbe6869b143fb460f3804c9bdbc9356d4ad58726",
+      "bytes": 675
+    },
+    "tmp/soft-launch/quiet-socket-failure.json": {
+      "sha256": "e5fe6edd1743405de2b3275c21a1e08f8198aca71928e8913c03468da14b4d9c",
+      "bytes": 250825
+    },
+    "tmp/soft-launch/suspended-visibility-failure.json": {
+      "sha256": "0d2aa6fbb457d8455ef73ee75c10e1edf0c1fff3a39cb48a3daf84d6ce7bfbf7",
+      "bytes": 170006
+    },
+    "tmp/soft-launch/headed-hidden-tab-failure.json": {
+      "sha256": "dbf62fc116c2aaca2f29c21fc5af04080796884f1cb732568532d20a6b58b075",
+      "bytes": 7171
+    },
+    "tmp/soft-launch/quiet-headed-blur-failure.json": {
+      "sha256": "1c8e060be8aaa090f6a762de88efb04e716fa720faab14d50564bd790f189490",
+      "bytes": 221525
+    }
+  }
+}

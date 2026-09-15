@@ -3,6 +3,8 @@ import {OfficialController} from '../../official/controller';
 import {OfficialResultPanel,OfficialLeaderboard} from '../../official/OfficialPanels';
 import { CountdownClock, SimulationClock } from './simulationClock';
 import { HeldControls, observeInterruptions } from './interruption';
+import { PlayerSettings } from '../../app/PlayerSettings';
+import { BalanceHelp } from './BalanceHelp';
 import { ConnectionStatus } from '../../app/ConnectionStatus';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { createV1ProductUiPolicy, getProductionIdentityLabel } from '../../app/v1ProductPolicy';
@@ -49,7 +51,6 @@ export function BalanceExperience({ integration, officialController, hostContext
   const official=useMemo(()=>officialController??new OfficialController(),[officialController]);
   const [officialView,setOfficialView]=useState(official.view);
   const [serverBoard,setServerBoard]=useState(false);
-  const [historyExplained,setHistoryExplained]=useState(()=>{try{return localStorage.getItem('arcade.official-history-explained.v1')==='yes';}catch{return false;}});
   useEffect(()=>official.subscribe(()=>setOfficialView(official.view)),[official]);
   const uiPolicy = useMemo(() => createV1ProductUiPolicy(), []);
   const [phase, setPhase] = useState<GamePhase>(() => getInitialBalancePhase());
@@ -62,7 +63,7 @@ export function BalanceExperience({ integration, officialController, hostContext
   const [debug, setDebug] = useState<DebugSnapshot | null>(null);
   const [musicEnabled, setMusicEnabled] = useState(()=>lobbyIntegration?audioPreference('cdawg.arcade.music.v1',false):false);
   const [sfxEnabled, setSfxEnabled] = useState(()=>lobbyIntegration?audioPreference('cdawg.arcade.sfx.v1',true):true);
-  const [tuning, setTuning] = useState<BalanceConfig>(() => cloneBalanceConfig(balanceConfig));
+  const [tuning] = useState<BalanceConfig>(() => cloneBalanceConfig(balanceConfig));
   const [milestone, setMilestone] = useState<number | null>(null);
   const inputRef = useRef<BalanceInputDirection>('none');
   const configRef = useRef<BalanceConfig>(tuning);
@@ -306,21 +307,18 @@ export function BalanceExperience({ integration, officialController, hostContext
         <div className="balance-brand">
           <span className="prototype-pill">Cdawg Balance</span>
           <h1>Cdawg Balance</h1>
-          {!preparing&&!isGameplayInputActive(phase)&&<ConnectionStatus context={hostContext} onRetry={onRetryConnection} onPractice={onContinuePractice} />}
+          {!preparing&&!isGameplayInputActive(phase)&&<ConnectionStatus recoveryOnly context={hostContext} onRetry={onRetryConnection} onPractice={onContinuePractice} />}
         </div>
-        <div className="audio-controls" aria-label="Audio settings">
-          <label><input disabled={preparing || isGameplayInputActive(phase)} checked={musicEnabled} onChange={(event) => setMusicEnabled(event.target.checked)} type="checkbox" /> Music</label>
-          <label><input disabled={preparing || isGameplayInputActive(phase)} checked={sfxEnabled} onChange={(event) => setSfxEnabled(event.target.checked)} type="checkbox" /> SFX</label>
-        </div>
+        <PlayerSettings context={hostContext} official={['eligible','accepted','running'].includes(officialView.phase)} onRetry={onRetryConnection} onPractice={onContinuePractice} disabled={preparing || isGameplayInputActive(phase) || ['checking','unconfirmed'].includes(officialView.phase)} audio={{music:musicEnabled,sfx:sfxEnabled,setMusic:setMusicEnabled,setSfx:setSfxEnabled}} />
       </header>
 
       <section className="balance-compact-hud" aria-label="Score">
         <div><span>Score</span><strong>{score.toFixed(1)}s</strong></div>
-        <div><span>Historical Local Best</span><strong>{personalBest.toFixed(1)}s</strong></div>
+        <div><span>{officialView.stats?.best?'Personal best':'Practice best'}</span><strong>{officialView.stats?.best?`${(officialView.stats.best.ticks/60).toFixed(3)}s`:`${personalBest.toFixed(1)}s`}</strong></div>
         <div><span>Player</span><strong>{identityLabel}</strong></div>
       </section>
 
-      {uiPolicy.showDiscordDebugState && (
+      {uiPolicy.showDiscordDebugState && hostContext.environment==='local' && (
         <section className="activity-status-panel" data-testid="dev-discord-status">
           <span>State: {hostContext.connectionState ?? 'local-practice'}</span>
           <span>{hostContext.initializationStatus}</span>
@@ -328,18 +326,18 @@ export function BalanceExperience({ integration, officialController, hostContext
         </section>
       )}
 
-      {!preparing&&!isGameplayInputActive(phase)&&<div className="official-context" role="status">
-        {officialView.phase==='accepted'?'Official score saved':officialView.phase==='checking'?'Checking your run…':officialView.phase==='unconfirmed'?'Submission not confirmed · Retry':officialView.phase==='preparing'?'Preparing official run…':officialView.phase==='other-server'?'Official scoring not available in this server':officialView.phase==='unavailable'?'Shared scores unavailable · Practice only':officialView.phase==='eligible'?'New verified runs available in this server':'Practice · Saved in this browser'}
+      {!preparing&&phase==='home'&&<div className="official-context" role="status">
+        {officialView.phase==='accepted'?'Official score saved':officialView.phase==='checking'?'Checking your run…':officialView.phase==='unconfirmed'?'Score not confirmed · Retry':officialView.phase==='preparing'?'Preparing official run…':officialView.phase==='other-server'?'Official scoring not available in this server':officialView.phase==='unavailable'?'Scores unavailable · Practice available':officialView.phase==='eligible'?'Official play':'Practice'}
       </div>}
-      {!preparing&&officialView.phase==='eligible'&&!historyExplained&&<aside className="official-intro"><p>Server records start with new verified runs. Your existing scores stay in this browser as practice history.</p><button className="secondary-button" onClick={()=>{setHistoryExplained(true);try{localStorage.setItem('arcade.official-history-explained.v1','yes');}catch{/* optional local acknowledgment */}}}>Got it</button></aside>}
+
       {audioDegraded && <p role="status">Sound unavailable for this run. You can try again on your next Start.</p>}
       <section className="cabinet balance-stage" data-viewport-mode={getViewportLayoutMode(phase)}>
         {(preparation === 'preparing' || preparation === 'ready' || preparation === 'audio-error') && <BalanceGameCanvas key={rendererId} clockRef={rendererClockRef} active={() => phaseRef.current === 'playing'} onReady={() => void rendererReady(rendererId)} onError={() => failPreparation(rendererId)} onPause={pauseRun} configRef={configRef} onGameOver={handleGameOver} onTick={handleTick} />}
 
         {phase === 'home' && !preparing && (
           <div className="start-panel balance-start-panel">
-            <p>One attempt. Hold the line. Keep Cdawg standing.</p>
-            <button className="primary-button" disabled={officialView.phase==='preparing'} onClick={()=>void startRun()} type="button">{officialView.phase==='accepted'&&!lobbyIntegration?'Official score saved':officialView.phase==='checking'?'Checking your run…':officialView.phase==='unconfirmed'?'Submission not confirmed · Retry':officialView.phase==='preparing'?'Preparing official run…':'Start Game'}</button>
+            <p>Hold the line. Keep Cdawg standing.</p><BalanceHelp/>
+            <button className="primary-button" disabled={officialView.phase==='preparing'} onClick={()=>void startRun()} type="button">{officialView.phase==='accepted'&&!lobbyIntegration?'Official score saved':officialView.phase==='checking'?'Checking your run…':officialView.phase==='unconfirmed'?'Score not confirmed · Retry':officialView.phase==='preparing'?'Preparing official run…':'Start Game'}</button>
             {officialView.phase==='unavailable'&&<button className="secondary-button" onClick={playPractice}>Play practice now</button>}
             {['eligible','accepted'].includes(officialView.phase)&&<button className="secondary-button" onClick={()=>{setServerBoard(true);setPhase('leaderboard');}}>View Leaderboard</button>}
           </div>
@@ -354,7 +352,7 @@ export function BalanceExperience({ integration, officialController, hostContext
           <button className="secondary-button" onClick={cancelPreparation} type="button">Back</button>
         </div>}
 
-        {isGameplayInputActive(phase)&&officialView.phase==='running'&&!officialView.interrupted&&<span className="official-run-label">Official run · This server</span>}
+        {isGameplayInputActive(phase)&&officialView.phase==='running'&&!officialView.interrupted&&<span className="official-run-label">Official run</span>}
         {phase === 'countdown' && !paused && <div className="countdown">{countdown}</div>}
 
         {paused && <div className="pause-panel" role="dialog" aria-label="Game paused">
@@ -365,14 +363,14 @@ export function BalanceExperience({ integration, officialController, hostContext
         {phase === 'results' && !preparing && runResult && (
           <div className="result-panel">
             <ResultMascot side={clockRef.current.state.tilt < 0 ? -1 : 1} failed={clockRef.current.state.failed} />
-            <OfficialResultPanel view={officialView} controller={official} /><p className="result-label">Local result · Saved in this browser</p>
-            <strong className={officialView.phase==='accepted'?'local-result-small':''}>{runResult.scoreSeconds.toFixed(1)}s</strong>
-            <span>{runResult.isPersonalBest ? 'New local best' : `Local best remains ${personalBest.toFixed(1)}s`}</span>
+            <OfficialResultPanel view={officialView} controller={official} />{officialView.phase!=='accepted'&&<p className="result-label">Practice score · This device</p>}
+            {officialView.phase!=='accepted'&&<strong>{runResult.scoreSeconds.toFixed(1)}s</strong>}
+            {officialView.phase!=='accepted'&&<span>{runResult.isPersonalBest ? 'New practice best' : `Practice best ${personalBest.toFixed(1)}s`}</span>}
             <div className="result-actions">
               {lobbyIntegration&&onExit&&<button className="secondary-button" disabled={['checking','preparing','unconfirmed'].includes(officialView.phase)} onClick={onExit}>Back to Arcade</button>}
               <button className="primary-button" disabled={['checking','preparing'].includes(officialView.phase)} onClick={()=>void startRun()} type="button">Play Again</button>
               {!['practice','other-server','unavailable'].includes(officialView.phase)&&<button className="secondary-button" onClick={()=>{setServerBoard(true);setPhase('leaderboard');void official.refresh();}} type="button">View Leaderboard</button>}
-              <button className="secondary-button" onClick={() => {setServerBoard(false);setPhase('leaderboard');}} type="button">Local results</button>
+              <button className="secondary-button" onClick={() => {setServerBoard(false);setPhase('leaderboard');}} type="button">Practice results</button>
             </div>
           </div>
         )}
@@ -411,10 +409,10 @@ export function BalanceExperience({ integration, officialController, hostContext
         </button>
       </section>
 
-      {uiPolicy.showDevelopmentUi && (
+      {uiPolicy.showDevelopmentUi && hostContext.environment==='local' && (
         <button className="dev-toggle" onClick={() => setShowDev((value) => !value)} type="button">Dev</button>
       )}
-      {uiPolicy.showDevelopmentUi && showDev && (
+      {uiPolicy.showDevelopmentUi && hostContext.environment==='local' && showDev && (
         <aside className="dev-panel">
           <span>Phase: {phase}</span>
           <span>Input: {input}</span>
@@ -425,46 +423,10 @@ export function BalanceExperience({ integration, officialController, hostContext
           <span>Held input: {debug?.state.heldInputMs ?? 0}ms</span>
           <span>Disturbance: {debug?.state.lastDisturbance.toFixed(2) ?? '0.00'}</span>
           <span>Survival: {((debug?.state.survivalMs ?? 0) / 1000).toFixed(1)}s</span>
-          <DevTuningControls tuning={tuning} onChange={setTuning} />
           <PlaytestStatsView stats={playtestStats} />
         </aside>
       )}
     </main>
-  );
-}
-
-function DevTuningControls({ tuning, onChange }: { tuning: BalanceConfig; onChange: (config: BalanceConfig) => void }) {
-  const update = (key: keyof Pick<BalanceConfig, 'gravityAcceleration' | 'inputAcceleration' | 'damping' | 'difficultyGrowthPerSecond' | 'disturbanceGrowth' | 'failureAngle'>, value: number) => {
-    onChange({ ...tuning, [key]: value });
-  };
-
-  const copyTuning = () => {
-    void navigator.clipboard?.writeText(JSON.stringify(tuning, null, 2));
-  };
-
-  return (
-    <div className="dev-section">
-      <strong>Tuning</strong>
-      <TuningSlider label="Gravity" max={0.9} min={0.2} onChange={(value) => update('gravityAcceleration', value)} step={0.01} value={tuning.gravityAcceleration} />
-      <TuningSlider label="Input" max={1.3} min={0.5} onChange={(value) => update('inputAcceleration', value)} step={0.01} value={tuning.inputAcceleration} />
-      <TuningSlider label="Damping" max={0.98} min={0.82} onChange={(value) => update('damping', value)} step={0.005} value={tuning.damping} />
-      <TuningSlider label="Growth" max={0.13} min={0.02} onChange={(value) => update('difficultyGrowthPerSecond', value)} step={0.005} value={tuning.difficultyGrowthPerSecond} />
-      <TuningSlider label="Disturb" max={0.14} min={0.02} onChange={(value) => update('disturbanceGrowth', value)} step={0.005} value={tuning.disturbanceGrowth} />
-      <TuningSlider label="Fail angle" max={38} min={24} onChange={(value) => update('failureAngle', value)} step={1} value={tuning.failureAngle} />
-      <div className="dev-actions">
-        <button className="mini-button" onClick={() => onChange(cloneBalanceConfig(balanceConfig))} type="button">Reset</button>
-        <button className="mini-button" onClick={copyTuning} type="button">Copy JSON</button>
-      </div>
-    </div>
-  );
-}
-
-function TuningSlider({ label, max, min, onChange, step, value }: { label: string; max: number; min: number; onChange: (value: number) => void; step: number; value: number }) {
-  return (
-    <label className="tuning-slider">
-      <span>{label}: {value.toFixed(step < 0.01 ? 3 : 2)}</span>
-      <input max={max} min={min} onChange={(event) => onChange(Number(event.target.value))} step={step} type="range" value={value} />
-    </label>
   );
 }
 

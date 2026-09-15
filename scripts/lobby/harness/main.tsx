@@ -36,7 +36,8 @@ const fetcher:typeof fetch=async(input,options)=>{const path=String(input),body=
  return Response.json(value);
 };
 const runtime=new ArcadeRuntime(host,new MemoryScoreRepository(),new OfficialController(new OfficialClient(fetcher,location.origin)));
-function choose(value:string){scenario=value;context=makeDefaultLocalContext();hostListeners.forEach(f=>f(context));if(!['practice','auth-error'].includes(value))context={...context,environment:'discord',authenticated:true,arcadeSessionState:'verified',connectionState:'discord-authenticated',currentUser:{id:'fixture-player',displayName:'Fixture Player'},guildId:'fixture-guild'};if(value==='auth-error')context={...context,connectionState:'discord-error',connectionError:'timeout'};hostListeners.forEach(f=>f(context));}
+function choose(value:string){scenario=value;context=makeDefaultLocalContext();hostListeners.forEach(f=>f(context));if(!['practice','auth-error'].includes(value))context={...context,environment:'discord',authenticated:true,arcadeSessionState:'verified',connectionState:'discord-authenticated',currentUser:{id:'fixture-player',displayName:'Fixture Player'},guildId:'fixture-guild'};if(value==='auth-error')context={...context,environment:'discord',connectionState:'discord-error',connectionError:'timeout'};
+ if(['connecting','verifying','account-changed','signed-out','invalid-context','configuration'].includes(value))context={...context,environment:'discord',authenticated:value==='verifying',connectionState:value==='connecting'?'discord-connecting':value==='invalid-context'||value==='configuration'?'discord-error':'discord-authenticated',arcadeSessionState:value==='verifying'?'verifying':value==='account-changed'?'account-changed':value==='signed-out'?'signed-out':undefined,connectionError:value==='invalid-context'?'invalid-context':value==='configuration'?'configuration':undefined};hostListeners.forEach(f=>f(context));}
 createRoot(document.getElementById('root')!).render(<ArcadeApp runtime={runtime}/>);
 document.getElementById('scenario')!.addEventListener('change',e=>choose((e.target as HTMLSelectElement).value));document.getElementById('back')!.addEventListener('click',()=>history.back());
 window.addEventListener('error',()=>errors.push('page error'));window.addEventListener('unhandledrejection',()=>errors.push('unhandled rejection'));
@@ -70,7 +71,7 @@ document.getElementById('reconcile')!.addEventListener('click',async()=>{
  const baseline=snapshot();hidden();check(runtime.destination==='lobby','hidden lobby navigation');
  for(const spec of [{name:'cold'},{name:'warm'},{name:'decode-5000',decode:5000},...[100,250,1000,5000].map(warmup=>({name:'warmup-'+warmup,warmup})),{name:'preparation-blur',decode:500},{name:'preparation-hidden',decode:500},{name:'countdown-hidden'},{name:'active-hidden'},{name:'countdown-blur'},{name:'active-stall',active:250},{name:'active-blur'},{name:'reduced-motion'},{name:'play-again'}].filter(s=>isolatedCase?s.name===isolatedCase:!profileOnly||['cold','warm'].includes(s.name))){
  resetFault();Object.assign(fault,spec);transitionEvents.length=0;const issued=attempts,sent=submissions;
- if(spec.name==='reduced-motion')(document.querySelector('.arcade-settings input') as HTMLInputElement).click();
+ if(spec.name==='reduced-motion')(document.querySelector('.motion-preference input') as HTMLInputElement).click();
  await enter();button('Start Game')!.click();
  if(spec.name==='preparation-hidden')hidden();
  if(spec.name==='preparation-blur'){window.dispatchEvent(new Event('blur'));document.dispatchEvent(new Event('visibilitychange'));}

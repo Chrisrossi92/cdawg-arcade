@@ -1,0 +1,144 @@
+{
+  "version": "v001",
+  "provenance": "Owned approved CDAWG Arcade Notched Tag / outlined Fredoka wordmark / unchanged approved V004 host render. Derivative composition only; no mascot regeneration.",
+  "inputs": {
+    "tag": {
+      "path": "assets/brand/arcade/vector/cdawg-tag-small-v001.svg",
+      "sha256": "778c759becebfd51e5ea4f45f28c8e22137d949cb9b23d6288676def153ccf99"
+    },
+    "logo": {
+      "path": "assets/brand/arcade/vector/cdawg-horizontal-dark-v001.svg",
+      "sha256": "7f749727a504bbe1bee417267910841155d3dcc9c972aad679e316dc33f9d787"
+    },
+    "mascot": {
+      "path": "assets/brand/arcade/runtime/cdawg-host-default-v004.webp",
+      "sha256": "22d76bf8191718d897bd5aab92465d44c029c735902154881d0b68583844d946"
+    }
+  },
+  "masters": [
+    {
+      "path": "source/application-icon-v001.svg",
+      "sha256": "e1a616f367a71ff0b508794995d7ea8b50c57e1fe3ff0581aa3ddb83c030ecdf"
+    },
+    {
+      "path": "source/activity-cover-v001.svg",
+      "sha256": "334737625895756604532cb4dc3ecac88bb9e08cb874018ffdf3457a0512eb62"
+    },
+    {
+      "path": "source/embedded-background-v001.svg",
+      "sha256": "21c99497326c28739391241388ce0ddffee7b0c5b130ccfe39a3130e923ba9b3"
+    }
+  ],
+  "exporter": "scripts/soft-launch/export-brand.mjs; pinned Sharp 0.34.3; PNG compressionLevel=9, no timestamp metadata",
+  "specificationSource": "https://docs.discord.com/developers/activities/development-guides/assets-and-metadata",
+  "files": [
+    {
+      "file": "01-application-icon-1024-v001.png",
+      "width": 1024,
+      "height": 1024,
+      "format": "png",
+      "bytes": 48141,
+      "sha256": "fb491c3c6b4918971dc262a02625e39f304d317d9726cb37a65616bcfca1a54b",
+      "destination": "General Information → App Icon"
+    },
+    {
+      "file": "02-bot-avatar-1024-v001.png",
+      "width": 1024,
+      "height": 1024,
+      "format": "png",
+      "bytes": 48141,
+      "sha256": "fb491c3c6b4918971dc262a02625e39f304d317d9726cb37a65616bcfca1a54b",
+      "destination": "Bot → Avatar (same identity, separately configured)"
+    },
+    {
+      "file": "03-activity-cover-1920x1080-v001.png",
+      "width": 1920,
+      "height": 1080,
+      "format": "png",
+      "bytes": 387761,
+      "sha256": "f7dc170667d0fd2671fde2a211986b75fd631c1656532e12dfd155ab8106b200",
+      "destination": "Activities → Art Assets → Cover Art"
+    },
+    {
+      "file": "04-embedded-background-1920x1080-v001.png",
+      "width": 1920,
+      "height": 1080,
+      "format": "png",
+      "bytes": 193543,
+      "sha256": "10f110f1ddf3b57f7b3beb2a0144e46a1ae12807656fd0373ee52e5b97e547b7",
+      "destination": "Activities → Art Assets → Embedded Background"
+    },
+    {
+      "file": "05-social-share-1200x675-v001.png",
+      "width": 1200,
+      "height": 675,
+      "format": "png",
+      "bytes": 189661,
+      "sha256": "3b8fb47d5194e665f5efcc88081ec123e603c2e86e322896e7dd9e4182b7eae6",
+      "destination": "Repository/share derivative; not a Portal field"
+    },
+    {
+      "file": "specimen-icon-16-v001.png",
+      "width": 16,
+      "height": 16,
+      "format": "png",
+      "bytes": 368,
+      "sha256": "da76c89b4821274ad269d0fee0a09eccca9a63216e32d838841a04ad2b6b43e7",
+      "destination": "Small-size review specimen only"
+    },
+    {
+      "file": "specimen-icon-24-v001.png",
+      "width": 24,
+      "height": 24,
+      "format": "png",
+      "bytes": 573,
+      "sha256": "3d01422fed00d3f50d07f14dc34ed72b7083be65d60617a064db09d57378f7b7",
+      "destination": "Small-size review specimen only"
+    },
+    {
+      "file": "specimen-icon-32-v001.png",
+      "width": 32,
+      "height": 32,
+      "format": "png",
+      "bytes": 905,
+      "sha256": "2922fc784a60365a37dc29cc4d1ef90142ad7816f257621ed5994178be21cfc8",
+      "destination": "Small-size review specimen only"
+    },
+    {
+      "file": "specimen-icon-48-v001.png",
+      "width": 48,
+      "height": 48,
+      "format": "png",
+      "bytes": 1470,
+      "sha256": "12593d7f97e00431b165595f03c801adb983a854b1240582b45791ac37db9ae7",
+      "destination": "Small-size review specimen only"
+    },
+    {
+      "file": "specimen-icon-64-v001.png",
+      "width": 64,
+      "height": 64,
+      "format": "png",
+      "bytes": 2262,
+      "sha256": "f60c9b52033e1cff5e122e27ee51b87fcabadb6cd526da6e3c495427eab0d1e5",
+      "destination": "Small-size review specimen only"
+    },
+    {
+      "file": "specimen-icon-128-v001.png",
+      "width": 128,
+      "height": 128,
+      "format": "png",
+      "bytes": 4831,
+      "sha256": "5f4f9dde4d33944b00f604dc87e7368ff2a1fdb3c7da78f28932f9b9077c98c8",
+      "destination": "Small-size review specimen only"
+    },
+    {
+      "file": "specimen-icon-256-v001.png",
+      "width": 256,
+      "height": 256,
+      "format": "png",
+      "bytes": 10003,
+      "sha256": "595f23da65e8c4da60f80bb47770f62c859631482a98bda8956fb73c959a70cc",
+      "destination": "Small-size review specimen only"
+    }
+  ]
+}

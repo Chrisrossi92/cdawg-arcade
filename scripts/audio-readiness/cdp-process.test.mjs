@@ -1,0 +1,5 @@
+import {test} from 'vitest';import assert from 'node:assert/strict';import {EventEmitter} from 'node:events';import {stopBrowserProcess} from './cdp-process.mjs';
+const child=()=>Object.assign(new EventEmitter(),{exitCode:null,signalCode:null,signals:[]});
+test('cleanup waits for graceful process exit',async()=>{const c=child();c.kill=s=>{c.signals.push(s);setTimeout(()=>{c.signalCode=s;c.emit('exit');},1);};await stopBrowserProcess(c,20);assert.deepEqual(c.signals,['SIGTERM']);assert.equal(c.listenerCount('exit'),0);});
+test('unresponsive browser is terminated within the bounded cleanup path',async()=>{const c=child();c.kill=s=>{c.signals.push(s);if(s==='SIGKILL'){c.signalCode=s;c.emit('exit');}};await stopBrowserProcess(c,5);assert.deepEqual(c.signals,['SIGTERM','SIGKILL']);assert.equal(c.listenerCount('exit'),0);});
+test('already stopped browsers are not signalled again',async()=>{const c=child();c.exitCode=0;c.kill=()=>assert.fail('unexpected signal');await stopBrowserProcess(c);});
