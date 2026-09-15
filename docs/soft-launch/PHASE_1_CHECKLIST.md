@@ -18,7 +18,7 @@ Base: accepted main 7fbc5f54730e719652a1f168ed815715dca00295; accepted deploymen
 | Performance/payload | Exact bytes/hashes and repeated builds recorded in artifact-manifest.json; Balance stays deferred. |
 | Health/readiness | Existing endpoints unchanged. Live gates must pass at a separately authorized exact-SHA rollout. |
 | Database consistency/privacy | Ephemeral tests now; read-only production projection/replay checks at rollout. No synthetic production scores. |
-| Security | No production diagnostics, query bypass, new secret or dependency. Preserve known advisory limitations; reassess before broader exposure. |
+| Security | Fresh scoped npm assessment complete (2026-09-15): 11 distinct advisories (6 high, 5 moderate), 10 represented after pruning, 0 publicly reachable vulnerable paths, 0 release blockers. Accepted for this soft launch under current controls; no required pre-launch remediation. See DEPENDENCY_ADVISORY_ASSESSMENT.md. No dependency/config changes. |
 | Feedback route | Approved permanent destination: #cdawg-arcade (1549149791915737129), Community. Plan a Feedback & Bugs thread attached to the pinned welcome post. Owner confirms the dedicated channel was created and the welcome message posted and pinned. Feedback & Bugs thread remains pending; no thread creation is performed in this preparation. |
 | Rollback | Phase 1 rollback is accepted Release B dep-dak230uq1p3s73cb18l0; no schema/config migration. Reverify artifact availability only at rollout. Older disabled-lobby artifact remains historical fallback, not the immediate Phase 1 target. |
 | Announcement preparation | Welcome, announcement and Feedback & Bugs starter drafted in DISCORD_DRAFTS.md. Welcome is already posted and pinned per owner. Broader announcement is intentionally pending; its source channel/audience and publication remain unapproved. |
@@ -27,7 +27,7 @@ Base: accepted main 7fbc5f54730e719652a1f168ed815715dca00295; accepted deploymen
 
 ## Recommended shortly after launch
 
-Review sanitized failure rates and payload/entry latency through existing capabilities; gather feedback through the approved route; broaden assistive-technology/device sampling; refresh the inherited dependency-advisory assessment in a separately reviewed maintenance task. Do not add monitoring services, cost or secrets without approval.
+Review sanitized failure rates and payload/entry latency through existing capabilities; gather feedback through the approved route; broaden assistive-technology/device sampling; complete the separately reviewed patch/minor dependency maintenance and production-pruning cleanup listed in DEPENDENCY_ADVISORY_ASSESSMENT.md, then re-audit. Do not add monitoring services, cost or secrets without approval.
 
 ## Intentionally deferred
 

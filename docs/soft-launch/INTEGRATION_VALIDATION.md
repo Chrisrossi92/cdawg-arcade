@@ -89,3 +89,7 @@ Additional integration files: `src/styles/mobile.css` (home-only layout correcti
 Candidate only: no main merge, deployment, Portal action, thread/message creation, or production access. Original feature worktrees remain clean. Recommended next steps are review, disposition of the inherited advisory assessment, separately authorized normal main merge/exact-SHA rollout with health gates, pending artwork/feedback actions, then announcement last. Accepted Release B remains the rollback reference; verify its availability and configuration at rollout. No schema migration is introduced. See ROLLOUT_PLAN.md for the bounded sequence.
 
 Final security pattern scans passed for 641 source/artifact files and 652 entries including the eleven staged files. Changed script syntax and Git whitespace checks passed. No environment-file values were read. This is local secret/boundary scanning, not a fresh package-registry advisory audit.
+
+## Dependency assessment follow-up — 2026-09-15
+
+The explicitly authorized, names/versions-only npm assessment of exact candidate bf071dffda0c1406ad8d1ae1b838e18a5b3f20eb is complete. See DEPENDENCY_ADVISORY_ASSESSMENT.md and DEPENDENCY_ADVISORY_EVIDENCE.json: 11 distinct findings, ten represented in the pruned tree, zero public vulnerable paths and no blocker under the owner’s standard. Documentation-only follow-up; the earlier full integration validation above is not misrepresented as rerun. Dependencies, runtime files, main and production are unchanged.
