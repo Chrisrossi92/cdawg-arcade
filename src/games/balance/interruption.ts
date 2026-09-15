@@ -7,10 +7,14 @@ export function observeInterruptions(
   const blur = () => pause();
   const cancel = () => clear();
   windowTarget.addEventListener('blur', blur);
+  windowTarget.addEventListener('pagehide', blur);
+  documentTarget.addEventListener('freeze', blur);
   documentTarget.addEventListener('visibilitychange', visibility);
   windowTarget.addEventListener('pointercancel', cancel);
   return () => {
     windowTarget.removeEventListener('blur', blur);
+    windowTarget.removeEventListener('pagehide', blur);
+    documentTarget.removeEventListener('freeze', blur);
     documentTarget.removeEventListener('visibilitychange', visibility);
     windowTarget.removeEventListener('pointercancel', cancel);
     clear();

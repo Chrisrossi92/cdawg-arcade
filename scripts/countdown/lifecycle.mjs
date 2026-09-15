@@ -4,6 +4,7 @@ import {browser,sleep} from '../audio-readiness/cdp.mjs';
 const results=[],output='tmp/countdown-correction/lifecycle-controls.json';
 try{
  for(const path of ['direct','lobby'])for(const muted of [false,true])for(const again of [false,true])for(const control of path==='direct'?['freeze']:['freeze','cancel','identity']){
+  console.log('START',path,muted?'muted':'audio',again?'Again':'Start',control);
   const b=await browser();
   try{
    await b.send('Page.navigate',{url:'http://127.0.0.1:5231'+(path==='direct'?'/candidate.html?activity=1&buffered=1':'/lobby/index.html?buffered=1')});
@@ -30,6 +31,9 @@ try{
    else{assert.equal(result.canvases,0);assert.equal(initialScenes+events('SCENE_CREATE').length,events('SCENE_DESTROY').length);}
    console.log('PASS',path,muted?'muted':'audio',again?'Again':'Start',control);
    writeFileSync(output,JSON.stringify({status:'running',results},null,2));
+  }catch(error){
+   try{writeFileSync('tmp/countdown-correction/lifecycle-failure-state.json',JSON.stringify({path,muted,again,control,state:await b.evaluate('({text:document.querySelector("#root")?.innerText,hidden:document.hidden,focused:document.hasFocus(),events:window.__countdownEvents??window.__diag?.events})')},null,2));}catch{/* Diagnostics never convert a failure into success. */}
+   throw error;
   }finally{await b.close();}
  }
  writeFileSync(output,JSON.stringify({status:'passed',results},null,2));

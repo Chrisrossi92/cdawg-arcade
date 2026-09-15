@@ -1,10 +1,11 @@
 // Local compiled fixtures only. Never calls a production origin or writes real scores.
 import assert from 'node:assert/strict';import fs from 'node:fs';import {browser,sleep} from '../audio-readiness/cdp.mjs';
-const out='tmp/soft-launch',rows=[],b=await browser(true,{diagnosticsPath:out+'/ui-cdp.jsonl'});
+const iphone=process.argv.includes('--iphone'),out=iphone?'tmp/iphone/context':'tmp/soft-launch';fs.mkdirSync(out,{recursive:true});const rows=[],b=await browser(true,{diagnosticsPath:out+'/ui-cdp.jsonl'});
 const state=async name=>{await b.evaluate(`(()=>{const s=document.querySelector('#scenario');s.value=${JSON.stringify(name)};s.dispatchEvent(new Event('change'));})()`);await sleep(350);};
 const openSettings=async()=>{await b.evaluate("document.querySelector('#root .identity-button').click()");await b.until("!!document.querySelector('#root dialog[open]')");};
 try{
  await b.send('Page.navigate',{url:'http://127.0.0.1:5231/lobby/index.html?dev=1&tuning=1'});await b.until("!!document.querySelector('.arcade-lobby')");
+ if(iphone){await b.send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});await b.evaluate("document.querySelector('#controls').style.display='none';");}
  for(const name of ['practice','official','empty','other-server','unavailable','board-error','stats-error','expired','auth-error','connecting','verifying','account-changed','signed-out','invalid-context','configuration']){
   await state(name);const visible=await b.evaluate("[...document.querySelectorAll('#root button,#root summary,#root input')].filter(e=>e.getBoundingClientRect().height).map(e=>e.textContent.trim()||e.getAttribute('aria-label')||e.type)");
   assert(!visible.includes('Dev'));if(['invalid-context','configuration','auth-error'].includes(name))assert(!visible.includes('Retry connection'),'redundant card recovery');await openSettings();
@@ -17,12 +18,12 @@ try{
   assert(!/PRIVATE|OAuth|session|ruleset|SDK|State:/.test(settings),'technical/private wording');
   await b.send('Input.dispatchKeyEvent',{type:'keyDown',key:'Escape',code:'Escape',windowsVirtualKeyCode:27});await b.send('Input.dispatchKeyEvent',{type:'keyUp',key:'Escape',code:'Escape',windowsVirtualKeyCode:27});await b.until("!document.querySelector('#root dialog[open]')");await b.until("document.activeElement.matches('.identity-button')",1000);assert(await b.evaluate("document.activeElement.matches('.identity-button')"),'focus not returned');rows.push({name,visible,settings,escapeFocus:true});
  }
- await state('practice');await openSettings();await b.evaluate("document.querySelector('.motion-preference input').click()");await b.click('Close');assert.equal(await b.evaluate("document.querySelector('.arcade-lobby').dataset.reduced"),'true');
+ await state('practice');await openSettings();await b.evaluate("document.querySelector('.motion-preference input').click()");await b.click('Close');await b.until("!document.querySelector('#root dialog[open]')");await b.until("document.activeElement.matches('.identity-button')",1000);assert.equal(await b.evaluate("document.querySelector('.arcade-lobby').dataset.reduced"),'true');
  for(const [width,height]of [[1440,900],[800,600],[768,1024],[390,844],[375,667]]){
   await b.send('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile:width<500});await openSettings();
-  const layout=await b.evaluate("(()=>{const d=document.querySelector('dialog[open]'),r=d.getBoundingClientRect();return{fits:r.left>=0&&r.right<=innerWidth&&r.top>=0&&r.bottom<=innerHeight,small:[...d.querySelectorAll('button,label,summary')].filter(e=>e.getBoundingClientRect().height>0&&e.getBoundingClientRect().height<44).map(e=>e.textContent)}})()");assert(layout.fits);assert.deepEqual(layout.small,[]);await b.click('Close');rows.push({viewport:[width,height],layout});
+  const layout=await b.evaluate("(()=>{const d=document.querySelector('dialog[open]'),r=d.getBoundingClientRect();return{fits:r.left>=0&&r.right<=innerWidth&&r.top>=0&&r.bottom<=innerHeight,small:[...d.querySelectorAll('button,label,summary')].filter(e=>e.getBoundingClientRect().height>0&&e.getBoundingClientRect().height<44).map(e=>e.textContent)}})()");assert(layout.fits);assert.deepEqual(layout.small,[]);await b.click('Close');await b.until("!document.querySelector('#root dialog[open]')");await b.until("document.activeElement.matches('.identity-button')",1000);rows.push({viewport:[width,height],layout});
  }
- await b.send('Emulation.setDeviceMetricsOverride',{width:1280,height:900,deviceScaleFactor:1,mobile:false});
+ await b.send('Emulation.setDeviceMetricsOverride',{width:iphone?390:1280,height:iphone?844:900,deviceScaleFactor:1,mobile:iphone});
  await b.evaluate("localStorage.removeItem('cdawg.balance.help-seen.v1')");await b.click('Play practice');await b.until("!!document.querySelector('.balance-start-panel .balance-help')");assert(await b.evaluate("[...document.querySelectorAll('.balance-help')].some(e=>e.open)"),'first-time help missing');
  await b.click('Back to Arcade');await b.click('Play practice');await b.until("!!document.querySelector('.balance-start-panel')");assert(!await b.evaluate("[...document.querySelectorAll('.balance-help')].some(e=>e.open)"),'returning help opened');
  await b.evaluate("document.querySelector('.balance-start-panel summary').click()");assert(await b.evaluate("document.querySelector('.balance-start-panel details').open"));

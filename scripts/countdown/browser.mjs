@@ -7,9 +7,12 @@ const results=[];
 const selected=process.argv.find(a=>a.startsWith('--case='))?.slice(7);
 const repeat=Number(process.argv.find(a=>a.startsWith('--repeat='))?.slice(9)??1);
 const cases=['quiet','gap-99.9','gap-100','gap-100.1','multiple','real-stall','active-stall','blur','hidden','button-cancel'];
-const b=await browser(true,{diagnosticsPath:root+'/browser-cdp.jsonl'});
+// Bound independent full-page fixture history; SPA reuse is covered by lifecycle soaks.
+let b;
 try{
- for(let iteration=0;iteration<repeat;iteration++)for(const path of ['direct','lobby'])for(const muted of [false,true])for(const name of cases.filter(c=>!selected||selected===c)){
+ for(let iteration=0;iteration<repeat;iteration++)for(const path of ['direct','lobby'])for(const muted of [false,true]){
+  b=await browser(true,{diagnosticsPath:`${root}/browser-${iteration}-${path}-${muted}.jsonl`});
+  for(const name of cases.filter(c=>!selected||selected===c)){
   const row={iteration,path,muted,name,runs:[]};results.push(row);
   await b.send('Network.enable');await b.send('Network.clearBrowserCache');
   await b.send('Page.navigate',{url:'http://127.0.0.1:5231'+(path==='direct'?'/candidate.html?activity=1&buffered=1':'/lobby/index.html?buffered=1')});
@@ -71,6 +74,8 @@ try{
    writeFileSync(root+'/browser.json',JSON.stringify({status:'running',results},null,2));
   }
  }
+  await b.close();b=undefined;
+ }
  writeFileSync(root+'/browser.json',JSON.stringify({status:'passed',results},null,2));
 }catch(error){writeFileSync(root+'/browser.json',JSON.stringify({status:'failed',error:error.message,results},null,2));throw error;}
-finally{await b.close();}
+finally{if(b)await b.close();}

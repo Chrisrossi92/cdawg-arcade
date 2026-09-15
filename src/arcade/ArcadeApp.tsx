@@ -1,3 +1,4 @@
+import '../styles/mobile.css';
 import {Component,Suspense,lazy,useEffect,useRef,useState,useSyncExternalStore,type ReactNode} from 'react';
 import {PlayerSettings} from '../app/PlayerSettings';
 import {ConnectionStatus} from '../app/ConnectionStatus';

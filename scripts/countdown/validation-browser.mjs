@@ -1,6 +1,7 @@
 // Sequential browsers avoid creating validation-induced host contention.
 import {execFileSync} from 'node:child_process';
-import {copyFileSync,writeFileSync} from 'node:fs';
+import {copyFileSync,writeFileSync,mkdirSync} from 'node:fs';
+mkdirSync('tmp/audio-readiness',{recursive:true});mkdirSync('tmp/countdown-correction',{recursive:true});
 const root='tmp/countdown-correction',results=[];
 const jobs=[
  ['lifecycle-controls',['scripts/countdown/lifecycle.mjs']],
@@ -30,6 +31,8 @@ for(const [name,args] of jobs){
   if(name.startsWith('soak'))copyFileSync('tmp/audio-readiness/soak-legacy.json',`${root}/${name}.json`);
   if(name.endsWith('repeat'))copyFileSync(`${root}/browser.json`,`${root}/${name}.json`);
   results.push({name,pass:true});console.log('PASS',name);
- }catch(error){writeFileSync(`${root}/${name}.log`,String(error.stdout??'')+String(error.stderr??''));results.push({name,pass:false});writeFileSync(`${root}/browser-jobs.json`,JSON.stringify(results,null,2));throw error;}
+ }catch(error){writeFileSync(`${root}/${name}.log`,String(error.stdout??'')+String(error.stderr??''));results.push({name,pass:false});writeFileSync(`${root}/browser-jobs.json`,JSON.stringify(results,null,2));console.log('FAIL',name);}
  writeFileSync(`${root}/browser-jobs.json`,JSON.stringify(results,null,2));
 }
+
+if(results.some(result=>!result.pass))process.exitCode=1;
