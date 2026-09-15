@@ -22,3 +22,5 @@ The countdown matrix uses one disposable browser per entry-path/audio bank to bo
 The readiness driver runs every job even after a failure and exits nonzero if any failed. This preserves coverage and does not turn failed jobs into acceptance.
 
 On macOS, run the browser batch as `caffeinate -diu node scripts/iphone/browser-validation.mjs` to preserve the awake/foreground test precondition. These assertions end with the process; no saved power setting changes. This audit host reported AC idle sleep of one minute and display sleep of ten minutes. Actual hidden-page interruptions still fail uninterrupted scenarios; visibility is never mocked away.
+
+For soft-launch integration, additionally run `node scripts/iphone/artifacts.mjs --accepted-main`. This uses accepted main `7fbc5f54730e719652a1f168ed815715dca00295` and writes `tmp/soft-launch-integration/artifacts.json`; it does not replace the default candidate-base report used by the existing acceptance aggregator. Both modes repeat ordinary/enabled builds and compare server runtime bytes.

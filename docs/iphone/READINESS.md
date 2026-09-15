@@ -50,3 +50,7 @@ Only after a separately authorized exact candidate deployment, use **one consoli
 3. Finish/retry once; check results, personal results, guild board and return to lobby. Confirm clean audio, no duplicate game or attempts, usable controls above the home indicator, and no obvious frame/thermal degradation.
 
 This checklist is a future deployment canary, **not a request to test now**. Calls/notifications, native overlays, real audio routing, VoiceOver and hardware memory/thermal behavior cannot be established by desktop simulation alone.
+
+## Superseding owner confirmation — 2026-09-15
+
+The owner confirms successful native Discord launch on iPhone after correction/confirmation of Activities settings. Platform-access certification is passed; no further diagnosis of the OS-unavailable message is required. The settings observations above are historical audit evidence, not a claim about the owner’s subsequent correction. No repeat iPhone test is requested during soft-launch preparation. Full native gameplay/device certification is distinct from this platform-access result. See ../soft-launch/INTEGRATION_VALIDATION.md.

@@ -12,7 +12,7 @@
   "welcome": {
     "pinned": true,
     "messageId": null,
-    "status": "draft; publication not authorized"
+    "status": "posted and pinned; owner-attested 2026-09-15; message ID not independently verified"
   },
   "feedback": {
     "threadName": "Feedback & Bugs",
@@ -24,5 +24,6 @@
     "destinationChannelId": null,
     "status": "draft; source channel/audience not yet approved"
   },
-  "configurationChangeAuthorized": false
+  "configurationChangeAuthorized": false,
+  "channelStatus": "created; owner-attested 2026-09-15"
 }

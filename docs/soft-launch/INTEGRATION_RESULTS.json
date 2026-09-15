@@ -1,0 +1,369 @@
+{
+  "status": "passed",
+  "acceptedMain": "7fbc5f54730e719652a1f168ed815715dca00295",
+  "reviewedSoftLaunch": "fb8fa515f8113cbdad0e283cd72c5862d38c6883",
+  "reviewedIPhone": "8f83b0c08d301ca5899697c56ca743aa262b9a3d",
+  "normalMerges": [
+    "7843300",
+    "49739f4"
+  ],
+  "conflicts": [],
+  "ownerAttestation": {
+    "nativeIPhonePlatformAccess": "passed",
+    "channelCreated": true,
+    "welcomePostedAndPinned": true,
+    "feedbackThread": "pending",
+    "invitationIcon": "pending verification",
+    "announcement": "intentionally pending",
+    "liveAudience": "deferred"
+  },
+  "unitTests": 487,
+  "testFiles": 40,
+  "postgresChecks": 681,
+  "projectGroupsAfterCorrection": [
+    {
+      "name": "cdp-tooling",
+      "pass": true
+    },
+    {
+      "name": "unit",
+      "pass": true
+    },
+    {
+      "name": "typecheck",
+      "pass": true
+    },
+    {
+      "name": "production",
+      "pass": true
+    },
+    {
+      "name": "database",
+      "pass": true
+    },
+    {
+      "name": "enabled-build",
+      "pass": true
+    },
+    {
+      "name": "enabled-smoke",
+      "pass": true
+    },
+    {
+      "name": "readiness-typecheck",
+      "pass": true
+    },
+    {
+      "name": "lobby-typecheck",
+      "pass": true
+    },
+    {
+      "name": "atlas",
+      "pass": true
+    },
+    {
+      "name": "brand",
+      "pass": true
+    },
+    {
+      "name": "raster",
+      "pass": true
+    },
+    {
+      "name": "host",
+      "pass": true
+    },
+    {
+      "name": "glb",
+      "pass": true
+    },
+    {
+      "name": "graph",
+      "pass": true
+    },
+    {
+      "name": "boundaries",
+      "pass": true
+    },
+    {
+      "name": "security",
+      "pass": true
+    }
+  ],
+  "completeBrowserBatchBeforeHomeCssCorrection": {
+    "mobileMetrics": {
+      "frames": {
+        "count": 681,
+        "min": 22.5,
+        "median": 33.30000001192093,
+        "p95": 34.19999998807907,
+        "max": 44.10000002384186
+      },
+      "touchRoundTrips": {
+        "count": 8,
+        "min": 47.54266700000153,
+        "median": 62.66783399999258,
+        "p95": 68.75220799999988,
+        "max": 68.75220799999988
+      }
+    },
+    "status": "passed",
+    "projectGroups": 17,
+    "mobileCases": 8,
+    "interruptionCases": 2,
+    "contextSuites": 2,
+    "countdownCases": 40,
+    "countdownCaptures": 80,
+    "readinessJobs": 18,
+    "reproducible": true,
+    "serverUnchanged": true,
+    "summary": {
+      "runs": 128,
+      "cleanTransitions": 104,
+      "discarded": 80,
+      "realCountdownStalls": 24,
+      "activeStalls": 24,
+      "lifecycleControls": 16,
+      "audioScenarios": 32,
+      "rendererScenarios": 17,
+      "reconciliationCheckpoints": 26,
+      "soaks": [
+        {
+          "scenes": 0,
+          "peakScenes": 1,
+          "timers": 0,
+          "intervals": 0,
+          "frames": 0,
+          "listeners": 4,
+          "audioOpen": 0,
+          "canvases": 0,
+          "hostListeners": 1,
+          "auth": 1,
+          "attempts": 24,
+          "submissions": 4,
+          "cancels": 20,
+          "reads": 133,
+          "accepted": 4,
+          "practiceResults": 0,
+          "resumes": 0,
+          "heap": 11185009
+        },
+        {
+          "scenes": 0,
+          "peakScenes": 1,
+          "timers": 0,
+          "intervals": 0,
+          "frames": 0,
+          "listeners": 4,
+          "audioOpen": 0,
+          "canvases": 0,
+          "hostListeners": 1,
+          "auth": 1,
+          "attempts": 24,
+          "submissions": 4,
+          "cancels": 20,
+          "reads": 137,
+          "accepted": 4,
+          "practiceResults": 0,
+          "resumes": 0,
+          "heap": 11183608
+        }
+      ]
+    }
+  },
+  "affectedBrowserJobsAfterCorrection": [
+    {
+      "name": "direct-build",
+      "pass": true
+    },
+    {
+      "name": "lobby-build",
+      "pass": true
+    },
+    {
+      "name": "mobile-expanded-help",
+      "pass": true
+    },
+    {
+      "name": "interruptions",
+      "pass": true
+    },
+    {
+      "name": "desktop-context",
+      "pass": true
+    },
+    {
+      "name": "iphone-context",
+      "pass": true
+    },
+    {
+      "name": "standard-direct-build",
+      "pass": true
+    },
+    {
+      "name": "standard-lobby-build",
+      "pass": true
+    },
+    {
+      "name": "responsive",
+      "pass": true
+    },
+    {
+      "name": "acceptance",
+      "pass": true
+    }
+  ],
+  "finalAggregate": {
+    "mobileMetrics": {
+      "frames": {
+        "count": 507,
+        "min": 26,
+        "median": 33.39999997615814,
+        "p95": 34.39999997615814,
+        "max": 39.90000003576279
+      },
+      "touchRoundTrips": {
+        "count": 8,
+        "min": 51.412750000000415,
+        "median": 62.233875000005355,
+        "p95": 65.99962499999674,
+        "max": 65.99962499999674
+      }
+    },
+    "status": "passed",
+    "projectGroups": 17,
+    "mobileCases": 8,
+    "interruptionCases": 2,
+    "contextSuites": 2,
+    "countdownCases": 40,
+    "countdownCaptures": 80,
+    "readinessJobs": 18,
+    "reproducible": true,
+    "serverUnchanged": true,
+    "summary": {
+      "runs": 128,
+      "cleanTransitions": 104,
+      "discarded": 80,
+      "realCountdownStalls": 24,
+      "activeStalls": 24,
+      "lifecycleControls": 16,
+      "audioScenarios": 32,
+      "rendererScenarios": 17,
+      "reconciliationCheckpoints": 26,
+      "soaks": [
+        {
+          "scenes": 0,
+          "peakScenes": 1,
+          "timers": 0,
+          "intervals": 0,
+          "frames": 0,
+          "listeners": 4,
+          "audioOpen": 0,
+          "canvases": 0,
+          "hostListeners": 1,
+          "auth": 1,
+          "attempts": 24,
+          "submissions": 4,
+          "cancels": 20,
+          "reads": 133,
+          "accepted": 4,
+          "practiceResults": 0,
+          "resumes": 0,
+          "heap": 11185009
+        },
+        {
+          "scenes": 0,
+          "peakScenes": 1,
+          "timers": 0,
+          "intervals": 0,
+          "frames": 0,
+          "listeners": 4,
+          "audioOpen": 0,
+          "canvases": 0,
+          "hostListeners": 1,
+          "auth": 1,
+          "attempts": 24,
+          "submissions": 4,
+          "cancels": 20,
+          "reads": 137,
+          "accepted": 4,
+          "practiceResults": 0,
+          "resumes": 0,
+          "heap": 11183608
+        }
+      ]
+    }
+  },
+  "helpCorrection": {
+    "hittable": true,
+    "rows": [
+      {
+        "phase": "app-shell game-shell balance-v1-shell layout-docked-safe phase-home ",
+        "help": {
+          "top": 332.1875,
+          "bottom": 506.65625,
+          "height": 174.46875
+        },
+        "start": {
+          "top": 532.65625,
+          "bottom": 576.65625,
+          "height": 44
+        },
+        "stage": {
+          "top": 229,
+          "bottom": 601.65625,
+          "height": 372.65625
+        },
+        "panel": {
+          "top": 230,
+          "bottom": 600.65625,
+          "height": 370.65625
+        },
+        "controls": {
+          "top": 613.65625,
+          "bottom": 657.65625,
+          "height": 44
+        },
+        "scrollHeight": 687,
+        "height": 568
+      },
+      {
+        "phase": "app-shell game-shell balance-v1-shell layout-docked-safe phase-home ",
+        "help": {
+          "top": 213.1875,
+          "bottom": 387.65625,
+          "height": 174.46875
+        },
+        "start": {
+          "top": 413.65625,
+          "bottom": 457.65625,
+          "height": 44
+        },
+        "stage": {
+          "top": 110,
+          "bottom": 482.65625,
+          "height": 372.65625
+        },
+        "panel": {
+          "top": 111,
+          "bottom": 481.65625,
+          "height": 370.65625
+        },
+        "controls": {
+          "top": 494.65625,
+          "bottom": 538.65625,
+          "height": 44
+        },
+        "scrollHeight": 687,
+        "height": 568
+      }
+    ]
+  },
+  "limitations": [
+    "Inherited dependency advisory assessment remains unresolved; no fresh registry audit",
+    "Chromium simulation is not physical WebKit/gameplay certification",
+    "Initial sandbox listener restriction and one socket hang-up retained; unchanged isolated/full reruns passed"
+  ],
+  "productionAccess": false,
+  "externalChanges": "Only the explicitly authorized candidate branch push; no main merge or deployment"
+}

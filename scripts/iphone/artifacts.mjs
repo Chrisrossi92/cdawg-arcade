@@ -1,5 +1,7 @@
 import fs from 'node:fs';import {execFileSync} from 'node:child_process';import {tmpdir} from 'node:os';import {join,resolve,dirname} from 'node:path';import {createHash} from 'node:crypto';import {gzipSync,brotliCompressSync} from 'node:zlib';import assert from 'node:assert/strict';
-const base='fb8fa515f8113cbdad0e283cd72c5862d38c6883',out='tmp/iphone',env={PATH:dirname(process.execPath)+':'+process.env.PATH};
+const productionBaseline=process.argv.includes('--accepted-main');
+const base=productionBaseline?'7fbc5f54730e719652a1f168ed815715dca00295':'fb8fa515f8113cbdad0e283cd72c5862d38c6883',out=productionBaseline?'tmp/soft-launch-integration':'tmp/iphone',env={PATH:dirname(process.execPath)+':'+process.env.PATH};
+fs.mkdirSync(out,{recursive:true});
 const archive=fs.mkdtempSync(join(tmpdir(),'arcade-soft-launch-'));execFileSync('tar',['-x','-C',archive],{input:execFileSync('git',['archive',base],{maxBuffer:512*1024*1024})});fs.symlinkSync(resolve('node_modules'),join(archive,'node_modules'));
 const run=(cwd,args)=>execFileSync(process.execPath,args,{cwd,env,stdio:'inherit'});
 const inventory=root=>Object.fromEntries(fs.readdirSync(root,{recursive:true}).filter(p=>fs.statSync(join(root,p)).isFile()).sort().map(p=>{const b=fs.readFileSync(join(root,p));return[p,{bytes:b.length,gzip:gzipSync(b).length,brotli:brotliCompressSync(b).length,sha256:createHash('sha256').update(b).digest('hex')}];}));

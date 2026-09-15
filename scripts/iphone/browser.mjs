@@ -27,7 +27,10 @@ try{
   await b.evaluate("document.querySelector('#root .identity-button').click()");await b.until("!!document.querySelector('dialog[open]')");
   const dialog=await b.evaluate("(()=>{const r=document.querySelector('dialog[open]').getBoundingClientRect();return{left:r.left,right:r.right,top:r.top,bottom:r.bottom};})()");
   assert(dialog.top>=top&&dialog.bottom<=height-bottom+1&&dialog.left>=side&&dialog.right<=width-side+1,`unsafe dialog ${width}: ${JSON.stringify(dialog)}`);await capture(`${width}x${height}-dpr${density}-settings`);await tapButton('Close');await b.until("!document.querySelector('dialog[open]')");await b.until("document.activeElement.matches('.identity-button')",1000);
-  await tapButton('Play practice');await b.until("!!document.querySelector('.balance-start-panel')");await capture(`${width}x${height}-dpr${density}-start`);
+  await b.evaluate("localStorage.removeItem('cdawg.balance.help-seen.v1')");
+  await tapButton('Play practice');await b.until("!!document.querySelector('.balance-start-panel')");await b.until("!!document.querySelector('.phase-home .balance-start-panel')");
+  const helpLayout=await b.evaluate("(()=>{const r=s=>document.querySelector(s).getBoundingClientRect();return{panelBottom:r('.balance-start-panel').bottom,controlsTop:r('.control-deck').top,helpOpen:document.querySelector('.balance-start-panel .balance-help').open}})()");
+  assert(helpLayout.helpOpen,'first-time help not expanded');assert(helpLayout.panelBottom<=helpLayout.controlsTop,'expanded help overlaps controls');await capture(`${width}x${height}-dpr${density}-start`);
   await b.evaluate("document.querySelector('.balance-start-panel .primary-button').scrollIntoView({behavior:'instant',block:'center'})");await sleep(100);const start=await rect('.balance-start-panel .primary-button');await touch('touchStart',[start]);await touch('touchEnd',[]);
   await b.until("!!document.querySelector('.phase-countdown')||!!document.querySelector('.renderer-preparation')");
   await b.until("!!document.querySelector('.phase-playing')||!!document.querySelector('.pause-panel')");assert(!await b.evaluate("!!document.querySelector('.pause-panel')"),'unexpected pause');

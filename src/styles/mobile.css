@@ -26,3 +26,6 @@ body {
 .control-button { -webkit-touch-callout: none; }
 
 #root .arcade-lobby .skip-link:focus { top: calc(var(--arcade-safe-top) + 12px); left: calc(var(--arcade-safe-left) + 20px); }
+
+/* Expanded first-time help must determine the home cabinet's height. */
+#root .balance-v1-shell.phase-home .balance-stage { aspect-ratio: auto; }
