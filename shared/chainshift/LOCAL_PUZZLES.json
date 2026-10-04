@@ -1,0 +1,3341 @@
+[
+  {
+    "manifestVersion": "chainshift-manifest-v1",
+    "id": "chainshift-local-001",
+    "number": 1,
+    "day": "2026-10-05",
+    "timeZone": "America/New_York",
+    "start": {
+      "key": "game",
+      "display": "GAME"
+    },
+    "finish": {
+      "key": "house",
+      "display": "HOUSE"
+    },
+    "graphVersion": "chainshift-graph-v1",
+    "rulesRevision": "chainshift-rules-v1",
+    "checksum": "fnv1a64:dc521a64e4cc01fb",
+    "generatedAt": "2026-10-04T00:00:00.000Z",
+    "publicationStatus": "local-review",
+    "editorialApproval": "pending",
+    "shortestCertificate": {
+      "shifts": 3,
+      "route": [
+        "game",
+        "day",
+        "light",
+        "house"
+      ]
+    },
+    "diversityCertificate": {
+      "from": "game",
+      "to": "house",
+      "shortest": {
+        "shifts": 3,
+        "route": [
+          "game",
+          "day",
+          "light",
+          "house"
+        ]
+      },
+      "shortestRoutes": {
+        "count": 2,
+        "capped": false
+      },
+      "bound": 6,
+      "openings": [
+        "day",
+        "night",
+        "play"
+      ],
+      "approaches": [
+        "club",
+        "light"
+      ],
+      "countsByExtraShift": {
+        "0": 2,
+        "1": 0,
+        "2": 0,
+        "3": 2
+      },
+      "routeCount": 4,
+      "truncated": false,
+      "expansions": 19,
+      "mandatory": [],
+      "boundedMandatory": [],
+      "dominant": [
+        {
+          "word": "day",
+          "count": 3,
+          "fraction": 0.75
+        },
+        {
+          "word": "light",
+          "count": 3,
+          "fraction": 0.75
+        },
+        {
+          "word": "night",
+          "count": 2,
+          "fraction": 0.5
+        },
+        {
+          "word": "work",
+          "count": 2,
+          "fraction": 0.5
+        },
+        {
+          "word": "club",
+          "count": 1,
+          "fraction": 0.25
+        },
+        {
+          "word": "ground",
+          "count": 1,
+          "fraction": 0.25
+        },
+        {
+          "word": "play",
+          "count": 1,
+          "fraction": 0.25
+        },
+        {
+          "word": "shift",
+          "count": 1,
+          "fraction": 0.25
+        }
+      ],
+      "minInternalOverlap": 0,
+      "meanInternalOverlap": 0.23253968253968252,
+      "representativeRoutes": [
+        [
+          "game",
+          "day",
+          "light",
+          "house"
+        ],
+        [
+          "game",
+          "night",
+          "club",
+          "house"
+        ]
+      ],
+      "policy": {
+        "revision": "chainshift-analysis-v1",
+        "minShifts": 3,
+        "maxShifts": 6,
+        "extraShifts": 3,
+        "shortestCountCap": 1000,
+        "routeCap": 512,
+        "expansionCap": 50000,
+        "minOpenings": 2,
+        "minApproaches": 2,
+        "maxDominance": 0.9,
+        "maxBestPairOverlap": 0.5
+      }
+    },
+    "candidateValidation": {
+      "accepted": true,
+      "reasons": [],
+      "metrics": {
+        "from": "game",
+        "to": "house",
+        "shortest": {
+          "shifts": 3,
+          "route": [
+            "game",
+            "day",
+            "light",
+            "house"
+          ]
+        },
+        "shortestRoutes": {
+          "count": 2,
+          "capped": false
+        },
+        "bound": 6,
+        "openings": [
+          "day",
+          "night",
+          "play"
+        ],
+        "approaches": [
+          "club",
+          "light"
+        ],
+        "countsByExtraShift": {
+          "0": 2,
+          "1": 0,
+          "2": 0,
+          "3": 2
+        },
+        "routeCount": 4,
+        "truncated": false,
+        "expansions": 19,
+        "mandatory": [],
+        "boundedMandatory": [],
+        "dominant": [
+          {
+            "word": "day",
+            "count": 3,
+            "fraction": 0.75
+          },
+          {
+            "word": "light",
+            "count": 3,
+            "fraction": 0.75
+          },
+          {
+            "word": "night",
+            "count": 2,
+            "fraction": 0.5
+          },
+          {
+            "word": "work",
+            "count": 2,
+            "fraction": 0.5
+          },
+          {
+            "word": "club",
+            "count": 1,
+            "fraction": 0.25
+          },
+          {
+            "word": "ground",
+            "count": 1,
+            "fraction": 0.25
+          },
+          {
+            "word": "play",
+            "count": 1,
+            "fraction": 0.25
+          },
+          {
+            "word": "shift",
+            "count": 1,
+            "fraction": 0.25
+          }
+        ],
+        "minInternalOverlap": 0,
+        "meanInternalOverlap": 0.23253968253968252,
+        "representativeRoutes": [
+          [
+            "game",
+            "day",
+            "light",
+            "house"
+          ],
+          [
+            "game",
+            "night",
+            "club",
+            "house"
+          ]
+        ],
+        "policy": {
+          "revision": "chainshift-analysis-v1",
+          "minShifts": 3,
+          "maxShifts": 6,
+          "extraShifts": 3,
+          "shortestCountCap": 1000,
+          "routeCap": 512,
+          "expansionCap": 50000,
+          "minOpenings": 2,
+          "minApproaches": 2,
+          "maxDominance": 0.9,
+          "maxBestPairOverlap": 0.5
+        }
+      }
+    },
+    "recognizability": "not-certified-by-topology",
+    "rolloverPolicy": "retain-starting-puzzle"
+  },
+  {
+    "manifestVersion": "chainshift-manifest-v1",
+    "id": "chainshift-local-002",
+    "number": 2,
+    "day": "2026-10-06",
+    "timeZone": "America/New_York",
+    "start": {
+      "key": "game",
+      "display": "GAME"
+    },
+    "finish": {
+      "key": "work",
+      "display": "WORK"
+    },
+    "graphVersion": "chainshift-graph-v1",
+    "rulesRevision": "chainshift-rules-v1",
+    "checksum": "fnv1a64:dc521a64e4cc01fb",
+    "generatedAt": "2026-10-04T00:00:00.000Z",
+    "publicationStatus": "local-review",
+    "editorialApproval": "pending",
+    "shortestCertificate": {
+      "shifts": 3,
+      "route": [
+        "game",
+        "night",
+        "shift",
+        "work"
+      ]
+    },
+    "diversityCertificate": {
+      "from": "game",
+      "to": "work",
+      "shortest": {
+        "shifts": 3,
+        "route": [
+          "game",
+          "night",
+          "shift",
+          "work"
+        ]
+      },
+      "shortestRoutes": {
+        "count": 2,
+        "capped": false
+      },
+      "bound": 6,
+      "openings": [
+        "day",
+        "night",
+        "play"
+      ],
+      "approaches": [
+        "ground",
+        "shift",
+        "team"
+      ],
+      "countsByExtraShift": {
+        "0": 2,
+        "1": 1,
+        "2": 0,
+        "3": 0
+      },
+      "routeCount": 3,
+      "truncated": false,
+      "expansions": 12,
+      "mandatory": [],
+      "boundedMandatory": [],
+      "dominant": [
+        {
+          "word": "day",
+          "count": 1,
+          "fraction": 0.3333333333333333
+        },
+        {
+          "word": "dream",
+          "count": 1,
+          "fraction": 0.3333333333333333
+        },
+        {
+          "word": "ground",
+          "count": 1,
+          "fraction": 0.3333333333333333
+        },
+        {
+          "word": "night",
+          "count": 1,
+          "fraction": 0.3333333333333333
+        },
+        {
+          "word": "play",
+          "count": 1,
+          "fraction": 0.3333333333333333
+        },
+        {
+          "word": "shift",
+          "count": 1,
+          "fraction": 0.3333333333333333
+        },
+        {
+          "word": "team",
+          "count": 1,
+          "fraction": 0.3333333333333333
+        }
+      ],
+      "minInternalOverlap": 0,
+      "meanInternalOverlap": 0,
+      "representativeRoutes": [
+        [
+          "game",
+          "night",
+          "shift",
+          "work"
+        ],
+        [
+          "game",
+          "day",
+          "dream",
+          "team",
+          "work"
+        ]
+      ],
+      "policy": {
+        "revision": "chainshift-analysis-v1",
+        "minShifts": 3,
+        "maxShifts": 6,
+        "extraShifts": 3,
+        "shortestCountCap": 1000,
+        "routeCap": 512,
+        "expansionCap": 50000,
+        "minOpenings": 2,
+        "minApproaches": 2,
+        "maxDominance": 0.9,
+        "maxBestPairOverlap": 0.5
+      }
+    },
+    "candidateValidation": {
+      "accepted": true,
+      "reasons": [],
+      "metrics": {
+        "from": "game",
+        "to": "work",
+        "shortest": {
+          "shifts": 3,
+          "route": [
+            "game",
+            "night",
+            "shift",
+            "work"
+          ]
+        },
+        "shortestRoutes": {
+          "count": 2,
+          "capped": false
+        },
+        "bound": 6,
+        "openings": [
+          "day",
+          "night",
+          "play"
+        ],
+        "approaches": [
+          "ground",
+          "shift",
+          "team"
+        ],
+        "countsByExtraShift": {
+          "0": 2,
+          "1": 1,
+          "2": 0,
+          "3": 0
+        },
+        "routeCount": 3,
+        "truncated": false,
+        "expansions": 12,
+        "mandatory": [],
+        "boundedMandatory": [],
+        "dominant": [
+          {
+            "word": "day",
+            "count": 1,
+            "fraction": 0.3333333333333333
+          },
+          {
+            "word": "dream",
+            "count": 1,
+            "fraction": 0.3333333333333333
+          },
+          {
+            "word": "ground",
+            "count": 1,
+            "fraction": 0.3333333333333333
+          },
+          {
+            "word": "night",
+            "count": 1,
+            "fraction": 0.3333333333333333
+          },
+          {
+            "word": "play",
+            "count": 1,
+            "fraction": 0.3333333333333333
+          },
+          {
+            "word": "shift",
+            "count": 1,
+            "fraction": 0.3333333333333333
+          },
+          {
+            "word": "team",
+            "count": 1,
+            "fraction": 0.3333333333333333
+          }
+        ],
+        "minInternalOverlap": 0,
+        "meanInternalOverlap": 0,
+        "representativeRoutes": [
+          [
+            "game",
+            "night",
+            "shift",
+            "work"
+          ],
+          [
+            "game",
+            "day",
+            "dream",
+            "team",
+            "work"
+          ]
+        ],
+        "policy": {
+          "revision": "chainshift-analysis-v1",
+          "minShifts": 3,
+          "maxShifts": 6,
+          "extraShifts": 3,
+          "shortestCountCap": 1000,
+          "routeCap": 512,
+          "expansionCap": 50000,
+          "minOpenings": 2,
+          "minApproaches": 2,
+          "maxDominance": 0.9,
+          "maxBestPairOverlap": 0.5
+        }
+      }
+    },
+    "recognizability": "not-certified-by-topology",
+    "rolloverPolicy": "retain-starting-puzzle"
+  },
+  {
+    "manifestVersion": "chainshift-manifest-v1",
+    "id": "chainshift-local-003",
+    "number": 3,
+    "day": "2026-10-07",
+    "timeZone": "America/New_York",
+    "start": {
+      "key": "book",
+      "display": "BOOK"
+    },
+    "finish": {
+      "key": "room",
+      "display": "ROOM"
+    },
+    "graphVersion": "chainshift-graph-v1",
+    "rulesRevision": "chainshift-rules-v1",
+    "checksum": "fnv1a64:dc521a64e4cc01fb",
+    "generatedAt": "2026-10-04T00:00:00.000Z",
+    "publicationStatus": "local-review",
+    "editorialApproval": "pending",
+    "shortestCertificate": {
+      "shifts": 4,
+      "route": [
+        "book",
+        "club",
+        "house",
+        "party",
+        "room"
+      ]
+    },
+    "diversityCertificate": {
+      "from": "book",
+      "to": "room",
+      "shortest": {
+        "shifts": 4,
+        "route": [
+          "book",
+          "club",
+          "house",
+          "party",
+          "room"
+        ]
+      },
+      "shortestRoutes": {
+        "count": 3,
+        "capped": false
+      },
+      "bound": 7,
+      "openings": [
+        "club",
+        "report"
+      ],
+      "approaches": [
+        "ball",
+        "game",
+        "party",
+        "stock"
+      ],
+      "countsByExtraShift": {
+        "0": 3,
+        "1": 2,
+        "2": 1,
+        "3": 0
+      },
+      "routeCount": 6,
+      "truncated": false,
+      "expansions": 18,
+      "mandatory": [],
+      "boundedMandatory": [],
+      "dominant": [
+        {
+          "word": "game",
+          "count": 4,
+          "fraction": 0.6666666666666666
+        },
+        {
+          "word": "card",
+          "count": 3,
+          "fraction": 0.5
+        },
+        {
+          "word": "club",
+          "count": 3,
+          "fraction": 0.5
+        },
+        {
+          "word": "house",
+          "count": 3,
+          "fraction": 0.5
+        },
+        {
+          "word": "party",
+          "count": 3,
+          "fraction": 0.5
+        },
+        {
+          "word": "report",
+          "count": 3,
+          "fraction": 0.5
+        },
+        {
+          "word": "ball",
+          "count": 2,
+          "fraction": 0.3333333333333333
+        },
+        {
+          "word": "stock",
+          "count": 1,
+          "fraction": 0.16666666666666666
+        }
+      ],
+      "minInternalOverlap": 0,
+      "meanInternalOverlap": 0.30253968253968255,
+      "representativeRoutes": [
+        [
+          "book",
+          "club",
+          "house",
+          "party",
+          "room"
+        ],
+        [
+          "book",
+          "club",
+          "house",
+          "party",
+          "game",
+          "ball",
+          "room"
+        ],
+        [
+          "book",
+          "report",
+          "card",
+          "stock",
+          "room"
+        ]
+      ],
+      "policy": {
+        "revision": "chainshift-analysis-v1",
+        "minShifts": 3,
+        "maxShifts": 6,
+        "extraShifts": 3,
+        "shortestCountCap": 1000,
+        "routeCap": 512,
+        "expansionCap": 50000,
+        "minOpenings": 2,
+        "minApproaches": 2,
+        "maxDominance": 0.9,
+        "maxBestPairOverlap": 0.5
+      }
+    },
+    "candidateValidation": {
+      "accepted": true,
+      "reasons": [],
+      "metrics": {
+        "from": "book",
+        "to": "room",
+        "shortest": {
+          "shifts": 4,
+          "route": [
+            "book",
+            "club",
+            "house",
+            "party",
+            "room"
+          ]
+        },
+        "shortestRoutes": {
+          "count": 3,
+          "capped": false
+        },
+        "bound": 7,
+        "openings": [
+          "club",
+          "report"
+        ],
+        "approaches": [
+          "ball",
+          "game",
+          "party",
+          "stock"
+        ],
+        "countsByExtraShift": {
+          "0": 3,
+          "1": 2,
+          "2": 1,
+          "3": 0
+        },
+        "routeCount": 6,
+        "truncated": false,
+        "expansions": 18,
+        "mandatory": [],
+        "boundedMandatory": [],
+        "dominant": [
+          {
+            "word": "game",
+            "count": 4,
+            "fraction": 0.6666666666666666
+          },
+          {
+            "word": "card",
+            "count": 3,
+            "fraction": 0.5
+          },
+          {
+            "word": "club",
+            "count": 3,
+            "fraction": 0.5
+          },
+          {
+            "word": "house",
+            "count": 3,
+            "fraction": 0.5
+          },
+          {
+            "word": "party",
+            "count": 3,
+            "fraction": 0.5
+          },
+          {
+            "word": "report",
+            "count": 3,
+            "fraction": 0.5
+          },
+          {
+            "word": "ball",
+            "count": 2,
+            "fraction": 0.3333333333333333
+          },
+          {
+            "word": "stock",
+            "count": 1,
+            "fraction": 0.16666666666666666
+          }
+        ],
+        "minInternalOverlap": 0,
+        "meanInternalOverlap": 0.30253968253968255,
+        "representativeRoutes": [
+          [
+            "book",
+            "club",
+            "house",
+            "party",
+            "room"
+          ],
+          [
+            "book",
+            "club",
+            "house",
+            "party",
+            "game",
+            "ball",
+            "room"
+          ],
+          [
+            "book",
+            "report",
+            "card",
+            "stock",
+            "room"
+          ]
+        ],
+        "policy": {
+          "revision": "chainshift-analysis-v1",
+          "minShifts": 3,
+          "maxShifts": 6,
+          "extraShifts": 3,
+          "shortestCountCap": 1000,
+          "routeCap": 512,
+          "expansionCap": 50000,
+          "minOpenings": 2,
+          "minApproaches": 2,
+          "maxDominance": 0.9,
+          "maxBestPairOverlap": 0.5
+        }
+      }
+    },
+    "recognizability": "not-certified-by-topology",
+    "rolloverPolicy": "retain-starting-puzzle"
+  },
+  {
+    "manifestVersion": "chainshift-manifest-v1",
+    "id": "chainshift-local-004",
+    "number": 4,
+    "day": "2026-10-08",
+    "timeZone": "America/New_York",
+    "start": {
+      "key": "blue",
+      "display": "BLUE"
+    },
+    "finish": {
+      "key": "point",
+      "display": "POINT"
+    },
+    "graphVersion": "chainshift-graph-v1",
+    "rulesRevision": "chainshift-rules-v1",
+    "checksum": "fnv1a64:dc521a64e4cc01fb",
+    "generatedAt": "2026-10-04T00:00:00.000Z",
+    "publicationStatus": "local-review",
+    "editorialApproval": "pending",
+    "shortestCertificate": {
+      "shifts": 4,
+      "route": [
+        "blue",
+        "moon",
+        "walk",
+        "way",
+        "point"
+      ]
+    },
+    "diversityCertificate": {
+      "from": "blue",
+      "to": "point",
+      "shortest": {
+        "shifts": 4,
+        "route": [
+          "blue",
+          "moon",
+          "walk",
+          "way",
+          "point"
+        ]
+      },
+      "shortestRoutes": {
+        "count": 1,
+        "capped": false
+      },
+      "bound": 7,
+      "openings": [
+        "fish",
+        "moon"
+      ],
+      "approaches": [
+        "break",
+        "check",
+        "way"
+      ],
+      "countsByExtraShift": {
+        "0": 1,
+        "1": 1,
+        "2": 0,
+        "3": 1
+      },
+      "routeCount": 3,
+      "truncated": false,
+      "expansions": 16,
+      "mandatory": [],
+      "boundedMandatory": [],
+      "dominant": [
+        {
+          "word": "moon",
+          "count": 2,
+          "fraction": 0.6666666666666666
+        },
+        {
+          "word": "break",
+          "count": 1,
+          "fraction": 0.3333333333333333
+        },
+        {
+          "word": "check",
+          "count": 1,
+          "fraction": 0.3333333333333333
+        },
+        {
+          "word": "day",
+          "count": 1,
+          "fraction": 0.3333333333333333
+        },
+        {
+          "word": "dinner",
+          "count": 1,
+          "fraction": 0.3333333333333333
+        },
+        {
+          "word": "fish",
+          "count": 1,
+          "fraction": 0.3333333333333333
+        },
+        {
+          "word": "game",
+          "count": 1,
+          "fraction": 0.3333333333333333
+        },
+        {
+          "word": "light",
+          "count": 1,
+          "fraction": 0.3333333333333333
+        },
+        {
+          "word": "party",
+          "count": 1,
+          "fraction": 0.3333333333333333
+        },
+        {
+          "word": "rain",
+          "count": 1,
+          "fraction": 0.3333333333333333
+        },
+        {
+          "word": "walk",
+          "count": 1,
+          "fraction": 0.3333333333333333
+        },
+        {
+          "word": "way",
+          "count": 1,
+          "fraction": 0.3333333333333333
+        }
+      ],
+      "minInternalOverlap": 0,
+      "meanInternalOverlap": 0.05555555555555555,
+      "representativeRoutes": [
+        [
+          "blue",
+          "moon",
+          "walk",
+          "way",
+          "point"
+        ],
+        [
+          "blue",
+          "fish",
+          "dinner",
+          "party",
+          "game",
+          "day",
+          "break",
+          "point"
+        ],
+        [
+          "blue",
+          "moon",
+          "light",
+          "rain",
+          "check",
+          "point"
+        ]
+      ],
+      "policy": {
+        "revision": "chainshift-analysis-v1",
+        "minShifts": 3,
+        "maxShifts": 6,
+        "extraShifts": 3,
+        "shortestCountCap": 1000,
+        "routeCap": 512,
+        "expansionCap": 50000,
+        "minOpenings": 2,
+        "minApproaches": 2,
+        "maxDominance": 0.9,
+        "maxBestPairOverlap": 0.5
+      }
+    },
+    "candidateValidation": {
+      "accepted": true,
+      "reasons": [],
+      "metrics": {
+        "from": "blue",
+        "to": "point",
+        "shortest": {
+          "shifts": 4,
+          "route": [
+            "blue",
+            "moon",
+            "walk",
+            "way",
+            "point"
+          ]
+        },
+        "shortestRoutes": {
+          "count": 1,
+          "capped": false
+        },
+        "bound": 7,
+        "openings": [
+          "fish",
+          "moon"
+        ],
+        "approaches": [
+          "break",
+          "check",
+          "way"
+        ],
+        "countsByExtraShift": {
+          "0": 1,
+          "1": 1,
+          "2": 0,
+          "3": 1
+        },
+        "routeCount": 3,
+        "truncated": false,
+        "expansions": 16,
+        "mandatory": [],
+        "boundedMandatory": [],
+        "dominant": [
+          {
+            "word": "moon",
+            "count": 2,
+            "fraction": 0.6666666666666666
+          },
+          {
+            "word": "break",
+            "count": 1,
+            "fraction": 0.3333333333333333
+          },
+          {
+            "word": "check",
+            "count": 1,
+            "fraction": 0.3333333333333333
+          },
+          {
+            "word": "day",
+            "count": 1,
+            "fraction": 0.3333333333333333
+          },
+          {
+            "word": "dinner",
+            "count": 1,
+            "fraction": 0.3333333333333333
+          },
+          {
+            "word": "fish",
+            "count": 1,
+            "fraction": 0.3333333333333333
+          },
+          {
+            "word": "game",
+            "count": 1,
+            "fraction": 0.3333333333333333
+          },
+          {
+            "word": "light",
+            "count": 1,
+            "fraction": 0.3333333333333333
+          },
+          {
+            "word": "party",
+            "count": 1,
+            "fraction": 0.3333333333333333
+          },
+          {
+            "word": "rain",
+            "count": 1,
+            "fraction": 0.3333333333333333
+          },
+          {
+            "word": "walk",
+            "count": 1,
+            "fraction": 0.3333333333333333
+          },
+          {
+            "word": "way",
+            "count": 1,
+            "fraction": 0.3333333333333333
+          }
+        ],
+        "minInternalOverlap": 0,
+        "meanInternalOverlap": 0.05555555555555555,
+        "representativeRoutes": [
+          [
+            "blue",
+            "moon",
+            "walk",
+            "way",
+            "point"
+          ],
+          [
+            "blue",
+            "fish",
+            "dinner",
+            "party",
+            "game",
+            "day",
+            "break",
+            "point"
+          ],
+          [
+            "blue",
+            "moon",
+            "light",
+            "rain",
+            "check",
+            "point"
+          ]
+        ],
+        "policy": {
+          "revision": "chainshift-analysis-v1",
+          "minShifts": 3,
+          "maxShifts": 6,
+          "extraShifts": 3,
+          "shortestCountCap": 1000,
+          "routeCap": 512,
+          "expansionCap": 50000,
+          "minOpenings": 2,
+          "minApproaches": 2,
+          "maxDominance": 0.9,
+          "maxBestPairOverlap": 0.5
+        }
+      }
+    },
+    "recognizability": "not-certified-by-topology",
+    "rolloverPolicy": "retain-starting-puzzle"
+  },
+  {
+    "manifestVersion": "chainshift-manifest-v1",
+    "id": "chainshift-local-005",
+    "number": 5,
+    "day": "2026-10-09",
+    "timeZone": "America/New_York",
+    "start": {
+      "key": "card",
+      "display": "CARD"
+    },
+    "finish": {
+      "key": "work",
+      "display": "WORK"
+    },
+    "graphVersion": "chainshift-graph-v1",
+    "rulesRevision": "chainshift-rules-v1",
+    "checksum": "fnv1a64:dc521a64e4cc01fb",
+    "generatedAt": "2026-10-04T00:00:00.000Z",
+    "publicationStatus": "local-review",
+    "editorialApproval": "pending",
+    "shortestCertificate": {
+      "shifts": 4,
+      "route": [
+        "card",
+        "game",
+        "night",
+        "shift",
+        "work"
+      ]
+    },
+    "diversityCertificate": {
+      "from": "card",
+      "to": "work",
+      "shortest": {
+        "shifts": 4,
+        "route": [
+          "card",
+          "game",
+          "night",
+          "shift",
+          "work"
+        ]
+      },
+      "shortestRoutes": {
+        "count": 2,
+        "capped": false
+      },
+      "bound": 7,
+      "openings": [
+        "game",
+        "stock"
+      ],
+      "approaches": [
+        "ground",
+        "paper",
+        "shift",
+        "team"
+      ],
+      "countsByExtraShift": {
+        "0": 2,
+        "1": 2,
+        "2": 0,
+        "3": 0
+      },
+      "routeCount": 4,
+      "truncated": false,
+      "expansions": 18,
+      "mandatory": [],
+      "boundedMandatory": [],
+      "dominant": [
+        {
+          "word": "game",
+          "count": 3,
+          "fraction": 0.75
+        },
+        {
+          "word": "day",
+          "count": 1,
+          "fraction": 0.25
+        },
+        {
+          "word": "dream",
+          "count": 1,
+          "fraction": 0.25
+        },
+        {
+          "word": "ground",
+          "count": 1,
+          "fraction": 0.25
+        },
+        {
+          "word": "market",
+          "count": 1,
+          "fraction": 0.25
+        },
+        {
+          "word": "night",
+          "count": 1,
+          "fraction": 0.25
+        },
+        {
+          "word": "paper",
+          "count": 1,
+          "fraction": 0.25
+        },
+        {
+          "word": "play",
+          "count": 1,
+          "fraction": 0.25
+        },
+        {
+          "word": "research",
+          "count": 1,
+          "fraction": 0.25
+        },
+        {
+          "word": "shift",
+          "count": 1,
+          "fraction": 0.25
+        },
+        {
+          "word": "stock",
+          "count": 1,
+          "fraction": 0.25
+        },
+        {
+          "word": "team",
+          "count": 1,
+          "fraction": 0.25
+        }
+      ],
+      "minInternalOverlap": 0,
+      "meanInternalOverlap": 0.08888888888888889,
+      "representativeRoutes": [
+        [
+          "card",
+          "game",
+          "night",
+          "shift",
+          "work"
+        ],
+        [
+          "card",
+          "game",
+          "day",
+          "dream",
+          "team",
+          "work"
+        ],
+        [
+          "card",
+          "stock",
+          "market",
+          "research",
+          "paper",
+          "work"
+        ]
+      ],
+      "policy": {
+        "revision": "chainshift-analysis-v1",
+        "minShifts": 3,
+        "maxShifts": 6,
+        "extraShifts": 3,
+        "shortestCountCap": 1000,
+        "routeCap": 512,
+        "expansionCap": 50000,
+        "minOpenings": 2,
+        "minApproaches": 2,
+        "maxDominance": 0.9,
+        "maxBestPairOverlap": 0.5
+      }
+    },
+    "candidateValidation": {
+      "accepted": true,
+      "reasons": [],
+      "metrics": {
+        "from": "card",
+        "to": "work",
+        "shortest": {
+          "shifts": 4,
+          "route": [
+            "card",
+            "game",
+            "night",
+            "shift",
+            "work"
+          ]
+        },
+        "shortestRoutes": {
+          "count": 2,
+          "capped": false
+        },
+        "bound": 7,
+        "openings": [
+          "game",
+          "stock"
+        ],
+        "approaches": [
+          "ground",
+          "paper",
+          "shift",
+          "team"
+        ],
+        "countsByExtraShift": {
+          "0": 2,
+          "1": 2,
+          "2": 0,
+          "3": 0
+        },
+        "routeCount": 4,
+        "truncated": false,
+        "expansions": 18,
+        "mandatory": [],
+        "boundedMandatory": [],
+        "dominant": [
+          {
+            "word": "game",
+            "count": 3,
+            "fraction": 0.75
+          },
+          {
+            "word": "day",
+            "count": 1,
+            "fraction": 0.25
+          },
+          {
+            "word": "dream",
+            "count": 1,
+            "fraction": 0.25
+          },
+          {
+            "word": "ground",
+            "count": 1,
+            "fraction": 0.25
+          },
+          {
+            "word": "market",
+            "count": 1,
+            "fraction": 0.25
+          },
+          {
+            "word": "night",
+            "count": 1,
+            "fraction": 0.25
+          },
+          {
+            "word": "paper",
+            "count": 1,
+            "fraction": 0.25
+          },
+          {
+            "word": "play",
+            "count": 1,
+            "fraction": 0.25
+          },
+          {
+            "word": "research",
+            "count": 1,
+            "fraction": 0.25
+          },
+          {
+            "word": "shift",
+            "count": 1,
+            "fraction": 0.25
+          },
+          {
+            "word": "stock",
+            "count": 1,
+            "fraction": 0.25
+          },
+          {
+            "word": "team",
+            "count": 1,
+            "fraction": 0.25
+          }
+        ],
+        "minInternalOverlap": 0,
+        "meanInternalOverlap": 0.08888888888888889,
+        "representativeRoutes": [
+          [
+            "card",
+            "game",
+            "night",
+            "shift",
+            "work"
+          ],
+          [
+            "card",
+            "game",
+            "day",
+            "dream",
+            "team",
+            "work"
+          ],
+          [
+            "card",
+            "stock",
+            "market",
+            "research",
+            "paper",
+            "work"
+          ]
+        ],
+        "policy": {
+          "revision": "chainshift-analysis-v1",
+          "minShifts": 3,
+          "maxShifts": 6,
+          "extraShifts": 3,
+          "shortestCountCap": 1000,
+          "routeCap": 512,
+          "expansionCap": 50000,
+          "minOpenings": 2,
+          "minApproaches": 2,
+          "maxDominance": 0.9,
+          "maxBestPairOverlap": 0.5
+        }
+      }
+    },
+    "recognizability": "not-certified-by-topology",
+    "rolloverPolicy": "retain-starting-puzzle"
+  },
+  {
+    "manifestVersion": "chainshift-manifest-v1",
+    "id": "chainshift-local-006",
+    "number": 6,
+    "day": "2026-10-10",
+    "timeZone": "America/New_York",
+    "start": {
+      "key": "play",
+      "display": "PLAY"
+    },
+    "finish": {
+      "key": "point",
+      "display": "POINT"
+    },
+    "graphVersion": "chainshift-graph-v1",
+    "rulesRevision": "chainshift-rules-v1",
+    "checksum": "fnv1a64:dc521a64e4cc01fb",
+    "generatedAt": "2026-10-04T00:00:00.000Z",
+    "publicationStatus": "local-review",
+    "editorialApproval": "pending",
+    "shortestCertificate": {
+      "shifts": 5,
+      "route": [
+        "play",
+        "ground",
+        "work",
+        "day",
+        "break",
+        "point"
+      ]
+    },
+    "diversityCertificate": {
+      "from": "play",
+      "to": "point",
+      "shortest": {
+        "shifts": 5,
+        "route": [
+          "play",
+          "ground",
+          "work",
+          "day",
+          "break",
+          "point"
+        ]
+      },
+      "shortestRoutes": {
+        "count": 1,
+        "capped": false
+      },
+      "bound": 8,
+      "openings": [
+        "ground",
+        "list",
+        "time"
+      ],
+      "approaches": [
+        "break",
+        "check",
+        "way"
+      ],
+      "countsByExtraShift": {
+        "0": 1,
+        "1": 0,
+        "2": 2,
+        "3": 1
+      },
+      "routeCount": 4,
+      "truncated": false,
+      "expansions": 25,
+      "mandatory": [],
+      "boundedMandatory": [],
+      "dominant": [
+        {
+          "word": "day",
+          "count": 2,
+          "fraction": 0.5
+        },
+        {
+          "word": "drive",
+          "count": 2,
+          "fraction": 0.5
+        },
+        {
+          "word": "ground",
+          "count": 2,
+          "fraction": 0.5
+        },
+        {
+          "word": "line",
+          "count": 2,
+          "fraction": 0.5
+        },
+        {
+          "word": "way",
+          "count": 2,
+          "fraction": 0.5
+        },
+        {
+          "word": "work",
+          "count": 2,
+          "fraction": 0.5
+        },
+        {
+          "word": "break",
+          "count": 1,
+          "fraction": 0.25
+        },
+        {
+          "word": "check",
+          "count": 1,
+          "fraction": 0.25
+        },
+        {
+          "word": "field",
+          "count": 1,
+          "fraction": 0.25
+        },
+        {
+          "word": "goal",
+          "count": 1,
+          "fraction": 0.25
+        },
+        {
+          "word": "light",
+          "count": 1,
+          "fraction": 0.25
+        },
+        {
+          "word": "list",
+          "count": 1,
+          "fraction": 0.25
+        },
+        {
+          "word": "out",
+          "count": 1,
+          "fraction": 0.25
+        },
+        {
+          "word": "price",
+          "count": 1,
+          "fraction": 0.25
+        },
+        {
+          "word": "rain",
+          "count": 1,
+          "fraction": 0.25
+        },
+        {
+          "word": "tag",
+          "count": 1,
+          "fraction": 0.25
+        },
+        {
+          "word": "time",
+          "count": 1,
+          "fraction": 0.25
+        }
+      ],
+      "minInternalOverlap": 0,
+      "meanInternalOverlap": 0.12142857142857143,
+      "representativeRoutes": [
+        [
+          "play",
+          "ground",
+          "work",
+          "day",
+          "break",
+          "point"
+        ],
+        [
+          "play",
+          "list",
+          "price",
+          "tag",
+          "line",
+          "drive",
+          "way",
+          "point"
+        ]
+      ],
+      "policy": {
+        "revision": "chainshift-analysis-v1",
+        "minShifts": 3,
+        "maxShifts": 6,
+        "extraShifts": 3,
+        "shortestCountCap": 1000,
+        "routeCap": 512,
+        "expansionCap": 50000,
+        "minOpenings": 2,
+        "minApproaches": 2,
+        "maxDominance": 0.9,
+        "maxBestPairOverlap": 0.5
+      }
+    },
+    "candidateValidation": {
+      "accepted": true,
+      "reasons": [],
+      "metrics": {
+        "from": "play",
+        "to": "point",
+        "shortest": {
+          "shifts": 5,
+          "route": [
+            "play",
+            "ground",
+            "work",
+            "day",
+            "break",
+            "point"
+          ]
+        },
+        "shortestRoutes": {
+          "count": 1,
+          "capped": false
+        },
+        "bound": 8,
+        "openings": [
+          "ground",
+          "list",
+          "time"
+        ],
+        "approaches": [
+          "break",
+          "check",
+          "way"
+        ],
+        "countsByExtraShift": {
+          "0": 1,
+          "1": 0,
+          "2": 2,
+          "3": 1
+        },
+        "routeCount": 4,
+        "truncated": false,
+        "expansions": 25,
+        "mandatory": [],
+        "boundedMandatory": [],
+        "dominant": [
+          {
+            "word": "day",
+            "count": 2,
+            "fraction": 0.5
+          },
+          {
+            "word": "drive",
+            "count": 2,
+            "fraction": 0.5
+          },
+          {
+            "word": "ground",
+            "count": 2,
+            "fraction": 0.5
+          },
+          {
+            "word": "line",
+            "count": 2,
+            "fraction": 0.5
+          },
+          {
+            "word": "way",
+            "count": 2,
+            "fraction": 0.5
+          },
+          {
+            "word": "work",
+            "count": 2,
+            "fraction": 0.5
+          },
+          {
+            "word": "break",
+            "count": 1,
+            "fraction": 0.25
+          },
+          {
+            "word": "check",
+            "count": 1,
+            "fraction": 0.25
+          },
+          {
+            "word": "field",
+            "count": 1,
+            "fraction": 0.25
+          },
+          {
+            "word": "goal",
+            "count": 1,
+            "fraction": 0.25
+          },
+          {
+            "word": "light",
+            "count": 1,
+            "fraction": 0.25
+          },
+          {
+            "word": "list",
+            "count": 1,
+            "fraction": 0.25
+          },
+          {
+            "word": "out",
+            "count": 1,
+            "fraction": 0.25
+          },
+          {
+            "word": "price",
+            "count": 1,
+            "fraction": 0.25
+          },
+          {
+            "word": "rain",
+            "count": 1,
+            "fraction": 0.25
+          },
+          {
+            "word": "tag",
+            "count": 1,
+            "fraction": 0.25
+          },
+          {
+            "word": "time",
+            "count": 1,
+            "fraction": 0.25
+          }
+        ],
+        "minInternalOverlap": 0,
+        "meanInternalOverlap": 0.12142857142857143,
+        "representativeRoutes": [
+          [
+            "play",
+            "ground",
+            "work",
+            "day",
+            "break",
+            "point"
+          ],
+          [
+            "play",
+            "list",
+            "price",
+            "tag",
+            "line",
+            "drive",
+            "way",
+            "point"
+          ]
+        ],
+        "policy": {
+          "revision": "chainshift-analysis-v1",
+          "minShifts": 3,
+          "maxShifts": 6,
+          "extraShifts": 3,
+          "shortestCountCap": 1000,
+          "routeCap": 512,
+          "expansionCap": 50000,
+          "minOpenings": 2,
+          "minApproaches": 2,
+          "maxDominance": 0.9,
+          "maxBestPairOverlap": 0.5
+        }
+      }
+    },
+    "recognizability": "not-certified-by-topology",
+    "rolloverPolicy": "retain-starting-puzzle"
+  },
+  {
+    "manifestVersion": "chainshift-manifest-v1",
+    "id": "chainshift-local-007",
+    "number": 7,
+    "day": "2026-10-11",
+    "timeZone": "America/New_York",
+    "start": {
+      "key": "power",
+      "display": "POWER"
+    },
+    "finish": {
+      "key": "house",
+      "display": "HOUSE"
+    },
+    "graphVersion": "chainshift-graph-v1",
+    "rulesRevision": "chainshift-rules-v1",
+    "checksum": "fnv1a64:dc521a64e4cc01fb",
+    "generatedAt": "2026-10-04T00:00:00.000Z",
+    "publicationStatus": "local-review",
+    "editorialApproval": "pending",
+    "shortestCertificate": {
+      "shifts": 5,
+      "route": [
+        "power",
+        "ball",
+        "game",
+        "day",
+        "light",
+        "house"
+      ]
+    },
+    "diversityCertificate": {
+      "from": "power",
+      "to": "house",
+      "shortest": {
+        "shifts": 5,
+        "route": [
+          "power",
+          "ball",
+          "game",
+          "day",
+          "light",
+          "house"
+        ]
+      },
+      "shortestRoutes": {
+        "count": 2,
+        "capped": false
+      },
+      "bound": 8,
+      "openings": [
+        "ball",
+        "up"
+      ],
+      "approaches": [
+        "club",
+        "light",
+        "tree"
+      ],
+      "countsByExtraShift": {
+        "0": 2,
+        "1": 0,
+        "2": 2,
+        "3": 4
+      },
+      "routeCount": 8,
+      "truncated": false,
+      "expansions": 42,
+      "mandatory": [],
+      "boundedMandatory": [],
+      "dominant": [
+        {
+          "word": "ball",
+          "count": 6,
+          "fraction": 0.75
+        },
+        {
+          "word": "game",
+          "count": 6,
+          "fraction": 0.75
+        },
+        {
+          "word": "day",
+          "count": 4,
+          "fraction": 0.5
+        },
+        {
+          "word": "light",
+          "count": 4,
+          "fraction": 0.5
+        },
+        {
+          "word": "club",
+          "count": 3,
+          "fraction": 0.375
+        },
+        {
+          "word": "night",
+          "count": 3,
+          "fraction": 0.375
+        },
+        {
+          "word": "card",
+          "count": 2,
+          "fraction": 0.25
+        },
+        {
+          "word": "charge",
+          "count": 2,
+          "fraction": 0.25
+        },
+        {
+          "word": "room",
+          "count": 2,
+          "fraction": 0.25
+        },
+        {
+          "word": "time",
+          "count": 2,
+          "fraction": 0.25
+        },
+        {
+          "word": "up",
+          "count": 2,
+          "fraction": 0.25
+        },
+        {
+          "word": "work",
+          "count": 2,
+          "fraction": 0.25
+        },
+        {
+          "word": "book",
+          "count": 1,
+          "fraction": 0.125
+        },
+        {
+          "word": "ground",
+          "count": 1,
+          "fraction": 0.125
+        },
+        {
+          "word": "lamp",
+          "count": 1,
+          "fraction": 0.125
+        },
+        {
+          "word": "play",
+          "count": 1,
+          "fraction": 0.125
+        },
+        {
+          "word": "run",
+          "count": 1,
+          "fraction": 0.125
+        },
+        {
+          "word": "shade",
+          "count": 1,
+          "fraction": 0.125
+        },
+        {
+          "word": "shift",
+          "count": 1,
+          "fraction": 0.125
+        },
+        {
+          "word": "table",
+          "count": 1,
+          "fraction": 0.125
+        },
+        {
+          "word": "tree",
+          "count": 1,
+          "fraction": 0.125
+        },
+        {
+          "word": "trial",
+          "count": 1,
+          "fraction": 0.125
+        }
+      ],
+      "minInternalOverlap": 0,
+      "meanInternalOverlap": 0.2287737064522779,
+      "representativeRoutes": [
+        [
+          "power",
+          "ball",
+          "game",
+          "day",
+          "light",
+          "house"
+        ],
+        [
+          "power",
+          "up",
+          "time",
+          "table",
+          "lamp",
+          "shade",
+          "tree",
+          "house"
+        ]
+      ],
+      "policy": {
+        "revision": "chainshift-analysis-v1",
+        "minShifts": 3,
+        "maxShifts": 6,
+        "extraShifts": 3,
+        "shortestCountCap": 1000,
+        "routeCap": 512,
+        "expansionCap": 50000,
+        "minOpenings": 2,
+        "minApproaches": 2,
+        "maxDominance": 0.9,
+        "maxBestPairOverlap": 0.5
+      }
+    },
+    "candidateValidation": {
+      "accepted": true,
+      "reasons": [],
+      "metrics": {
+        "from": "power",
+        "to": "house",
+        "shortest": {
+          "shifts": 5,
+          "route": [
+            "power",
+            "ball",
+            "game",
+            "day",
+            "light",
+            "house"
+          ]
+        },
+        "shortestRoutes": {
+          "count": 2,
+          "capped": false
+        },
+        "bound": 8,
+        "openings": [
+          "ball",
+          "up"
+        ],
+        "approaches": [
+          "club",
+          "light",
+          "tree"
+        ],
+        "countsByExtraShift": {
+          "0": 2,
+          "1": 0,
+          "2": 2,
+          "3": 4
+        },
+        "routeCount": 8,
+        "truncated": false,
+        "expansions": 42,
+        "mandatory": [],
+        "boundedMandatory": [],
+        "dominant": [
+          {
+            "word": "ball",
+            "count": 6,
+            "fraction": 0.75
+          },
+          {
+            "word": "game",
+            "count": 6,
+            "fraction": 0.75
+          },
+          {
+            "word": "day",
+            "count": 4,
+            "fraction": 0.5
+          },
+          {
+            "word": "light",
+            "count": 4,
+            "fraction": 0.5
+          },
+          {
+            "word": "club",
+            "count": 3,
+            "fraction": 0.375
+          },
+          {
+            "word": "night",
+            "count": 3,
+            "fraction": 0.375
+          },
+          {
+            "word": "card",
+            "count": 2,
+            "fraction": 0.25
+          },
+          {
+            "word": "charge",
+            "count": 2,
+            "fraction": 0.25
+          },
+          {
+            "word": "room",
+            "count": 2,
+            "fraction": 0.25
+          },
+          {
+            "word": "time",
+            "count": 2,
+            "fraction": 0.25
+          },
+          {
+            "word": "up",
+            "count": 2,
+            "fraction": 0.25
+          },
+          {
+            "word": "work",
+            "count": 2,
+            "fraction": 0.25
+          },
+          {
+            "word": "book",
+            "count": 1,
+            "fraction": 0.125
+          },
+          {
+            "word": "ground",
+            "count": 1,
+            "fraction": 0.125
+          },
+          {
+            "word": "lamp",
+            "count": 1,
+            "fraction": 0.125
+          },
+          {
+            "word": "play",
+            "count": 1,
+            "fraction": 0.125
+          },
+          {
+            "word": "run",
+            "count": 1,
+            "fraction": 0.125
+          },
+          {
+            "word": "shade",
+            "count": 1,
+            "fraction": 0.125
+          },
+          {
+            "word": "shift",
+            "count": 1,
+            "fraction": 0.125
+          },
+          {
+            "word": "table",
+            "count": 1,
+            "fraction": 0.125
+          },
+          {
+            "word": "tree",
+            "count": 1,
+            "fraction": 0.125
+          },
+          {
+            "word": "trial",
+            "count": 1,
+            "fraction": 0.125
+          }
+        ],
+        "minInternalOverlap": 0,
+        "meanInternalOverlap": 0.2287737064522779,
+        "representativeRoutes": [
+          [
+            "power",
+            "ball",
+            "game",
+            "day",
+            "light",
+            "house"
+          ],
+          [
+            "power",
+            "up",
+            "time",
+            "table",
+            "lamp",
+            "shade",
+            "tree",
+            "house"
+          ]
+        ],
+        "policy": {
+          "revision": "chainshift-analysis-v1",
+          "minShifts": 3,
+          "maxShifts": 6,
+          "extraShifts": 3,
+          "shortestCountCap": 1000,
+          "routeCap": 512,
+          "expansionCap": 50000,
+          "minOpenings": 2,
+          "minApproaches": 2,
+          "maxDominance": 0.9,
+          "maxBestPairOverlap": 0.5
+        }
+      }
+    },
+    "recognizability": "not-certified-by-topology",
+    "rolloverPolicy": "retain-starting-puzzle"
+  },
+  {
+    "manifestVersion": "chainshift-manifest-v1",
+    "id": "chainshift-local-008",
+    "number": 8,
+    "day": "2026-10-12",
+    "timeZone": "America/New_York",
+    "start": {
+      "key": "cold",
+      "display": "COLD"
+    },
+    "finish": {
+      "key": "work",
+      "display": "WORK"
+    },
+    "graphVersion": "chainshift-graph-v1",
+    "rulesRevision": "chainshift-rules-v1",
+    "checksum": "fnv1a64:dc521a64e4cc01fb",
+    "generatedAt": "2026-10-04T00:00:00.000Z",
+    "publicationStatus": "local-review",
+    "editorialApproval": "pending",
+    "shortestCertificate": {
+      "shifts": 5,
+      "route": [
+        "cold",
+        "open",
+        "fire",
+        "wall",
+        "paper",
+        "work"
+      ]
+    },
+    "diversityCertificate": {
+      "from": "cold",
+      "to": "work",
+      "shortest": {
+        "shifts": 5,
+        "route": [
+          "cold",
+          "open",
+          "fire",
+          "wall",
+          "paper",
+          "work"
+        ]
+      },
+      "shortestRoutes": {
+        "count": 1,
+        "capped": false
+      },
+      "bound": 8,
+      "openings": [
+        "open",
+        "war"
+      ],
+      "approaches": [
+        "ground",
+        "paper",
+        "shift"
+      ],
+      "countsByExtraShift": {
+        "0": 1,
+        "1": 0,
+        "2": 0,
+        "3": 2
+      },
+      "routeCount": 3,
+      "truncated": false,
+      "expansions": 17,
+      "mandatory": [],
+      "boundedMandatory": [],
+      "dominant": [
+        {
+          "word": "card",
+          "count": 2,
+          "fraction": 0.6666666666666666
+        },
+        {
+          "word": "charge",
+          "count": 2,
+          "fraction": 0.6666666666666666
+        },
+        {
+          "word": "game",
+          "count": 2,
+          "fraction": 0.6666666666666666
+        },
+        {
+          "word": "room",
+          "count": 2,
+          "fraction": 0.6666666666666666
+        },
+        {
+          "word": "war",
+          "count": 2,
+          "fraction": 0.6666666666666666
+        },
+        {
+          "word": "fire",
+          "count": 1,
+          "fraction": 0.3333333333333333
+        },
+        {
+          "word": "ground",
+          "count": 1,
+          "fraction": 0.3333333333333333
+        },
+        {
+          "word": "night",
+          "count": 1,
+          "fraction": 0.3333333333333333
+        },
+        {
+          "word": "open",
+          "count": 1,
+          "fraction": 0.3333333333333333
+        },
+        {
+          "word": "paper",
+          "count": 1,
+          "fraction": 0.3333333333333333
+        },
+        {
+          "word": "play",
+          "count": 1,
+          "fraction": 0.3333333333333333
+        },
+        {
+          "word": "shift",
+          "count": 1,
+          "fraction": 0.3333333333333333
+        },
+        {
+          "word": "wall",
+          "count": 1,
+          "fraction": 0.3333333333333333
+        }
+      ],
+      "minInternalOverlap": 0,
+      "meanInternalOverlap": 0.1851851851851852,
+      "representativeRoutes": [
+        [
+          "cold",
+          "open",
+          "fire",
+          "wall",
+          "paper",
+          "work"
+        ],
+        [
+          "cold",
+          "war",
+          "room",
+          "charge",
+          "card",
+          "game",
+          "night",
+          "shift",
+          "work"
+        ]
+      ],
+      "policy": {
+        "revision": "chainshift-analysis-v1",
+        "minShifts": 3,
+        "maxShifts": 6,
+        "extraShifts": 3,
+        "shortestCountCap": 1000,
+        "routeCap": 512,
+        "expansionCap": 50000,
+        "minOpenings": 2,
+        "minApproaches": 2,
+        "maxDominance": 0.9,
+        "maxBestPairOverlap": 0.5
+      }
+    },
+    "candidateValidation": {
+      "accepted": true,
+      "reasons": [],
+      "metrics": {
+        "from": "cold",
+        "to": "work",
+        "shortest": {
+          "shifts": 5,
+          "route": [
+            "cold",
+            "open",
+            "fire",
+            "wall",
+            "paper",
+            "work"
+          ]
+        },
+        "shortestRoutes": {
+          "count": 1,
+          "capped": false
+        },
+        "bound": 8,
+        "openings": [
+          "open",
+          "war"
+        ],
+        "approaches": [
+          "ground",
+          "paper",
+          "shift"
+        ],
+        "countsByExtraShift": {
+          "0": 1,
+          "1": 0,
+          "2": 0,
+          "3": 2
+        },
+        "routeCount": 3,
+        "truncated": false,
+        "expansions": 17,
+        "mandatory": [],
+        "boundedMandatory": [],
+        "dominant": [
+          {
+            "word": "card",
+            "count": 2,
+            "fraction": 0.6666666666666666
+          },
+          {
+            "word": "charge",
+            "count": 2,
+            "fraction": 0.6666666666666666
+          },
+          {
+            "word": "game",
+            "count": 2,
+            "fraction": 0.6666666666666666
+          },
+          {
+            "word": "room",
+            "count": 2,
+            "fraction": 0.6666666666666666
+          },
+          {
+            "word": "war",
+            "count": 2,
+            "fraction": 0.6666666666666666
+          },
+          {
+            "word": "fire",
+            "count": 1,
+            "fraction": 0.3333333333333333
+          },
+          {
+            "word": "ground",
+            "count": 1,
+            "fraction": 0.3333333333333333
+          },
+          {
+            "word": "night",
+            "count": 1,
+            "fraction": 0.3333333333333333
+          },
+          {
+            "word": "open",
+            "count": 1,
+            "fraction": 0.3333333333333333
+          },
+          {
+            "word": "paper",
+            "count": 1,
+            "fraction": 0.3333333333333333
+          },
+          {
+            "word": "play",
+            "count": 1,
+            "fraction": 0.3333333333333333
+          },
+          {
+            "word": "shift",
+            "count": 1,
+            "fraction": 0.3333333333333333
+          },
+          {
+            "word": "wall",
+            "count": 1,
+            "fraction": 0.3333333333333333
+          }
+        ],
+        "minInternalOverlap": 0,
+        "meanInternalOverlap": 0.1851851851851852,
+        "representativeRoutes": [
+          [
+            "cold",
+            "open",
+            "fire",
+            "wall",
+            "paper",
+            "work"
+          ],
+          [
+            "cold",
+            "war",
+            "room",
+            "charge",
+            "card",
+            "game",
+            "night",
+            "shift",
+            "work"
+          ]
+        ],
+        "policy": {
+          "revision": "chainshift-analysis-v1",
+          "minShifts": 3,
+          "maxShifts": 6,
+          "extraShifts": 3,
+          "shortestCountCap": 1000,
+          "routeCap": 512,
+          "expansionCap": 50000,
+          "minOpenings": 2,
+          "minApproaches": 2,
+          "maxDominance": 0.9,
+          "maxBestPairOverlap": 0.5
+        }
+      }
+    },
+    "recognizability": "not-certified-by-topology",
+    "rolloverPolicy": "retain-starting-puzzle"
+  },
+  {
+    "manifestVersion": "chainshift-manifest-v1",
+    "id": "chainshift-local-009",
+    "number": 9,
+    "day": "2026-10-13",
+    "timeZone": "America/New_York",
+    "start": {
+      "key": "board",
+      "display": "BOARD"
+    },
+    "finish": {
+      "key": "food",
+      "display": "FOOD"
+    },
+    "graphVersion": "chainshift-graph-v1",
+    "rulesRevision": "chainshift-rules-v1",
+    "checksum": "fnv1a64:dc521a64e4cc01fb",
+    "generatedAt": "2026-10-04T00:00:00.000Z",
+    "publicationStatus": "local-review",
+    "editorialApproval": "pending",
+    "shortestCertificate": {
+      "shifts": 6,
+      "route": [
+        "board",
+        "game",
+        "day",
+        "light",
+        "house",
+        "party",
+        "food"
+      ]
+    },
+    "diversityCertificate": {
+      "from": "board",
+      "to": "food",
+      "shortest": {
+        "shifts": 6,
+        "route": [
+          "board",
+          "game",
+          "day",
+          "light",
+          "house",
+          "party",
+          "food"
+        ]
+      },
+      "shortestRoutes": {
+        "count": 3,
+        "capped": false
+      },
+      "bound": 9,
+      "openings": [
+        "game",
+        "room",
+        "walk"
+      ],
+      "approaches": [
+        "dog",
+        "party"
+      ],
+      "countsByExtraShift": {
+        "0": 3,
+        "1": 1,
+        "2": 0,
+        "3": 5
+      },
+      "routeCount": 9,
+      "truncated": false,
+      "expansions": 61,
+      "mandatory": [],
+      "boundedMandatory": [],
+      "dominant": [
+        {
+          "word": "game",
+          "count": 8,
+          "fraction": 0.8888888888888888
+        },
+        {
+          "word": "day",
+          "count": 6,
+          "fraction": 0.6666666666666666
+        },
+        {
+          "word": "house",
+          "count": 6,
+          "fraction": 0.6666666666666666
+        },
+        {
+          "word": "party",
+          "count": 6,
+          "fraction": 0.6666666666666666
+        },
+        {
+          "word": "light",
+          "count": 5,
+          "fraction": 0.5555555555555556
+        },
+        {
+          "word": "dog",
+          "count": 3,
+          "fraction": 0.3333333333333333
+        },
+        {
+          "word": "guard",
+          "count": 3,
+          "fraction": 0.3333333333333333
+        },
+        {
+          "word": "night",
+          "count": 3,
+          "fraction": 0.3333333333333333
+        },
+        {
+          "word": "point",
+          "count": 3,
+          "fraction": 0.3333333333333333
+        },
+        {
+          "word": "card",
+          "count": 2,
+          "fraction": 0.2222222222222222
+        },
+        {
+          "word": "charge",
+          "count": 2,
+          "fraction": 0.2222222222222222
+        },
+        {
+          "word": "club",
+          "count": 2,
+          "fraction": 0.2222222222222222
+        },
+        {
+          "word": "room",
+          "count": 2,
+          "fraction": 0.2222222222222222
+        },
+        {
+          "word": "work",
+          "count": 2,
+          "fraction": 0.2222222222222222
+        },
+        {
+          "word": "break",
+          "count": 1,
+          "fraction": 0.1111111111111111
+        },
+        {
+          "word": "check",
+          "count": 1,
+          "fraction": 0.1111111111111111
+        },
+        {
+          "word": "ground",
+          "count": 1,
+          "fraction": 0.1111111111111111
+        },
+        {
+          "word": "play",
+          "count": 1,
+          "fraction": 0.1111111111111111
+        },
+        {
+          "word": "rain",
+          "count": 1,
+          "fraction": 0.1111111111111111
+        },
+        {
+          "word": "shift",
+          "count": 1,
+          "fraction": 0.1111111111111111
+        },
+        {
+          "word": "walk",
+          "count": 1,
+          "fraction": 0.1111111111111111
+        },
+        {
+          "word": "way",
+          "count": 1,
+          "fraction": 0.1111111111111111
+        }
+      ],
+      "minInternalOverlap": 0,
+      "meanInternalOverlap": 0.28383938592271923,
+      "representativeRoutes": [
+        [
+          "board",
+          "game",
+          "day",
+          "light",
+          "house",
+          "party",
+          "food"
+        ],
+        [
+          "board",
+          "walk",
+          "way",
+          "point",
+          "guard",
+          "dog",
+          "food"
+        ]
+      ],
+      "policy": {
+        "revision": "chainshift-analysis-v1",
+        "minShifts": 3,
+        "maxShifts": 6,
+        "extraShifts": 3,
+        "shortestCountCap": 1000,
+        "routeCap": 512,
+        "expansionCap": 50000,
+        "minOpenings": 2,
+        "minApproaches": 2,
+        "maxDominance": 0.9,
+        "maxBestPairOverlap": 0.5
+      }
+    },
+    "candidateValidation": {
+      "accepted": true,
+      "reasons": [],
+      "metrics": {
+        "from": "board",
+        "to": "food",
+        "shortest": {
+          "shifts": 6,
+          "route": [
+            "board",
+            "game",
+            "day",
+            "light",
+            "house",
+            "party",
+            "food"
+          ]
+        },
+        "shortestRoutes": {
+          "count": 3,
+          "capped": false
+        },
+        "bound": 9,
+        "openings": [
+          "game",
+          "room",
+          "walk"
+        ],
+        "approaches": [
+          "dog",
+          "party"
+        ],
+        "countsByExtraShift": {
+          "0": 3,
+          "1": 1,
+          "2": 0,
+          "3": 5
+        },
+        "routeCount": 9,
+        "truncated": false,
+        "expansions": 61,
+        "mandatory": [],
+        "boundedMandatory": [],
+        "dominant": [
+          {
+            "word": "game",
+            "count": 8,
+            "fraction": 0.8888888888888888
+          },
+          {
+            "word": "day",
+            "count": 6,
+            "fraction": 0.6666666666666666
+          },
+          {
+            "word": "house",
+            "count": 6,
+            "fraction": 0.6666666666666666
+          },
+          {
+            "word": "party",
+            "count": 6,
+            "fraction": 0.6666666666666666
+          },
+          {
+            "word": "light",
+            "count": 5,
+            "fraction": 0.5555555555555556
+          },
+          {
+            "word": "dog",
+            "count": 3,
+            "fraction": 0.3333333333333333
+          },
+          {
+            "word": "guard",
+            "count": 3,
+            "fraction": 0.3333333333333333
+          },
+          {
+            "word": "night",
+            "count": 3,
+            "fraction": 0.3333333333333333
+          },
+          {
+            "word": "point",
+            "count": 3,
+            "fraction": 0.3333333333333333
+          },
+          {
+            "word": "card",
+            "count": 2,
+            "fraction": 0.2222222222222222
+          },
+          {
+            "word": "charge",
+            "count": 2,
+            "fraction": 0.2222222222222222
+          },
+          {
+            "word": "club",
+            "count": 2,
+            "fraction": 0.2222222222222222
+          },
+          {
+            "word": "room",
+            "count": 2,
+            "fraction": 0.2222222222222222
+          },
+          {
+            "word": "work",
+            "count": 2,
+            "fraction": 0.2222222222222222
+          },
+          {
+            "word": "break",
+            "count": 1,
+            "fraction": 0.1111111111111111
+          },
+          {
+            "word": "check",
+            "count": 1,
+            "fraction": 0.1111111111111111
+          },
+          {
+            "word": "ground",
+            "count": 1,
+            "fraction": 0.1111111111111111
+          },
+          {
+            "word": "play",
+            "count": 1,
+            "fraction": 0.1111111111111111
+          },
+          {
+            "word": "rain",
+            "count": 1,
+            "fraction": 0.1111111111111111
+          },
+          {
+            "word": "shift",
+            "count": 1,
+            "fraction": 0.1111111111111111
+          },
+          {
+            "word": "walk",
+            "count": 1,
+            "fraction": 0.1111111111111111
+          },
+          {
+            "word": "way",
+            "count": 1,
+            "fraction": 0.1111111111111111
+          }
+        ],
+        "minInternalOverlap": 0,
+        "meanInternalOverlap": 0.28383938592271923,
+        "representativeRoutes": [
+          [
+            "board",
+            "game",
+            "day",
+            "light",
+            "house",
+            "party",
+            "food"
+          ],
+          [
+            "board",
+            "walk",
+            "way",
+            "point",
+            "guard",
+            "dog",
+            "food"
+          ]
+        ],
+        "policy": {
+          "revision": "chainshift-analysis-v1",
+          "minShifts": 3,
+          "maxShifts": 6,
+          "extraShifts": 3,
+          "shortestCountCap": 1000,
+          "routeCap": 512,
+          "expansionCap": 50000,
+          "minOpenings": 2,
+          "minApproaches": 2,
+          "maxDominance": 0.9,
+          "maxBestPairOverlap": 0.5
+        }
+      }
+    },
+    "recognizability": "not-certified-by-topology",
+    "rolloverPolicy": "retain-starting-puzzle"
+  },
+  {
+    "manifestVersion": "chainshift-manifest-v1",
+    "id": "chainshift-local-010",
+    "number": 10,
+    "day": "2026-10-14",
+    "timeZone": "America/New_York",
+    "start": {
+      "key": "home",
+      "display": "HOME"
+    },
+    "finish": {
+      "key": "room",
+      "display": "ROOM"
+    },
+    "graphVersion": "chainshift-graph-v1",
+    "rulesRevision": "chainshift-rules-v1",
+    "checksum": "fnv1a64:dc521a64e4cc01fb",
+    "generatedAt": "2026-10-04T00:00:00.000Z",
+    "publicationStatus": "local-review",
+    "editorialApproval": "pending",
+    "shortestCertificate": {
+      "shifts": 6,
+      "route": [
+        "home",
+        "run",
+        "book",
+        "club",
+        "house",
+        "party",
+        "room"
+      ]
+    },
+    "diversityCertificate": {
+      "from": "home",
+      "to": "room",
+      "shortest": {
+        "shifts": 6,
+        "route": [
+          "home",
+          "run",
+          "book",
+          "club",
+          "house",
+          "party",
+          "room"
+        ]
+      },
+      "shortestRoutes": {
+        "count": 4,
+        "capped": false
+      },
+      "bound": 9,
+      "openings": [
+        "run",
+        "work"
+      ],
+      "approaches": [
+        "ball",
+        "game",
+        "party",
+        "stock"
+      ],
+      "countsByExtraShift": {
+        "0": 4,
+        "1": 3,
+        "2": 2,
+        "3": 1
+      },
+      "routeCount": 10,
+      "truncated": false,
+      "expansions": 40,
+      "mandatory": [],
+      "boundedMandatory": [],
+      "dominant": [
+        {
+          "word": "house",
+          "count": 7,
+          "fraction": 0.7
+        },
+        {
+          "word": "party",
+          "count": 7,
+          "fraction": 0.7
+        },
+        {
+          "word": "run",
+          "count": 7,
+          "fraction": 0.7
+        },
+        {
+          "word": "book",
+          "count": 6,
+          "fraction": 0.6
+        },
+        {
+          "word": "game",
+          "count": 6,
+          "fraction": 0.6
+        },
+        {
+          "word": "ball",
+          "count": 3,
+          "fraction": 0.3
+        },
+        {
+          "word": "card",
+          "count": 3,
+          "fraction": 0.3
+        },
+        {
+          "word": "club",
+          "count": 3,
+          "fraction": 0.3
+        },
+        {
+          "word": "day",
+          "count": 3,
+          "fraction": 0.3
+        },
+        {
+          "word": "light",
+          "count": 3,
+          "fraction": 0.3
+        },
+        {
+          "word": "report",
+          "count": 3,
+          "fraction": 0.3
+        },
+        {
+          "word": "work",
+          "count": 3,
+          "fraction": 0.3
+        },
+        {
+          "word": "lamp",
+          "count": 1,
+          "fraction": 0.1
+        },
+        {
+          "word": "shade",
+          "count": 1,
+          "fraction": 0.1
+        },
+        {
+          "word": "stock",
+          "count": 1,
+          "fraction": 0.1
+        },
+        {
+          "word": "table",
+          "count": 1,
+          "fraction": 0.1
+        },
+        {
+          "word": "time",
+          "count": 1,
+          "fraction": 0.1
+        },
+        {
+          "word": "tree",
+          "count": 1,
+          "fraction": 0.1
+        }
+      ],
+      "minInternalOverlap": 0,
+      "meanInternalOverlap": 0.3104793354793355,
+      "representativeRoutes": [
+        [
+          "home",
+          "run",
+          "book",
+          "club",
+          "house",
+          "party",
+          "room"
+        ],
+        [
+          "home",
+          "run",
+          "book",
+          "report",
+          "card",
+          "game",
+          "ball",
+          "room"
+        ],
+        [
+          "home",
+          "work",
+          "day",
+          "light",
+          "house",
+          "party",
+          "room"
+        ]
+      ],
+      "policy": {
+        "revision": "chainshift-analysis-v1",
+        "minShifts": 3,
+        "maxShifts": 6,
+        "extraShifts": 3,
+        "shortestCountCap": 1000,
+        "routeCap": 512,
+        "expansionCap": 50000,
+        "minOpenings": 2,
+        "minApproaches": 2,
+        "maxDominance": 0.9,
+        "maxBestPairOverlap": 0.5
+      }
+    },
+    "candidateValidation": {
+      "accepted": true,
+      "reasons": [],
+      "metrics": {
+        "from": "home",
+        "to": "room",
+        "shortest": {
+          "shifts": 6,
+          "route": [
+            "home",
+            "run",
+            "book",
+            "club",
+            "house",
+            "party",
+            "room"
+          ]
+        },
+        "shortestRoutes": {
+          "count": 4,
+          "capped": false
+        },
+        "bound": 9,
+        "openings": [
+          "run",
+          "work"
+        ],
+        "approaches": [
+          "ball",
+          "game",
+          "party",
+          "stock"
+        ],
+        "countsByExtraShift": {
+          "0": 4,
+          "1": 3,
+          "2": 2,
+          "3": 1
+        },
+        "routeCount": 10,
+        "truncated": false,
+        "expansions": 40,
+        "mandatory": [],
+        "boundedMandatory": [],
+        "dominant": [
+          {
+            "word": "house",
+            "count": 7,
+            "fraction": 0.7
+          },
+          {
+            "word": "party",
+            "count": 7,
+            "fraction": 0.7
+          },
+          {
+            "word": "run",
+            "count": 7,
+            "fraction": 0.7
+          },
+          {
+            "word": "book",
+            "count": 6,
+            "fraction": 0.6
+          },
+          {
+            "word": "game",
+            "count": 6,
+            "fraction": 0.6
+          },
+          {
+            "word": "ball",
+            "count": 3,
+            "fraction": 0.3
+          },
+          {
+            "word": "card",
+            "count": 3,
+            "fraction": 0.3
+          },
+          {
+            "word": "club",
+            "count": 3,
+            "fraction": 0.3
+          },
+          {
+            "word": "day",
+            "count": 3,
+            "fraction": 0.3
+          },
+          {
+            "word": "light",
+            "count": 3,
+            "fraction": 0.3
+          },
+          {
+            "word": "report",
+            "count": 3,
+            "fraction": 0.3
+          },
+          {
+            "word": "work",
+            "count": 3,
+            "fraction": 0.3
+          },
+          {
+            "word": "lamp",
+            "count": 1,
+            "fraction": 0.1
+          },
+          {
+            "word": "shade",
+            "count": 1,
+            "fraction": 0.1
+          },
+          {
+            "word": "stock",
+            "count": 1,
+            "fraction": 0.1
+          },
+          {
+            "word": "table",
+            "count": 1,
+            "fraction": 0.1
+          },
+          {
+            "word": "time",
+            "count": 1,
+            "fraction": 0.1
+          },
+          {
+            "word": "tree",
+            "count": 1,
+            "fraction": 0.1
+          }
+        ],
+        "minInternalOverlap": 0,
+        "meanInternalOverlap": 0.3104793354793355,
+        "representativeRoutes": [
+          [
+            "home",
+            "run",
+            "book",
+            "club",
+            "house",
+            "party",
+            "room"
+          ],
+          [
+            "home",
+            "run",
+            "book",
+            "report",
+            "card",
+            "game",
+            "ball",
+            "room"
+          ],
+          [
+            "home",
+            "work",
+            "day",
+            "light",
+            "house",
+            "party",
+            "room"
+          ]
+        ],
+        "policy": {
+          "revision": "chainshift-analysis-v1",
+          "minShifts": 3,
+          "maxShifts": 6,
+          "extraShifts": 3,
+          "shortestCountCap": 1000,
+          "routeCap": 512,
+          "expansionCap": 50000,
+          "minOpenings": 2,
+          "minApproaches": 2,
+          "maxDominance": 0.9,
+          "maxBestPairOverlap": 0.5
+        }
+      }
+    },
+    "recognizability": "not-certified-by-topology",
+    "rolloverPolicy": "retain-starting-puzzle"
+  }
+]
