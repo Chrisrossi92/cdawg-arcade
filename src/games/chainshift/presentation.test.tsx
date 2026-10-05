@@ -25,6 +25,6 @@ it('uses a soft synthesized palette with a bounded completion sting and no music
  const sequence=vi.spyOn(WebAudioManager.prototype,'playSequence').mockImplementation(()=>{});const audio=new ChainshiftAudio();
  for(const kind of ['accepted','rejected','backtracked','completed'] as const)audio.feedback(kind);
  const calls=sequence.mock.calls.map(call=>call[0]);expect(calls.every(tones=>tones.every(t=>['sine','triangle'].includes(t.type)))).toBe(true);
- expect(calls[0]).toHaveLength(1);expect(calls[1][0].volume).toBeLessThan(.025);expect(calls[2][1].frequency).toBeLessThan(calls[2][0].frequency);
+ expect(calls[0]).toHaveLength(3);expect(calls[0][0].duration).toBeLessThan(.05);expect(calls[0][1].type).toBe('triangle');expect(calls[1][0].volume).toBeLessThan(.025);expect(calls[2][1].frequency).toBeLessThan(calls[2][0].frequency);
  const duration=Math.max(...calls[3].map(t=>(t.delay??0)/1000+t.duration));expect(duration).toBeGreaterThanOrEqual(.5);expect(duration).toBeLessThanOrEqual(1);expect(audio.musicEnabled).toBe(false);audio.dispose();
 });

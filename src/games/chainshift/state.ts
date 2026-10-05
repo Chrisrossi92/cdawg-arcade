@@ -48,8 +48,9 @@ export function reduceGame(state:GameState,action:Action):GameState {
  }
  return immutable({...state,route,feedback:{kind:'accepted',text:edge.phrase,sequence}});
 }
-export function formatTime(ms:number):string {
- const tenths=Math.floor(ms/100);return `${Math.floor(tenths/600)}:${String(Math.floor(tenths/10)%60).padStart(2,'0')}.${tenths%10}`;
+export function formatTime(ms:number,precision:1|3=1):string {
+ const scale=10**precision;const units=Math.floor(ms/(precision===3?1:100));
+ return `${Math.floor(units/(60*scale))}:${String(Math.floor(units/scale)%60).padStart(2,'0')}.${String(units%scale).padStart(precision,'0')}`;
 }
 /** Some IMEs send Enter with isComposing=false and legacy keyCode=229. */
 export function maySubmitEnter(event:{key:string;isComposing:boolean;keyCode:number},composing:boolean):boolean {
