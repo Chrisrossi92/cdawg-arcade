@@ -130,3 +130,24 @@ it('cannot publish readiness after a synchronous operation exhausts the deadline
   await vi.advanceTimersByTimeAsync(100); expect(await p).toBe('degraded');
   now.mockRestore(); audio.playCue('input'); expect(starts).toHaveBeenCalledTimes(2); audio.dispose();
 });
+
+it('prepares a soft optional palette and honors mute for delayed tones', async () => {
+ const audio=new WebAudioManager(['sine','triangle']);await ready(audio);
+ const count=starts.mock.calls.length;
+ audio.playSequence([{frequency:660,duration:.085,type:'sine'},{frequency:880,duration:.35,type:'sine',delay:330}]);
+ expect(starts.mock.calls.length).toBe(count+1);
+ audio.setSfxEnabled(false);await vi.advanceTimersByTimeAsync(500);
+ expect(starts.mock.calls.length).toBe(count+1);
+ audio.dispose();expect(vi.getTimerCount()).toBe(0);
+});
+it('optional palette never initializes during playback and gracefully degrades', async () => {
+ const audio=new WebAudioManager(['sine','triangle']);
+ audio.playSequence([{frequency:660,duration:.1,type:'sine'}]);expect(constructors).not.toHaveBeenCalled();
+ constructionFails=true;expect(await audio.prepare()).toBe('degraded');
+ audio.playSequence([{frequency:660,duration:.1,type:'sine'}]);expect(starts).not.toHaveBeenCalled();audio.dispose();
+});
+it('disposal cancels a completion sequence and forbids unprepared waveforms', async () => {
+ const audio=new WebAudioManager(['sine','triangle']);await ready(audio);const count=starts.mock.calls.length;
+ audio.playSequence([{frequency:100,duration:.1,type:'square'},{frequency:880,duration:.35,type:'sine',delay:330}]);
+ expect(starts.mock.calls.length).toBe(count);audio.dispose();await vi.advanceTimersByTimeAsync(1000);expect(starts.mock.calls.length).toBe(count);
+});

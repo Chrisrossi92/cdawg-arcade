@@ -1,6 +1,7 @@
 export type AudioCue = 'countdown' | 'input' | 'danger' | 'fall' | 'record';
 export type AudioReadiness = 'ready' | 'muted' | 'degraded' | 'cancelled';
 export const AUDIO_PREPARATION_TIMEOUT_MS = 5_000;
+export interface SynthTone { readonly frequency: number; readonly duration: number; readonly type: OscillatorType; readonly volume?: number; readonly delay?: number }
 
 export interface AudioManager {
   musicEnabled: boolean;
@@ -17,6 +18,7 @@ export interface AudioManager {
  * only in prepare(), invoked synchronously by Start. Playback never initializes.
  */
 export class WebAudioManager implements AudioManager {
+  constructor(private readonly sfxWaveforms: readonly OscillatorType[] = ['square', 'sawtooth']) {}
   musicEnabled = false;
   sfxEnabled = true;
   private context: AudioContext | null = null;
@@ -89,7 +91,7 @@ export class WebAudioManager implements AudioManager {
           this.output.connect(context.destination);
         }
         const types: OscillatorType[] = [
-          ...(this.allowedSfx ? ['square', 'sawtooth'] as const : []),
+          ...(this.allowedSfx ? this.sfxWaveforms : []),
           ...(this.allowedMusic ? ['triangle'] as const : []),
         ];
         await Promise.all(types.filter(type => !this.warmed.has(type)).map(type =>
@@ -133,6 +135,20 @@ export class WebAudioManager implements AudioManager {
     if (!this.sfxEnabled || !this.allowedSfx) return;
     const frequencies: Record<AudioCue, number> = { countdown: 540, input: 260, danger: 140, fall: 82, record: 760 };
     this.playTone(frequencies[cue], cue === 'fall' ? 0.3 : 0.1, cue === 'danger' ? 'sawtooth' : 'square');
+  }
+
+  /** Optional game palette; shares trusted-gesture preparation and disposal. */
+  playSequence(tones: readonly SynthTone[]): void {
+    if (!this.sfxEnabled || !this.allowedSfx || !this.playable) return;
+    for (const tone of tones) {
+      if (!this.sfxWaveforms.includes(tone.type)) continue;
+      const play = () => { if (this.sfxEnabled) this.playTone(tone.frequency, tone.duration, tone.type, tone.volume ?? 0.025); };
+      if (!tone.delay) play();
+      else {
+        const timer = window.setTimeout(() => { this.delayed.delete(timer); play(); }, tone.delay);
+        this.delayed.add(timer);
+      }
+    }
   }
 
   startMusic(): void {

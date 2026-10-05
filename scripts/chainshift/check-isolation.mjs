@@ -1,0 +1,10 @@
+import {readFile,readdir} from 'node:fs/promises';
+import assert from 'node:assert/strict';
+const base=new URL('../../',import.meta.url);
+const code=async directory=>(await Promise.all((await readdir(new URL(directory,base))).filter(name=>name.endsWith('.js')).map(name=>readFile(new URL(directory+'/'+name,base),'utf8')))).join('\n');
+const candidate=await code('tmp/chainshift/dist/assets');
+const production=await code('dist/assets');
+assert.match(candidate,/chainshift-graph-v2/);
+for(const marker of ['shortestCertificate','diversityCertificate','candidateValidation','recognizability','shortestRoutes'])assert.ok(!candidate.includes(marker),'Review field bundled: '+marker);
+for(const marker of ['chainshift-graph-v2','chainshift-local-v2-001','Where does'])assert.ok(!production.includes(marker),'Local candidate leaked into ordinary build: '+marker);
+console.log('Local candidate contains the pinned graph, excludes review certificates; ordinary build excludes Chainshift gameplay.');

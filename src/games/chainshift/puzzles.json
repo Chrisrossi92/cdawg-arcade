@@ -1,0 +1,162 @@
+[
+  {
+    "id": "chainshift-local-v2-001",
+    "number": 1,
+    "start": {
+      "key": "ice",
+      "display": "ICE"
+    },
+    "finish": {
+      "key": "room",
+      "display": "ROOM"
+    },
+    "graphVersion": "chainshift-graph-v2",
+    "rulesRevision": "chainshift-rules-v1",
+    "checksum": "fnv1a64:029bb9393f7bbe48",
+    "graphMinimum": 3
+  },
+  {
+    "id": "chainshift-local-v2-002",
+    "number": 2,
+    "start": {
+      "key": "soup",
+      "display": "SOUP"
+    },
+    "finish": {
+      "key": "house",
+      "display": "HOUSE"
+    },
+    "graphVersion": "chainshift-graph-v2",
+    "rulesRevision": "chainshift-rules-v1",
+    "checksum": "fnv1a64:029bb9393f7bbe48",
+    "graphMinimum": 4
+  },
+  {
+    "id": "chainshift-local-v2-003",
+    "number": 3,
+    "start": {
+      "key": "chicken",
+      "display": "CHICKEN"
+    },
+    "finish": {
+      "key": "work",
+      "display": "WORK"
+    },
+    "graphVersion": "chainshift-graph-v2",
+    "rulesRevision": "chainshift-rules-v1",
+    "checksum": "fnv1a64:029bb9393f7bbe48",
+    "graphMinimum": 4
+  },
+  {
+    "id": "chainshift-local-v2-004",
+    "number": 4,
+    "start": {
+      "key": "game",
+      "display": "GAME"
+    },
+    "finish": {
+      "key": "food",
+      "display": "FOOD"
+    },
+    "graphVersion": "chainshift-graph-v2",
+    "rulesRevision": "chainshift-rules-v1",
+    "checksum": "fnv1a64:029bb9393f7bbe48",
+    "graphMinimum": 5
+  },
+  {
+    "id": "chainshift-local-v2-005",
+    "number": 5,
+    "start": {
+      "key": "light",
+      "display": "LIGHT"
+    },
+    "finish": {
+      "key": "time",
+      "display": "TIME"
+    },
+    "graphVersion": "chainshift-graph-v2",
+    "rulesRevision": "chainshift-rules-v1",
+    "checksum": "fnv1a64:029bb9393f7bbe48",
+    "graphMinimum": 5
+  },
+  {
+    "id": "chainshift-local-v2-006",
+    "number": 6,
+    "start": {
+      "key": "cold",
+      "display": "COLD"
+    },
+    "finish": {
+      "key": "point",
+      "display": "POINT"
+    },
+    "graphVersion": "chainshift-graph-v2",
+    "rulesRevision": "chainshift-rules-v1",
+    "checksum": "fnv1a64:029bb9393f7bbe48",
+    "graphMinimum": 6
+  },
+  {
+    "id": "chainshift-local-v2-007",
+    "number": 7,
+    "start": {
+      "key": "show",
+      "display": "SHOW"
+    },
+    "finish": {
+      "key": "game",
+      "display": "GAME"
+    },
+    "graphVersion": "chainshift-graph-v2",
+    "rulesRevision": "chainshift-rules-v1",
+    "checksum": "fnv1a64:029bb9393f7bbe48",
+    "graphMinimum": 4
+  },
+  {
+    "id": "chainshift-local-v2-008",
+    "number": 8,
+    "start": {
+      "key": "day",
+      "display": "DAY"
+    },
+    "finish": {
+      "key": "card",
+      "display": "CARD"
+    },
+    "graphVersion": "chainshift-graph-v2",
+    "rulesRevision": "chainshift-rules-v1",
+    "checksum": "fnv1a64:029bb9393f7bbe48",
+    "graphMinimum": 4
+  },
+  {
+    "id": "chainshift-local-v2-009",
+    "number": 9,
+    "start": {
+      "key": "station",
+      "display": "STATION"
+    },
+    "finish": {
+      "key": "line",
+      "display": "LINE"
+    },
+    "graphVersion": "chainshift-graph-v2",
+    "rulesRevision": "chainshift-rules-v1",
+    "checksum": "fnv1a64:029bb9393f7bbe48",
+    "graphMinimum": 6
+  },
+  {
+    "id": "chainshift-local-v2-010",
+    "number": 10,
+    "start": {
+      "key": "fish",
+      "display": "FISH"
+    },
+    "finish": {
+      "key": "dog",
+      "display": "DOG"
+    },
+    "graphVersion": "chainshift-graph-v2",
+    "rulesRevision": "chainshift-rules-v1",
+    "checksum": "fnv1a64:029bb9393f7bbe48",
+    "graphMinimum": 5
+  }
+]
