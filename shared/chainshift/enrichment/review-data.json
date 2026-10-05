@@ -1,0 +1,2229 @@
+[
+  {
+    "from": "club",
+    "to": "room",
+    "phrase": "clubroom",
+    "category": "household",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Human playtest corroboration: obvious missing connection; prevents artificial corpus difficulty.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/clubroom",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "81078922",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=81078922",
+      "retrievedHtmlSha256": "9a33304e3f639c373a62d0098f7d302c82c65f5dc004621fb94534e0f40e416d"
+    }
+  },
+  {
+    "from": "over",
+    "to": "time",
+    "phrase": "overtime",
+    "category": "work-school",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Human playtest corroboration: obvious missing connection; prevents artificial corpus difficulty.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/overtime",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "92035943",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=92035943",
+      "retrievedHtmlSha256": "82d4ed2fe6c0a671d43375cdc780e308f7b25265aea34d0aa5f7132584709cae"
+    }
+  },
+  {
+    "from": "out",
+    "to": "house",
+    "phrase": "outhouse",
+    "category": "household",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Human playtest corroboration: obvious missing connection; prevents artificial corpus difficulty.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/outhouse",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "91761790",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=91761790",
+      "retrievedHtmlSha256": "02274c75f0121a58be84c6be8e7237b56071d2018d86de637ce64634e4d274c1"
+    }
+  },
+  {
+    "from": "ice",
+    "to": "box",
+    "phrase": "icebox",
+    "category": "household",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Food/household island bridge or alternative food-network opening/approach.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/icebox",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "92949773",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=92949773",
+      "retrievedHtmlSha256": "0a8571ecfe007a54ba27527f7b8150a96d62f14919616fdac1558e2c399a66ba"
+    }
+  },
+  {
+    "from": "box",
+    "to": "car",
+    "phrase": "boxcar",
+    "category": "travel",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Travel island connection, source ingress, or onward route from travel nodes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/boxcar",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "92140473",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=92140473",
+      "retrievedHtmlSha256": "5a77cefef8772b9389a4ad4d0bd2f04983aa95435e26fb43ba5a56b12660a1da"
+    }
+  },
+  {
+    "from": "car",
+    "to": "pool",
+    "phrase": "carpool",
+    "category": "travel",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Travel island connection, source ingress, or onward route from travel nodes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/carpool",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "88294991",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=88294991",
+      "retrievedHtmlSha256": "be7485a53518020db628c3bdf0abf3a323042b5abfc6e966d492946df17982d1"
+    }
+  },
+  {
+    "from": "pool",
+    "to": "table",
+    "phrase": "pool table",
+    "category": "sports",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/pool_table",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "81586213",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=81586213",
+      "retrievedHtmlSha256": "2313e36a38896d16c5a878e3cfe9d6021b810494e389bf822c09792e50a74daf"
+    }
+  },
+  {
+    "from": "pool",
+    "to": "party",
+    "phrase": "pool party",
+    "category": "household",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/pool_party",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "82176006",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=82176006",
+      "retrievedHtmlSha256": "2887ae74ea15003c3904fa1f24dba0346b4fe30b81f548ef743df55e45356ff2"
+    }
+  },
+  {
+    "from": "ice",
+    "to": "cold",
+    "phrase": "ice cold",
+    "category": "time-weather",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Food/household island bridge or alternative food-network opening/approach.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/ice-cold",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "89532871",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=89532871",
+      "retrievedHtmlSha256": "553e984331c7f76997fc1765e538c70a12c95711f04e86e6158d82d867657854"
+    }
+  },
+  {
+    "from": "cold",
+    "to": "cream",
+    "phrase": "cold cream",
+    "category": "household",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/cold_cream",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "91330016",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=91330016",
+      "retrievedHtmlSha256": "fdc7d2d1cbb8b77d80c6aa7721568b0f2acf4eca1c8f8fa961c65c4ad6e5ff0a"
+    }
+  },
+  {
+    "from": "cream",
+    "to": "puff",
+    "phrase": "cream puff",
+    "category": "food",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Food/household island bridge or alternative food-network opening/approach.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/cream_puff",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "89015108",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=89015108",
+      "retrievedHtmlSha256": "96c268b8faa7cdff481fe461b4a4e0d7d54d43082616b5657c96e3a3a79eeee4"
+    }
+  },
+  {
+    "from": "puff",
+    "to": "ball",
+    "phrase": "puffball",
+    "category": "compound",
+    "rating": "G",
+    "approval": "rejected",
+    "enabled": false,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Specialist fungus term; weaker immediate recognizability than the surrounding everyday batch.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/puffball",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "91745284",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=91745284",
+      "retrievedHtmlSha256": "206e623f6b8ff3140008983fdf74637509ae38cc818b475759dd785b40b9b298"
+    }
+  },
+  {
+    "from": "ball",
+    "to": "park",
+    "phrase": "ballpark",
+    "category": "sports",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/ballpark",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "90821736",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=90821736",
+      "retrievedHtmlSha256": "536e0eab17633f0599fd74bf5057dc539c2b8b1b4d18e466e44b0002c5dfb9f9"
+    }
+  },
+  {
+    "from": "park",
+    "to": "bench",
+    "phrase": "park bench",
+    "category": "household",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://www.collinsdictionary.com/us/dictionary/english/park-bench",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true
+    }
+  },
+  {
+    "from": "bench",
+    "to": "mark",
+    "phrase": "benchmark",
+    "category": "work-school",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/benchmark",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "92725569",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=92725569",
+      "retrievedHtmlSha256": "c1fd5c5e6576a2472b4479d95015d5c9584df4368dd880668a506070f148d825"
+    }
+  },
+  {
+    "from": "mark",
+    "to": "down",
+    "phrase": "markdown",
+    "category": "work-school",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/markdown",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "90308375",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=90308375",
+      "retrievedHtmlSha256": "13ce3d87f2a5e70951611e13c5278c8d2507602c4173afb41e9904400f4ed042"
+    }
+  },
+  {
+    "from": "down",
+    "to": "town",
+    "phrase": "downtown",
+    "category": "travel",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Travel island connection, source ingress, or onward route from travel nodes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/downtown",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "92030990",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=92030990",
+      "retrievedHtmlSha256": "1c4cd3e92a96b36be0228ef653ac3c709114aaef7c7505bd9aa3944cf53f5e9f"
+    }
+  },
+  {
+    "from": "town",
+    "to": "hall",
+    "phrase": "town hall",
+    "category": "travel",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Travel island connection, source ingress, or onward route from travel nodes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/town_hall",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "92005735",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=92005735",
+      "retrievedHtmlSha256": "115b6bc96ac5c9be844f90a70b9f098b10d27c86b18ce1e7b672ddff223ef19e"
+    }
+  },
+  {
+    "from": "cream",
+    "to": "soda",
+    "phrase": "cream soda",
+    "category": "food",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Food/household island bridge or alternative food-network opening/approach.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/cream_soda",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "87964782",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=87964782",
+      "retrievedHtmlSha256": "0f2875968d54f6c848dae2b0ed7d5edeec3ac7211feb57556077d52355cbc155"
+    }
+  },
+  {
+    "from": "soda",
+    "to": "pop",
+    "phrase": "soda pop",
+    "category": "food",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Food/household island bridge or alternative food-network opening/approach.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/soda_pop",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "92504388",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=92504388",
+      "retrievedHtmlSha256": "8d8c2208dd072443c279a962b26883c1f48ea42717d3ad0bffc6782049a67450"
+    }
+  },
+  {
+    "from": "pop",
+    "to": "corn",
+    "phrase": "popcorn",
+    "category": "food",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Food/household island bridge or alternative food-network opening/approach.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/popcorn",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "91676217",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=91676217",
+      "retrievedHtmlSha256": "bcf55e0246af1719ed3b89f31ee6ac027b2ed9af0f7a2f81869949854240be05"
+    }
+  },
+  {
+    "from": "corn",
+    "to": "bread",
+    "phrase": "cornbread",
+    "category": "food",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Food/household island bridge or alternative food-network opening/approach.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/cornbread",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "92533787",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=92533787",
+      "retrievedHtmlSha256": "45a06adbb4444dfa1c9288cf2c089389e6cfc6db41e0af9397ba4968e908fe7f"
+    }
+  },
+  {
+    "from": "cheese",
+    "to": "board",
+    "phrase": "cheeseboard",
+    "category": "food",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Food/household island bridge or alternative food-network opening/approach.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/cheeseboard",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "81227607",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=81227607",
+      "retrievedHtmlSha256": "bedc0cacf5316f1fb5bcd95e544c589b03732c0e541069d877be432f4832e41b"
+    }
+  },
+  {
+    "from": "cheese",
+    "to": "ball",
+    "phrase": "cheeseball",
+    "category": "food",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Food/household island bridge or alternative food-network opening/approach.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/cheeseball",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "92060033",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=92060033",
+      "retrievedHtmlSha256": "03d1feb5c7667fa2630124e27992dc7132bb8e580db30767f3c6219badbca807"
+    }
+  },
+  {
+    "from": "cheese",
+    "to": "burger",
+    "phrase": "cheeseburger",
+    "category": "food",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Food/household island bridge or alternative food-network opening/approach.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/cheeseburger",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "93064769",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=93064769",
+      "retrievedHtmlSha256": "cc5b15b84e5346da06c08973e681406e15b107b9aea9817338b2005b536e1a8d"
+    }
+  },
+  {
+    "from": "burger",
+    "to": "king",
+    "phrase": "Burger King",
+    "category": "culture",
+    "rating": "G",
+    "approval": "rejected",
+    "enabled": false,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Recognizable brand, but introduces a new dead-end brand strand; not selected for this topology-focused batch.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/Burger_King",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": false
+    }
+  },
+  {
+    "from": "cake",
+    "to": "walk",
+    "phrase": "cakewalk",
+    "category": "slang",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Food/household island bridge or alternative food-network opening/approach.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/cakewalk",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "92917308",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=92917308",
+      "retrievedHtmlSha256": "3a62dfcdd73e9b6cbbe71ed17824e20455c15d2b0c12297e6c27ebc8d8ef3654"
+    }
+  },
+  {
+    "from": "cake",
+    "to": "pop",
+    "phrase": "cake pop",
+    "category": "food",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Food/household island bridge or alternative food-network opening/approach.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/cake_pop",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "81965503",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=81965503",
+      "retrievedHtmlSha256": "b7be0628a34c115511fc0397ab06976897be4b5e2748148627fc880ff529140b"
+    }
+  },
+  {
+    "from": "pan",
+    "to": "cake",
+    "phrase": "pancake",
+    "category": "food",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Food/household island bridge or alternative food-network opening/approach.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/pancake",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "92463434",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=92463434",
+      "retrievedHtmlSha256": "ace6bed4fedcb91fc485abdbc556c744abcca9d7a10865127af4de2ae0d15c77"
+    }
+  },
+  {
+    "from": "cup",
+    "to": "cake",
+    "phrase": "cupcake",
+    "category": "food",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Food/household island bridge or alternative food-network opening/approach.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/cupcake",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "92701684",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=92701684",
+      "retrievedHtmlSha256": "ee1d07e4cf35cdcb6caad7821909667080c5dfdda0d52b201e1fcb1520d7033c"
+    }
+  },
+  {
+    "from": "coffee",
+    "to": "cake",
+    "phrase": "coffee cake",
+    "category": "food",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Food/household island bridge or alternative food-network opening/approach.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/coffee_cake",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "89928405",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=89928405",
+      "retrievedHtmlSha256": "ba9ccb9b38910c1e75ef274351336f52495703229083eb15aaa9e8d3301188f0"
+    }
+  },
+  {
+    "from": "chicken",
+    "to": "salad",
+    "phrase": "chicken salad",
+    "category": "food",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Food/household island bridge or alternative food-network opening/approach.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/chicken_salad",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "93364605",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=93364605",
+      "retrievedHtmlSha256": "feb6d9da3bb2a22b13fbd42c34d215bc6cc62ea9a1f481a12bce3c40b5ad1df9"
+    }
+  },
+  {
+    "from": "chicken",
+    "to": "stock",
+    "phrase": "chicken stock",
+    "category": "food",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Food/household island bridge or alternative food-network opening/approach.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://www.collinsdictionary.com/dictionary/english/chicken-stock",
+      "kind": "dictionary-collocation",
+      "checkedOn": "2026-10-04",
+      "corroborated": true
+    }
+  },
+  {
+    "from": "chicken",
+    "to": "feed",
+    "phrase": "chickenfeed",
+    "category": "food",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Food/household island bridge or alternative food-network opening/approach.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/chickenfeed",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "85293311",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=85293311",
+      "retrievedHtmlSha256": "1926cff91804e6ffbb7902558f597c0d40f649436f20b011cdd5d89d3ffd1bf7"
+    }
+  },
+  {
+    "from": "feed",
+    "to": "back",
+    "phrase": "feedback",
+    "category": "technology",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/feedback",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "93144576",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=93144576",
+      "retrievedHtmlSha256": "193da5ebc295e998102f38a7e936685f9d89a0481c7a1b57bf719a9138801d6a"
+    }
+  },
+  {
+    "from": "back",
+    "to": "ground",
+    "phrase": "background",
+    "category": "compound",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/background",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "93060342",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=93060342",
+      "retrievedHtmlSha256": "8af7658a3ebccd88da3e61916dac88bf4571523c6e7ad5c57b91c8835b66c207"
+    }
+  },
+  {
+    "from": "back",
+    "to": "pack",
+    "phrase": "backpack",
+    "category": "travel",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Travel island connection, source ingress, or onward route from travel nodes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/backpack",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "92363135",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=92363135",
+      "retrievedHtmlSha256": "7f1bf6b947398a37df9b0698bb95fb05bdd593e20b5d92456e96ae05ea9a3dee"
+    }
+  },
+  {
+    "from": "pack",
+    "to": "rat",
+    "phrase": "packrat",
+    "category": "slang",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/packrat",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "87193641",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=87193641",
+      "retrievedHtmlSha256": "827cde987fbe917d75d4dfe1e26ce680c1f8d98d6d26c20bdfc3431845ce713c"
+    }
+  },
+  {
+    "from": "rat",
+    "to": "race",
+    "phrase": "rat race",
+    "category": "slang",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/rat_race",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "92687109",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=92687109",
+      "retrievedHtmlSha256": "bf6dd0e82c017ec6c8d39d8d105f69eda546e54e25e0c7663411c2a16f91b7c9"
+    }
+  },
+  {
+    "from": "soup",
+    "to": "stock",
+    "phrase": "soup stock",
+    "category": "food",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Food/household island bridge or alternative food-network opening/approach.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://www.collinsdictionary.com/dictionary/english/soup-stock",
+      "kind": "dictionary-collocation",
+      "checkedOn": "2026-10-04",
+      "corroborated": true
+    }
+  },
+  {
+    "from": "soup",
+    "to": "bowl",
+    "phrase": "soup bowl",
+    "category": "food",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Food/household island bridge or alternative food-network opening/approach.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/soup_bowl",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "90049668",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=90049668",
+      "retrievedHtmlSha256": "15faedff0cebb94df8987f2096588fea9a456c8f39717fe15685576e41296cc6"
+    }
+  },
+  {
+    "from": "bowl",
+    "to": "game",
+    "phrase": "bowl game",
+    "category": "sports",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/bowl_game",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "89807968",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=89807968",
+      "retrievedHtmlSha256": "0d9b0d18b7dd7b18c12c22ae13a32d9051f68e6a062c4fa14db0efd6318a76ae"
+    }
+  },
+  {
+    "from": "bowl",
+    "to": "cut",
+    "phrase": "bowl cut",
+    "category": "household",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/bowl_cut",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "91403197",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=91403197",
+      "retrievedHtmlSha256": "ecbc9cac40376daf5bb19e5c78b35b9badeeca43d7e86f57876973ea6eadf5de"
+    }
+  },
+  {
+    "from": "cut",
+    "to": "back",
+    "phrase": "cutback",
+    "category": "work-school",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/cutback",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "90578927",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=90578927",
+      "retrievedHtmlSha256": "a9a4eb588ae2207c6ae265807e8f19fdf84c77017850aef172574e1cfca41bae"
+    }
+  },
+  {
+    "from": "cut",
+    "to": "out",
+    "phrase": "cutout",
+    "category": "compound",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/cutout",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "92355558",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=92355558",
+      "retrievedHtmlSha256": "d70d3987aaffa6fa51d440ae01690177168347ca6fc90dc82e5a3103eb7ce284"
+    }
+  },
+  {
+    "from": "out",
+    "to": "side",
+    "phrase": "outside",
+    "category": "compound",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/outside",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "92672751",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=92672751",
+      "retrievedHtmlSha256": "8812d124d55e3bfe6a896b47f35b6d6570d8873d7818e365c1dde9eb52f87c14"
+    }
+  },
+  {
+    "from": "side",
+    "to": "dish",
+    "phrase": "side dish",
+    "category": "food",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Food/household island bridge or alternative food-network opening/approach.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/side_dish",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "92173525",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=92173525",
+      "retrievedHtmlSha256": "61a86fed4e4daabd760edf36fb8e7937580319bde9e794a6354b79030e3dfc35"
+    }
+  },
+  {
+    "from": "dish",
+    "to": "washer",
+    "phrase": "dishwasher",
+    "category": "household",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/dishwasher",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "92496277",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=92496277",
+      "retrievedHtmlSha256": "f948deafe529a5e45d4e6fbce6fc2fb8f5219be914fa11e8f0a0b5d2dceb6a03"
+    }
+  },
+  {
+    "from": "dryer",
+    "to": "sheet",
+    "phrase": "dryer sheet",
+    "category": "household",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/dryer_sheet",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "87799845",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=87799845",
+      "retrievedHtmlSha256": "0e756ae38ba8f7b57c91ad285c1f3a40ba02e5a54d6022c72747912172b7abb6"
+    }
+  },
+  {
+    "from": "kitchen",
+    "to": "table",
+    "phrase": "kitchen table",
+    "category": "household",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Food/household island bridge or alternative food-network opening/approach.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/kitchen_table",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "90024669",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=90024669",
+      "retrievedHtmlSha256": "8f09d35f0daba3600b73afbdd55cb85ef9b50d54f84705d35901cb664e8d2d6a"
+    }
+  },
+  {
+    "from": "kitchen",
+    "to": "garden",
+    "phrase": "kitchen garden",
+    "category": "food",
+    "rating": "G",
+    "approval": "rejected",
+    "enabled": false,
+    "purpose": "Food/household island bridge or alternative food-network opening/approach.",
+    "decisionReason": "Chiefly UK wording; prefer broadly familiar American terms in this bounded pass.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/kitchen_garden",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "85228059",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=85228059",
+      "retrievedHtmlSha256": "e3f8ba0e9bbad4b22e904c5d711b8abe517a6b0ecfcf02e74d368c45a95f8ee2"
+    }
+  },
+  {
+    "from": "garden",
+    "to": "party",
+    "phrase": "garden party",
+    "category": "household",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/garden_party",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "83973782",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=83973782",
+      "retrievedHtmlSha256": "287da7e5343f582ff7a334062097cdb0dae190296cb08ca574beecd6e3988428"
+    }
+  },
+  {
+    "from": "garden",
+    "to": "hose",
+    "phrase": "garden hose",
+    "category": "household",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/garden_hose",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "85563110",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=85563110",
+      "retrievedHtmlSha256": "48535270767f7bf2ed0f8975d31bbe37361354d72b56bbe83206a22ec5f970e5"
+    }
+  },
+  {
+    "from": "hose",
+    "to": "pipe",
+    "phrase": "hosepipe",
+    "category": "household",
+    "rating": "G",
+    "approval": "rejected",
+    "enabled": false,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Regional wording; not broadly accessible American English despite Southern US usage.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/hosepipe",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "88106516",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=88106516",
+      "retrievedHtmlSha256": "a78d28b5b36d7aa3ba4dbd4bfc15206a830d8252f612df4eed196183c0a58777"
+    }
+  },
+  {
+    "from": "pipe",
+    "to": "line",
+    "phrase": "pipeline",
+    "category": "technology",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/pipeline",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "93097648",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=93097648",
+      "retrievedHtmlSha256": "607958495cdf191a8794299699f8436dd5cd891f7c221ac51b260fbce783e74b"
+    }
+  },
+  {
+    "from": "train",
+    "to": "car",
+    "phrase": "train car",
+    "category": "travel",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Travel island connection, source ingress, or onward route from travel nodes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://www.wordreference.com/enja/train%20car",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true
+    }
+  },
+  {
+    "from": "car",
+    "to": "wash",
+    "phrase": "car wash",
+    "category": "household",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Travel island connection, source ingress, or onward route from travel nodes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/car_wash",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "92239749",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=92239749",
+      "retrievedHtmlSha256": "d1ba8e37c2ca7d08592028ac64212945585c9f8c1c94af3cb6bb671acc18d646"
+    }
+  },
+  {
+    "from": "wash",
+    "to": "room",
+    "phrase": "washroom",
+    "category": "household",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/washroom",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "89355304",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=89355304",
+      "retrievedHtmlSha256": "2a41c731852a44213aef2dac72a090f7d5134a3a7cbb8a0041a78fd302fed2cf"
+    }
+  },
+  {
+    "from": "train",
+    "to": "track",
+    "phrase": "train track",
+    "category": "travel",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Travel island connection, source ingress, or onward route from travel nodes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/train_track",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "89111941",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=89111941",
+      "retrievedHtmlSha256": "32e587fd67bfb79fdb62b889b5587b4b8c5e7572c1c11bafe4d38415ddfcb3f0"
+    }
+  },
+  {
+    "from": "track",
+    "to": "record",
+    "phrase": "track record",
+    "category": "work-school",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/track_record",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "88395595",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=88395595",
+      "retrievedHtmlSha256": "e7b604b41114c90c7181cf0534fbd0bf8107793c2d0edbad7e86573df854f52e"
+    }
+  },
+  {
+    "from": "record",
+    "to": "player",
+    "phrase": "record player",
+    "category": "entertainment",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/record_player",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "89662817",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=89662817",
+      "retrievedHtmlSha256": "b466c4f0bb5150aa5059a993a465188ba8e7bfdc3eecc9d956ff728030af69f7"
+    }
+  },
+  {
+    "from": "station",
+    "to": "house",
+    "phrase": "station house",
+    "category": "travel",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Travel island connection, source ingress, or onward route from travel nodes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/station_house",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "82739781",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=82739781",
+      "retrievedHtmlSha256": "d44b8a2f69fc44441fa2a096116f9b2e1160116a0219ab498f587b771fa5f7b0"
+    }
+  },
+  {
+    "from": "station",
+    "to": "break",
+    "phrase": "station break",
+    "category": "entertainment",
+    "rating": "G",
+    "approval": "rejected",
+    "enabled": false,
+    "purpose": "Travel island connection, source ingress, or onward route from travel nodes.",
+    "decisionReason": "Broadcast-industry wording; lexical existence confirmed, but excluded on final familiarity review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/station_break",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "41648435",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=41648435",
+      "retrievedHtmlSha256": "a62d33ab08c39cdad98092de2731b25129d2404c6c034e6939a5d81d3c26d860"
+    }
+  },
+  {
+    "from": "break",
+    "to": "room",
+    "phrase": "break room",
+    "category": "work-school",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/break_room",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "90777285",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=90777285",
+      "retrievedHtmlSha256": "2009ac0714104de1abd2be9a4ba01fb8091c1040521cf5e093e64f5a921327ea"
+    }
+  },
+  {
+    "from": "wagon",
+    "to": "wheel",
+    "phrase": "wagon wheel",
+    "category": "travel",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Travel island connection, source ingress, or onward route from travel nodes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/wagon_wheel",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "89573411",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=89573411",
+      "retrievedHtmlSha256": "620d0778152c5ec9e37091380ac50bb4413eba5e570b6db2e23be1c55bd9ec45"
+    }
+  },
+  {
+    "from": "wheel",
+    "to": "chair",
+    "phrase": "wheelchair",
+    "category": "household",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Travel island connection, source ingress, or onward route from travel nodes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/wheelchair",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "92327306",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=92327306",
+      "retrievedHtmlSha256": "7574b10c609af887ac509212d5626d2f71bebe6266ea3a7ad5e05b9b9ef398b4"
+    }
+  },
+  {
+    "from": "chair",
+    "to": "lift",
+    "phrase": "chairlift",
+    "category": "travel",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Travel island connection, source ingress, or onward route from travel nodes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/chairlift",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "91618150",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=91618150",
+      "retrievedHtmlSha256": "3f7db6adb4f7299646a5c47098200d9e9634a80aaabad852550b4833415cf5cd"
+    }
+  },
+  {
+    "from": "lift",
+    "to": "off",
+    "phrase": "liftoff",
+    "category": "travel",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Travel island connection, source ingress, or onward route from travel nodes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/liftoff",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "92757815",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=92757815",
+      "retrievedHtmlSha256": "930f23f88a60b4d0179c085c56094c72d7ac6ce7334056eca28cb71cc6d2161a"
+    }
+  },
+  {
+    "from": "off",
+    "to": "road",
+    "phrase": "off road",
+    "category": "travel",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Travel island connection, source ingress, or onward route from travel nodes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/off-road",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "92536501",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=92536501",
+      "retrievedHtmlSha256": "d58a19ebe859a9f7f48e57a54400d01faffc29e205d2c8d22edbfe3ff3efd7ea"
+    }
+  },
+  {
+    "from": "road",
+    "to": "work",
+    "phrase": "roadwork",
+    "category": "travel",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Travel island connection, source ingress, or onward route from travel nodes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/roadwork",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "90285270",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=90285270",
+      "retrievedHtmlSha256": "a00859a2a422d14d1f4ccf233c59cb712cbd7c169ad128e054c8b2db61b8aeb4"
+    }
+  },
+  {
+    "from": "work",
+    "to": "station",
+    "phrase": "workstation",
+    "category": "technology",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/workstation",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "92401212",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=92401212",
+      "retrievedHtmlSha256": "4b422a6fad69fa1fb98858757c50d194b1027a2ce64b91bc3395374d6c7396eb"
+    }
+  },
+  {
+    "from": "station",
+    "to": "master",
+    "phrase": "stationmaster",
+    "category": "travel",
+    "rating": "G",
+    "approval": "rejected",
+    "enabled": false,
+    "purpose": "Travel island connection, source ingress, or onward route from travel nodes.",
+    "decisionReason": "Narrow railway occupation; not selected for a high-familiarity general-player batch.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/stationmaster",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "90937971",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=90937971",
+      "retrievedHtmlSha256": "784835cd8a323972bd4b512369f60b78da7679a5509dbae8885a3eb661bbc972"
+    }
+  },
+  {
+    "from": "master",
+    "to": "class",
+    "phrase": "masterclass",
+    "category": "work-school",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/masterclass",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "85300124",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=85300124",
+      "retrievedHtmlSha256": "299482c0f22a13e9fdc0b2a46dff7f44cfd8ef1e03ef358b724a108431b379c6"
+    }
+  },
+  {
+    "from": "master",
+    "to": "key",
+    "phrase": "master key",
+    "category": "household",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/master_key",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "91205691",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=91205691",
+      "retrievedHtmlSha256": "f500f2356181d33cbb72f753f41551daadf127a6f7dbecf5f9697db747a03d56"
+    }
+  },
+  {
+    "from": "magic",
+    "to": "show",
+    "phrase": "magic show",
+    "category": "entertainment",
+    "rating": "G",
+    "approval": "rejected",
+    "enabled": false,
+    "purpose": "Exit a cultural island or connect culture to everyday/entertainment vocabulary.",
+    "decisionReason": "Not approved in this pass: fetched dictionary evidence was absent; defer rather than approve from model recall alone.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/magic_show",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": false
+    }
+  },
+  {
+    "from": "magic",
+    "to": "trick",
+    "phrase": "magic trick",
+    "category": "entertainment",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Exit a cultural island or connect culture to everyday/entertainment vocabulary.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/magic_trick",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "93011814",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=93011814",
+      "retrievedHtmlSha256": "12f80e2d62026934f883eff60d81153d4f24faf0f9452eae263716e4ff79c2e8"
+    }
+  },
+  {
+    "from": "trick",
+    "to": "shot",
+    "phrase": "trick shot",
+    "category": "sports",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/trick_shot",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "82406976",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=82406976",
+      "retrievedHtmlSha256": "91aa7d2c6573cf2b6e36b09a3ec9300a9a023d5cf728e53263eb3c28fd37cfbf"
+    }
+  },
+  {
+    "from": "shot",
+    "to": "clock",
+    "phrase": "shot clock",
+    "category": "sports",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/shot_clock",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "77902379",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=77902379",
+      "retrievedHtmlSha256": "5f2996875f6b9c4deb077687d2d3d81140da48760af98518c617c6bd4ec99552"
+    }
+  },
+  {
+    "from": "man",
+    "to": "hole",
+    "phrase": "manhole",
+    "category": "compound",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Exit a cultural island or connect culture to everyday/entertainment vocabulary.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/manhole",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "92516478",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=92516478",
+      "retrievedHtmlSha256": "b0cefb0faa32396cb7837ffeb697836f82a5851fd3617ab9428a664019a77267"
+    }
+  },
+  {
+    "from": "hole",
+    "to": "punch",
+    "phrase": "hole punch",
+    "category": "work-school",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/hole_punch",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "92470437",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=92470437",
+      "retrievedHtmlSha256": "d408b473ad06ef6cd101b2f1d2db577b70507e95ce51fe7120997aa916e3d8be"
+    }
+  },
+  {
+    "from": "punch",
+    "to": "line",
+    "phrase": "punchline",
+    "category": "entertainment",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/punchline",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "91252811",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=91252811",
+      "retrievedHtmlSha256": "d99d36fe215743231b73081125a8a915ec1b99279d18a047647275a2ac2b36f6"
+    }
+  },
+  {
+    "from": "street",
+    "to": "food",
+    "phrase": "street food",
+    "category": "food",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Exit a cultural island or connect culture to everyday/entertainment vocabulary.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/street_food",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "92306490",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=92306490",
+      "retrievedHtmlSha256": "bd383d3981d44a4a4270ddd90cc034492b7e0471c514a9ba01c7b506e4082468"
+    }
+  },
+  {
+    "from": "street",
+    "to": "light",
+    "phrase": "streetlight",
+    "category": "household",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Exit a cultural island or connect culture to everyday/entertainment vocabulary.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/streetlight",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "89284341",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=89284341",
+      "retrievedHtmlSha256": "02f128ec34961918dd777e22eedeb867eddfc0da8ecfd72a5850ef212601ced0"
+    }
+  },
+  {
+    "from": "street",
+    "to": "art",
+    "phrase": "street art",
+    "category": "culture",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Exit a cultural island or connect culture to everyday/entertainment vocabulary.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/street_art",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "89242251",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=89242251",
+      "retrievedHtmlSha256": "0ebf0f0ca4aabd9047f3235aa78c661b501c6b1a24559c98486f9b41805471be"
+    }
+  },
+  {
+    "from": "art",
+    "to": "school",
+    "phrase": "art school",
+    "category": "work-school",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/art_school",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "90471996",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=90471996",
+      "retrievedHtmlSha256": "7f78825886c7014b2d9488411a0c5c3a19992e348df283ca85e66fa7828cce11"
+    }
+  },
+  {
+    "from": "art",
+    "to": "work",
+    "phrase": "artwork",
+    "category": "culture",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/artwork",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "92678945",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=92678945",
+      "retrievedHtmlSha256": "e7b07e9799f86173b374f4dc29c2623dab613b73a0b132142b4526508b6c7f36"
+    }
+  },
+  {
+    "from": "iron",
+    "to": "horse",
+    "phrase": "iron horse",
+    "category": "travel",
+    "rating": "G",
+    "approval": "rejected",
+    "enabled": false,
+    "purpose": "Exit a cultural island or connect culture to everyday/entertainment vocabulary.",
+    "decisionReason": "Historical locomotive/metaphorical terminology; recognizability requires more explanation.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/iron_horse",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "88043477",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=88043477",
+      "retrievedHtmlSha256": "f9d6c20613e81aace9f5b2821602abaa793b8d239d8eb80178773309f498aaec"
+    }
+  },
+  {
+    "from": "horse",
+    "to": "power",
+    "phrase": "horsepower",
+    "category": "technology",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/horsepower",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "92916817",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=92916817",
+      "retrievedHtmlSha256": "e5def80e7e02e26478036b8c6a9abc4867b6f20f83dc57537bd1d44c802aacd9"
+    }
+  },
+  {
+    "from": "power",
+    "to": "plant",
+    "phrase": "power plant",
+    "category": "technology",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/power_plant",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "92133299",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=92133299",
+      "retrievedHtmlSha256": "b4a59a4146e18010af2201411317bfb2233a58006cea6b99eea6da993df17330"
+    }
+  },
+  {
+    "from": "plant",
+    "to": "food",
+    "phrase": "plant food",
+    "category": "household",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/plant_food",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "77981468",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=77981468",
+      "retrievedHtmlSha256": "8e2c2d7da604318361238d480e6c16159bb7eaa4d1e3da1f2c9d9a2d4347659e"
+    }
+  },
+  {
+    "from": "plant",
+    "to": "pot",
+    "phrase": "plant pot",
+    "category": "household",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/plant_pot",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "91619019",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=91619019",
+      "retrievedHtmlSha256": "dd346c78cad439c941c07d00e037dcd7acb31f0a35f6093260632e488373c6ac"
+    }
+  },
+  {
+    "from": "pot",
+    "to": "luck",
+    "phrase": "potluck",
+    "category": "food",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Food/household island bridge or alternative food-network opening/approach.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/potluck",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "92177214",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=92177214",
+      "retrievedHtmlSha256": "1a36d8d35a7e51dc067617cf438e55d8d6d03494c752da9ecd2eaae32d625749"
+    }
+  },
+  {
+    "from": "golden",
+    "to": "boy",
+    "phrase": "golden boy",
+    "category": "slang",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Exit a cultural island or connect culture to everyday/entertainment vocabulary.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/golden_boy",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "89096890",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=89096890",
+      "retrievedHtmlSha256": "8743ecad518062fa1ec65f90d17cafe8b13ca5bc6a651cc969d555134468e6a7"
+    }
+  },
+  {
+    "from": "boy",
+    "to": "band",
+    "phrase": "boy band",
+    "category": "entertainment",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/boy_band",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "89226937",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=89226937",
+      "retrievedHtmlSha256": "f3eb9de80ac04aab3b209c82482c6cdc7a52ee00b875d6dec62ab0f501c254f5"
+    }
+  },
+  {
+    "from": "fire",
+    "to": "place",
+    "phrase": "fireplace",
+    "category": "household",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/fireplace",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "91762975",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=91762975",
+      "retrievedHtmlSha256": "0aaf732d57d4c68649f331c6ade1604cf289e4f543fb48b784bafecd9fff430f"
+    }
+  },
+  {
+    "from": "place",
+    "to": "mat",
+    "phrase": "placemat",
+    "category": "household",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/placemat",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "91528650",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=91528650",
+      "retrievedHtmlSha256": "1295241f54c9ed0156ab0a2759e2611b825835c417ee154d4977c4dde5752295"
+    }
+  },
+  {
+    "from": "monster",
+    "to": "truck",
+    "phrase": "monster truck",
+    "category": "sports",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Exit a cultural island or connect culture to everyday/entertainment vocabulary.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/monster_truck",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "92934528",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=92934528",
+      "retrievedHtmlSha256": "6993d5e4044138017a41a3724382c74529dd708e318728e0b5722db29abf4b40"
+    }
+  },
+  {
+    "from": "truck",
+    "to": "stop",
+    "phrase": "truck stop",
+    "category": "travel",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Travel island connection, source ingress, or onward route from travel nodes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/truck_stop",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "92535919",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=92535919",
+      "retrievedHtmlSha256": "0394184ad8a6313f9f2f9a2e2debd7482d9f9860cf90515b984a3cbdbddfb144"
+    }
+  },
+  {
+    "from": "stop",
+    "to": "watch",
+    "phrase": "stopwatch",
+    "category": "sports",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/stopwatch",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "91534663",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=91534663",
+      "retrievedHtmlSha256": "7d5a6b4a3b1844a57d739b14afb75bf93d2f2946e61660b0b2255e8fad1125b0"
+    }
+  },
+  {
+    "from": "watch",
+    "to": "dog",
+    "phrase": "watchdog",
+    "category": "compound",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/watchdog",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "91712752",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=91712752",
+      "retrievedHtmlSha256": "2cdf17b0e0901cc397b22ee6a68407178450c7203478a95ec671fb35f4a3b78a"
+    }
+  },
+  {
+    "from": "bag",
+    "to": "pipe",
+    "phrase": "bagpipe",
+    "category": "entertainment",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Exit a cultural island or connect culture to everyday/entertainment vocabulary.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/bagpipe",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "89231316",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=89231316",
+      "retrievedHtmlSha256": "74cfb3acfdd9542aabbeffa76547610be261db634a80f9a4df5fbc0e07ba3cb9"
+    }
+  },
+  {
+    "from": "gate",
+    "to": "way",
+    "phrase": "gateway",
+    "category": "compound",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Exit a cultural island or connect culture to everyday/entertainment vocabulary.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/gateway",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "89284443",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=89284443",
+      "retrievedHtmlSha256": "21e02a4e81980e5bdb8fbc00cb58c9a563985b39f6568cb5aaf486f9c683898e"
+    }
+  },
+  {
+    "from": "pot",
+    "to": "hole",
+    "phrase": "pothole",
+    "category": "travel",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Travel island connection, source ingress, or onward route from travel nodes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/pothole",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "92383160",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=92383160",
+      "retrievedHtmlSha256": "ea92bae5f1bc9d57c29d52e0bc627b97066966a9d11fda8f682c005febe38c25"
+    }
+  },
+  {
+    "from": "horse",
+    "to": "play",
+    "phrase": "horseplay",
+    "category": "slang",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/horseplay",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "91763508",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=91763508",
+      "retrievedHtmlSha256": "2e517085000294990f55b9209a0a9c9809d7f6af5ee236e9566a2d5307f62c7b"
+    }
+  },
+  {
+    "from": "iron",
+    "to": "work",
+    "phrase": "ironwork",
+    "category": "household",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Exit a cultural island or connect culture to everyday/entertainment vocabulary.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/ironwork",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "92415796",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=92415796",
+      "retrievedHtmlSha256": "574a61f08c02c8e2fb7d8d0acfde815dc888fe16485339f98072da1a5fc78bae"
+    }
+  },
+  {
+    "from": "sheet",
+    "to": "music",
+    "phrase": "sheet music",
+    "category": "entertainment",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/sheet_music",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "91094856",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=91094856",
+      "retrievedHtmlSha256": "7c729a9c000e63030e89bbc4a3971715cf067055af468f5f192f2d08d9f744ed"
+    }
+  },
+  {
+    "from": "music",
+    "to": "box",
+    "phrase": "music box",
+    "category": "entertainment",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Strengthen everyday cross-category navigation and alternative routes.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/music_box",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-04",
+      "corroborated": true,
+      "revision": "90472489",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=90472489",
+      "retrievedHtmlSha256": "bcad177ca8311d626e027609113c712814164990df5ff874e9c68d3f53a860b9"
+    }
+  },
+  {
+    "from": "show",
+    "to": "room",
+    "phrase": "showroom",
+    "category": "work-school",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Shortlist editorial check: remove artificial difficulty from an obvious missing direct compound.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/showroom",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-05",
+      "corroborated": true,
+      "revision": "93107287",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=93107287",
+      "retrievedHtmlSha256": "f1bd58e2a952dc1ffc4824e017078d09f51bf1724f0b6a00c4fb582b48f9c3a6"
+    }
+  },
+  {
+    "from": "day",
+    "to": "time",
+    "phrase": "daytime",
+    "category": "time-weather",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Shortlist editorial check: remove artificial difficulty from an obvious missing direct compound.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/daytime",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-05",
+      "corroborated": true,
+      "revision": "92692523",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=92692523",
+      "retrievedHtmlSha256": "50ea2a7742e9359d64b4b7fa9976a6b02b298f9a7d34f8b3787a2eab7a02639e"
+    }
+  },
+  {
+    "from": "power",
+    "to": "line",
+    "phrase": "powerline",
+    "category": "technology",
+    "rating": "G",
+    "approval": "approved",
+    "enabled": true,
+    "purpose": "Shortlist editorial check: remove artificial difficulty from an obvious missing direct compound.",
+    "decisionReason": "Independent lexical corroboration plus editorial familiarity/direct-pair review.",
+    "evidence": {
+      "url": "https://en.wiktionary.org/wiki/powerline",
+      "kind": "dictionary-entry",
+      "checkedOn": "2026-10-05",
+      "corroborated": true,
+      "revision": "85829960",
+      "permalink": "https://en.wiktionary.org/w/index.php?oldid=85829960",
+      "retrievedHtmlSha256": "f32005d56802e98e345927391d813c5c5bc66823caffd694059747aa8d7d027a"
+    }
+  },
+  {
+    "from": "piece",
+    "to": "cake",
+    "phrase": "piece cake",
+    "category": "compound",
+    "rating": "G",
+    "approval": "rejected",
+    "enabled": false,
+    "purpose": "Negative editorial control, not a topology addition.",
+    "decisionReason": "Missing filler word: piece of cake does not license this ordered pair.",
+    "evidence": {
+      "kind": "policy-rejection",
+      "corroborated": false
+    }
+  },
+  {
+    "from": "kitchen",
+    "to": "code",
+    "phrase": "kitchen code",
+    "category": "compound",
+    "rating": "G",
+    "approval": "rejected",
+    "enabled": false,
+    "purpose": "Negative editorial control, not a topology addition.",
+    "decisionReason": "Arbitrary noun combination; no established expression evidence.",
+    "evidence": {
+      "kind": "policy-rejection",
+      "corroborated": false
+    }
+  },
+  {
+    "from": "train",
+    "to": "cheese",
+    "phrase": "train cheese",
+    "category": "compound",
+    "rating": "G",
+    "approval": "rejected",
+    "enabled": false,
+    "purpose": "Negative editorial control, not a topology addition.",
+    "decisionReason": "Arbitrary noun combination; no established expression evidence.",
+    "evidence": {
+      "kind": "policy-rejection",
+      "corroborated": false
+    }
+  }
+]

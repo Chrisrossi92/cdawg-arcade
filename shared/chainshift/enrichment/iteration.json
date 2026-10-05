@@ -1,0 +1,35 @@
+{
+  "stage": "unpublished-98-edge-draft",
+  "identity": {
+    "graphVersion": "chainshift-graph-v2",
+    "rulesRevision": "chainshift-rules-v1",
+    "checksum": "fnv1a64:51c0b1d95c31e0db"
+  },
+  "nodes": 333,
+  "edges": 431,
+  "strongCore": 105,
+  "reachablePairs": 32793,
+  "considered": 7128,
+  "passing": 259,
+  "leadingMandatoryHub": {
+    "word": "game",
+    "pairs": 2106,
+    "percent": 29.545454545454547
+  },
+  "finalReviewRemoved": [
+    "station break"
+  ],
+  "finalReviewAdded": [
+    "sheet music",
+    "music box",
+    "show room",
+    "day time",
+    "power line"
+  ],
+  "reason": "Exclude niche broadcast jargon; use independently corroborated everyday music terms to give the existing sink sheet an onward route.",
+  "draftEditorialSourceOverrides": {
+    "chicken stock": "chainshift-enrichment-editorial-v2:https://dictionary.reverso.net/english-definition/chicken%2Bstock"
+  },
+  "finalEvidenceCorrection": "Chicken stock was additionally corroborated in Collins COBUILD collocations; final provenance uses Collins rather than the initial Reverso entry.",
+  "shortlistCorrection": "Independent dictionary corroboration confirmed showroom, daytime and powerline; these obvious direct compounds replace artificial multi-shift difficulty and are excluded by the unchanged daily filter."
+}
