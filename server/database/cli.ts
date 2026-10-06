@@ -1,3 +1,4 @@
+import {grantChainshiftRights} from '../chainshift/privileges.js';
 import {activateCanary} from '../attempts/activation.js';
 import {grantResultRights} from '../guild/grants.js';
 import {verifyGuild} from '../guild/projections.js';
@@ -8,7 +9,7 @@ import { migrate, schemaStatus, foundationTables } from "./migrations.js";
 // Explicit commands only; never loads dotenv or prints driver exceptions.
 async function main() {
   const command = process.argv[2];
-  if (!["migrate", "status", "verify-personal", "verify-guild", "grant-results", "activate-canary"].includes(command)) throw new Error("command");
+  if (!["migrate", "status", "verify-personal", "verify-guild", "grant-results", "activate-canary", "grant-chainshift"].includes(command)) throw new Error("command");
   const config = databaseConfig();
   if (config.mode !== "configured") throw new Error("configuration");
   const database = new Database(config);
@@ -29,6 +30,7 @@ async function main() {
     );
     if (schema !== "compatible") process.exitCode = 1;
     else if(command==='activate-canary'){console.log(JSON.stringify(await database.transaction(c=>activateCanary(c))));}
+    else if(command==='grant-chainshift'){if(process.env.CHAINSHIFT_RANKED_ENABLED==='true')throw Error('disabled_flags_required');await database.transaction(grantChainshiftRights);console.log(JSON.stringify({status:'granted',scope:'chainshift_runtime',credentialsChanged:false}));}
     else if(command==='grant-results') {
       if(['ARCADE_ATTEMPTS_ENABLED','OFFICIAL_SCORING_ENABLED','ARCADE_LEADERBOARDS_ENABLED'].some(k=>process.env[k]==='true'))throw Error('disabled_flags_required');
       await database.transaction(grantResultRights);console.log(JSON.stringify({status:'granted',scope:'result_runtime',credentialsChanged:false}));

@@ -29,7 +29,11 @@
     "build:lobby": "npm run typecheck && node scripts/lobby/build.mjs",
     "preview:lobby": "vite preview --mode lobby-integration --outDir tmp/lobby-integration/dist --host 127.0.0.1 --port 5195",
     "dev:chainshift": "vite --config scripts/chainshift/vite.config.ts",
-    "build:chainshift": "vite build --config scripts/chainshift/vite.config.ts"
+    "build:chainshift": "vite build --config scripts/chainshift/vite.config.ts",
+    "dev:chainshift:ranked": "npm run build:server && node scripts/chainshift/local-ranked.mjs",
+    "test:chainshift:authoritative": "npm run build:server && node scripts/chainshift/test-authoritative.mjs",
+    "build:chainshift:ranked": "vite build --config scripts/chainshift/ranked.vite.config.ts",
+    "db:grant-chainshift": "node build/server/database/cli.js grant-chainshift"
   },
   "dependencies": {
     "@discord/embedded-app-sdk": "^2.5.0",

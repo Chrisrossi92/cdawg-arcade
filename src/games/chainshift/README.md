@@ -1,6 +1,6 @@
 # Chainshift V1 · Slice 3 local acceptance
 
-Current local behavior and validation: [Slice 4A completion report](./SLICE_4A.md). [Slice 4 report](./SLICE_4.md) records the accepted persistence and feedback baseline. The report below records the historical Slice 3 acceptance.
+Current ranked candidate: [Slice 5 completion report](./SLICE_5.md). Accepted local presentation: [Slice 4A completion report](./SLICE_4A.md). [Slice 4 report](./SLICE_4.md) records the accepted persistence and feedback baseline. The report below records the historical Slice 3 acceptance.
 
 1. **Starting state:** clean `codex/soft-launch-brand-player-cleanup` at `ffb4eeab12c7c581f52cb64915d71a3fb9a9305f`. Accepted Slice 1/2/2B graph files remain unchanged.
 2. **Files:** `src/games/chainshift/{Chainshift.tsx,main.tsx,state.ts,audio.ts,chainshift.css,puzzles.json,state.test.ts,presentation.test.ts,README.md}`; `scripts/chainshift/{vite.config.ts,browser-acceptance.mjs,check-isolation.mjs}`; package scripts; optional synthesized palette API and tests in `src/services/audioManager.*`.

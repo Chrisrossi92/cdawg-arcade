@@ -1,3 +1,5 @@
+import {ChainshiftStore} from './chainshift/store.js';
+import {chainshiftReady} from './chainshift/privileges.js';
 import {canaryConfig} from './canary.js';
 import {GuildStore} from './guild/store.js';
 import { AttemptStore } from './attempts/store.js';
@@ -47,9 +49,10 @@ export async function startServer() {
     } : undefined;
   const attempts = attemptEnabled && sessions && database ? {store:new AttemptStore(database,canary.allowsGuild),persistence:sessions.persistence} : undefined;
   const guild=process.env.ARCADE_LEADERBOARDS_ENABLED==='true'&&sessions&&database?{store:new GuildStore(database,undefined,canary.allowsGuild),persistence:sessions.persistence}:undefined;
+  const chainshift=process.env.CHAINSHIFT_RANKED_ENABLED==='true'&&sessions&&database?{store:new ChainshiftStore(database,canary.allowsGuild),persistence:{close:()=>persistence.close(),check:async()=>{const h=await persistence.check();if(h.status==='available'){try{if(await chainshiftReady(database))return h;}catch{/* Fail closed. */}}return {status:'unavailable' as const,schema:'invalid_configuration' as const};}}}:undefined;
   const cleanup = sessions ? setInterval(() => {void sessions.persistence.check().then(status => status.status === 'available' ? Promise.all([sessions.store.purge(),attempts?.store.purge()]) : undefined).catch(() => {});},60_000) : undefined;
   cleanup?.unref();
-  const app = createServerApp(config, new DiscordTokenExchangeService(config), { isDraining: () => draining, persistence, sessions, attempts, guild });
+  const app = createServerApp(config, new DiscordTokenExchangeService(config), { isDraining: () => draining, persistence, sessions, attempts, guild, chainshift });
   const server = createServer({ requestTimeout: 10_000, headersTimeout: 10_000, keepAliveTimeout: 5_000, maxHeaderSize: 16_384 }, app);
   server.setTimeout(10_000, socket => socket.destroy());
   server.on('error', () => { console.error('Arcade runtime failed'); process.exit(1); });

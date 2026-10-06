@@ -78,7 +78,7 @@ export async function schemaStatus(
   if (version < MIN_SCHEMA_VERSION) return "too_old";
   const tables = await connection.query(
     "SELECT to_regclass(name) AS relation FROM unnest($1::text[]) AS name",
-    [foundationTables.map((t) => `arcade.${t}`)],
+    [[...foundationTables,...(version>=2?['chainshift_puzzles','chainshift_attempts','chainshift_actions']:[])].map((t) => `arcade.${t}`)],
   );
   return tables.rows.every((r) => r.relation) ? "compatible" : "incomplete";
 }

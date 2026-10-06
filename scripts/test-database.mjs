@@ -311,7 +311,7 @@ try {
   stage = "migrations";
   db = new Database(databaseConfig(env));
   eq(await schemaStatus(db), "empty");
-  eq(await migrate(db), 1);
+  eq(await migrate(db), migration.length);
   eq(await migrate(db), 0);
   eq(await schemaStatus(db), "compatible");
   const seed = (
@@ -338,11 +338,11 @@ try {
   await rejects(() => migrate(db, changed));
   eq(await schemaStatus(db, changed), "checksum_mismatch");
   await db.query(
-    "INSERT INTO arcade.schema_migrations VALUES(2,'002_future.sql',$1,now())",
+    "INSERT INTO arcade.schema_migrations VALUES(3,'003_future.sql',$1,now())",
     ["b".repeat(64)],
   );
   eq(await schemaStatus(db), "too_new");
-  await db.query("DELETE FROM arcade.schema_migrations WHERE version=$1", [2]);
+  await db.query("DELETE FROM arcade.schema_migrations WHERE version=$1", [3]);
   await db.query("DELETE FROM arcade.schema_migrations");
   eq(await schemaStatus(db), "too_old");
   await reset();
@@ -359,7 +359,7 @@ try {
   ];
   await rejects(() => migrate(db, interrupted));
   eq(await schemaStatus(db), "empty");
-  eq((await Promise.all([migrate(db), migrate(db)])).sort(), [0, 1]);
+  eq((await Promise.all([migrate(db), migrate(db)])).sort(), [0, migration.length]);
   const pooled = await Promise.all(
     Array.from({ length: 6 }, () =>
       db.query("SELECT pg_backend_pid() AS pid, pg_sleep(0.05)"),
@@ -539,11 +539,11 @@ try {
     "unreachable",
   );
   await db.query(
-    "INSERT INTO arcade.schema_migrations VALUES(2,'002_future.sql',$1,now())",
+    "INSERT INTO arcade.schema_migrations VALUES(3,'003_future.sql',$1,now())",
     ["b".repeat(64)],
   );
   await smoke({...env,ARCADE_SESSIONS_ENABLED:"true",OFFICIAL_SCORING_ENABLED:"false",DISCORD_ARCADE_BOT_TOKEN:"DUMMY_SESSION_BOT"}, "too_new");
-  await db.query("DELETE FROM arcade.schema_migrations WHERE version=$1", [2]);
+  await db.query("DELETE FROM arcade.schema_migrations WHERE version=$1", [3]);
   stage = "session integration";
   const {testSessions} = await import('./test-sessions.mjs');
   const {restrictedSessionRole} = await import('../build/server/sessions/privileges.js');
