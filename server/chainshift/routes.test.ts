@@ -1,0 +1,11 @@
+import {it,expect,vi} from 'vitest';
+import request from 'supertest';
+import {createServerApp} from '../app';
+import {loadServerConfig} from '../env';
+import type {ChainshiftStore} from './store';
+const origin='https://123456789012345678.discordsays.com';
+const config=loadServerConfig({DISCORD_CLIENT_ID:'123456789012345678',DISCORD_CLIENT_SECRET:'synthetic',ALLOWED_ORIGINS:origin});
+const headers={Origin:origin,'X-Arcade-Origin':origin,'X-Arcade-Request':'1','X-Arcade-Player':'234567890123456789','X-Arcade-CSRF':'c'.repeat(43),Cookie:'__Host-arcade-session='+'t'.repeat(43)};
+it.each([['get','/daily'],['post','/start'],['get','/attempt/test'],['post','/attempt/test/shift'],['post','/attempt/test/backtrack'],['get','/puzzle/test/leaderboard'],['get','/puzzle/test/routes']])('disabled runtime blocks %s %s',async(method,path)=>{const app=createServerApp(config,{exchangeCode:async()=>{throw new Error('No live Discord');}});const call=method==='post'?request(app).post('/api/chainshift'+path).send({}):request(app).get('/api/chainshift'+path);const response=await call.set(headers);expect(response.status).toBe(503);expect(response.body).toEqual({error:'chainshift_unavailable'});expect(response.headers['cache-control']).toBe('no-store');});
+it('readiness failure blocks data before the store runs',async()=>{const daily=vi.fn();const app=createServerApp(config,{exchangeCode:async()=>{throw new Error();}},{chainshift:{store:{daily} as unknown as ChainshiftStore,persistence:{check:async()=>({status:'unavailable',schema:'invalid_configuration'}),close:async()=>{}}}});const response=await request(app).get('/api/chainshift/daily').set(headers);expect(response.status).toBe(503);expect(daily).not.toHaveBeenCalled();});
+it('server drain blocks otherwise-ready candidate requests',async()=>{const daily=vi.fn();const app=createServerApp(config,{exchangeCode:async()=>{throw new Error();}},{isDraining:()=>true,chainshift:{store:{daily} as unknown as ChainshiftStore,persistence:{check:async()=>({status:'available',schema:'compatible'}),close:async()=>{}}}});expect((await request(app).get('/api/chainshift/daily').set(headers)).status).toBe(503);expect(daily).not.toHaveBeenCalled();});

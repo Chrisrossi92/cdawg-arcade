@@ -3,5 +3,5 @@ import {ArcadeApp} from './ArcadeApp';
 import {ArcadeRuntime} from './runtime';
 import {createHostAdapter} from '../platform/createHostAdapter';
 import {LocalScoreRepository} from '../services/scoreRepository';
-const runtime=new ArcadeRuntime(createHostAdapter(),new LocalScoreRepository());
+const runtime=new ArcadeRuntime(createHostAdapter(),new LocalScoreRepository(),undefined,__CHAINSHIFT_CANDIDATE__);
 createRoot(document.getElementById('root')!).render(<ArcadeApp runtime={runtime}/>);

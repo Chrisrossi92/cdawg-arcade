@@ -69,3 +69,4 @@ body{margin:0;background:var(--brand-background)}
 @media(max-height:540px){.candidate-only:has(.phase-playing)>.candidate-switch{display:none}.candidate-only .phase-playing .word-chain{padding-top:4px}.candidate-only .phase-playing .unresolved-gap{height:14px}}
 @media(max-width:600px){.phase-playing .ranked-notice>span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}.candidate-only:has(.phase-playing)>.candidate-switch{display:none}}
 @media(max-height:540px){.phase-playing .ranked-notice[data-resume=false]{display:none}}
+.ranked-comparison{box-sizing:border-box}.ranked-comparison *{box-sizing:border-box}.ranked-comparison p{overflow-wrap:anywhere}.ranked-comparison .practice-score{flex-wrap:wrap;gap:4px 10px}.ranked-comparison .practice-score strong,.ranked-comparison .practice-score span{overflow-wrap:anywhere;max-width:100%}

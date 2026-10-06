@@ -4,7 +4,7 @@ import {formatTime} from './state';
 import {RankedApi,RankedApiError,rankedState,type RankedIdentity} from './ranked';
 import type {DailyView,RankedReply,RankedAttempt,RankedBoard,RankedRoutes} from '../../../shared/chainshift/competition';
 interface Pending {attempt:RankedAttempt;id:string;kind:'shift'|'backtrack';word?:string}
-export function RankedChainshift({identity,onReverify}:{identity:RankedIdentity;onReverify:()=>void}){
+export function RankedChainshift({identity,onReverify,onNavigationLock,onExit,reducedMotion}:{identity:RankedIdentity;onReverify:()=>void;onNavigationLock?:(locked:boolean)=>void;onExit?:()=>void;reducedMotion?:boolean}){
  const api=useMemo(()=>new RankedApi(identity),[identity]);
  const [view,setView]=useState<DailyView|null>(null),[reply,setReply]=useState<RankedReply|null>(null),[anchor,setAnchor]=useState(0);
  const [busy,setBusy]=useState(false),[error,setError]=useState(''),[resumePrompt,setResumePrompt]=useState(false),[practice,setPractice]=useState(false);
@@ -19,9 +19,11 @@ export function RankedChainshift({identity,onReverify}:{identity:RankedIdentity;
   if(['account_changed','expired_session','csrf_invalid'].includes(code)){pending.current=null;setView(null);setReply(null);setBoard(null);setRoutes(null);setError('Session changed or expired. Verify your account to resume its ranked attempt.');}
   else setError(code==='state_conflict'?'The attempt changed in another tab. Recheck its current state.':code==='completed'?'This ranked attempt is complete. Recheck its official result.':code==='unavailable'||code==='chainshift_unavailable'?'Ranked daily is unavailable. Your attempt is not reset.':'The response could not be confirmed. Recheck or retry; the ranked clock keeps running.');
  }
- async function run(work:()=>Promise<void>){if(lock.current)return;lock.current=true;setBusy(true);try{await work();if(alive.current)setError('');}catch(e){failure(e);}finally{lock.current=false;if(alive.current)setBusy(false);}}
+ async function run(work:()=>Promise<void>){if(lock.current)return;lock.current=true;onNavigationLock?.(true);setBusy(true);try{await work();if(alive.current&&!pending.current)setError('');}catch(e){failure(e);}finally{lock.current=false;if(alive.current)setBusy(false);}}
  async function refresh(){await run(async()=>{const d=await api.daily();if(d.player.id!==identity.player.id)throw new RankedApiError('account_changed');if(!alive.current)return;setView(d);setReply(null);setAnchor(performance.now());setResumePrompt(d.attempt?.state==='active');pending.current=null;});}
  useEffect(()=>{void refresh();},[api]);
+ useEffect(()=>{onNavigationLock?.(busy||!!error);},[busy,error,onNavigationLock]);
+ useEffect(()=>()=>onNavigationLock?.(false),[onNavigationLock]);
  const attempt=reply?.attempt??view?.attempt;
  async function resume(){if(!attempt)return;await run(async()=>{apply({attempt:await api.resume(attempt.attemptId),feedback:{kind:'none',text:'Ranked attempt resumed. Time away is included.'}});setResumePrompt(false);pending.current=null;});}
  async function send(p:Pending){await run(async()=>{const r=await api.action(p.attempt,p.id,p.kind,p.word);apply(r);pending.current=null;setResumePrompt(false);});}
@@ -32,9 +34,9 @@ export function RankedChainshift({identity,onReverify}:{identity:RankedIdentity;
   if(!alive.current)return;setScope(nextScope);setBoard(b);setRoutes(r);
  });}
  const state=useMemo(()=>view?rankedState(view,reply,anchor):null,[view,reply,anchor]);
- if(practice)return <><div className="candidate-switch"><button className="quiet" onClick={()=>{setPractice(false);void refresh();}}>RETURN TO RANKED DAILY</button><span>Practice does not consume or pause your ranked attempt.</span></div><Chainshift/></>;
- if(!view||!state)return <div className="chainshift-shell"><main className="cs-main"><h1>RANKED DAILY</h1><p role="status">{error||'Checking the authoritative daily puzzle…'}</p>{error&&<button className="quiet" onClick={onReverify}>VERIFY ACCOUNT</button>}<button className="quiet" onClick={()=>setPractice(true)}>LOCAL PRACTICE</button></main></div>;
- return <><Chainshift ranked={{state,day:attempt?.puzzle.day??view.puzzle.day,busy,error,resumePrompt,start:()=>{void run(async()=>{apply(await api.start(view.puzzle.id));setResumePrompt(false);});},submit:word=>action('shift',word),backtrack:()=>action('backtrack'),resume:()=>{void resume();},practice:()=>setPractice(true),results:()=>{void results();},retry:()=>{void retry();}}}/>
+ if(practice)return <><div className="candidate-switch"><button className="quiet" onClick={()=>{setPractice(false);void refresh();}}>RETURN TO RANKED DAILY</button><span>Practice does not consume or pause your ranked attempt.</span></div><Chainshift integration={onExit?{onExit,locked:false,reducedMotion}:undefined}/></>;
+ if(!view||!state)return <div className="chainshift-shell"><main className="cs-main"><h1>RANKED DAILY</h1><p role="status">{error||'Checking the authoritative daily puzzle…'}</p>{error&&<><button className="quiet" disabled={busy} onClick={()=>{void refresh();}}>RECHECK DAILY</button><button className="quiet" disabled={busy} onClick={onReverify}>VERIFY ACCOUNT</button></>}<button className="quiet" disabled={busy||!!error} onClick={()=>setPractice(true)}>LOCAL PRACTICE</button></main></div>;
+ return <><Chainshift integration={onExit?{onExit,locked:busy||!!error,reducedMotion}:undefined} ranked={{state,day:attempt?.puzzle.day??view.puzzle.day,busy,error,resumePrompt,start:()=>{void run(async()=>{apply(await api.start(view.puzzle.id));setResumePrompt(false);});},submit:word=>action('shift',word),backtrack:()=>action('backtrack'),resume:()=>{void resume();},practice:()=>{if(!busy&&!error)setPractice(true);},results:()=>{void results();},retry:()=>{void retry();}}}/>
   {board&&<dialog ref={dialog} className="local-results ranked-comparison" aria-label="Official daily comparison" onCancel={()=>{setBoard(null);setRoutes(null);comparisonTrigger.current?.focus();}}><h2 ref={comparison} tabIndex={-1}>OFFICIAL DAILY RESULTS</h2><p>{board.puzzleId} · {scope==='guild'?'Verified current guild':'All verified players'} · fewest shifts, then time. Exact ties share a rank.</p><div className="result-actions"><button className="quiet" onClick={()=>{void results(scope==='global'?'guild':'global');}} disabled={busy}>{scope==='global'?'VIEW GUILD':'VIEW ALL PLAYERS'}</button><button className="quiet" onClick={()=>{setBoard(null);setRoutes(null);comparisonTrigger.current?.focus();}}>Close official results</button></div>
    {board.own&&<p>Your standing: #{board.own.rank} · {board.own.shifts} shifts · {formatTime(board.own.elapsedMs,3)}</p>}
    {!board.rows.length&&<p>No completed ranked attempts yet.</p>}

@@ -13,7 +13,7 @@ const motionKey='cdawg.arcade.reduced-motion.v1';
 const soundKey='cdawg.arcade.sfx.v1';
 const read=(key:string,fallback:boolean)=>{try{const value=localStorage.getItem(key);return value===null?fallback:value==='true';}catch{return fallback;}};
 const save=(key:string,value:boolean)=>{try{localStorage.setItem(key,String(value));}catch{/* Settings are optional. */}};
-export function Chainshift({practiceRepository,ranked}:{practiceRepository?:PracticeRepository;ranked?:RankedControls}={}){
+export function Chainshift({practiceRepository,ranked,integration}:{practiceRepository?:PracticeRepository;ranked?:RankedControls;integration?:{onExit:()=>void;locked:boolean;reducedMotion?:boolean}}={}){
  const [repository]=useState(()=>practiceRepository??browserPracticeRepository());
  const [history,setHistory]=useState(()=>repository.snapshot());
  const [state,setState]=useState(()=>{if(ranked)return ranked.state;const run=latestRun(history);return run?restoreCompleted(run,puzzles.find(p=>p.id===run.puzzleId)!):ready(puzzles[0]);});const current=useRef(state);
@@ -27,7 +27,7 @@ export function Chainshift({practiceRepository,ranked}:{practiceRepository?:Prac
  const audio=useRef<ChainshiftAudio|null>(null);const input=useRef<HTMLInputElement>(null);
  const chain=useRef<HTMLOListElement>(null);const settingsTrigger=useRef<HTMLButtonElement>(null);const resultTitle=useRef<HTMLHeadingElement>(null);
  const composing=useRef(false);const ignoreSubmit=useRef(false);const root=useRef<HTMLDivElement>(null);
- const reduced=motion||osMotion;
+ const reduced=motion||osMotion||integration?.reducedMotion===true;
  useEffect(()=>{
   const manager=new ChainshiftAudio();audio.current=manager;manager.setSfxEnabled(sound);
   return()=>{manager.dispose();audio.current=null;};
@@ -85,7 +85,7 @@ export function Chainshift({practiceRepository,ranked}:{practiceRepository?:Prac
  const bestLabel=record?.isNewBest?'NEW LOCAL BEST':best&&state.result&&compareScores(state.result,best)===0?'LOCAL BEST':'LOCAL PRACTICE RESULT';
  return <div ref={root} className={`chainshift-shell phase-${state.phase}`} data-reduced={reduced}>
   <a className="skip-link" href="#chainshift-main">Skip to game</a>
-  <header className="cs-header"><img src={logo} alt="CDAWG Arcade"/><span className="local-label">{ranked?'RANKED DAILY':'LOCAL PRACTICE'}</span><button ref={settingsTrigger} className="quiet settings-button" aria-expanded={settings} aria-controls="cs-settings" onClick={()=>setSettings(!settings)}>Settings <span aria-hidden="true">⚙</span></button></header>
+  <header className="cs-header">{integration&&<button className="quiet cs-exit" aria-label="Back to Arcade" title="Back to Arcade" disabled={integration.locked} onClick={integration.onExit}>←</button>}<img src={logo} alt="CDAWG Arcade"/><span className="local-label">{ranked?'RANKED DAILY':'LOCAL PRACTICE'}</span><button ref={settingsTrigger} className="quiet settings-button" aria-expanded={settings} aria-controls="cs-settings" onClick={()=>setSettings(!settings)}>Settings <span aria-hidden="true">⚙</span></button></header>
   {settings&&<section id="cs-settings" className="cs-settings" aria-label="Game settings" onKeyDown={event=>{if(event.key==='Escape')closeSettings();}}>
    <label><input type="checkbox" checked={sound} onChange={toggleSound}/> Sound effects</label>
    <label><input type="checkbox" checked={motion} onChange={()=>{setMotion(!motion);save(motionKey,!motion);}}/> Reduce motion</label>
@@ -93,7 +93,7 @@ export function Chainshift({practiceRepository,ranked}:{practiceRepository?:Prac
    <button className="quiet" onClick={closeSettings}>Done</button>
   </section>}
   <main id="chainshift-main" className="cs-main">
-   {ranked&&<div className="ranked-notice" data-resume={ranked.resumePrompt}><span>{ranked.resumePrompt?'RANKED ATTEMPT IN PROGRESS · Time away counts.':'One ranked attempt per puzzle · Midnight in New York.'}</span>{ranked.resumePrompt&&<button className="quiet" onClick={()=>{prepareAudio();ranked.resume();}} disabled={ranked.busy}>RESUME</button>}<button className="quiet" onClick={ranked.results} disabled={ranked.busy}>LEADERBOARD</button><button className="quiet" onClick={ranked.practice}>LOCAL PRACTICE</button></div>}
+   {ranked&&<div className="ranked-notice" data-resume={ranked.resumePrompt}><span>{ranked.resumePrompt?'RANKED ATTEMPT IN PROGRESS · Time away counts.':'One ranked attempt per puzzle · Midnight in New York.'}</span>{ranked.resumePrompt&&<button className="quiet" onClick={()=>{prepareAudio();ranked.resume();}} disabled={ranked.busy}>RESUME</button>}<button className="quiet" onClick={ranked.results} disabled={ranked.busy||!!ranked.error}>LEADERBOARD</button><button className="quiet" disabled={ranked.busy||!!ranked.error} onClick={ranked.practice}>LOCAL PRACTICE</button></div>}
    {ranked?.error&&<div className="ranked-error" role="alert"><p>{ranked.error}</p><button className="quiet" onClick={ranked.retry} disabled={ranked.busy}>RECHECK / RETRY</button></div>}
    <div className="game-heading"><div><p className="eyebrow">WORD NAVIGATION · {ranked?`DAILY ${ranked.day??''}`:`LOCAL ${String(state.puzzle.number).padStart(2,'0')}`}</p><h1>CHAINSHIFT<span className="link-mark" aria-hidden="true">↗</span></h1></div>
     {state.phase!=='ready'&&<dl className="score-strip"><div><dt>Shifts</dt><dd>{state.route.length-1}</dd></div><div><dt>Time</dt><dd className="clock">{formatTime(elapsed(state,now))}</dd></div></dl>}

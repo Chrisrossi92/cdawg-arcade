@@ -1,3 +1,4 @@
+import {chainshiftServerEnabled} from '../config/chainshift-release.js';
 import {ChainshiftStore} from './chainshift/store.js';
 import {chainshiftReady} from './chainshift/privileges.js';
 import {canaryConfig} from './canary.js';
@@ -49,7 +50,7 @@ export async function startServer() {
     } : undefined;
   const attempts = attemptEnabled && sessions && database ? {store:new AttemptStore(database,canary.allowsGuild),persistence:sessions.persistence} : undefined;
   const guild=process.env.ARCADE_LEADERBOARDS_ENABLED==='true'&&sessions&&database?{store:new GuildStore(database,undefined,canary.allowsGuild),persistence:sessions.persistence}:undefined;
-  const chainshift=process.env.CHAINSHIFT_RANKED_ENABLED==='true'&&sessions&&database?{store:new ChainshiftStore(database,canary.allowsGuild),persistence:{close:()=>persistence.close(),check:async()=>{const h=await persistence.check();if(h.status==='available'){try{if(await chainshiftReady(database))return h;}catch{/* Fail closed. */}}return {status:'unavailable' as const,schema:'invalid_configuration' as const};}}}:undefined;
+  const chainshift=chainshiftServerEnabled(process.env)&&sessions&&database?{store:new ChainshiftStore(database,canary.allowsGuild),persistence:{close:()=>persistence.close(),check:async()=>{const h=await persistence.check();if(h.status==='available'){try{if(await chainshiftReady(database))return h;}catch{/* Fail closed. */}}return {status:'unavailable' as const,schema:'invalid_configuration' as const};}}}:undefined;
   const cleanup = sessions ? setInterval(() => {void sessions.persistence.check().then(status => status.status === 'available' ? Promise.all([sessions.store.purge(),attempts?.store.purge()]) : undefined).catch(() => {});},60_000) : undefined;
   cleanup?.unref();
   const app = createServerApp(config, new DiscordTokenExchangeService(config), { isDraining: () => draining, persistence, sessions, attempts, guild, chainshift });

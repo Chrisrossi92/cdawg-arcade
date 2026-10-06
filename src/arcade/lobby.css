@@ -15,3 +15,17 @@ body{margin:0;background:#0F1113}.arcade-lobby{min-height:100vh}.arcade-lobby .b
 .arcade-lobby h1[tabindex]:focus-visible{outline:none}
 .arcade-game .audio-controls label{min-height:44px;min-width:44px}.arcade-game button{min-height:44px}.arcade-game.arcade-playing,.arcade-game.arcade-countdown{display:grid;grid-template-rows:auto minmax(0,1fr);height:100svh}.arcade-game.arcade-playing .game-shell,.arcade-game.arcade-countdown .game-shell{height:100%;max-height:100%;min-height:0}.arcade-game .arcade-settings{width:100%}
 .arcade-lobby .connection-status{font-size:14px;font-weight:400;line-height:1.4}.arcade-lobby .connection-recovery{position:static;z-index:auto;transform:none;width:100%;padding:14px;border:1px solid var(--brand-cardBorder);border-radius:12px;background:var(--brand-surface);box-shadow:none}.arcade-lobby .connection-recovery p{margin:0 0 10px}.arcade-lobby .connection-recovery>div{display:flex;flex-wrap:wrap;gap:8px}.arcade-lobby .connection-status button{font-size:14px}
+
+.chainshift-card-words{font:clamp(24px,3vw,36px) CDAWG Display,Arial,sans-serif;letter-spacing:2px;color:var(--brand-text)}.chainshift-card-words i{color:var(--brand-brass);font-style:normal;margin:0 12px}
+.arcade-game:has(.arcade-chainshift){height:100dvh;display:flex;flex-direction:column;overflow:hidden}.arcade-game:has(.arcade-chainshift)>.arcade-settings{position:static;flex:none;padding:6px 16px;min-height:44px;background:var(--brand-surface);display:flex;align-items:center;gap:12px}.arcade-chainshift{flex:1;min-height:0;overflow:auto}.arcade-chainshift:has(.phase-playing){display:flex;flex-direction:column;overflow:hidden}.arcade-chainshift>.phase-playing{height:auto;flex:1;min-height:0}.arcade-chainshift>.candidate-switch{flex:none}
+
+.integrated-fixture{display:flex;justify-content:space-between;gap:8px;align-items:center;padding:6px 16px;font:11px CDAWG UI,Arial,sans-serif;background:#171a15;color:#f0eee5}.integrated-fixture select,.integrated-fixture button{min-height:44px;background:#22291e;color:#f0eee5;border:1px solid #b99b60;border-radius:8px}.integrated-fixture:has(+.arcade-game .phase-playing){display:none}
+
+@media(max-width:600px){.arcade-chainshift .cs-header>img{width:100px}.arcade-chainshift .local-label{display:block;font-size:9px;letter-spacing:.5px}.arcade-chainshift .cs-header{gap:8px}.arcade-chainshift .settings-button{font-size:11px;padding:6px 10px}}
+.arcade-game:has(.arcade-chainshift),.arcade-game:has(.arcade-chainshift)>.arcade-settings{box-sizing:border-box}.integrated-fixture{flex-wrap:wrap}.integrated-fixture label{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+@media(max-width:600px){.arcade-chainshift:has(.phase-playing)>.candidate-switch>span{display:none}}
+@media(max-height:540px){.arcade-chainshift:has(.phase-playing)>.candidate-switch{display:none}.arcade-game:has(.arcade-chainshift)>.arcade-settings{padding:0 16px;min-height:44px}}
+
+.arcade-game:has(.arcade-chainshift){height:var(--arcade-height,100dvh)}
+.arcade-game:has(.arcade-chainshift .cs-exit)>.arcade-settings{display:none}.arcade-chainshift .cs-exit{min-width:44px;width:44px;flex:none;padding:6px;font-size:20px}
+@media(max-width:600px){.arcade-chainshift .cs-header>img{width:70px}.arcade-chainshift .local-label{max-width:56px;line-height:1.2}.arcade-chainshift .settings-button{padding:6px 8px;white-space:nowrap}}

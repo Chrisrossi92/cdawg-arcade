@@ -1,3 +1,4 @@
+import {dailyProjection,resultProjection} from './projections.js';
 import {randomUUID} from 'node:crypto';
 import {DatabaseError,type Database,type SqlConnection} from '../database/pool.js';
 import {digest,equal} from '../sessions/crypto.js';
@@ -107,6 +108,24 @@ export class ChainshiftStore {
  async leaderboard(credentials:RankedCredentials,puzzleId:string,scope:'global'|'guild'):Promise<RankedBoard>{return this.db.transaction(async c=>{
   const s=await this.auth(c,credentials),r=await this.rankings(c,s,puzzleId,scope);return {puzzleId,scope,...r,limit:100};
  });}
+ /** Internal delivery-facing reads: no public posting endpoint, only safe completed aggregates. */
+ async dailySummary(credentials:RankedCredentials,puzzleId:string,scope:'global'|'guild'){
+  return this.db.transaction(async c=>{
+   const s=await this.auth(c,credentials),p=await this.puzzle(c,puzzleId);
+   const summary=(await c.query(`WITH completed AS (
+    SELECT final_shifts,elapsed_ms FROM arcade.chainshift_attempts a WHERE puzzle_id=$1 AND state='completed'
+    AND ($2::uuid IS NULL OR EXISTS(SELECT 1 FROM arcade.guild_participations gp WHERE gp.player_id=a.player_id AND gp.guild_id=$2 AND gp.membership_verified_at>clock_timestamp()-interval '30 minutes')))
+    SELECT count(*)::text AS count,min(final_shifts) AS shifts,
+     (SELECT min(elapsed_ms)::text FROM completed WHERE final_shifts=(SELECT min(final_shifts) FROM completed)) AS fastest FROM completed`,[puzzleId,scope==='guild'?s.guild_id:null])).rows[0];
+   return dailyProjection({puzzleId:p.puzzle_id,day:p.day_key,start:p.start_word,finish:p.finish_word,completedPlayers:Number(summary.count),shortestShifts:summary.shifts,fastestAtShortestMs:summary.fastest===null?null:Number(summary.fastest)});
+  });
+ }
+ async ownResultSummary(credentials:RankedCredentials,puzzleId:string){
+  return this.db.transaction(async c=>{const s=await this.auth(c,credentials),p=await this.puzzle(c,puzzleId);
+   const a=(await c.query("SELECT final_shifts,elapsed_ms FROM arcade.chainshift_attempts WHERE player_id=$1 AND puzzle_id=$2 AND state='completed'",[s.player_id,puzzleId])).rows[0];
+   if(!a)return error('not_found');return resultProjection({puzzleId:p.puzzle_id,day:p.day_key,displayName:displayName(s.display_name),shifts:a.final_shifts,elapsedMs:Number(a.elapsed_ms)});
+  });
+ }
  async routes(credentials:RankedCredentials,puzzleId:string,scope:'global'|'guild'):Promise<RankedRoutes>{return this.db.transaction(async c=>{
   const s=await this.auth(c,credentials);
   if(!(await c.query("SELECT 1 FROM arcade.chainshift_attempts WHERE player_id=$1 AND puzzle_id=$2 AND state='completed'",[s.player_id,puzzleId])).rowCount)return error('routes_locked');

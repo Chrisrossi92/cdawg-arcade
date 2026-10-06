@@ -4,13 +4,14 @@ import {OfficialController} from '../official/controller';
 import type {ScoreRepository} from '../services/scoreRepository';
 import type {GamePhase} from '../types/game';
 
-export type Destination = 'lobby' | 'balance';
+export type Destination = 'lobby' | 'balance' | 'chainshift';
 export const verified = (h:HostContext) => h.environment === 'discord' && h.authenticated && h.arcadeSessionState === 'verified' && Boolean(h.guildId);
 /** One Activity owns the host, session transport and official controller across navigation. */
 export class ArcadeRuntime {
   context:HostContext;
   destination:Destination = 'lobby';
   phase:GamePhase = 'home';
+  chainshiftLocked = false;
   connecting = false;
   success = false;
   revision = 0;
@@ -21,7 +22,7 @@ export class ArcadeRuntime {
   private generation = 0;
   private refreshBusy = false;
   private celebrated = '';
-  constructor(readonly host:HostAdapter, readonly scores:ScoreRepository, readonly official = new OfficialController()) {this.context=host.getContext();}
+  constructor(readonly host:HostAdapter, readonly scores:ScoreRepository, readonly official = new OfficialController(), readonly chainshiftEnabled = false) {this.context=host.getContext();}
   subscribe = (f:()=>void) => {this.listeners.add(f);return ()=>{this.listeners.delete(f);};};
   snapshot = () => this.revision;
   private publish(){this.revision++;this.listeners.forEach(f=>f());}
@@ -53,17 +54,19 @@ export class ArcadeRuntime {
     try{if(['unavailable','practice'].includes(this.official.view.phase))await this.connect();else if(this.official.view.phase!=='other-server')await this.official.refresh();}
     finally{this.refreshBusy=false;}
   };
-  get locked(){return ['preparing','checking','unconfirmed'].includes(this.official.view.phase);}
+  setChainshiftLocked=(locked:boolean)=>{if(this.chainshiftLocked!==locked){this.chainshiftLocked=locked;this.publish();}};
+  get locked(){return this.destination==='chainshift'?this.chainshiftLocked: ['preparing','checking','unconfirmed'].includes(this.official.view.phase);}
   setPhase=(phase:GamePhase)=>{this.phase=phase;this.publish();};
   navigate=(destination:Destination)=>{
+    if(!['lobby','balance','chainshift'].includes(destination)||destination==='chainshift'&&!this.chainshiftEnabled)return false;
     if(destination===this.destination)return true;
     if(this.locked)return false; // Keep submission/retry reachable; never discard an uncertain result.
     if(destination==='balance'&&this.connecting)return false;
+    if(this.destination==='balance'&&(this.phase==='countdown'||this.phase==='playing')){this.official.interrupt();this.official.practice();this.phase='home';}
     if(destination==='lobby'){
       const result=this.official.view.result;
-      this.success=this.official.view.phase==='accepted'&&result?.personalBest===true&&this.celebrated!==result.attemptId;
+      this.success=this.destination==='balance'&&this.official.view.phase==='accepted'&&result?.personalBest===true&&this.celebrated!==result.attemptId;
       if(this.success)this.celebrated=result!.attemptId;
-      if(this.phase==='countdown'||this.phase==='playing'){this.official.interrupt();this.official.practice();}
       this.phase='home';
     }else this.success=false;
     this.destination=destination;this.publish();
@@ -75,9 +78,11 @@ export class ArcadeRuntime {
 
 /** History stores navigation only. Discord launch query/context is never rewritten. */
 export function bindNavigation(runtime:ArcadeRuntime, window:Window){
-  const url=(route:Destination)=>window.location.pathname+window.location.search+(route==='balance'?'#arcade/balance':'#arcade');
-  window.history.replaceState({arcade:'lobby'},'',url('lobby'));
-  const pop=()=>{const route=window.history.state?.arcade==='balance'?'balance':'lobby';if(!runtime.navigate(route))window.history.pushState({arcade:runtime.destination},'',url(runtime.destination));};
+  const url=(route:Destination)=>window.location.pathname+window.location.search+(route==='lobby'?'#arcade':`#arcade/${route}`);
+  const initial=window.location.hash==='#arcade/chainshift'?'chainshift':'lobby';
+  runtime.navigate(initial);
+  window.history.replaceState({arcade:runtime.destination},'',url(runtime.destination));
+  const pop=()=>{const requested=window.history.state?.arcade??(window.location.hash==='#arcade/chainshift'?'chainshift':window.location.hash==='#arcade/balance'?'balance':'lobby');const route:Destination=requested==='balance'||requested==='chainshift'?requested:'lobby';if(!runtime.navigate(route))window.history.pushState({arcade:runtime.destination},'',url(runtime.destination));};
   window.addEventListener('popstate',pop);
   return {go(route:Destination){if(route===runtime.destination)return;if(runtime.navigate(route))window.history.pushState({arcade:route},'',url(route));},dispose(){window.removeEventListener('popstate',pop);}};
 }

@@ -28,6 +28,7 @@ try{
  await db.query("UPDATE arcade.guilds SET status='enabled'");
  const a=A.credentials,b=B.credentials,a2=A2.credentials;
  const daily=await store.daily(a);eq(daily.puzzle.id,id);eq(daily.attempt,null);ok(!JSON.stringify(daily).match(/certificate|shortest|diversity|cold|war/));
+ const emptySummary=await store.dailySummary(a,id,'global');eq(emptySummary.completedPlayers,0);eq(emptySummary.shortestShifts,null);eq(emptySummary.fastestAtShortestMs,null);ok(!JSON.stringify(emptySummary).match(/route|certificate|cold|war|playerId|csrf/));await rejects(()=>store.ownResultSummary(a,id),'not_found');
  const starts=await Promise.all(Array.from({length:6},(_,i)=>store.start(i%2?a:a2,id)));eq(new Set(starts.map(r=>r.attempt.attemptId)).size,1);
  let active=starts[0].attempt;const aid=active.attemptId;eq(active.route,['ice']);eq((await db.query('SELECT count(*)::int n FROM arcade.chainshift_attempts')).rows[0].n,1);
  const originalStart=active.claimedAt;eq((await store.resume(a2,aid)).claimedAt,originalStart);
@@ -53,6 +54,7 @@ try{
  await rejects(()=>store.routes(b,id,'global'),'routes_locked');let board=await store.leaderboard(b,id,'global');eq(board.rows.length,1);eq(board.own,null);ok(!JSON.stringify(board).match(/route|cold|war/));
  const beginB=await store.start(b,id);let ba=beginB.attempt;for(const word of ['box','car','pool','party','room'])ba=(await store.mutate(b,ba.attemptId,randomUUID(),ba.revision,'shift',word)).attempt;
  board=await store.leaderboard(b,id,'global');eq(board.rows.map(r=>r.shifts),[3,5]);eq(board.own.shifts,5);eq(board.rows.map(r=>r.rank),[1,2]);
+ const summary=await store.dailySummary(b,id,'global');eq(summary.completedPlayers,2);eq(summary.shortestShifts,3);eq(summary.fastestAtShortestMs,active.elapsedMs);ok(!JSON.stringify(summary).match(/route|cold|war/));const result=await store.ownResultSummary(a,id);eq(result.shifts,3);eq(result.elapsedMs,active.elapsedMs);ok(!JSON.stringify(result).match(/route|cold|war|playerId/));eq((await store.dailySummary(a2,id,'guild')).completedPlayers,1);
  const routes=await store.routes(b,id,'global');eq(routes.rows[0].route,['ice','cold','war','room']);eq(routes.rows[1].route,['ice','box','car','pool','party','room']);
  const guild=await store.leaderboard(a2,id,'guild');eq(guild.rows.length,1);eq(guild.own.shifts,3);eq((await db.query('SELECT count(*)::int n FROM arcade.chainshift_attempts')).rows[0].n,2);
  // Publication rollover uses an injected selection fixture; existing attempts retain their original pinned puzzle.
@@ -71,6 +73,7 @@ try{
  // Owner-only construction of deterministic scored fixtures in this disposable cluster.
  await db.transaction(async c=>{await c.query('ALTER TABLE arcade.chainshift_attempts DISABLE TRIGGER USER');for(let i=0;i<3;i++)await c.query(`INSERT INTO arcade.chainshift_attempts(attempt_id,puzzle_id,player_id,launch_guild_id,claimed_at,route,revision,state,completed_at,final_shifts,elapsed_ms) VALUES($1,$2,$3,$4,'2026-10-01T00:00:00Z',$5,3,'completed',$6,3,$7)`,[randomUUID(),tied.id,tiedPlayers[i].player_id,tiedPlayers[i].guild_id,['ice','cold','war','room'],i===2?'2026-10-01T00:00:00.500Z':'2026-10-01T00:00:01Z',i===2?500:1000]);await c.query('ALTER TABLE arcade.chainshift_attempts ENABLE TRIGGER USER');});
  const ties=await store.leaderboard(tiedPlayers[0].credentials,tied.id,'global');eq(ties.rows.map(r=>r.elapsedMs),[500,1000,1000]);eq(ties.rows.map(r=>r.rank),[1,2,2]);eq(ties.own.rank,2);eq((await store.leaderboard(tiedPlayers[0].credentials,tied.id,'global')).rows.map(r=>r.playerTag),ties.rows.map(r=>r.playerTag));
+ const tieSummary=await store.dailySummary(tiedPlayers[0].credentials,tied.id,'global');eq(tieSummary.completedPlayers,3);eq(tieSummary.shortestShifts,3);eq(tieSummary.fastestAtShortestMs,500);
  const unauthorized=await loginFixture(runtime,{...fixturePlayers.A,userId:'923456789012345678'});await rejects(()=>store.routes(unauthorized.credentials,tied.id,'global'),'routes_locked');
  // Continue the old-day active run after rollover and prove the result stays on its original puzzle.
  let ca=await store.resume(C,oldOpen.attempt.attemptId);day=nextDay;for(const word of ['cold','war','room'])ca=(await store.mutate(C,ca.attemptId,randomUUID(),ca.revision,'shift',word)).attempt;eq(ca.puzzle.id,id);eq(ca.state,'completed');day=manifest.day;

@@ -33,7 +33,9 @@
     "dev:chainshift:ranked": "npm run build:server && node scripts/chainshift/local-ranked.mjs",
     "test:chainshift:authoritative": "npm run build:server && node scripts/chainshift/test-authoritative.mjs",
     "build:chainshift:ranked": "vite build --config scripts/chainshift/ranked.vite.config.ts",
-    "db:grant-chainshift": "node build/server/database/cli.js grant-chainshift"
+    "db:grant-chainshift": "node build/server/database/cli.js grant-chainshift",
+    "dev:chainshift:arcade": "npm run build:server && node scripts/chainshift/local-ranked.mjs --integrated",
+    "build:chainshift:arcade": "vite build --mode chainshift-integration --outDir tmp/chainshift/arcade-dist --manifest"
   },
   "dependencies": {
     "@discord/embedded-app-sdk": "^2.5.0",

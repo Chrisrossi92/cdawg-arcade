@@ -1,3 +1,4 @@
+import {buildApiUrl} from '../../api/url';
 import type {DailyView,RankedAttempt,RankedReply,RankedBoard,RankedRoutes} from '../../../shared/chainshift/competition';
 import type {GameState,LocalPuzzle} from './state';
 export interface RankedIdentity {player:{id:string;displayName:string};csrf:string}
@@ -6,7 +7,7 @@ export class RankedApi {
  constructor(readonly identity:RankedIdentity,private transport:typeof fetch=(...args)=>fetch(...args),private origin=location.origin){}
  async request<T>(path:string,body?:unknown):Promise<T>{
   const controller=new AbortController();const timeout=setTimeout(()=>controller.abort(),8000);
-  try{const response=await this.transport('/api/chainshift'+path,{method:body===undefined?'GET':'POST',signal:controller.signal,credentials:'include',cache:'no-store',headers:{'Content-Type':'application/json','X-Arcade-Origin':this.origin,'X-Arcade-Request':'1','X-Arcade-Player':this.identity.player.id,...(body!==undefined?{'X-Arcade-CSRF':this.identity.csrf}:{})},...(body===undefined?{}:{body:JSON.stringify(body)})});
+  try{const response=await this.transport(buildApiUrl('/chainshift'+path),{method:body===undefined?'GET':'POST',signal:controller.signal,credentials:'include',cache:'no-store',headers:{'Content-Type':'application/json','X-Arcade-Origin':this.origin,'X-Arcade-Request':'1','X-Arcade-Player':this.identity.player.id,...(body!==undefined?{'X-Arcade-CSRF':this.identity.csrf}:{})},...(body===undefined?{}:{body:JSON.stringify(body)})});
   const value=await response.json();if(!response.ok)throw new RankedApiError(typeof value.error==='string'?value.error:'unavailable');return value as T;}finally{clearTimeout(timeout);}
  }
  daily(){return this.request<DailyView>('/daily');}

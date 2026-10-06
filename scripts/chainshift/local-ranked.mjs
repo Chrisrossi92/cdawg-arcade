@@ -10,15 +10,18 @@ import {ChainshiftStore} from '../../build/server/chainshift/store.js';
 import {chainshiftReady} from '../../build/server/chainshift/privileges.js';
 import {createServerApp} from '../../build/server/app.js';
 import {loadServerConfig} from '../../build/server/env.js';
+const integrated=process.argv.includes('--integrated');
 const cluster=await ephemeral();let server,vite,stopping=false;
 async function close(){if(stopping)return;stopping=true;await vite?.close();if(server)await new Promise(r=>server.close(r));await cluster.close();}
 process.once('SIGINT',()=>{void close();});process.once('SIGTERM',()=>{void close();});
 try{
  await seedFixture(cluster.db);const sessions=new Map();for(const key of Object.keys(fixturePlayers))await loginFixture(cluster.runtime,fixturePlayers[key]);await cluster.db.query("UPDATE arcade.guilds SET status='enabled'");
- const origin='http://127.0.0.1:5264';
+ const origin=integrated?'http://127.0.0.1:5266':'http://127.0.0.1:5264';
  const config=loadServerConfig({DISCORD_CLIENT_ID:'123456789012345678',DISCORD_CLIENT_SECRET:'synthetic-local-only',ALLOWED_ORIGINS:origin+','+fixtureOrigin});
  const persistence={check:async()=>({status:await chainshiftReady(cluster.runtime)?'available':'unavailable',schema:'compatible'}),close:async()=>{}};
+ let loseNextAction=false;
  const app=express();app.disable('x-powered-by');
+ const resLostReply=(req,res)=>{const json=res.json.bind(res);res.json=value=>{if(value?.attempt){req.socket.destroy();return res;}return json(value);};};
  const selected=req=>sessions.get(/\bchainshift_fixture=([a-f0-9-]{36})\b/.exec(req.headers.cookie??'')?.[1]);
  const account=req=>selected(req)?.account??'A';
  app.all('/api/local/identity',express.json({limit:'1kb'}),async(req,res)=>{
@@ -30,12 +33,14 @@ try{
    // Synthetic provider verification may renew sessions; it never resets an attempt.
    const s=await loginFixture(cluster.runtime,fixturePlayers[key]);const binding=randomUUID();sessions.set(binding,{...s,account:key});
    res.cookie('chainshift_fixture',binding,{httpOnly:true,sameSite:'strict',path:'/'});
-   return res.json({account:key,identity:{player:s.view.player,csrf:s.view.csrf}});
+   return res.json({account:key,guildId:fixturePlayers[key].guildId,identity:{player:s.view.player,csrf:s.view.csrf}});
   }catch{return res.status(503).json({error:'fixture_unavailable'});}
  });
- app.use('/api/chainshift',(req,_res,next)=>{const s=selected(req);req.headers.cookie=s?'__Host-arcade-session='+s.token:'';next();});
+ if(integrated)app.post('/api/local/fault',express.json({limit:'1kb'}),(req,res)=>{res.set('Cache-Control','no-store');if(req.headers.origin!==origin||req.headers['x-arcade-request']!=='1'||!selected(req)||req.body?.kind!=='lost-action-response'||Object.keys(req.body).length!==1)return res.status(403).end();loseNextAction=true;return res.json({armed:true});});
+ if(integrated)app.get('/api/me',(req,res)=>{res.set('Cache-Control','no-store');const s=selected(req);if(req.headers['x-arcade-request']!=='1'||req.headers['x-arcade-origin']!==origin)return res.status(403).json({error:'invalid_origin'});if(!s)return res.status(401).json({error:'expired'});return res.json({...s.view,officialAvailability:'practice'});});
+ app.use('/api/chainshift',(req,_res,next)=>{const s=selected(req);req.headers.cookie=s?'__Host-arcade-session='+s.token:'';if(integrated&&loseNextAction&&req.method==='POST'&&/\/attempt\/[^/]+\/(shift|backtrack)$/.test(req.path)){loseNextAction=false;resLostReply(req,_res);}next();});
  app.use(createServerApp(config,{exchangeCode:async()=>{throw new Error('No live Discord');}},{chainshift:{store:new ChainshiftStore(cluster.runtime,()=>true),persistence,candidateOrigin:origin}}));
- server=httpServer(app);await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(5265,'127.0.0.1',resolve);});
- vite=await viteServer({configFile:'scripts/chainshift/ranked.vite.config.ts'});await vite.listen();
- console.log('Disposable ranked Chainshift ready at http://127.0.0.1:5264/ · mock players only · stop with Ctrl-C.');
+ server=httpServer(app);await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(integrated?5267:5265,'127.0.0.1',resolve);});
+ vite=await viteServer({configFile:integrated?'scripts/chainshift/integrated.vite.config.ts':'scripts/chainshift/ranked.vite.config.ts'});await vite.listen();
+ console.log('Disposable '+(integrated?'Arcade integration':'ranked Chainshift')+' ready at '+origin+'/ · mock players only · stop with Ctrl-C.');
 }catch{await close();console.error('Local ranked candidate startup failed; no private configuration used.');process.exitCode=1;}

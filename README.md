@@ -124,3 +124,13 @@ The approved mascot is deployed and accepted; see the [release record](docs/bran
 Smooth gameplay mascot: [Phase 3 validation and local preview](docs/brand/MASCOT_PHASE_3_COMPLETION.md). Review tooling and source art are excluded from production.
 
 Lobby reconciliation and disabled-gate release preparation: [validation](docs/brand/LOBBY_RECONCILIATION.md) and [two-step rollout](docs/brand/LOBBY_TWO_STEP_ROLLOUT.md). The lobby remains disabled in ordinary production.
+
+## Chainshift integration candidate
+
+Chainshift remains disabled in normal builds. The isolated local Arcade candidate uses mock verified sessions and a fresh disposable PostgreSQL database:
+
+```bash
+npm run dev:chainshift:arcade
+```
+
+Open http://127.0.0.1:5266/. Nothing is posted to Discord. See [Slice 6 completion and containment report](src/games/chainshift/SLICE_6.md) for launch, validation, and remaining release work.

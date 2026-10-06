@@ -6,6 +6,7 @@ export interface GameRegistryEntry {
   tagline: string;
   route: string;
   accent: string;
+  availability?: 'released' | 'candidate';
 }
 
 export interface RunResult {
