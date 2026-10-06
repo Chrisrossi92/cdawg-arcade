@@ -1,9 +1,15 @@
 import {describe,it,expect,vi} from 'vitest';
-import {dailyProjection,resultProjection,dailyCopy,resultCopy} from './projections';
+import {dailyProjection,resultProjection,dailyCopy,resultCopy,dailyActivityMessage} from './projections';
 import {ChainshiftReconciler,FakeChainshiftDelivery,MemoryDailyMessages,liveChainshiftDeliveryEnabled} from './delivery';
 const facts={puzzleId:'daily-027',day:'2026-10-06',start:'black',finish:'party',completedPlayers:0,shortestShifts:null,fastestAtShortestMs:null};
 const destination={key:'configured-guild-channel'};
 const make=()=>{const storage=new MemoryDailyMessages(),fake=new FakeChainshiftDelivery();return {storage,fake,model:new ChainshiftReconciler(storage,fake,true)};};
+it('renders a future daily message launch from trusted app configuration, ignoring poisoned handoff data',()=>{
+ const message=dailyActivityMessage({...facts,play:{url:'https://evil.invalid',puzzleId:'stale'},route:['secretword'],playerId:'private',guildId:'forged'} as typeof facts,'1525643672194908330');
+ expect(message.components).toEqual([{type:1,components:[{type:2,style:5,label:"Play Today's Chain",url:'https://discord.com/activities/1525643672194908330?custom_id=chainshift-today-v1'}]}]);
+ expect(message.allowed_mentions).toEqual({parse:[]});expect(JSON.stringify(message)).not.toMatch(/evil|stale|secretword|private|forged|route/);
+ expect(liveChainshiftDeliveryEnabled).toBe(false);
+});
 describe('spoiler-free authoritative projections',()=>{
  it('empty daily contains endpoints and an explicitly unresolved action',()=>{const p=dailyProjection(facts);expect(p.completedPlayers).toBe(0);expect(dailyCopy(p)).toContain('0 completed');expect(dailyCopy(p)).not.toContain('Shortest');expect(p.play.kind).toBe('activity-launch-unresolved');expect(JSON.stringify(p)).not.toMatch(/https?:|route|graph|csrf|playerId/);});
  it.each([[1,5,51000],[2,5,38000],[3,4,45000],[9,4,38000]])('projects %s completed, %s shortest, %s fastest only at shortest', (count,shifts,elapsed)=>{const p=dailyProjection({...facts,completedPlayers:count,shortestShifts:shifts,fastestAtShortestMs:elapsed});expect(p.shortestShifts).toBe(shifts);expect(p.fastestAtShortestMs).toBe(elapsed);expect(dailyCopy(p)).toContain(`${count} completed`);});

@@ -80,9 +80,20 @@ export class ArcadeRuntime {
 export function bindNavigation(runtime:ArcadeRuntime, window:Window){
   const url=(route:Destination)=>window.location.pathname+window.location.search+(route==='lobby'?'#arcade':`#arcade/${route}`);
   const initial=window.location.hash==='#arcade/chainshift'?'chainshift':'lobby';
+  const explicitDestination = Boolean(window.location.hash && window.location.hash !== '#arcade');
   runtime.navigate(initial);
   window.history.replaceState({arcade:runtime.destination},'',url(runtime.destination));
-  const pop=()=>{const requested=window.history.state?.arcade??(window.location.hash==='#arcade/chainshift'?'chainshift':window.location.hash==='#arcade/balance'?'balance':'lobby');const route:Destination=requested==='balance'||requested==='chainshift'?requested:'lobby';if(!runtime.navigate(route))window.history.pushState({arcade:runtime.destination},'',url(runtime.destination));};
+  // Apply the fixed SDK hint once, after verification. Explicit navigation always wins.
+  let launchSettled = explicitDestination;
+  const applyLaunch = () => {
+    if (launchSettled || !verified(runtime.context)) return;
+    launchSettled = true;
+    if (runtime.context.activityLaunch === 'chainshift-today' && runtime.destination === 'lobby' && runtime.navigate('chainshift'))
+      window.history.replaceState({arcade:runtime.destination},'',url(runtime.destination));
+  };
+  const stopLaunch = runtime.subscribe(applyLaunch);
+  applyLaunch();
+  const pop=()=>{launchSettled=true;const requested=window.history.state?.arcade??(window.location.hash==='#arcade/chainshift'?'chainshift':window.location.hash==='#arcade/balance'?'balance':'lobby');const route:Destination=requested==='balance'||requested==='chainshift'?requested:'lobby';if(!runtime.navigate(route))window.history.pushState({arcade:runtime.destination},'',url(runtime.destination));};
   window.addEventListener('popstate',pop);
-  return {go(route:Destination){if(route===runtime.destination)return;if(runtime.navigate(route))window.history.pushState({arcade:route},'',url(route));},dispose(){window.removeEventListener('popstate',pop);}};
+  return {go(route:Destination){launchSettled=true;if(route===runtime.destination)return;if(runtime.navigate(route))window.history.pushState({arcade:route},'',url(route));},dispose(){stopLaunch();window.removeEventListener('popstate',pop);}};
 }

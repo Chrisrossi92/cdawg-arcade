@@ -6,6 +6,7 @@ import {ArcadeRuntime} from './runtime';
 import {LocalScoreRepository} from '../services/scoreRepository';
 import {makeDefaultLocalContext,type HostAdapter} from '../platform/hostAdapter';
 import type {HostContext} from '../contracts/events';
+import {activityLaunchHint} from '../../shared/chainshift/activity-launch';
 class FixtureHost implements HostAdapter {
  readonly environment='discord' as const;
  private context=makeDefaultLocalContext();private listeners=new Set<(h:HostContext)=>void>();
@@ -22,7 +23,7 @@ function Candidate(){
  const [account,setAccount]=useState('A'),[error,setError]=useState('');
  async function verify(next?:string){host.update(makeDefaultLocalContext());try{
   const response=await fetch('/api/local/identity',{method:next?'POST':'GET',credentials:'include',headers:{'Content-Type':'application/json','X-Arcade-Request':'1',...(next?{}:{'X-Arcade-Origin':location.origin})},...(next?{body:JSON.stringify({account:next})}: {})});
-  if(!response.ok)throw new Error();const value=await response.json();setAccount(value.account);host.update({...makeDefaultLocalContext(),environment:'discord',connectionState:'discord-authenticated',authenticated:true,arcadeSessionState:'verified',currentUser:value.identity.player,guildId:value.guildId});setError('');
+  if(!response.ok)throw new Error();const value=await response.json();setAccount(value.account);host.update({...makeDefaultLocalContext(),activityLaunch:activityLaunchHint(new URLSearchParams(location.search).get('custom_id')),environment:'discord',connectionState:'discord-authenticated',authenticated:true,arcadeSessionState:'verified',currentUser:value.identity.player,guildId:value.guildId});setError('');
  }catch{setError('Disposable service unavailable. Practice remains available.');}}
  useEffect(()=>{void verify();},[]);
  return <><div className="integrated-fixture"><span>LOCAL CANDIDATE · MOCK SESSIONS</span><label>Mock verified identity <select disabled={runtime.locked} value={account} onChange={e=>{void verify(e.target.value);}}><option value="A">Player A · Guild 1</option><option value="B">Player B · Guild 1</option><option value="A2">Player A · Guild 2</option><option value="C">Player C · Guild 1</option></select></label><button disabled={runtime.locked} onClick={()=>{void verify();}}>Verify fixture</button><button disabled={runtime.locked} onClick={()=>{void fetch('/api/local/fault',{method:'POST',credentials:'include',headers:{'Content-Type':'application/json','X-Arcade-Request':'1'},body:JSON.stringify({kind:'lost-action-response'})});}}>Simulate lost action response</button>{error&&<span role="alert">{error}</span>}</div><ArcadeApp runtime={runtime}/></>;

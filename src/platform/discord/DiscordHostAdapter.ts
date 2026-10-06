@@ -6,8 +6,10 @@ import type { HostAdapter } from '../hostAdapter';
 import { makeDefaultLocalContext } from '../hostAdapter';
 import { normalizeDiscordUser, normalizeParticipants, type DiscordUserLike } from './context';
 import { getLaunchDecision } from './launchContext';
+import { activityLaunchHint } from '../../../shared/chainshift/activity-launch';
 
 export interface DiscordSdkLike {
+  readonly customId?: string | null;
   ready: () => Promise<void>;
   commands: {
     authorize: (args: { client_id: string; scope: string[]; response_type: 'code'; code_challenge?: string; code_challenge_method?: 'S256' }) => Promise<{ code: string }>;
@@ -123,7 +125,7 @@ export class DiscordHostAdapter implements HostAdapter {
       if (!auth?.user?.id || !(auth.user.global_name || auth.user.username)) throw new Error('identity_missing');
       if (current()) {
         this.verifiedSession = !!established;
-        this.update({ currentUser: established ? {id:established.session.player.id,displayName:established.session.player.displayName} : normalizeDiscordUser(auth.user), guildId: established?.session.guild.id ?? sdk.guildId ?? undefined, arcadeSessionState: established ? 'verified' : this.sessions ? 'unavailable' : undefined, channelId: sdk.channelId ?? undefined, activityInstanceId: sdk.instanceId ?? undefined, authenticated: true, ready: true, connectionState: 'discord-authenticated', connectionError: undefined, initializationStatus: 'Connected to Discord' });
+        this.update({ activityLaunch: established ? activityLaunchHint(sdk.customId) : undefined, currentUser: established ? {id:established.session.player.id,displayName:established.session.player.displayName} : normalizeDiscordUser(auth.user), guildId: established?.session.guild.id ?? sdk.guildId ?? undefined, arcadeSessionState: established ? 'verified' : this.sessions ? 'unavailable' : undefined, channelId: sdk.channelId ?? undefined, activityInstanceId: sdk.instanceId ?? undefined, authenticated: true, ready: true, connectionState: 'discord-authenticated', connectionError: undefined, initializationStatus: 'Connected to Discord' });
         if (established && auth.user.id !== established.session.player.id) void this.sessions?.discrepancy(signal).catch(() => {});
         if (this.accountListener) void sdk.unsubscribe?.('CURRENT_USER_UPDATE',this.accountListener).catch(() => {});
         this.accountListener = event => {

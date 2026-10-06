@@ -151,6 +151,19 @@ describe('Arcade verified-session lifecycle',()=>{
     const original=setup();vi.mocked(original.sdk.commands.authenticate).mockResolvedValue({user:{id:view.player.id,username:'SDK display'}});original.sdk.subscribe=vi.fn().mockResolvedValue(undefined);original.sdk.unsubscribe=vi.fn().mockResolvedValue(undefined);
     const adapter=new DiscordHostAdapter({exchangeCode:original.exchangeCode},{...original.options,sessions:sessions as unknown as import('../../api/sessionClient').ArcadeSessionClient});return {...original,adapter,sessions,view};
   }
+  it.each(['desktop','mobile'])('accepts only the SDK fixed navigation hint after server verification on %s',async platform=>{
+   const original=sessionsSetup();Object.assign(original.sdk,{customId:'chainshift-today-v1'});
+   const adapter=new DiscordHostAdapter({exchangeCode:original.exchangeCode},{...original.options,search:`?frame_id=f&instance_id=i&platform=${platform}&custom_id=ignored&player_id=forged&guild_id=forged&puzzle_id=old&ranked=true`,sessions:original.sessions as unknown as import('../../api/sessionClient').ArcadeSessionClient});
+   expect(adapter.getContext().activityLaunch).toBeUndefined();await adapter.initialize();
+   expect(adapter.getContext()).toMatchObject({activityLaunch:'chainshift-today',currentUser:{id:'234567890123456789'},guildId:'345678901234567890',arcadeSessionState:'verified'});
+   expect(JSON.stringify(adapter.getContext())).not.toMatch(/forged|puzzle_id|ranked|TRANSIENT_PRIVATE_TOKEN/);adapter.dispose();
+  });
+  it('does not treat query marker or failed verification as an authenticated launch',async()=>{
+   const original=sessionsSetup();const adapter=new DiscordHostAdapter({exchangeCode:original.exchangeCode},{...original.options,search:search+'&custom_id=chainshift-today-v1',sessions:original.sessions as unknown as import('../../api/sessionClient').ArcadeSessionClient});
+   await adapter.initialize();expect(adapter.getContext().activityLaunch).toBeUndefined();adapter.dispose();
+   const failed=sessionsSetup();Object.assign(failed.sdk,{customId:'chainshift-today-v1'});failed.sessions.establish.mockRejectedValue(new Error('private failure'));
+   await failed.adapter.initialize();expect(failed.adapter.getContext().activityLaunch).toBeUndefined();expect(failed.adapter.getContext().authenticated).toBe(false);failed.adapter.dispose();
+  });
   it('uses the verified backend display and sends PKCE to SDK authorization',async()=>{const {adapter,sdk,exchangeCode}=sessionsSetup();await adapter.initialize();expect(adapter.getContext()).toMatchObject({arcadeSessionState:'verified',currentUser:{displayName:'Verified Player'},guildId:'345678901234567890'});expect(sdk.commands.authorize).toHaveBeenCalledWith(expect.objectContaining({code_challenge:'x'.repeat(43),code_challenge_method:'S256'}));expect(exchangeCode).not.toHaveBeenCalled();expect(JSON.stringify(adapter.getContext())).not.toContain('TRANSIENT_PRIVATE_TOKEN');adapter.dispose();});
   it('records SDK mismatch but keeps backend identity authoritative',async()=>{const {adapter,sdk,sessions}=sessionsSetup();vi.mocked(sdk.commands.authenticate).mockResolvedValue({user:{id:'456789012345678901',username:'Untrusted display'}});await adapter.initialize();expect(adapter.getContext().currentUser.id).toBe('234567890123456789');expect(sessions.discrepancy).toHaveBeenCalledOnce();adapter.dispose();});
   it('keeps verification failure honest without returning a verified state',async()=>{const {adapter,sessions}=sessionsSetup();sessions.establish.mockRejectedValue(new Error('PRIVATE_PROVIDER_ERROR'));await adapter.initialize();expect(adapter.getContext().authenticated).toBe(false);expect(adapter.getContext().arcadeSessionState).not.toBe('verified');expect(JSON.stringify(adapter.getContext())).not.toContain('PRIVATE_PROVIDER_ERROR');adapter.dispose();});

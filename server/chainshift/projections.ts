@@ -1,6 +1,8 @@
+import {chainshiftActivityUrl} from '../../shared/chainshift/activity-launch.js';
 /** Delivery-neutral facts. Callers must obtain these from authoritative completed attempts only. */
 export interface DailyFacts {puzzleId:string;day:string;start:string;finish:string;completedPlayers:number;shortestShifts:number|null;fastestAtShortestMs:number|null}
 export interface ResultFacts {puzzleId:string;day:string;displayName:string;shifts:number;elapsedMs:number}
+/** Neutral projection: the configured adapter renderer supplies the resolved Discord link. */
 export interface PlayAction {kind:'activity-launch-unresolved';game:'chainshift';destination:'#arcade/chainshift';label:"Play Today's Chain"}
 export interface DailyProjection extends DailyFacts {kind:'chainshift-daily';play:PlayAction}
 export interface ResultProjection extends ResultFacts {kind:'chainshift-result'}
@@ -23,3 +25,16 @@ const escape=(s:string)=>s.replace(/[\\`*_~|<>@]/g,c=>'\\'+c);
 const time=(ms:number)=>`${Math.floor(ms/60000)}:${String(Math.floor(ms/1000)%60).padStart(2,'0')}`;
 export const dailyCopy=(p:DailyProjection)=>`CHAINSHIFT · ${escape(p.puzzleId)}\n${escape(p.start.toUpperCase())} → ${escape(p.finish.toUpperCase())}\n${p.completedPlayers} completed${p.shortestShifts===null?'':`\nShortest found: ${p.shortestShifts} shifts\nFastest ${p.shortestShifts}-shift completion: ${time(p.fastestAtShortestMs!)}`}\n${p.play.label}`;
 export const resultCopy=(p:ResultProjection)=>`${escape(p.displayName)} completed Chainshift · ${escape(p.puzzleId)}\n${p.shifts} shifts · ${time(p.elapsedMs)}`;
+
+/** Pure future-adapter payload. Configuration supplies the app, never incoming projection/play fields.
+ * Does not send, register commands, create links in the portal, or enable delivery. */
+export interface DailyActivityMessage {
+ content:string;
+ allowed_mentions:{parse:[]};
+ components:[{type:1;components:[{type:2;style:5;label:string;url:string}]}];
+}
+export function dailyActivityMessage(facts: DailyFacts, applicationId: string):DailyActivityMessage {
+ const projection = dailyProjection(facts);
+ return {content:dailyCopy(projection),allowed_mentions:{parse:[]},
+  components:[{type:1,components:[{type:2,style:5,label:projection.play.label,url:chainshiftActivityUrl(applicationId)}]}]};
+}
