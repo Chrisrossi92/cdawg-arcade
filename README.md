@@ -134,3 +134,11 @@ npm run dev:chainshift:arcade
 ```
 
 Open http://127.0.0.1:5266/. Nothing is posted to Discord. See [Slice 6 completion and containment report](src/games/chainshift/SLICE_6.md) for launch, validation, and remaining release work.
+
+Slice 9 adds a durable PostgreSQL receipt ledger and a narrow Discord daily-message adapter. Delivery defaults off and accepts only channel `1549149791915737129`; a verified pilot artifact, independent runtime gates, eligible guild and compatible restricted database are also required. No individual results are automatically posted.
+
+```bash
+npm run test:chainshift:delivery
+```
+
+This owns disposable local PostgreSQL and uses a fake Discord transport, including crash/restart and lost-response checks. It never posts. See [Slice 9 implementation, production audit and controlled activation plan](src/games/chainshift/SLICE_9.md). Administrative migration/grant/publication commands and `CHAINSHIFT_PILOT_BUILD=true` are capabilities, not permission to deploy or activate them.

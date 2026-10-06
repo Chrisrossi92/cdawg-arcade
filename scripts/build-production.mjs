@@ -8,6 +8,10 @@ const release = process.env.RELEASE_SHA ?? process.env.RENDER_GIT_COMMIT ?? '';
 const version = process.env.VITE_APP_VERSION ?? release;
 const clientId = process.env.VITE_DISCORD_CLIENT_ID ?? '';
 const apiBase = process.env.VITE_API_BASE_URL;
+// Explicit reviewed candidate artifact only; normal production builds remain gated off.
+const pilotFlag=process.env.CHAINSHIFT_PILOT_BUILD;
+if(pilotFlag!==undefined&&!['true','false'].includes(pilotFlag))throw new Error('Invalid pilot build flag');
+const chainshiftPilot=pilotFlag==='true';
 const releasePattern = /^(?:[a-f0-9]{40}|development-[a-z0-9.-]{1,48})$/;
 if (!/^\d{17,20}$/.test(clientId) || apiBase !== '/api' || !releasePattern.test(release) || !releasePattern.test(version)) {
   console.error('Invalid public production configuration: check client ID, /api base, and release metadata');
@@ -19,7 +23,7 @@ if (process.env.DISCORD_CLIENT_ID && process.env.DISCORD_CLIENT_ID !== clientId)
 }
 const env = { PATH: process.env.PATH, NODE_ENV: 'production', VITE_DISCORD_CLIENT_ID: clientId, VITE_API_BASE_URL: apiBase, VITE_APP_VERSION: version };
 rmSync('build', { recursive: true, force: true });
-execFileSync(process.execPath, ['node_modules/vite/bin/vite.js', 'build'], { stdio: 'inherit', env });
+execFileSync(process.execPath, ['node_modules/vite/bin/vite.js', 'build',...(chainshiftPilot?['--mode','chainshift-integration']:[])], { stdio: 'inherit', env });
 execFileSync(process.execPath, ['scripts/build-server.mjs'], { stdio: 'inherit', env });
 const files = {};
 function collect(dir = '') {
@@ -33,5 +37,5 @@ function collect(dir = '') {
 }
 collect();
 mkdirSync('build', { recursive: true });
-writeFileSync('build/release.json', JSON.stringify({ clientId, apiBase, version, releaseSha: release, files }, null, 2) + '\n');
+writeFileSync('build/release.json', JSON.stringify({ clientId, apiBase, version, releaseSha: release, chainshiftPilot, files }, null, 2) + '\n');
 console.log('Production artifacts built with public release metadata');

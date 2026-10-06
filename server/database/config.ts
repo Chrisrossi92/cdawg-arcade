@@ -12,7 +12,7 @@ export interface DatabaseConfig {
 }
 // Schema compatibility is a code contract, never an environment override.
 export const MIN_SCHEMA_VERSION = 1;
-export const MAX_SCHEMA_VERSION = 2;
+export const MAX_SCHEMA_VERSION = 3;
 export function databaseConfig(
   env: NodeJS.ProcessEnv = process.env,
 ): DatabaseConfig {

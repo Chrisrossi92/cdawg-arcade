@@ -11,6 +11,11 @@ it('renders a future daily message launch from trusted app configuration, ignori
  expect(liveChainshiftDeliveryEnabled).toBe(false);
 });
 describe('spoiler-free authoritative projections',()=>{
+ it('formats catalog number without internal puzzle identity, and never invents competition at zero',()=>{
+  const p=dailyProjection({...facts,puzzleNumber:27});expect(dailyCopy(p)).toBe('⛓️ **CHAINSHIFT #027**\n`BLACK → PARTY`\n0 completed');
+  expect(dailyCopy(p)).not.toContain(facts.puzzleId);expect(dailyCopy(dailyProjection({...facts,puzzleNumber:27,completedPlayers:8,shortestShifts:4,fastestAtShortestMs:41000}))).toContain('Fastest 4-shift solve: 0:41');
+  expect(()=>dailyProjection({...facts,puzzleNumber:0})).toThrow();
+ });
  it('empty daily contains endpoints and an explicitly unresolved action',()=>{const p=dailyProjection(facts);expect(p.completedPlayers).toBe(0);expect(dailyCopy(p)).toContain('0 completed');expect(dailyCopy(p)).not.toContain('Shortest');expect(p.play.kind).toBe('activity-launch-unresolved');expect(JSON.stringify(p)).not.toMatch(/https?:|route|graph|csrf|playerId/);});
  it.each([[1,5,51000],[2,5,38000],[3,4,45000],[9,4,38000]])('projects %s completed, %s shortest, %s fastest only at shortest', (count,shifts,elapsed)=>{const p=dailyProjection({...facts,completedPlayers:count,shortestShifts:shifts,fastestAtShortestMs:elapsed});expect(p.shortestShifts).toBe(shifts);expect(p.fastestAtShortestMs).toBe(elapsed);expect(dailyCopy(p)).toContain(`${count} completed`);});
  it('allowlists fields even when inputs carry private route/identity fields',()=>{const p=dailyProjection({...facts,route:['secretword'],csrf:'private',certificate:{shortestRoutes:['secretword']}} as typeof facts);expect(JSON.stringify(p)).not.toMatch(/secretword|private|certificate|route/);});

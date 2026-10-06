@@ -6,7 +6,7 @@ import { safeVersion, type ServerConfig } from './env.js';
 
 export const defaultDist = fileURLToPath(new URL('../../dist/', import.meta.url));
 export const defaultManifest = fileURLToPath(new URL('../release.json', import.meta.url));
-export interface ReleaseManifest { clientId: string; apiBase: string; version: string; releaseSha: string; files: Record<string, string> }
+export interface ReleaseManifest { clientId: string; apiBase: string; version: string; releaseSha: string; chainshiftPilot?:boolean; files: Record<string, string> }
 export function publicFile(name: string): boolean {
   return name === 'index.html' || /^assets\/[A-Za-z0-9_-]+-[A-Za-z0-9_-]{8,}\.(?:js|css|png|jpg|jpeg|webp|svg|woff2?|mp3|ogg|wav)$/.test(name);
 }

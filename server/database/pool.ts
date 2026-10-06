@@ -84,4 +84,21 @@ export class Database implements SqlConnection {
     this.closed = true;
     await this.pool.end();
   }
+  /** Session lock with autocommit: delivery intent must survive an uncertain external response.
+   * Never hold a database transaction open across HTTP. Busy callers skip rather than queue. */
+  async exclusive<T>(key: string, work: (connection: SqlConnection) => Promise<T>): Promise<T | undefined> {
+    if (this.closed) throw new DatabaseError("closed");
+    let client: PoolClient | undefined;
+    let locked = false, failed = false;
+    try {
+      client = await this.pool.connect();
+      locked = (await client.query('SELECT pg_try_advisory_lock(hashtextextended($1, 918274)) AS locked', [key])).rows[0].locked;
+      if (!locked) return undefined;
+      return await work({query: (sql, values = []) => client!.query(sql, values)});
+    } catch (error) { failed = true; throw safeDatabaseError(error); }
+    finally {
+      if (locked && client) { try { await client.query('SELECT pg_advisory_unlock(hashtextextended($1, 918274))', [key]); } catch { failed = true; } }
+      client?.release(failed);
+    }
+  }
 }

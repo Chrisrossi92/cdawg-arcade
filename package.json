@@ -34,6 +34,10 @@
     "test:chainshift:authoritative": "npm run build:server && node scripts/chainshift/test-authoritative.mjs",
     "build:chainshift:ranked": "vite build --config scripts/chainshift/ranked.vite.config.ts",
     "db:grant-chainshift": "node build/server/database/cli.js grant-chainshift",
+    "db:grant-chainshift-delivery": "node build/server/database/cli.js grant-chainshift-delivery",
+    "db:verify-chainshift-delivery": "node build/server/database/cli.js verify-chainshift-delivery",
+    "db:publish-chainshift-pilot": "node build/server/database/cli.js publish-chainshift-pilot",
+    "test:chainshift:delivery": "npm run build:server && node scripts/chainshift/test-delivery.mjs",
     "dev:chainshift:arcade": "npm run build:server && node scripts/chainshift/local-ranked.mjs --integrated",
     "build:chainshift:arcade": "vite build --mode chainshift-integration --outDir tmp/chainshift/arcade-dist --manifest"
   },

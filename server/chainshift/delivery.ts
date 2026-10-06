@@ -3,8 +3,8 @@ import {dailyProjection,resultProjection,type DailyProjection,type ResultProject
 export const liveChainshiftDeliveryEnabled = false;
 export interface Destination {key:string}
 export interface MessageReceipt {messageId:string;digest:string;revision:number}
-/** A future Discord adapter MUST honor operation keys, suppress all mentions and refuse unresolved launch actions.
- * No live adapter exists in Slice 6. The model can hold an unresolved action without claiming it is clickable. */
+/** Preserved fake delivery contract. Slice 9's live adapter uses the durable delivery-store boundary.
+ * The fake model can hold an unresolved action without claiming it is clickable. */
 export interface ChainshiftDelivery {
  readonly mode:'fake'|'discord';
  createDaily(destination:Destination,projection:DailyProjection,operationKey:string):Promise<string>;

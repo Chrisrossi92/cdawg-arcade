@@ -39,6 +39,6 @@ export async function ephemeral(){
    await c.query('GRANT INSERT,UPDATE,DELETE ON arcade.auth_challenges TO arcade_session_runtime');
    await grantChainshiftRights(c);
   });
-  runtime=new Database(config('arcade_session_runtime'));return {db,runtime,close};
+  runtime=new Database(config('arcade_session_runtime'));return {db,runtime,runtimeConfig:config('arcade_session_runtime'),adminConfig:config('arcade_test'),close};
  }catch(e){await close();throw e;}
 }
