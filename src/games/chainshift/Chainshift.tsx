@@ -99,7 +99,6 @@ export function Chainshift({practiceRepository}:{practiceRepository?:PracticeRep
      <button className="primary start-button" onClick={()=>{dispatch({type:'start',now:performance.now()});prepareAudio();}}>START <span aria-hidden="true">→</span></button>
     </div><div className="host-presence"><img src={host} alt=""/><span aria-hidden="true">CDAWG ARCADE</span></div>
    </section>:<section className={`play-card ${state.phase==='completed'?'resolved':''} ${state.feedback.kind==='completed'?'just-completed':''}`} aria-label={isPlaying?'Your chain':'Completed chain'}>
-    {isPlaying&&<div className="destination"><span>DESTINATION</span><strong>{state.puzzle.finish.display}</strong><span aria-hidden="true">↗</span></div>}
     {state.phase==='completed'&&<div className="complete-heading"><div><p className="eyebrow">DESTINATION REACHED</p><h2 ref={resultTitle} tabIndex={-1}>CHAIN COMPLETE</h2></div><img src={delighted} alt=""/></div>}
     <ChainRoute state={state} reduced={reduced} chainRef={chain}/>
     {isPlaying?<div className="entry-dock">

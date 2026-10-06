@@ -47,3 +47,16 @@ body{margin:0;background:var(--brand-background)}
 .chainshift-shell[data-reduced=true] .locked,.chainshift-shell[data-reduced=true] .lock-joint{animation:none!important}
 @media(max-width:600px){.phase-completed .game-heading h1{font-size:24px}.phase-completed .game-heading .link-mark{display:none}.phase-completed .game-heading .eyebrow{max-width:150px}}
 @media(max-width:350px){.phase-completed .game-heading h1{font-size:21px}.phase-completed .game-heading .eyebrow{letter-spacing:.7px}}
+
+/* Slice 4A: the waiting terminal belongs to the growing journey, not a header. */
+.phase-playing .play-card{flex:0 1 auto;max-height:100%}
+.chain-field{display:flex;flex-direction:column;min-height:0;flex:0 1 auto;overflow:hidden}
+.chain-field .word-chain{flex:0 1 auto;padding-bottom:0}
+.unresolved-gap{flex:none;height:32px;margin:0 30px;position:relative}
+.unresolved-gap span{display:block;height:100%;margin-left:32px;border-left:2px dashed #bdb7ae66;width:0}
+.destination.waiting{flex:none;margin:0 30px 24px;padding:12px 18px;min-height:52px;border:1px dashed #bdb7ae66;border-radius:12px;background:#191c1e;color:var(--brand-muted);gap:18px}
+.destination.waiting strong{font-size:21px;padding:0;border:0;color:var(--brand-muted);overflow-wrap:anywhere;min-width:0}
+.destination.waiting>span:first-child{font-size:15px;color:var(--brand-muted);letter-spacing:0}
+.destination.waiting>span:last-child{font-size:9px;letter-spacing:1.5px;color:var(--brand-muted)}
+@media(max-width:600px){.unresolved-gap{height:26px;margin:0 18px}.unresolved-gap span{margin-left:25px}.destination.waiting{margin:0 18px 18px;padding:10px 14px;gap:12px;min-height:48px}.destination.waiting strong{font-size:20px}}
+@media(max-height:540px){.unresolved-gap{height:18px}.destination.waiting{margin-bottom:10px;min-height:42px;padding-top:6px;padding-bottom:6px}}
