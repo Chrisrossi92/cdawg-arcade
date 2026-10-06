@@ -2,7 +2,7 @@
 
 Starting commit: `6e2f12f7a4083b6f973e13b3083f961cb1cc7951`, clean, on `codex/soft-launch-brand-player-cleanup`.
 
-**Local bridge: PASS. Current global entry-point handler audit: PENDING_AUTHORIZATION. Actual Discord click-through: REQUIRES_LIVE_PILOT_VALIDATION.**
+**Local bridge: PASS. Current global entry-point handler audit: PASS — DISCORD_LAUNCH_ACTIVITY (2). Actual Discord click-through: REQUIRES_LIVE_PILOT_VALIDATION.**
 
 No deployment, push, Discord command registration, production configuration change, audience expansion or live daily delivery occurred.
 
@@ -23,11 +23,17 @@ A read-only global-command audit is implemented in `server/discord/entryPoint.ts
 
 Local approved credential keys `DISCORD_CLIENT_ID` and `DISCORD_ARCADE_BOT_TOKEN` are absent; running the audit reports `unavailable` without making a request. No new secret was requested, copied, displayed or created. The existing approved Arcade bot credential should serve this narrow read-only purpose.
 
-An attempt to open the existing Render provider dashboard to use that hosted credential was rejected by automatic approval review: access was outside the stated Discord/repository scope and could expose unrelated private infrastructure or production controls. No dashboard access or workaround followed. The remaining inspection needs explicit authorization limited to the existing `cdawg-arcade` service and this read-only audit. No production setting change is implied.
+On 2026-10-06, the owner separately authorized a narrowly scoped read-only audit of the existing Arcade Render service and signed in to Chrome. Only `cdawg-arcade-production` (`srv-dagb3blbedkc73fr3de0`) was opened. A bounded, GET-only runtime lookup used the existing credential internally, without displaying or copying it. Discord returned exactly one global primary entry point for application `1525643672194908330`:
+
+```json
+{"state":"discord-handled","commandId":"1525650463767134278","name":"launch","type":4,"handler":2}
+```
+
+This verifies the current command uses `PRIMARY_ENTRY_POINT` (4) and `DISCORD_LAUNCH_ACTIVITY` (2). No app-handled entry point is required. The first lookup had a command-ID validation escaping error; the corrected lookup produced the result above. No provider settings, unrelated resources, secrets, deployment, restart, or Discord configuration mutations were involved.
 
 ## Supported mechanism and implementation
 
-Discord explicitly documents Activity links with a `custom_id` and exposes incoming data as SDK `customId`. This permits a fixed navigation hint without an app-handled entry point or a new bot interaction system. The chosen bridge does **not require adding an `APP_HANDLER` command**; the current handler still needs the audit above before claiming live configuration verified. [Discord growth and referrals](https://docs.discord.com/developers/activities/development-guides/growth-and-referrals).
+Discord explicitly documents Activity links with a `custom_id` and exposes incoming data as SDK `customId`. This permits a fixed navigation hint without an app-handled entry point or a new bot interaction system. The chosen bridge does **not require adding an `APP_HANDLER` command**; the existing Discord-handled entry point is now verified by the read-only audit above. [Discord growth and referrals](https://docs.discord.com/developers/activities/development-guides/growth-and-referrals).
 
 Future daily message link:
 
@@ -44,7 +50,7 @@ This is the documented Discord Activity mechanism, not a website URL, iframe URL
 - `dailyActivityMessage(authoritativeFacts, configuredApplicationId)` is a pure future-adapter renderer: spoiler-safe daily content plus a Discord link button, with mentions suppressed. It rebuilds the safe facts and ignores forged incoming `play`, identity, guild and route fields. It does not send a message. The neutral reconciliation projection stays unresolved until a configured renderer is supplied, avoiding fabricated binding in unconfigured test/delivery models.
 - The local fixture host simulates SDK `customId` only in its explicitly isolated candidate entry. Ordinary builds do not import that harness.
 
-Slice 7's unsupported-launch conclusion is superseded at the code/documented-mechanism level by this bridge. It is not superseded by a live-launch claim: this code is not deployed, the current global command handler is unverified, and an actual Discord click-through remains future controlled validation.
+Slice 7's unsupported-launch conclusion is superseded at the code/documented-mechanism level by this bridge. It is not superseded by a live-launch claim: this code is not deployed, the current global command handler is verified through the read-only API audit, and an actual Discord click-through remains future controlled validation.
 
 ## Authority and existing attempt rules
 
@@ -61,7 +67,7 @@ Deliberate Start remains required. Unique player+puzzle attempts, cross-guild id
 | Request | Result |
 |---|---|
 | 1. Inspect app/entry-point/repo setup | Portal inspected read-only; no repo registration/interaction handler found |
-| 2. Default global command or app handler | Expected default documented; actual type/handler audit pending. Chosen documented link needs no new app handler |
+| 2. Default global command or app handler | Global `launch` verified: type 4, handler 2. No new app handler required |
 | 3. Smallest future daily-post mechanism | Fixed Activity URL and pure spoiler-safe link-button renderer implemented |
 | 4. Existing Arcade Activity, supported mechanism | URL targets inspected Arcade application through Discord Activity links; no live launch claimed |
 | 5. Authenticated routing to Chainshift | SDK hint after server verification; once-only normal Arcade navigation, then `/api/me`/daily checks |
@@ -135,7 +141,7 @@ node scripts/discord/audit-entry-point.mjs
 
 Build first if running in a local authorized credential environment. The script needs existing `DISCORD_CLIENT_ID` and `DISCORD_ARCADE_BOT_TOKEN`; do not paste secrets into chat, logs or browser fields. Output is only status and public command metadata. Running newly added code in a hosted service requires an approved read-only execution path; do not deploy this slice just to perform the audit.
 
-One remaining owner action is authorization for read-only access to the existing `cdawg-arcade` Render service solely to audit the current global command using its existing credential, without viewing/copying secrets or changing settings. Automatic approval review blocked that expanded access; routine local work is finished. No new secret or Discord setting change is requested.
+The separately authorized read-only provider audit is complete; the global Discord-handled `launch` command is verified. No new secret or Discord setting change is needed.
 
 Later, separately authorize a controlled real Discord desktop/mobile click-through against an exact deployed candidate and reviewed gates; verify the marker reaches SDK `customId`, established session, today's daily, ordinary launch and existing active-attempt resume. Keep live daily delivery off. If the audit identifies a missing/app-handled command that needs modification, report it for a separate configuration decision rather than registering or editing automatically.
 
