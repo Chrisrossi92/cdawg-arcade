@@ -1,19 +1,12 @@
 import {useEffect,useState,useRef} from 'react';
 import type {ArcadeRuntime} from './runtime';
 import {verified} from './runtime';
-import {ArcadeSessionClient} from '../api/sessionClient';
 import {RankedChainshift} from '../games/chainshift/RankedChainshift';
 import {Chainshift} from '../games/chainshift/Chainshift';
 import type {RankedIdentity} from '../games/chainshift/ranked';
+import {chainshiftIdentity} from './chainshiftIdentity';
+export {chainshiftIdentity} from './chainshiftIdentity';
 
-/** Recheck the application's existing cookie session; host display state never grants ranked identity. */
-export async function chainshiftIdentity(runtime:ArcadeRuntime,client=new ArcadeSessionClient()):Promise<RankedIdentity>{
- const expected=runtime.context;
- if(!verified(expected))throw new Error('unverified');
- const session=await client.me();
- if(!verified(runtime.context)||runtime.context.currentUser.id!==expected.currentUser.id||runtime.context.guildId!==expected.guildId||session.player.id!==expected.currentUser.id||session.guild.id!==expected.guildId)throw new Error('account_changed');
- return {player:session.player,csrf:session.csrf};
-}
 export default function ChainshiftEntry({runtime,onBack,reducedMotion}:{runtime:ArcadeRuntime;onBack:()=>void;reducedMotion?:boolean}){
  const hadRanked=useRef(false);
  const [boundKey,setBoundKey]=useState('');

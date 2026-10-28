@@ -1,3 +1,5 @@
+import {grantAuthoredRights,authoredReady} from '../chainshift/authored/privileges.js';
+import {authoredPlan,publishAuthoredPlan,type AuthoredPlan} from '../chainshift/authored/publication.js';
 import {grantChainshiftRights} from '../chainshift/privileges.js';
 import {grantDeliveryRights,deliveryReady} from '../chainshift/delivery-store.js';
 import {readFileSync} from 'node:fs';
@@ -14,7 +16,8 @@ import { migrate, schemaStatus, foundationTables } from "./migrations.js";
 // Explicit commands only; never loads dotenv or prints driver exceptions.
 async function main() {
   const command = process.argv[2];
-  if (!["migrate", "status", "verify-personal", "verify-guild", "grant-results", "activate-canary", "grant-chainshift", "grant-chainshift-delivery", "verify-chainshift-delivery", "publish-chainshift-pilot"].includes(command)) throw new Error("command");
+  if(command==='authored-plan'){console.log(JSON.stringify(authoredPlan(process.argv[3]),null,2));return;}
+  if (!["grant-authored","verify-authored","publish-authored", "migrate", "status", "verify-personal", "verify-guild", "grant-results", "activate-canary", "grant-chainshift", "grant-chainshift-delivery", "verify-chainshift-delivery", "publish-chainshift-pilot"].includes(command)) throw new Error("command");
   const config = databaseConfig();
   if (config.mode !== "configured") throw new Error("configuration");
   const database = new Database(config);
@@ -34,6 +37,9 @@ async function main() {
       }),
     );
     if (schema !== "compatible") process.exitCode = 1;
+    else if(command==='grant-authored'){if(['CHAINSHIFT_AUTHORED_ENABLED','CHAINSHIFT_ARCADE_ENABLED','CHAINSHIFT_RANKED_ENABLED','CHAINSHIFT_DAILY_DELIVERY_ENABLED'].some(k=>process.env[k]==='true'))throw Error('disabled_flags_required');await database.transaction(grantAuthoredRights);console.log(JSON.stringify({status:'granted',scope:'authored-v2'}));}
+    else if(command==='verify-authored'){const ready=await authoredReady(database);console.log(JSON.stringify({authoredReady:ready}));if(!ready)process.exitCode=1;}
+    else if(command==='publish-authored'){if(['CHAINSHIFT_AUTHORED_ENABLED','CHAINSHIFT_ARCADE_ENABLED','CHAINSHIFT_RANKED_ENABLED','CHAINSHIFT_DAILY_DELIVERY_ENABLED'].some(k=>process.env[k]==='true'))throw Error('disabled_flags_required');const bytes=readFileSync(process.argv[3]);if(bytes.length>262144)throw Error('manifest');await database.transaction(c=>publishAuthoredPlan(c,JSON.parse(bytes.toString('utf8')) as AuthoredPlan));console.log(JSON.stringify({status:'published',scope:'reviewed-authored-v2'}));}
     else if(command==='publish-chainshift-pilot'){
       if(['CHAINSHIFT_ARCADE_ENABLED','CHAINSHIFT_RANKED_ENABLED','CHAINSHIFT_DAILY_DELIVERY_ENABLED'].some(k=>process.env[k]==='true'))throw Error('disabled_flags_required');
       // Operator-reviewed manifest, never browser/message input. No generation, schedule or approval claim.

@@ -10,7 +10,7 @@ import logo from '../../assets/brand/arcade/vector/cdawg-horizontal-dark-v001.sv
 import tag from '../../assets/brand/arcade/vector/cdawg-tag-small-v001.svg';
 import './lobby.css';
 const Game=lazy(async()=>{let timer:ReturnType<typeof setTimeout> | undefined;try{return await Promise.race([import('./GameEntry'),new Promise<never>((_,reject)=>{timer=setTimeout(()=>reject(new Error('Game load timeout')),10000);})]);}finally{clearTimeout(timer);}});
-const ChainGame=__CHAINSHIFT_CANDIDATE__?lazy(async()=>{let timer:ReturnType<typeof setTimeout> | undefined;try{return await Promise.race([import('./ChainshiftEntry'),new Promise<never>((_,reject)=>{timer=setTimeout(()=>reject(new Error('Game load timeout')),10000);})]);}finally{clearTimeout(timer);}}):null;
+const ChainGame=__CHAINSHIFT_CANDIDATE__?lazy(async()=>{let timer:ReturnType<typeof setTimeout> | undefined;try{return await Promise.race([import.meta.env.MODE==='chainshift-authored-integration'?import('./AuthoredChainshiftEntry'):import('./ChainshiftEntry'),new Promise<never>((_,reject)=>{timer=setTimeout(()=>reject(new Error('Game load timeout')),10000);})]);}finally{clearTimeout(timer);}}):null;
 const preferenceKey='cdawg.arcade.reduced-motion.v1';
 const readPreference=()=>{try{return localStorage.getItem(preferenceKey)==='true';}catch{return false;}};
 class GameBoundary extends Component<{children:ReactNode;onBack:()=>void;name?:string},{failed:boolean}>{

@@ -1,0 +1,94 @@
+// Own disposable PostgreSQL + synthetic verified sessions. No dotenv, live DB or Discord.
+import assert from 'node:assert/strict';
+import {randomUUID} from 'node:crypto';
+import {once} from 'node:events';
+import {spawn} from 'node:child_process';
+import {readFileSync} from 'node:fs';
+import {createServer} from 'node:http';
+import {ephemeral} from './ephemeral.mjs';
+import {fixturePlayers,fixtureOrigin,loginFixture} from './fixtures.mjs';
+import {authoredCatalog} from '../../build/server/chainshift/authored/catalog.js';
+import {AuthoredStore} from '../../build/server/chainshift/authored/store.js';
+import {authoredReady,grantAuthoredRights} from '../../build/server/chainshift/authored/privileges.js';
+import {authoredPlan,publishAuthoredPlan} from '../../build/server/chainshift/authored/publication.js';
+import {Database} from '../../build/server/database/pool.js';
+import {createServerApp} from '../../build/server/app.js';
+import {loadServerConfig} from '../../build/server/env.js';
+const daily=authoredCatalog.find(p=>p.use==='daily'),practicesCatalog=authoredCatalog.filter(p=>p.use==='practice');
+let checks=0;const eq=(a,b)=>{assert.deepEqual(a,b);checks++;},ok=x=>{assert.ok(x);checks++;},rejects=async(f,code)=>{await assert.rejects(f,code?e=>e.code===code:undefined);checks++;};
+const cluster=await ephemeral();let server,second,child;
+try{
+ const {db,runtime}=cluster;const day=(await db.query("SELECT to_char(clock_timestamp() AT TIME ZONE 'America/New_York','YYYY-MM-DD') AS day")).rows[0].day;
+ const plan=authoredPlan(day);eq(plan.entries.length,15);await db.transaction(grantAuthoredRights);ok(await authoredReady(runtime,false));eq(await authoredReady(runtime,true,true),false);
+ await db.transaction(c=>publishAuthoredPlan(c,plan,true));await db.transaction(c=>publishAuthoredPlan(c,plan,true));ok(await authoredReady(runtime,true,true));
+ const modified=structuredClone(plan);modified.entries[0].digest='0'.repeat(64);await rejects(()=>db.transaction(c=>publishAuthoredPlan(c,modified,true)));
+ const a=await loginFixture(runtime,fixturePlayers.A),b=await loginFixture(runtime,fixturePlayers.B),a2=await loginFixture(runtime,fixturePlayers.A2);await db.query("UPDATE arcade.guilds SET status='enabled'");
+ const store=new AuthoredStore(runtime,()=>true),credentials=a.credentials;
+ const homes=await Promise.all([store.home(credentials),store.home(credentials),store.home(a2.credentials)]);eq(new Set(homes.map(h=>h.daily.id)).size,1);eq(homes[0].daily.rules,'chainshift-authored-v2');eq(homes[0].daily.score,0);eq(homes[0].daily.slots.length,7);ok(!JSON.stringify(homes[0].daily).includes(daily.words[1]));
+ let v=homes[0].daily;const mutation=(view,action,requestId=randomUUID(),c=credentials)=>store.act(c,view.id,{requestId,revision:view.revision,action});
+ await rejects(()=>store.act({...credentials,csrf:'x'.repeat(43)},v.id,{requestId:randomUUID(),revision:0,action:{kind:'start'}}),'csrf_invalid');
+ await rejects(()=>store.home({...credentials,playerId:b.credentials.playerId}),'account_changed');await rejects(()=>store.resume(b.credentials,v.id),'not_found');
+ const starts=await Promise.allSettled([mutation(v,{kind:'start'}),mutation(v,{kind:'start'})]);eq(starts.filter(r=>r.status==='fulfilled').length,1);v=await store.resume(credentials,v.id);eq(v.phase,'playing');
+ const hintRequest={requestId:randomUUID(),revision:v.revision,action:{kind:'hint'}};
+ const duplicate=await Promise.all([store.act(credentials,v.id,hintRequest),store.act(credentials,v.id,hintRequest)]);eq(duplicate.map(v=>v.hints),[1,1]);eq(duplicate[0].revision,duplicate[1].revision);v=duplicate[1];
+ await rejects(()=>store.act(credentials,v.id,{...hintRequest,action:{kind:'guess',word:daily.words[1]}}),'request_conflict');
+ v=await mutation(v,{kind:'guess',word:'CASE'});eq(v.hints,2);eq(v.mistakes,1);eq(v.slots[1].display,daily.words[1].slice(0,3)+'_');const same=v;v=await mutation(v,{kind:'guess',word:'case'});eq(v.hints,same.hints);eq(v.mistakes,same.mistakes);
+ v=await mutation(v,{kind:'guess',word:'CORK'});eq(v.current,2);eq(v.hints,3);eq(v.mistakes,2);eq(v.slots[1].display,daily.words[1]);
+ const races=await Promise.allSettled([mutation(v,{kind:'hint'}),mutation(v,{kind:'hint'})]);eq(races.filter(r=>r.status==='fulfilled').length,1);v=await store.resume(credentials,v.id);eq(v.hints,4);
+ const before=v.elapsedMs;await new Promise(r=>setTimeout(r,35));v=await new AuthoredStore(runtime,()=>true).resume(credentials,v.id);ok(v.elapsedMs>before);
+ second=new Database(cluster.runtimeConfig);v=await new AuthoredStore(second,()=>true).resume(a2.credentials,v.id);eq(v.hints,4);eq(v.current,2);
+ for(const word of daily.words.slice(2,-1))v=await mutation(v,{kind:'guess',word});eq(v.phase,'completed');eq(v.hints,4);ok(v.score>=500&&v.score<=800);eq(v.connections.length,6);
+ const frozen={elapsed:v.elapsedMs,score:v.score,hints:v.hints};await new Promise(r=>setTimeout(r,20));const recovered=await new AuthoredStore(second,()=>true).resume(credentials,v.id);eq({elapsed:recovered.elapsedMs,score:recovered.score,hints:recovered.hints},frozen);await rejects(()=>mutation(v,{kind:'hint'}),'completed');
+ await rejects(()=>runtime.query('UPDATE arcade.chainshift_authored_attempts SET elapsed_ms=0 WHERE attempt_id=$1',[v.id]));
+ await rejects(()=>runtime.query('DELETE FROM arcade.chainshift_authored_attempts WHERE attempt_id=$1',[v.id]));
+ await rejects(()=>runtime.query('UPDATE arcade.chainshift_authored_attempts SET state=state WHERE attempt_id=$1',[v.id]));
+ await rejects(()=>runtime.query('UPDATE arcade.chainshift_authored_actions SET request_digest=$1 WHERE attempt_id=$2',['f'.repeat(64),v.id]));
+ await rejects(()=>runtime.query('UPDATE arcade.chainshift_authored_puzzles SET content_digest=$1',['f'.repeat(64)]));
+ const requestId=randomUUID(),practices=await Promise.all([store.practice(credentials,practicesCatalog[0].id,requestId),store.practice(credentials,practicesCatalog[0].id,requestId)]);eq(practices[0].id,practices[1].id);await rejects(()=>store.practice(credentials,practicesCatalog[1].id,requestId),'request_conflict');await rejects(()=>store.practice(credentials,daily.id,randomUUID()),'invalid_request');await rejects(()=>store.board(credentials,practices[0].id),'practice_not_ranked');
+ const p=practices[0];await mutation(p,{kind:'start'});let pv=await store.resume(credentials,p.id);for(let i=0;i<practicesCatalog[0].words.slice(1,-1).reduce((n,w)=>n+w.length-1,0);i++)pv=await mutation(pv,{kind:'hint'});eq(pv.phase,'completed');eq(pv.hints,practicesCatalog[0].words.slice(1,-1).reduce((n,w)=>n+w.length-1,0));eq(pv.score,500);eq((await store.home(credentials)).daily.id,v.id);
+ let bv=(await store.home(b.credentials)).daily;bv=await mutation(bv,{kind:'start'},randomUUID(),b.credentials);for(const word of daily.words.slice(1,-1))bv=await mutation(bv,{kind:'guess',word},randomUUID(),b.credentials);const board=await store.board(credentials,v.id);eq(board.length,2);eq(board[0].name,'Fixture Loki');eq(board[1].name,'Fixture Chris');ok(board.every(r=>!Object.hasOwn(r,'route')&&!Object.hasOwn(r,'connections')));eq(board[1].rank,2);eq(board[0].score,bv.score);eq(board[1].score,v.score);
+ await db.query('ALTER TABLE arcade.chainshift_authored_attempts DISABLE TRIGGER guard_authored_attempt');eq(await authoredReady(runtime,true,true),false);await db.query('ALTER TABLE arcade.chainshift_authored_attempts ENABLE TRIGGER guard_authored_attempt');
+ await db.query('GRANT UPDATE ON arcade.chainshift_authored_attempts TO arcade_session_runtime');eq(await authoredReady(runtime,true,true),false);await db.query('REVOKE UPDATE ON arcade.chainshift_authored_attempts FROM arcade_session_runtime');await db.transaction(grantAuthoredRights);ok(await authoredReady(runtime,true,true));
+ // A receipt failure after state UPDATE must roll the entire intent back.
+ let rollback=await store.practice(credentials,practicesCatalog[1].id,randomUUID());rollback=await mutation(rollback,{kind:'start'});const failedRequest=randomUUID();
+ await db.query(`CREATE FUNCTION arcade.authored_fixture_abort() RETURNS trigger LANGUAGE plpgsql AS $$ BEGIN IF NEW.request_id='${failedRequest}'::uuid THEN RAISE EXCEPTION 'owned fixture rollback' USING ERRCODE='23514'; END IF; RETURN NEW; END $$`);
+ await db.query('CREATE TRIGGER authored_fixture_abort BEFORE INSERT ON arcade.chainshift_authored_actions FOR EACH ROW EXECUTE FUNCTION arcade.authored_fixture_abort()');
+ await rejects(()=>mutation(rollback,{kind:'hint'},failedRequest));const untouched=await store.resume(credentials,rollback.id);eq(untouched.revision,rollback.revision);eq(untouched.hints,0);
+ await db.query('DROP TRIGGER authored_fixture_abort ON arcade.chainshift_authored_actions');await db.query('DROP FUNCTION arcade.authored_fixture_abort()');
+ rollback=await mutation(rollback,{kind:'hint'},failedRequest);eq(rollback.hints,1);
+ await rejects(()=>new AuthoredStore(runtime,id=>id===fixturePlayers.A.guildId).home(a2.credentials),'unavailable');
+ const {digest:sessionDigest}=await import('../../build/server/sessions/crypto.js');
+ await db.query("UPDATE arcade.application_sessions SET membership_verified_at=clock_timestamp()-interval '31 minutes' WHERE token_digest=$1",[sessionDigest(credentials.token)]);await rejects(()=>store.home(credentials),'expired_session');
+ await db.query('UPDATE arcade.application_sessions SET membership_verified_at=clock_timestamp() WHERE token_digest=$1',[sessionDigest(credentials.token)]);
+ await db.query("UPDATE arcade.application_sessions SET idle_expires_at=clock_timestamp()-interval '1 second' WHERE token_digest=$1",[sessionDigest(credentials.token)]);await rejects(()=>store.home(credentials),'expired_session');
+ await db.query("UPDATE arcade.application_sessions SET idle_expires_at=clock_timestamp()+interval '30 minutes' WHERE token_digest=$1",[sessionDigest(credentials.token)]);
+ const config=loadServerConfig({DISCORD_CLIENT_ID:'123456789012345678',DISCORD_CLIENT_SECRET:'synthetic-only',ALLOWED_ORIGINS:fixtureOrigin});
+ const persistence={close:async()=>{},check:async()=>({status:await authoredReady(runtime,true,true)?'available':'unavailable',schema:'compatible'})};
+ const app=createServerApp(config,{exchangeCode:async()=>{throw Error('No live provider');}},{authored:{store,persistence}});
+ server=createServer(app);server.listen(0,'127.0.0.1');await once(server,'listening');let base='http://127.0.0.1:'+server.address().port;
+ const headers={'X-Arcade-Origin':fixtureOrigin,'X-Arcade-Request':'1','X-Arcade-Player':credentials.playerId,'X-Arcade-CSRF':credentials.csrf,Origin:fixtureOrigin,Cookie:'__Host-arcade-session='+credentials.token,'Content-Type':'application/json'};
+ let response=await fetch(base+'/api/chainshift-authored-v2/home',{headers});eq(response.status,200);eq(response.headers.get('cache-control'),'no-store');eq((await response.json()).daily.score,v.score);
+ response=await fetch(base+'/api/chainshift-authored-v2/home',{headers:{...headers,'X-Arcade-Player':b.credentials.playerId}});eq(response.status,403);
+ response=await fetch(base+'/api/chainshift-authored-v2/attempt/'+v.id+'/action',{method:'POST',headers,body:JSON.stringify({requestId:randomUUID(),revision:v.revision,action:{kind:'hint'},elapsedMs:0,score:1000})});eq(response.status,400);
+ response=await fetch(base+'/api/chainshift-authored-v2/home',{headers:{...headers,Origin:'https://foreign.invalid'}});eq(response.status,403);
+ await new Promise(r=>server.close(r));server=undefined;
+ // HTTP process/store reconstruction using a new pool leaves committed facts intact.
+ server=createServer(createServerApp(config,{exchangeCode:async()=>{throw Error();}},{authored:{store:new AuthoredStore(second,()=>true),persistence}}));server.listen(0,'127.0.0.1');await once(server,'listening');base='http://127.0.0.1:'+server.address().port;
+ response=await fetch(base+'/api/chainshift-authored-v2/home',{headers});eq(response.status,200);eq((await response.json()).daily.score,frozen.score);
+ if(process.argv.includes('--compiled')){
+  const release=JSON.parse(readFileSync('build/release.json','utf8'));assert.equal(release.chainshiftAuthored,true);
+  const pool=cluster.runtimeConfig.pool;
+  const launch=async()=>{const probe=createServer();probe.listen(0,'127.0.0.1');await once(probe,'listening');const port=probe.address().port;await new Promise(r=>probe.close(r));
+   child=spawn(process.execPath,['build/server/index.js'],{env:{PATH:process.env.PATH,CHAINSHIFT_AUTHORED_PACK_B64:process.env.CHAINSHIFT_AUTHORED_PACK_B64,NODE_ENV:'production',HOST:'127.0.0.1',PORT:String(port),DISCORD_CLIENT_ID:release.clientId,DISCORD_CLIENT_SECRET:'SYNTHETIC_UNUSED_OAUTH_SECRET',DISCORD_ARCADE_BOT_TOKEN:'SYNTHETIC_UNUSED_BOT',DISCORD_REDIRECT_URI:'https://127.0.0.1',ALLOWED_ORIGINS:'https://arcade.cdawgbot.xyz,'+fixtureOrigin,RELEASE_SHA:release.releaseSha,PERSISTENCE_CONFIGURED:'true',DATABASE_URL:`postgresql://${pool.user}@${pool.host}:${pool.port}/${pool.database}`,DATABASE_TLS_MODE:'disable',ARCADE_SESSIONS_ENABLED:'true',ARCADE_CANARY_GUILD_IDS:fixturePlayers.A.guildId,CHAINSHIFT_ARCADE_ENABLED:'true',CHAINSHIFT_AUTHORED_ENABLED:'true',CHAINSHIFT_RANKED_ENABLED:'false',CHAINSHIFT_DAILY_DELIVERY_ENABLED:'false'},stdio:['ignore','pipe','pipe']});
+   child.stdout.on('data',()=>{});child.stderr.on('data',()=>{});const base='http://127.0.0.1:'+port;for(let i=0;i<100;i++){if(child.exitCode!==null)throw Error('Compiled authored process exited');try{if((await fetch(base+'/api/ready')).status===200)return base;}catch{}await new Promise(r=>setTimeout(r,30));}throw Error('Compiled authored process unavailable');};
+  let compiled=await launch();response=await fetch(compiled+'/api/chainshift-authored-v2/home',{headers});eq(response.status,200);eq((await response.json()).daily.score,frozen.score);
+  let stopped=once(child,'exit');child.kill('SIGTERM');await stopped;child=undefined;
+  compiled=await launch();response=await fetch(compiled+'/api/chainshift-authored-v2/home',{headers});eq(response.status,200);eq((await response.json()).daily.score,frozen.score);
+  response=await fetch(compiled+'/api/chainshift/daily',{headers});eq(response.status,503);
+  stopped=once(child,'exit');child.kill('SIGTERM');await stopped;child=undefined;
+ }
+ await db.query("UPDATE arcade.application_sessions SET revoked_at=clock_timestamp() WHERE token_digest=(SELECT token_digest FROM arcade.application_sessions WHERE player_id=(SELECT player_id FROM arcade.players WHERE discord_user_id=$1) ORDER BY authenticated_at LIMIT 1)",[credentials.playerId]);
+ // Direct credentials-specific session invalidation, without printing any token or digest.
+ const {digest}=await import('../../build/server/sessions/crypto.js');await db.query('UPDATE arcade.application_sessions SET revoked_at=clock_timestamp() WHERE token_digest=$1',[digest(credentials.token)]);await rejects(()=>store.home(credentials),'expired_session');
+ console.log(JSON.stringify({status:'pass',checks,engine:'authored-v2',database:'owned ephemeral PostgreSQL',liveCalls:0}));
+}finally{if(child){const stopped=once(child,'exit');child.kill('SIGTERM');await stopped;}if(server)await new Promise(r=>server.close(r));await second?.close();await cluster.close();}

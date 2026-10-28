@@ -39,7 +39,14 @@
     "db:publish-chainshift-pilot": "node build/server/database/cli.js publish-chainshift-pilot",
     "test:chainshift:delivery": "npm run build:server && node scripts/chainshift/test-delivery.mjs",
     "dev:chainshift:arcade": "npm run build:server && node scripts/chainshift/local-ranked.mjs --integrated",
-    "build:chainshift:arcade": "vite build --mode chainshift-integration --outDir tmp/chainshift/arcade-dist --manifest"
+    "build:chainshift:arcade": "vite build --mode chainshift-integration --outDir tmp/chainshift/arcade-dist --manifest",
+    "dev:chainshift:authored": "npm run build:server && node scripts/chainshift/local-ranked.mjs --authored",
+    "build:chainshift:authored": "vite build --mode chainshift-authored-integration --outDir tmp/chainshift/authored-dist --manifest",
+    "test:chainshift:authored": "npm run build:server && node scripts/chainshift/test-authored-postgres.mjs",
+    "db:grant-authored": "node build/server/database/cli.js grant-authored",
+    "db:verify-authored": "node build/server/database/cli.js verify-authored",
+    "db:authored-plan": "node build/server/database/cli.js authored-plan",
+    "db:publish-authored": "node build/server/database/cli.js publish-authored"
   },
   "dependencies": {
     "@discord/embedded-app-sdk": "^2.5.0",

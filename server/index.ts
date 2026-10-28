@@ -1,4 +1,6 @@
-import {chainshiftServerEnabled} from '../config/chainshift-release.js';
+import {AuthoredStore} from './chainshift/authored/store.js';
+import {authoredReady} from './chainshift/authored/privileges.js';
+import {chainshiftServerEnabled,authoredServerEnabled} from '../config/chainshift-release.js';
 import {startDailyWorker} from './chainshift/delivery-worker.js';
 import {loadArtifacts} from './artifacts.js';
 import {ChainshiftStore} from './chainshift/store.js';
@@ -53,9 +55,12 @@ export async function startServer() {
   const attempts = attemptEnabled && sessions && database ? {store:new AttemptStore(database,canary.allowsGuild),persistence:sessions.persistence} : undefined;
   const guild=process.env.ARCADE_LEADERBOARDS_ENABLED==='true'&&sessions&&database?{store:new GuildStore(database,undefined,canary.allowsGuild),persistence:sessions.persistence}:undefined;
   const chainshift=chainshiftServerEnabled(process.env)&&sessions&&database?{store:new ChainshiftStore(database,canary.allowsGuild),persistence:{close:()=>persistence.close(),check:async()=>{const h=await persistence.check();if(h.status==='available'){try{if(await chainshiftReady(database))return h;}catch{/* Fail closed. */}}return {status:'unavailable' as const,schema:'invalid_configuration' as const};}}}:undefined;
+  const artifactsForAuthored=loadArtifacts(config);
+  if(process.env.CHAINSHIFT_AUTHORED_ENABLED==='true'&&(process.env.CHAINSHIFT_RANKED_ENABLED==='true'||process.env.CHAINSHIFT_DAILY_DELIVERY_ENABLED==='true'))throw new Error('Incompatible Chainshift flags');
+  const authored=authoredServerEnabled(process.env)&&sessions&&database&&artifactsForAuthored.manifest?.chainshiftAuthored===true?{store:new AuthoredStore(database,canary.allowsGuild),persistence:{close:()=>persistence.close(),check:async()=>{const h=await persistence.check();if(h.status==='available'){try{if(await authoredReady(database))return h;}catch{}}return {status:'unavailable' as const,schema:'invalid_configuration' as const};}}}:undefined;
   const cleanup = sessions ? setInterval(() => {void sessions.persistence.check().then(status => status.status === 'available' ? Promise.all([sessions.store.purge(),attempts?.store.purge()]) : undefined).catch(() => {});},60_000) : undefined;
   cleanup?.unref();
-  const app = createServerApp(config, new DiscordTokenExchangeService(config), { isDraining: () => draining, persistence, sessions, attempts, guild, chainshift });
+  const app = createServerApp(config, new DiscordTokenExchangeService(config), { isDraining: () => draining, persistence, sessions, attempts, guild, chainshift, authored });
   const server = createServer({ requestTimeout: 10_000, headersTimeout: 10_000, keepAliveTimeout: 5_000, maxHeaderSize: 16_384 }, app);
   const artifacts=loadArtifacts(config);
   const dailyWorker=startDailyWorker(database,process.env,undefined,artifacts.ready()&&artifacts.manifest?.chainshiftPilot===true);

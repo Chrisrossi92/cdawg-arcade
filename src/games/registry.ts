@@ -12,7 +12,7 @@ export const gameRegistry: GameRegistryEntry[] = [
   {
     id: 'chainshift',
     title: 'Chainshift',
-    tagline: 'Connect the words. Find the shortest route.',
+    tagline: import.meta.env.MODE==='chainshift-authored-integration'?'Five missing words. Make every connection.':'Connect the words. Find the shortest route.',
     route: '#arcade/chainshift',
     accent: '#b99b60',
     availability: 'candidate',

@@ -338,11 +338,11 @@ try {
   await rejects(() => migrate(db, changed));
   eq(await schemaStatus(db, changed), "checksum_mismatch");
   await db.query(
-    "INSERT INTO arcade.schema_migrations VALUES(4,'004_future.sql',$1,now())",
+    "INSERT INTO arcade.schema_migrations VALUES(5,'005_future.sql',$1,now())",
     ["b".repeat(64)],
   );
   eq(await schemaStatus(db), "too_new");
-  await db.query("DELETE FROM arcade.schema_migrations WHERE version=$1", [4]);
+  await db.query("DELETE FROM arcade.schema_migrations WHERE version=$1", [5]);
   await db.query("DELETE FROM arcade.schema_migrations");
   eq(await schemaStatus(db), "too_old");
   await reset();
@@ -539,11 +539,11 @@ try {
     "unreachable",
   );
   await db.query(
-    "INSERT INTO arcade.schema_migrations VALUES(4,'004_future.sql',$1,now())",
+    "INSERT INTO arcade.schema_migrations VALUES(5,'005_future.sql',$1,now())",
     ["b".repeat(64)],
   );
   await smoke({...env,ARCADE_SESSIONS_ENABLED:"true",OFFICIAL_SCORING_ENABLED:"false",DISCORD_ARCADE_BOT_TOKEN:"DUMMY_SESSION_BOT"}, "too_new");
-  await db.query("DELETE FROM arcade.schema_migrations WHERE version=$1", [4]);
+  await db.query("DELETE FROM arcade.schema_migrations WHERE version=$1", [5]);
   stage = "session integration";
   const {testSessions} = await import('./test-sessions.mjs');
   const {restrictedSessionRole} = await import('../build/server/sessions/privileges.js');

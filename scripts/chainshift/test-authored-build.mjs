@@ -1,0 +1,11 @@
+import {execFileSync} from 'node:child_process';
+import {readFileSync,readdirSync} from 'node:fs';
+import assert from 'node:assert/strict';
+const env={PATH:process.env.PATH,NODE_ENV:'production',VITE_DISCORD_CLIENT_ID:'123456789012345678',DISCORD_CLIENT_ID:'123456789012345678',VITE_API_BASE_URL:'/api',RELEASE_SHA:'development-authored-v2',CHAINSHIFT_AUTHORED_BUILD:'true'};
+execFileSync(process.execPath,['scripts/build-production.mjs'],{env,stdio:'inherit'});
+const manifest=JSON.parse(readFileSync('build/release.json','utf8'));assert.equal(manifest.chainshiftAuthored,true);assert.equal(manifest.chainshiftPilot,false);
+const code=readdirSync('dist/assets').filter(f=>f.endsWith('.js')).map(f=>readFileSync('dist/assets/'+f,'utf8')).join('\n');
+assert.match(code,/chainshift-authored-v2/);assert.match(code,/REVEAL NEXT LETTER/);
+for(const marker of ['authored-001','authored-p08','Pocket-sized connections','chainshift-graph-v2','LOCAL CANDIDATE · MOCK SESSIONS','DISCORD_ARCADE_BOT_TOKEN','shortestCertificate'])assert.ok(!code.includes(marker),'Authored production leak: '+marker);
+execFileSync(process.execPath,['scripts/smoke-production.mjs'],{env:{PATH:process.env.PATH},stdio:'inherit'});
+console.log('Authored production artifact verified: real host entry, v2 metadata, no answer catalog or legacy game; no deployment.');
