@@ -116,7 +116,7 @@ export class DiscordHostAdapter implements HostAdapter {
       if (!code) throw new Error('authorization');
       stage = 'exchange';
       this.update({initializationStatus:'Completing Discord sign-in…'});
-      const established = challenge && this.sessions ? await this.sessions.establish(challenge,code,sdk.instanceId ?? '',signal) : null;
+      const established = challenge && this.sessions ? await wait(() => this.sessions!.establish(challenge,code,sdk.instanceId ?? '',signal)) : null;
       const token = established ? {access_token:established.access_token} : await wait(() => this.authClient.exchangeCode(code, signal));
       signal.throwIfAborted();
       stage = 'unexpected';
