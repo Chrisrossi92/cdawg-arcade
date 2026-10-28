@@ -4,7 +4,7 @@ import {authoredServerEnabled} from '../../../config/chainshift-release.js';
 import {chainshiftActivityUrl} from '../../../shared/chainshift/activity-launch.js';
 import {ARCADE_APPLICATION_ID,CHAINSHIFT_PILOT_CHANNEL,type LiveDeliveryConfig} from '../live-config.js';
 import {dailyProjection,type DailyFacts,type DailyActivityMessage} from '../projections.js';
-import {DurableDailyReconciler,deliveryMutableColumns,type DeliveryProfile,type ReconcileResult} from '../delivery-store.js';
+import {DurableDailyReconciler,DeliveryNotDue as NoDaily,deliveryMutableColumns,type DeliveryProfile,type ReconcileResult} from '../delivery-store.js';
 import {DiscordDailyDelivery} from '../discord-delivery.js';
 import {scheduleDailyWorker,type DailyWorker} from '../delivery-worker.js';
 import {authoredReady} from './privileges.js';
@@ -39,7 +39,6 @@ export async function authoredDeliveryReady(c:SqlConnection,allowFixture=false){
  NOT EXISTS(SELECT 1 FROM unnest(ARRAY['channel_id','day_key','puzzle_id','discord_guild_id','operation_key','nonce','created_at','updated_at']) col WHERE has_column_privilege(current_user,'arcade.chainshift_authored_daily_messages',col,'UPDATE')) AS ready`,[[...deliveryMutableColumns]])).rows[0];
  return r?.ready===true;
 }
-class NoDaily extends Error {constructor(readonly reason:'before_post_time'|'empty_queue'){super(reason);}}
 export async function authoredDeliveryFacts(c:SqlConnection,fixtureDay?:string){
  const clock=(await c.query(`SELECT to_char(clock_timestamp() AT TIME ZONE 'America/New_York','YYYY-MM-DD') AS day,
  extract(hour FROM clock_timestamp() AT TIME ZONE 'America/New_York')::int AS hour`)).rows[0];

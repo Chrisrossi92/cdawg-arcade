@@ -22,6 +22,7 @@ try{
  const fake={mode:'fake',validateDestination:async()=>fixturePlayers.A.guildId,create:async(f,nonce)=>{creates++;if(rate){rate=false;throw new DeliveryError('rate_limited',70000);}const m={id:String(1549149791915737130n+BigInt(creates)),nonce,...authoredDailyMessage(f,ARCADE_APPLICATION_ID)};messages.set(m.id,m);if(lost){lost=false;throw new DeliveryError('uncertain');}return m;},edit:async(id,f)=>{const m={...messages.get(id),...authoredDailyMessage(f,ARCADE_APPLICATION_ID)};messages.set(id,m);return m;},read:async id=>{if(missing)throw new DeliveryError('missing');return messages.get(id);},recover:async nonce=>{recoveries++;return [...messages.values()].find(m=>m.nonce===nonce)??null;}};
  const config={applicationId:ARCADE_APPLICATION_ID,channelId:CHAINSHIFT_PILOT_CHANNEL,pilotDay:null,allowsGuild:id=>id===fixturePlayers.A.guildId};
  const model=(connection=runtime)=>new DurableDailyReconciler(connection,fake,config,()=>day,profile);
+ eq(await new DurableDailyReconciler(runtime,fake,config,()=>"2099-12-31",profile).reconcile(),{state:'deferred',error:'empty_queue'});eq(creates,0);
  const first=await model().reconcile();eq(first.state,'created');eq(creates,1);eq((await model().reconcile()).state,'unchanged');eq(creates,1);
  restarted=new Database(c.runtimeConfig);eq((await model(restarted).reconcile()).state,'unchanged');eq(creates,1);
  eq((await db.query('SELECT count(*)::int AS n FROM arcade.chainshift_daily_messages')).rows[0].n,0);

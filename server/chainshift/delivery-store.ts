@@ -40,6 +40,7 @@ export type ReconcileState='disabled'|'unavailable'|'outside_pilot'|'busy'|'crea
 export interface ReconcileResult {state:ReconcileState;error?:string;messageId?:string}
 /** One channel-wide session lock also serializes rollover and Discord rate-limit recovery.
  * Each intent/state write autocommits before HTTP; a crash cannot roll back the create marker. */
+export class DeliveryNotDue extends Error {constructor(readonly reason:'before_post_time'|'empty_queue'){super(reason);}}
 export interface DeliveryProfile {
  table:'arcade.chainshift_daily_messages'|'arcade.chainshift_authored_daily_messages';
  keyVersion:string;
@@ -56,7 +57,8 @@ export class DurableDailyReconciler {
    // Channel-wide durable cooldown covers every day, worker and process restart.
    const cooldown=(await c.query(`SELECT 1 FROM ${this.profile.table} WHERE channel_id=$1 AND next_attempt_at>clock_timestamp() LIMIT 1`,[this.config.channelId])).rowCount;
    if(cooldown)return {state:'deferred'};
-   const p=await this.profile.facts(c,this.fixtureDay?.());
+   let p:DailyProjection;
+   try{p=await this.profile.facts(c,this.fixtureDay?.());}catch(e){if(e instanceof DeliveryNotDue)return {state:'deferred',error:e.reason};throw e;}
    if(this.config.pilotDay!==null&&p.day!==this.config.pilotDay)return {state:'outside_pilot'};
    const key=deliveryHash([this.profile.keyVersion,this.config.channelId,p.puzzleId,p.day]);
    let row=(await c.query(`SELECT * FROM ${this.profile.table} WHERE channel_id=$1 AND day_key=$2`,[this.config.channelId,p.day])).rows[0];
