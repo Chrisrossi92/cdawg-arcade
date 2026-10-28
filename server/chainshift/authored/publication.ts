@@ -14,9 +14,9 @@ export async function publishAuthoredPlan(c:SqlConnection,plan:AuthoredPlan,allo
  if(!authoredCatalogApproved&&!allowFixture)throw Error('approved private content required');
  if(JSON.stringify(plan)!==JSON.stringify(authoredPlan(plan.startDay)))throw Error('unreviewed manifest');
  const today=(await c.query("SELECT to_char(clock_timestamp() AT TIME ZONE 'America/New_York','YYYY-MM-DD') AS day")).rows[0].day;
- if(plan.startDay<today)throw Error('stale plan');
  for(const entry of plan.entries){const p=authoredById(entry.id)!;const prior=(await c.query('SELECT *,day_key::text AS day FROM arcade.chainshift_authored_puzzles WHERE puzzle_id=$1',[entry.id])).rows[0];
   if(prior){if(!validAuthoredPublication(prior)||prior.day!==entry.day)throw Error('conflicting publication');continue;}
+  if(entry.day!==null&&entry.day<today)throw Error('stale plan');
   await c.query('INSERT INTO arcade.chainshift_authored_puzzles(puzzle_id,rules_revision,content_digest,kind,day_key,answer_lengths) VALUES($1,$2,$3,$4,$5,$6)',[p.id,FIXED_RULES,entry.digest,p.use,entry.day,p.words.slice(1,-1).map(w=>w.length)]);
  }
 }

@@ -1,6 +1,6 @@
 /** Server-only private content loader; public fixtures contain only the exposed demo. */
 import {createHash} from 'node:crypto';
-import {APPROVED_CONTENT_SHA256} from './content-policy.js';
+import {APPROVED_CONTENT_SHA256,RESERVE_CONTENT_SHA256} from './content-policy.js';
 export interface AuthoredPuzzle {id:string;title:string;use:'daily'|'practice';words:readonly string[];phrases:readonly string[]}
 function checked(v:any):AuthoredPuzzle {
  if(!v||typeof v.id!=='string'||!/^authored-[a-z0-9-]{1,30}$/.test(v.id)||typeof v.title!=='string'||v.title.length>80||!['daily','practice'].includes(v.use)||!Array.isArray(v.words)||v.words.length!==7||v.words.some((w:any)=>typeof w!=='string'||!(/^[A-Z]{2,12}$/).test(w))||!Array.isArray(v.phrases)||v.phrases.length!==6)throw Error('invalid authored content');
@@ -10,9 +10,9 @@ function checked(v:any):AuthoredPuzzle {
 export function verifyPrivatePack(value:any):readonly AuthoredPuzzle[]{
  if(value?.rules!=='chainshift-authored-v2'||!Array.isArray(value.puzzles))throw Error('invalid authored pack');
  const entries=value.puzzles.map(checked) as AuthoredPuzzle[];
- if(entries.length!==15||new Set(entries.map(p=>p.id)).size!==15||new Set(entries.map(p=>p.words.join(' '))).size!==15||entries.filter(p=>p.use==='daily').length!==7||entries.filter(p=>p.use==='practice').length!==8)throw Error('invalid authored pack');
+ if(![15,45].includes(entries.length)||new Set(entries.map(p=>p.id)).size!==entries.length||new Set(entries.map(p=>p.words.join(' '))).size!==entries.length||entries.filter(p=>p.use==='daily').length!==entries.length-8||entries.filter(p=>p.use==='practice').length!==8)throw Error('invalid authored pack');
  const digest=createHash('sha256').update(JSON.stringify(entries.map(p=>[p.id,p.title,p.use,p.words,p.phrases]))).digest('hex');
- if(digest!==APPROVED_CONTENT_SHA256)throw Error('unreviewed authored pack');
+ if(digest!==(entries.length===15?APPROVED_CONTENT_SHA256:RESERVE_CONTENT_SHA256))throw Error('unreviewed authored pack');
  return Object.freeze(entries);
 }
 const testing=process.env.VITEST==='true';

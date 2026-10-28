@@ -1,6 +1,7 @@
 import {AuthoredStore} from './chainshift/authored/store.js';
 import {authoredReady} from './chainshift/authored/privileges.js';
 import {chainshiftServerEnabled,authoredServerEnabled} from '../config/chainshift-release.js';
+import {startAuthoredDailyWorker} from './chainshift/authored/delivery.js';
 import {startDailyWorker} from './chainshift/delivery-worker.js';
 import {loadArtifacts} from './artifacts.js';
 import {ChainshiftStore} from './chainshift/store.js';
@@ -64,10 +65,11 @@ export async function startServer() {
   const server = createServer({ requestTimeout: 10_000, headersTimeout: 10_000, keepAliveTimeout: 5_000, maxHeaderSize: 16_384 }, app);
   const artifacts=loadArtifacts(config);
   const dailyWorker=startDailyWorker(database,process.env,undefined,artifacts.ready()&&artifacts.manifest?.chainshiftPilot===true);
+  const authoredDailyWorker=startAuthoredDailyWorker(database,process.env,!!authored&&artifacts.ready());
   server.setTimeout(10_000, socket => socket.destroy());
   server.on('error', () => { console.error('Arcade runtime failed'); process.exit(1); });
   server.listen(config.port, config.host, () => console.log(JSON.stringify({ event: 'listening', releaseSha: config.releaseSha })));
-  installShutdown(server, () => { draining = true; void dailyWorker.stop(); console.log('Arcade draining'); }, undefined, undefined, async () => { if (cleanup) clearInterval(cleanup); await dailyWorker.stop(); await persistence.close(); });
+  installShutdown(server, () => { draining = true; void dailyWorker.stop(); void authoredDailyWorker.stop(); console.log('Arcade draining'); }, undefined, undefined, async () => { if (cleanup) clearInterval(cleanup); await dailyWorker.stop(); await authoredDailyWorker.stop(); await persistence.close(); });
   return server;
 }
 // Importing this module never starts a listener or installs signal handlers.

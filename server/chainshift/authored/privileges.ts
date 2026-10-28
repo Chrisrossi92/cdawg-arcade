@@ -1,7 +1,7 @@
 import type {SqlConnection} from '../../database/pool.js';
 import {schemaStatus} from '../../database/migrations.js';
 import {restrictedRuntimeRole} from '../../attempts/privileges.js';
-import {authoredCatalogApproved} from './catalog.js';
+import {authoredCatalogApproved,authoredCatalog} from './catalog.js';
 import {validAuthoredPublication} from './publication.js';
 export async function grantAuthoredRights(c:SqlConnection){
  await c.query('GRANT SELECT ON arcade.chainshift_authored_puzzles,arcade.chainshift_authored_attempts,arcade.chainshift_authored_actions TO arcade_session_runtime');
@@ -24,5 +24,5 @@ export async function authoredReady(c:SqlConnection,requireContent=true,allowFix
  if(!requireContent)return true;
  if(!authoredCatalogApproved&&!allowFixture)return false;
  const rows=(await c.query('SELECT * FROM arcade.chainshift_authored_puzzles')).rows;
- return rows.length===15&&rows.every(validAuthoredPublication)&&rows.filter(r=>r.kind==='practice').length===8;
+ return rows.length===authoredCatalog.length&&rows.every(validAuthoredPublication)&&rows.filter(r=>r.kind==='practice').length===8;
 }

@@ -17,7 +17,7 @@ export interface DailyTransport {
 export class DiscordDailyDelivery implements DailyTransport {
  readonly mode='discord' as const;
  private cooldownUntil=0;
- constructor(private config:LiveDeliveryConfig,private token:string,private transport:typeof fetch=fetch,private now=Date.now){
+ constructor(private config:LiveDeliveryConfig,private token:string,private transport:typeof fetch=fetch,private now=Date.now,private payload:typeof dailyActivityMessage=dailyActivityMessage){
   approvedChannel(config.channelId);
   if(config.applicationId!==ARCADE_APPLICATION_ID||!token)throw new DeliveryError('invalid_configuration');
  }
@@ -60,14 +60,14 @@ export class DiscordDailyDelivery implements DailyTransport {
  }
  async create(facts:DailyFacts,nonce:string):Promise<DeliveryMessage>{
   if(!/^[a-f0-9]{24}$/.test(nonce))throw new DeliveryError('invalid_configuration');
-  const body={...dailyActivityMessage(facts,this.config.applicationId),nonce,enforce_nonce:true,tts:false};
+  const body={...this.payload(facts,this.config.applicationId),nonce,enforce_nonce:true,tts:false};
   return this.message(await this.request('/channels/'+this.config.channelId+'/messages','POST',body),undefined,nonce);
  }
  async edit(id:string,facts:DailyFacts):Promise<DeliveryMessage>{
   if(!snowflake(id))throw new DeliveryError('invalid_configuration');
   // Verify bot ownership first; neither recovered nor persisted IDs can authorize editing a foreign message.
   await this.read(id);
-  return this.message(await this.request('/channels/'+this.config.channelId+'/messages/'+id,'PATCH',dailyActivityMessage(facts,this.config.applicationId)),id);
+  return this.message(await this.request('/channels/'+this.config.channelId+'/messages/'+id,'PATCH',this.payload(facts,this.config.applicationId)),id);
  }
  async read(id:string):Promise<DeliveryMessage>{
   if(!snowflake(id))throw new DeliveryError('invalid_configuration');
