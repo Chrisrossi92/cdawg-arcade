@@ -111,7 +111,7 @@ export class DiscordHostAdapter implements HostAdapter {
       signal.throwIfAborted();
       stage = 'authorization';
       this.update({initializationStatus:'Waiting for Discord authorization…'});
-      const { code } = await wait(() => sdk.commands.authorize({ client_id: clientId, response_type: 'code', scope: ['identify', 'guilds'], ...(challenge ? {code_challenge:challenge.codeChallenge,code_challenge_method:challenge.codeChallengeMethod} : {}) }), 30000);
+      const { code } = await wait(() => sdk.commands.authorize({ client_id: clientId, response_type: 'code', scope: ['identify', 'guilds'], ...(challenge ? {code_challenge:challenge.codeChallenge,code_challenge_method:challenge.codeChallengeMethod} : {}) }), 120000);
       signal.throwIfAborted();
       if (!code) throw new Error('authorization');
       stage = 'exchange';
@@ -154,7 +154,7 @@ export class DiscordHostAdapter implements HostAdapter {
       }
     } catch (error) {
       if (current()) {
-        if (error instanceof SessionClientError) this.update({arcadeSessionState:error.code==='account_changed'?'account-changed':'unavailable'});
+        if (this.sessions) this.update({arcadeSessionState:error instanceof SessionClientError&&error.code==='account_changed'?'account-changed':'unavailable'});
         const reason = error instanceof OperationTimeout ? 'timeout' : stage;
         this.update({ authenticated: false, ready: true, connectionState: 'discord-error', connectionError: reason, initializationStatus: messages[reason] });
         controller.abort();

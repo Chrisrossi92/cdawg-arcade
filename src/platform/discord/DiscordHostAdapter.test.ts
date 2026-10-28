@@ -151,6 +151,14 @@ describe('Arcade verified-session lifecycle',()=>{
     const original=setup();vi.mocked(original.sdk.commands.authenticate).mockResolvedValue({user:{id:view.player.id,username:'SDK display'}});original.sdk.subscribe=vi.fn().mockResolvedValue(undefined);original.sdk.unsubscribe=vi.fn().mockResolvedValue(undefined);
     const adapter=new DiscordHostAdapter({exchangeCode:original.exchangeCode},{...original.options,sessions:sessions as unknown as import('../../api/sessionClient').ArcadeSessionClient});return {...original,adapter,sessions,view};
   }
+  it.each(['sdk','authorization','exchange','authenticate'] as const)('clears pending verification after %s timeout and permits a verified retry',async stage=>{
+   const {adapter,sdk,sessions}=sessionsSetup();const late=deferred<never>();
+   const target=stage==='sdk'?sdk.ready:stage==='authorization'?sdk.commands.authorize:stage==='exchange'?sessions.establish:sdk.commands.authenticate;
+   vi.mocked(target).mockReturnValueOnce(late.promise);
+   const pending=adapter.initialize();await vi.advanceTimersByTimeAsync(101);await pending;
+   expect(adapter.getContext()).toMatchObject({connectionState:'discord-error',connectionError:'timeout',arcadeSessionState:'unavailable',authenticated:false});
+   await adapter.requestAuthentication();expect(adapter.getContext()).toMatchObject({connectionState:'discord-authenticated',arcadeSessionState:'verified'});adapter.dispose();
+  });
   it.each(['desktop','mobile'])('accepts only the SDK fixed navigation hint after server verification on %s',async platform=>{
    const original=sessionsSetup();Object.assign(original.sdk,{customId:'chainshift-today-v1'});
    const adapter=new DiscordHostAdapter({exchangeCode:original.exchangeCode},{...original.options,search:`?frame_id=f&instance_id=i&platform=${platform}&custom_id=ignored&player_id=forged&guild_id=forged&puzzle_id=old&ranked=true`,sessions:original.sessions as unknown as import('../../api/sessionClient').ArcadeSessionClient});

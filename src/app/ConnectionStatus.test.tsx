@@ -23,6 +23,10 @@ describe('production connection and score wording', () => {
     expect(html).toContain('Continue in practice');
     expect(html).not.toContain('Reconnect');
   });
+  it('does not hide recovery behind an obsolete verifying flag after a connection error',()=>{
+    const html=renderToStaticMarkup(<ConnectionStatus onRetry={()=>{}} context={{...makeDefaultLocalContext(),environment:'discord',connectionState:'discord-error',connectionError:'timeout',arcadeSessionState:'verifying'}}/>);
+    expect(html).toContain('Connection needed');expect(html).toContain('Reconnect');expect(html).not.toContain('Connecting…');
+  });
   it('failure leaves Start Game available with local score labels', () => {
     const context = { ...makeDefaultLocalContext(), environment: 'discord' as const, connectionState: 'discord-error' as const, connectionError: 'sdk' as const, initializationStatus: 'Retry or continue in practice.' };
     const html = renderToStaticMarkup(<BalanceExperience onRetryConnection={()=>{}} hostContext={context} scoreRepository={new MemoryScoreRepository()} />);
