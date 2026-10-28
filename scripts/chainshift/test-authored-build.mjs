@@ -6,6 +6,6 @@ execFileSync(process.execPath,['scripts/build-production.mjs'],{env,stdio:'inher
 const manifest=JSON.parse(readFileSync('build/release.json','utf8'));assert.equal(manifest.chainshiftAuthored,true);assert.equal(manifest.chainshiftPilot,false);
 const code=readdirSync('dist/assets').filter(f=>f.endsWith('.js')).map(f=>readFileSync('dist/assets/'+f,'utf8')).join('\n');
 assert.match(code,/chainshift-authored-v2/);assert.match(code,/REVEAL NEXT LETTER/);
-for(const marker of ['authored-001','authored-p08','Pocket-sized connections','chainshift-graph-v2','LOCAL CANDIDATE · MOCK SESSIONS','DISCORD_ARCADE_BOT_TOKEN','shortestCertificate'])assert.ok(!code.includes(marker),'Authored production leak: '+marker);
+for(const marker of ['authored-001','authored-p08','CHAINSHIFT_AUTHORED_PACK_B64','chainshift-graph-v2','LOCAL CANDIDATE · MOCK SESSIONS','DISCORD_ARCADE_BOT_TOKEN','shortestCertificate'])assert.ok(!code.includes(marker),'Authored production leak: '+marker);
 execFileSync(process.execPath,['scripts/smoke-production.mjs'],{env:{PATH:process.env.PATH},stdio:'inherit'});
 console.log('Authored production artifact verified: real host entry, v2 metadata, no answer catalog or legacy game; no deployment.');
