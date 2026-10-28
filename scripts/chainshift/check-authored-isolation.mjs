@@ -4,7 +4,7 @@ const code=async directory=>(await Promise.all((await readdir(directory)).filter
 const normal=await code('dist/assets'),candidate=await code('tmp/chainshift/authored-dist/assets');
 assert.ok(!normal.includes('chainshift-authored-v2'),'Authored game leaked through disabled release gate');
 assert.ok(!normal.includes('Play Chainshift'),'Disabled game advertised in ordinary build');
-for(const text of ['authored-001','authored-p08','Pocket-sized connections','shortestCertificate','review-data','LOCAL CANDIDATE · MOCK SESSIONS','chainshift-graph-v2'])assert.ok(!candidate.includes(text),'Authored bundle leak: '+text);
+for(const text of ['authored-001','authored-p08','CHAINSHIFT_AUTHORED_PACK_B64','shortestCertificate','review-data','LOCAL CANDIDATE · MOCK SESSIONS','chainshift-graph-v2'])assert.ok(!candidate.includes(text),'Authored bundle leak: '+text);
 assert.match(candidate,/chainshift-authored-v2/);assert.match(candidate,/REVEAL NEXT LETTER/);
 const directory='tmp/chainshift/authored-dist',manifest=JSON.parse(await readFile(directory+'/.vite/manifest.json','utf8'));
 assert.ok(manifest['index.html'].dynamicImports.includes('src/arcade/AuthoredChainshiftEntry.tsx'));
