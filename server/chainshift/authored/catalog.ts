@@ -15,11 +15,12 @@ export function verifyPrivatePack(value:any):readonly AuthoredPuzzle[]{
  if(digest!==APPROVED_CONTENT_SHA256)throw Error('unreviewed authored pack');
  return Object.freeze(entries);
 }
-const encoded=process.env.CHAINSHIFT_AUTHORED_PACK_B64;
+const testing=process.env.VITEST==='true';
+const encoded=testing?undefined:process.env.CHAINSHIFT_AUTHORED_PACK_B64;
 if(encoded&&encoded.length>100000)throw Error('invalid authored pack');
 const loaded=encoded?verifyPrivatePack(JSON.parse(Buffer.from(encoded,'base64').toString('utf8'))):null;
 export const authoredCatalogApproved=loaded!==null;
 // Local tests use one deliberately public demo under distinct fixture identities.
 const demo={words:['BOOK','CLUB','HOUSE','PARTY','LINE','DANCE','FLOOR'],phrases:['book club','clubhouse','house party','party line','line dance','dance floor']};
-export const authoredCatalog:readonly AuthoredPuzzle[]=loaded??(process.env.NODE_ENV==='production'?Object.freeze([]):Object.freeze(Array.from({length:15},(_,i)=>checked({...demo,id:i<7?'authored-'+String(i+1).padStart(3,'0'):'authored-p'+String(i-6).padStart(2,'0'),title:'Public test fixture',use:i<7?'daily':'practice'}))));
+export const authoredCatalog:readonly AuthoredPuzzle[]=loaded??(process.env.NODE_ENV==='production'&&!testing?Object.freeze([]):Object.freeze(Array.from({length:15},(_,i)=>checked({...demo,id:i<7?'authored-'+String(i+1).padStart(3,'0'):'authored-p'+String(i-6).padStart(2,'0'),title:'Public test fixture',use:i<7?'daily':'practice'}))));
 export const authoredById=(id:string)=>authoredCatalog.find(p=>p.id===id);
