@@ -105,19 +105,22 @@ export class DiscordHostAdapter implements HostAdapter {
       signal.throwIfAborted();
       let challenge = null;
       if (this.sessions) {
-        this.update({arcadeSessionState:'verifying'});
+        this.update({arcadeSessionState:'verifying',initializationStatus:'Checking Arcade session…'});
         try {challenge = await this.sessions.challenge(signal);} catch {if (current()) this.update({arcadeSessionState:'unavailable'});}
       }
       signal.throwIfAborted();
       stage = 'authorization';
+      this.update({initializationStatus:'Waiting for Discord authorization…'});
       const { code } = await wait(() => sdk.commands.authorize({ client_id: clientId, response_type: 'code', scope: ['identify', 'guilds'], ...(challenge ? {code_challenge:challenge.codeChallenge,code_challenge_method:challenge.codeChallengeMethod} : {}) }), 30000);
       signal.throwIfAborted();
       if (!code) throw new Error('authorization');
       stage = 'exchange';
+      this.update({initializationStatus:'Completing Discord sign-in…'});
       const established = challenge && this.sessions ? await this.sessions.establish(challenge,code,sdk.instanceId ?? '',signal) : null;
       const token = established ? {access_token:established.access_token} : await wait(() => this.authClient.exchangeCode(code, signal));
       signal.throwIfAborted();
       stage = 'unexpected';
+      this.update({initializationStatus:'Connecting verified Discord account…'});
       const auth = await wait(() => sdk.commands.authenticate({ access_token: token.access_token })) as { user?: DiscordUserLike } | null;
       token.access_token = '';
       if (established) established.access_token = '';

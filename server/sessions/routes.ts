@@ -25,6 +25,8 @@ export function sessionRoutes(config: ServerConfig, runtime?: SessionRuntime, re
   const paths = ['/auth/challenges','/session','/session/renew','/me','/logout','/session/discrepancy'];
   router.all(paths, (req,res,next) => {
     res.set({'Cache-Control':'no-store','X-Arcade-Diagnostic':randomUUID()});
+    // Fixed route/status only: never log credentials, identity, query, or provider payload.
+    res.once('finish',()=>{if(res.statusCode>=400)console.warn(JSON.stringify({event:'arcade_session_request_failed',path:req.path,status:res.statusCode}));});
     const origin = req.headers.origin;
     // Browsers omit Origin for same-origin GET. A custom header supplies the
     // expected origin for GET only; CORS and the host-only cookie isolate callers.
