@@ -35,7 +35,7 @@ export interface DailyActivityMessage {
  image?:{filename:string;data:Uint8Array;sha256:string;description:string};
  embeds?:{image:{url:string}}[];
  allowed_mentions:{parse:[]};
- components:[{type:1;components:[{type:2;style:5;label:string;url:string}]}];
+ components:[{type:1;components:[{type:2;style:5;label:string;url:string;emoji?:{id:string;name:string;animated:boolean}}]}];
 }
 export function dailyActivityMessage(facts: DailyFacts, applicationId: string):DailyActivityMessage {
  const projection = dailyProjection(facts);

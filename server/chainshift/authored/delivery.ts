@@ -1,5 +1,6 @@
 import {authoredCardFacts} from './card-facts.js';
 import {CARD_GUILD} from './ranking.js';
+import {dogHeadAvailable,DOG_HEAD} from './play-button.js';
 import {renderLeaderboardCard} from './leaderboard-card.js';
 import type {Database,SqlConnection} from '../../database/pool.js';
 import {canaryConfig} from '../../canary.js';
@@ -21,11 +22,11 @@ export function authoredDeliveryConfig(env:NodeJS.ProcessEnv):LiveDeliveryConfig
  return {applicationId:ARCADE_APPLICATION_ID,channelId:CHAINSHIFT_PILOT_CHANNEL,pilotDay:null,allowsGuild:canaryConfig(env).allowsGuild};
 }
 /** Existing static invitation unless the independently gated facts include the approved daily card. No puzzle answers or mentions. */
-export function authoredDailyMessage(facts:DailyFacts,applicationId:string):DailyActivityMessage {
+export function authoredDailyMessage(facts:DailyFacts,applicationId:string,withDogHead=true):DailyActivityMessage {
  const p=dailyProjection(facts);
  const image=facts.leaderboard?renderLeaderboardCard(facts.leaderboard):undefined;
  return {...(image?{image,embeds:[{image:{url:'attachment://'+image.filename}}]}:{}),content:`⛓️ **Today's ChainShift · ${p.day}**\nFive missing words. One chain. How quickly can you connect them?\nFinish for 500 points; speed and fewer assists earn up to 1,000.\nPlay today's daily below—and compare scores without sharing answers!`,allowed_mentions:{parse:[]},
- components:[{type:1,components:[{type:2,style:5,label:"Play Today's Chain",url:chainshiftActivityUrl(applicationId)}]}]};
+ components:[{type:1,components:[{type:2,style:5,label:"Play Today’s ChainShift",url:chainshiftActivityUrl(applicationId),...(withDogHead?{emoji:DOG_HEAD}:{})}]}]};
 }
 export async function grantAuthoredDeliveryRights(c:SqlConnection){
  await c.query('GRANT SELECT,INSERT ON arcade.chainshift_authored_daily_messages TO arcade_session_runtime');
@@ -59,7 +60,9 @@ export function startAuthoredDailyWorker(db:Database|undefined,env:NodeJS.Proces
  if(!config||!db||!artifactReady)return {stop:async()=>{}};
  const cards=env.CHAINSHIFT_AUTHORED_LEADERBOARD_CARD_ENABLED==='true';if(cards&&!config.allowsGuild(CARD_GUILD))return {stop:async()=>{}};
  const profile=cards?{...authoredDeliveryProfile,facts:async(c:SqlConnection,day?:string)=>{const p=await authoredDeliveryFacts(c,day);return {...p,leaderboard:await authoredCardFacts(c,p.puzzleId,p.day)};}}:authoredDeliveryProfile;
- const transport=new DiscordDailyDelivery(config,env.DISCORD_ARCADE_BOT_TOKEN!,fetch,Date.now,authoredDailyMessage);
- const reconciler=new DurableDailyReconciler(db,transport,config,undefined,profile);
- return scheduleDailyWorker(async()=>{try{return await reconciler.reconcile();}catch(e){if(e instanceof NoDaily)return {state:'deferred',error:e.reason};throw e;}},report);
+ let available=false;const availability=dogHeadAvailable(env.DISCORD_ARCADE_BOT_TOKEN!);
+ const payload=(facts:DailyFacts,id:string)=>authoredDailyMessage(facts,id,available);
+ const transport=new DiscordDailyDelivery(config,env.DISCORD_ARCADE_BOT_TOKEN!,fetch,Date.now,payload);
+ const reconciler=new DurableDailyReconciler(db,transport,config,undefined,{...profile,payload});
+ return scheduleDailyWorker(async()=>{try{available=await availability;return await reconciler.reconcile();}catch(e){if(e instanceof NoDaily)return {state:'deferred',error:e.reason};throw e;}},report);
 }

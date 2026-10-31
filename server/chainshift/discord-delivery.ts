@@ -109,7 +109,8 @@ export function matchesPayload(message:DeliveryMessage,payload:DailyActivityMess
   else try{const url=new URL(embedded.url);if(url.protocol!=='https:'||url.hostname!=='cdn.discordapp.com'||!url.pathname.startsWith('/attachments/1549149791915737129/')||!url.pathname.endsWith('/'+image.filename))return false;}catch{return false;}
  }
 
- return message.content===payload.content&&b?.type===2&&b.style===5&&b.label===expected.label&&b.url===expected.url&&b.disabled!==true;
+ return message.content===payload.content&&b?.type===2&&b.style===5&&b.label===expected.label&&b.url===expected.url&&b.disabled!==true&&
+  (expected.emoji?b.emoji?.id===expected.emoji.id&&b.emoji?.name===expected.emoji.name&&(b.emoji?.animated??false)===expected.emoji.animated:!b.emoji);
 }
 
 /** Image bytes are bound by SHA-256, not serialized into the durable digest. */
