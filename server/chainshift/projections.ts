@@ -1,6 +1,7 @@
+import type {LeaderboardCard} from './authored/leaderboard-card.js';
 import {chainshiftActivityUrl} from '../../shared/chainshift/activity-launch.js';
 /** Delivery-neutral facts. Callers must obtain these from authoritative completed attempts only. */
-export interface DailyFacts {puzzleId:string;day:string;puzzleNumber?:number;start:string;finish:string;completedPlayers:number;shortestShifts:number|null;fastestAtShortestMs:number|null}
+export interface DailyFacts {puzzleId:string;day:string;puzzleNumber?:number;leaderboard?:LeaderboardCard;start:string;finish:string;completedPlayers:number;shortestShifts:number|null;fastestAtShortestMs:number|null}
 export interface ResultFacts {puzzleId:string;day:string;displayName:string;shifts:number;elapsedMs:number}
 /** Neutral projection: the configured adapter renderer supplies the resolved Discord link. */
 export interface PlayAction {kind:'activity-launch-unresolved';game:'chainshift';destination:'#arcade/chainshift';label:"Play Today's Chain"}
@@ -16,7 +17,7 @@ export function dailyProjection(f:DailyFacts):DailyProjection{
   (f.completedPlayers===0?(f.shortestShifts!==null||f.fastestAtShortestMs!==null):(!integer(f.shortestShifts!)||f.shortestShifts!<1||!integer(f.fastestAtShortestMs!))))throw new Error('Invalid projection facts');
  // Explicit allowlist: never spread a database row or input object into delivery data.
  return {kind:'chainshift-daily',puzzleId:f.puzzleId,day:f.day,...(f.puzzleNumber===undefined?{}:{puzzleNumber:f.puzzleNumber}),start:f.start,finish:f.finish,completedPlayers:f.completedPlayers,shortestShifts:f.shortestShifts,fastestAtShortestMs:f.fastestAtShortestMs,
-  play:{kind:'activity-launch-unresolved',game:'chainshift',destination:'#arcade/chainshift',label:"Play Today's Chain"}};
+  ...(f.leaderboard?{leaderboard:f.leaderboard}:{}),play:{kind:'activity-launch-unresolved',game:'chainshift',destination:'#arcade/chainshift',label:"Play Today's Chain"}};
 }
 export function resultProjection(f:ResultFacts):ResultProjection{
  puzzle(f.puzzleId,f.day);if(!text(f.displayName,64)||!integer(f.shifts)||f.shifts<1||!integer(f.elapsedMs))throw new Error('Invalid projection facts');
@@ -31,6 +32,8 @@ export const resultCopy=(p:ResultProjection)=>`${escape(p.displayName)} complete
  * Does not send, register commands, create links in the portal, or enable delivery. */
 export interface DailyActivityMessage {
  content:string;
+ image?:{filename:string;data:Uint8Array;sha256:string;description:string};
+ embeds?:{image:{url:string}}[];
  allowed_mentions:{parse:[]};
  components:[{type:1;components:[{type:2;style:5;label:string;url:string}]}];
 }

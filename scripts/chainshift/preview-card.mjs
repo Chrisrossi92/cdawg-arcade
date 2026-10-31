@@ -1,0 +1,5 @@
+// Synthetic standings only. Same PNG renderer as the local delivery candidate.
+import {mkdirSync,writeFileSync} from 'node:fs';
+import {renderLeaderboardCard,cardSvg} from '../../build/server/chainshift/authored/leaderboard-card.js';
+const output='docs/chainshift-card-preview';mkdirSync(output,{recursive:true});
+for(const [name,card] of [['top5',{day:'2026-10-31',total:18,latestFinishAt:'2026-10-31T17:12:00Z',rows:[{rank:1,name:'Ravenwood',score:956,elapsedMs:44000},{rank:2,name:'Bjørn the Builder',score:921,elapsedMs:79000},{rank:2,name:'Zoë',score:921,elapsedMs:79000},{rank:4,name:'Δelta Viking',score:877,elapsedMs:123000},{rank:5,name:'Игрок',score:854,elapsedMs:146000}]}],['empty',{day:'2026-10-31',total:0,latestFinishAt:null,rows:[]}]]){const image=renderLeaderboardCard(card,true);writeFileSync(output+'/chainshift-'+name+'-synthetic-preview.png',image.data);writeFileSync(output+'/chainshift-'+name+'-synthetic-preview.svg',cardSvg(card,true));console.log(JSON.stringify({name,sha256:image.sha256,bytes:image.data.length,synthetic:true}));}

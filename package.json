@@ -50,6 +50,7 @@
   },
   "dependencies": {
     "@discord/embedded-app-sdk": "^2.5.0",
+    "@resvg/resvg-js": "2.6.2",
     "@vitejs/plugin-react": "^4.3.4",
     "concurrently": "^10.0.3",
     "cors": "^2.8.6",

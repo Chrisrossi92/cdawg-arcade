@@ -5,7 +5,7 @@ import {chainshiftReady} from './privileges.js';
 import {approvedChannel,type LiveDeliveryConfig} from './live-config.js';
 import {validPublication} from './publication.js';
 import {dailyProjection,dailyActivityMessage,type DailyProjection} from './projections.js';
-import {DeliveryError,matchesPayload,type DailyTransport} from './discord-delivery.js';
+import {DeliveryError,matchesPayload,dailyMessageDigest,type DailyTransport} from './discord-delivery.js';
 export const deliveryHash=(value:unknown)=>createHash('sha256').update(JSON.stringify(value)).digest('hex');
 export const deliveryMutableColumns=['state','message_id','digest','revision','update_key','last_error','failures','next_attempt_at','create_attempted_at','reconciled_at','checked_at'] as const;
 export async function grantDeliveryRights(c:SqlConnection){
@@ -72,7 +72,7 @@ export class DurableDailyReconciler {
    row=(await c.query(`SELECT *,next_attempt_at>clock_timestamp() AS deferred,checked_at IS NULL OR checked_at<clock_timestamp()-interval '10 minutes' AS verify_due FROM ${this.profile.table} WHERE channel_id=$1 AND day_key=$2`,[this.config.channelId,p.day])).rows[0];
    if(row.puzzle_id!==p.puzzleId||row.discord_guild_id!==guild||row.operation_key!==key)return {state:'blocked',error:'invalid_configuration'};
    if(row.deferred)return {state:'deferred'};
-   const payload=this.profile.payload(p,this.config.applicationId),digest=deliveryHash(payload);
+   const payload=this.profile.payload(p,this.config.applicationId),digest=dailyMessageDigest(payload);
    if(row.state==='posted'&&row.digest===digest&&!row.verify_due)return {state:'unchanged',messageId:row.message_id};
    let messageId:string|null=row.message_id,created=false,creating=false;
    try{

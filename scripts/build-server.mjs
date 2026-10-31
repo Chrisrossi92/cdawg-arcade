@@ -6,3 +6,5 @@ rmSync('build/server', { recursive: true, force: true });
 execFileSync(process.execPath, ['node_modules/typescript/bin/tsc', '-p', 'tsconfig.server.json'], { stdio: 'inherit' });
 
 cpSync('server/database/migrations', 'build/server/database/migrations', { recursive: true });
+
+cpSync('server/chainshift/authored/card-fonts', 'build/server/chainshift/authored/card-fonts', {recursive:true});

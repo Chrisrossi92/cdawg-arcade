@@ -1,10 +1,11 @@
+import {createHash} from 'node:crypto';
 import {dailyActivityMessage,type DailyFacts,type DailyActivityMessage} from './projections.js';
 import {approvedChannel,snowflake,ARCADE_APPLICATION_ID,type LiveDeliveryConfig} from './live-config.js';
 export type DeliveryErrorCode='rate_limited'|'transient'|'uncertain'|'malformed'|'missing'|'forbidden'|'invalid_channel'|'invalid_configuration';
 export class DeliveryError extends Error {
  constructor(readonly code:DeliveryErrorCode,readonly retryMs=60_000){super('Chainshift delivery '+code);}
 }
-export interface DeliveryMessage {id:string;nonce?:string;content:string;components:unknown}
+export interface DeliveryMessage {id:string;nonce?:string;content:string;components:unknown;attachments?:any[];embeds?:any[]}
 export interface DailyTransport {
  readonly mode:'fake'|'discord';
  validateDestination():Promise<string>;
@@ -21,12 +22,15 @@ export class DiscordDailyDelivery implements DailyTransport {
   approvedChannel(config.channelId);
   if(config.applicationId!==ARCADE_APPLICATION_ID||!token)throw new DeliveryError('invalid_configuration');
  }
- private async request(path:string,method:'GET'|'POST'|'PATCH'='GET',body?:unknown):Promise<any>{
+ private async request(path:string,method:'GET'|'POST'|'PATCH'='GET',body?:any,image?:DailyActivityMessage['image']):Promise<any>{
   approvedChannel(this.config.channelId);
   if(this.now()<this.cooldownUntil)throw new DeliveryError('rate_limited',this.cooldownUntil-this.now());
   try{
-   const response=await this.transport('https://discord.com/api/v10'+path,{method,headers:{Authorization:'Bot '+this.token,'Content-Type':'application/json'},
-    ...(body?{body:JSON.stringify(body)}:{}),redirect:'error',signal:AbortSignal.timeout(8000)});
+   let encoded:FormData|string|undefined;const headers:Record<string,string>={Authorization:'Bot '+this.token};
+   if(image){if(image.data.length>1500000||createHash('sha256').update(image.data).digest('hex')!==image.sha256||image.filename!==`chainshift-${body.content.match(/\d{4}-\d{2}-\d{2}/)?.[0]}-${image.sha256}.png`)throw new DeliveryError('invalid_configuration');const form=new FormData();form.append('payload_json',JSON.stringify({...body,attachments:[{id:0,filename:image.filename,description:image.description}]}));form.append('files[0]',new Blob([new Uint8Array(image.data).buffer],{type:'image/png'}),image.filename);encoded=form;}
+   else{headers['Content-Type']='application/json';if(body)encoded=JSON.stringify(body);}
+   const response=await this.transport('https://discord.com/api/v10'+path,{method,headers,
+    ...(encoded?{body:encoded}:{}),redirect:'error',signal:AbortSignal.timeout(8000)});
    const remaining=response.headers.get('x-ratelimit-remaining'),reset=Number(response.headers.get('x-ratelimit-reset-after'));
    if(remaining==='0'&&Number.isFinite(reset)&&reset>0)this.cooldownUntil=Math.max(this.cooldownUntil,this.now()+reset*1000);
    if(response.status===401||response.status===403){await response.body?.cancel();throw new DeliveryError('forbidden');}
@@ -51,7 +55,7 @@ export class DiscordDailyDelivery implements DailyTransport {
   if(!raw||!snowflake(raw.id)||raw.channel_id!==this.config.channelId||raw.author?.id!==this.config.applicationId||
     raw.author?.bot!==true||raw.webhook_id||(expectedId&&raw.id!==expectedId)||
     (nonce&&String(raw.nonce)!==nonce)||typeof raw.content!=='string'||!Array.isArray(raw.components))throw new DeliveryError('malformed');
-  return {id:raw.id,nonce:raw.nonce===undefined?undefined:String(raw.nonce),content:raw.content,components:raw.components};
+  return {id:raw.id,nonce:raw.nonce===undefined?undefined:String(raw.nonce),content:raw.content,components:raw.components,attachments:raw.attachments,embeds:raw.embeds};
  }
  async validateDestination():Promise<string>{
   const c=await this.request('/channels/'+this.config.channelId);
@@ -60,14 +64,14 @@ export class DiscordDailyDelivery implements DailyTransport {
  }
  async create(facts:DailyFacts,nonce:string):Promise<DeliveryMessage>{
   if(!/^[a-f0-9]{24}$/.test(nonce))throw new DeliveryError('invalid_configuration');
-  const body={...this.payload(facts,this.config.applicationId),nonce,enforce_nonce:true,tts:false};
-  return this.message(await this.request('/channels/'+this.config.channelId+'/messages','POST',body),undefined,nonce);
+  const {image,...payload}=this.payload(facts,this.config.applicationId);const body={...payload,nonce,enforce_nonce:true,tts:false};
+  return this.message(await this.request('/channels/'+this.config.channelId+'/messages','POST',body,image),undefined,nonce);
  }
  async edit(id:string,facts:DailyFacts):Promise<DeliveryMessage>{
   if(!snowflake(id))throw new DeliveryError('invalid_configuration');
   // Verify bot ownership first; neither recovered nor persisted IDs can authorize editing a foreign message.
   await this.read(id);
-  return this.message(await this.request('/channels/'+this.config.channelId+'/messages/'+id,'PATCH',this.payload(facts,this.config.applicationId)),id);
+  const {image,...payload}=this.payload(facts,this.config.applicationId);return this.message(await this.request('/channels/'+this.config.channelId+'/messages/'+id,'PATCH',payload,image),id);
  }
  async read(id:string):Promise<DeliveryMessage>{
   if(!snowflake(id))throw new DeliveryError('invalid_configuration');
@@ -96,5 +100,17 @@ export function matchesPayload(message:DeliveryMessage,payload:DailyActivityMess
  const rows=message.components as any[];
  if(!Array.isArray(rows)||rows.length!==1||rows[0]?.type!==1||!Array.isArray(rows[0].components)||rows[0].components.length!==1)return false;
  const b=rows[0].components[0],expected=payload.components[0].components[0];
+ const image=payload.image;if(image){
+  const files=message.attachments;if(!Array.isArray(files)||files.length>1||!Array.isArray(message.embeds)||message.embeds.length!==1)return false;
+  if(files.length===1){const a=files[0];if(a.filename!==image.filename||a.size!==image.data.length||a.description!==image.description||a.content_type!==undefined&&a.content_type!=='image/png'||a.width!==undefined&&a.width!==1200||a.height!==undefined&&a.height!==820)return false;}
+  const embedded=message.embeds[0].image;if(!embedded||embedded.width!==undefined&&embedded.width!==1200||embedded.height!==undefined&&embedded.height!==820)return false;
+  // Discord documents that embed-referenced attachments may be omitted from attachments[].
+  if(embedded.url==='attachment://'+image.filename){if(files.length!==1)return false;}
+  else try{const url=new URL(embedded.url);if(url.protocol!=='https:'||url.hostname!=='cdn.discordapp.com'||!url.pathname.startsWith('/attachments/1549149791915737129/')||!url.pathname.endsWith('/'+image.filename))return false;}catch{return false;}
+ }
+
  return message.content===payload.content&&b?.type===2&&b.style===5&&b.label===expected.label&&b.url===expected.url&&b.disabled!==true;
 }
+
+/** Image bytes are bound by SHA-256, not serialized into the durable digest. */
+export function dailyMessageDigest(payload:DailyActivityMessage){const {image,...rest}=payload;return createHash('sha256').update(JSON.stringify(image?{...rest,image:{filename:image.filename,sha256:image.sha256,description:image.description}}:rest)).digest('hex');}

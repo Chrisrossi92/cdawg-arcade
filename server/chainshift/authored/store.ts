@@ -1,3 +1,4 @@
+import {authoredScoreSql} from './ranking.js';
 import {createHash} from 'node:crypto';
 import {DatabaseError,type Database,type SqlConnection} from '../../database/pool.js';
 import {retryTransaction} from '../../results/transaction.js';
@@ -80,7 +81,7 @@ export class AuthoredStore {
  board(credentials:RankedCredentials,id:string):Promise<FixedRow[]>{return this.transaction(credentials,false,async(c,s)=>{
   const own=(await this.load(c,s)).engine.resume(s.discord_user_id,id);if(own.mode!=='daily')throw new FixedError('practice_not_ranked');
   const rows=(await c.query(`WITH scored AS (SELECT a.player_id,p.display_name,a.elapsed_ms,(state->>'hints')::integer AS hints,(state->>'mistakes')::integer AS mistakes,
-   500+greatest(0,500-floor(elapsed_ms/1000.0)::integer-50*(state->>'hints')::integer) AS score
+   ${authoredScoreSql} AS score
    FROM arcade.chainshift_authored_attempts a JOIN arcade.players p USING(player_id) WHERE puzzle_id=$1 AND kind='daily' AND completed_at IS NOT NULL),
    ranked AS(SELECT *,rank() OVER(ORDER BY score DESC,elapsed_ms) AS place,row_number() OVER(ORDER BY score DESC,elapsed_ms,player_id) AS display_order FROM scored)
    SELECT * FROM ranked WHERE display_order<=100 OR player_id=$2 ORDER BY display_order`,[own.puzzle.id,s.player_id])).rows;
